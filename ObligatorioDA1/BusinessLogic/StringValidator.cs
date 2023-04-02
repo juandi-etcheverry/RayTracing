@@ -10,11 +10,7 @@ namespace BusinessLogic
     {
         public static bool HasSpaces(string stringToValidate)
         {
-            if (stringToValidate.Length > 0)
-            {
-                return stringToValidate.Contains(" ");
-            }
-            return false;
+            return stringToValidate.Contains(" ");
         }
     }
 }
