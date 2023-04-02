@@ -12,7 +12,7 @@ namespace BusinessLogic
         {
             if (stringToValidate.Length > 0)
             {
-                return true;
+                return stringToValidate[0] == ' ';
             }
             return false;
         }
