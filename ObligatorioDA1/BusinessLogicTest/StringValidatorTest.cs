@@ -20,5 +20,12 @@ namespace BusinessLogicTest
             bool hasSpaces = StringValidator.HasSpaces(" ");
             Assert.IsTrue(hasSpaces);
         }
+
+        [TestMethod]
+        public void HasSpaces_SingleLetter_False_OK_Test()
+        {
+            bool hasSpaces = StringValidator.HasSpaces("T");
+            Assert.IsFalse(hasSpaces);
+        }
     }
 }
