@@ -7,8 +7,10 @@ namespace BusinessLogicTest
     public class StringValidatorTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void HasSpaces_EmptyString_False_OK_Test()
         {
+            bool HasSpaces = StringValidator.HasSpaces("");
+            Assert.IsFalse(HasSpaces);
         }
     }
 }
