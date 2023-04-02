@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
-    public class StringValidator
+    public static class StringValidator
     {
+        public static bool HasSpaces(string StringToValidate)
+        {
+            return false;
+        }
     }
 }
