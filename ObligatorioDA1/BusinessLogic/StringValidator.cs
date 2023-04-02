@@ -8,8 +8,12 @@ namespace BusinessLogic
 {
     public static class StringValidator
     {
-        public static bool HasSpaces(string StringToValidate)
+        public static bool HasSpaces(string stringToValidate)
         {
+            if (stringToValidate.Length > 0)
+            {
+                return true;
+            }
             return false;
         }
     }
