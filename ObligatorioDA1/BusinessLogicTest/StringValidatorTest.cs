@@ -10,8 +10,15 @@ namespace BusinessLogicTest
         [TestMethod]
         public void HasSpaces_EmptyString_False_OK_Test()
         {
-            bool HasSpaces = StringValidator.HasSpaces("");
-            Assert.IsFalse(HasSpaces);
+            bool hasSpaces = StringValidator.HasSpaces("");
+            Assert.IsFalse(hasSpaces);
+        }
+
+        [TestMethod]
+        public void HasSpaces_SingleSpace_True_OK_Test()
+        {
+            bool hasSpaces = StringValidator.HasSpaces(" ");
+            Assert.IsTrue(hasSpaces);
         }
     }
 }
