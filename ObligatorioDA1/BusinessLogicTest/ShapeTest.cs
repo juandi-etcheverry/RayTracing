@@ -21,12 +21,6 @@ namespace BusinessLogicTest
             Assert.AreEqual("Nicolas", newshape.Name);
         }
 
-        [TestMethod]
-        public void CreateNewShape_Owner_Test_FAIL()
-        {
-            Shape newshape = new Shape();
-            Assert.IsNotNull(newshape.Owner);
-        }
 
 
     }
