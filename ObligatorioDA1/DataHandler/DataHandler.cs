@@ -12,6 +12,7 @@ namespace DataHandlers
 
         public static void AddShape(Shape oneShape)
         {
+           if (Shapes.Contains(oneShape)) throw new UniqueNameException("Shape name already exists");
            Shapes.Add(oneShape);
         }
 
