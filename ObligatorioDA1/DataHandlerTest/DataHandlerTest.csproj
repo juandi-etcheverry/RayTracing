@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{42D14B1A-D217-41D2-9879-B603CBBD0E91}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataHandler\DataHandler.csproj">
       <Project>{C181DB03-FE0B-4D67-B31D-5BA6A2424D91}</Project>
       <Name>DataHandler</Name>
