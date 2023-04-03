@@ -27,7 +27,9 @@ namespace DataHandlerTest
         public void DataHandler_AddAnotherShape_OK()
         {
             Shape shape1= new Shape();
+            shape1.Name = "Ticu";
             Shape shape2 = new Shape();
+            shape2.Name = "Teito";
             DataHandler.AddShape(shape1);
             DataHandler.AddShape(shape2);
             Assert.IsTrue(DataHandler.Shapes.Count == 2);

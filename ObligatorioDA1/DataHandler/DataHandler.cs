@@ -9,10 +9,16 @@ namespace DataHandlers
     {
         public static List<Shape> Shapes { get; } = new List<Shape>();
 
+        private static void IsShapeNameUnique(string shapeName) 
+        {
+            bool doesNameExist = Shapes.Exists((currentShape) => currentShape.Name == shapeName);
+            if (doesNameExist) throw new UniqueNameException("Shape name already exists");
+             
+        }
 
         public static void AddShape(Shape oneShape)
         {
-           if (Shapes.Contains(oneShape)) throw new UniqueNameException("Shape name already exists");
+           IsShapeNameUnique(oneShape.Name);
            Shapes.Add(oneShape);
         }
 
