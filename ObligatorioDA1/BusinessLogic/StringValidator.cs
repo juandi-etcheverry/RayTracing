@@ -15,7 +15,7 @@ namespace BusinessLogic
 
         public static bool HasTrailingSpaces(string stringToValidate)
         {
-            return stringToValidate.StartsWith(" ");
+            return stringToValidate.StartsWith(" ") || stringToValidate.EndsWith(" ");
         }
     }
 }
