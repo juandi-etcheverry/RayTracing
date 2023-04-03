@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using DataHandler;
+using DataHandlers;
 using BusinessLogic;
 
 namespace DataHandlerTest
@@ -8,21 +8,14 @@ namespace DataHandlerTest
     [TestClass]
     public class ShapeTest
     {
-        [TestMethod]
-        public void CreateDataHandler_Test_Is_Not_Null_OK()
-        {
-            DataHandlerClass dataHandler = new DataHandlerClass();
-            Assert.IsNotNull(dataHandler);
-        }
 
         [TestMethod]
         public void DataHandler_AddOneShape_OK()
         {
-            DataHandlerClass dataHandler = new DataHandlerClass();
             Shape oneShape = new Shape();
-            dataHandler.AddShape(oneShape);
+            DataHandler.AddShape(oneShape);
 
-            Assert.IsTrue(dataHandler.Shapes.count == 1);
+            Assert.IsTrue(DataHandler.Shapes.Count == 1);
         }
     }
 }
