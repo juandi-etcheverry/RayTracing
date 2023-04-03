@@ -12,5 +12,22 @@ namespace BusinessLogicTest
             Shape newshape = new Shape();
             Assert.IsNull(newshape.Name);
         }
+
+        [TestMethod]
+        public void CreateNewShape_Name_Test_OK()
+        {
+            Shape newshape = new Shape();
+            newshape.Name = "Nicolas";
+            Assert.AreEqual("Nicolas", newshape.Name);
+        }
+
+        [TestMethod]
+        public void CreateNewShape_Owner_Test_FAIL()
+        {
+            Shape newshape = new Shape();
+            Assert.IsNotNull(newshape.Owner);
+        }
+
+
     }
 }
