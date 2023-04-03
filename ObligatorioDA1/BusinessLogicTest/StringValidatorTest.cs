@@ -34,5 +34,11 @@ namespace BusinessLogicTest
             bool hasSpaces = StringValidator.HasSpaces("T ");
             Assert.IsTrue(hasSpaces);
         }
+
+        public void HasTrailingSpaces_EmptyString_False_OK_Test()
+        {
+            bool hasSpaces = StringValidator.HasTrailingSpaces("");
+            Assert.IsFalse(hasSpaces);
+        }
     }
 }
