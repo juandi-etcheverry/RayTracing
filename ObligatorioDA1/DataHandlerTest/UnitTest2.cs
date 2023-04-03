@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using DataHandlers;
 using BusinessLogic;
+using DataHandlers;
 
 namespace DataHandlerTest
 {
@@ -33,6 +33,17 @@ namespace DataHandlerTest
             Assert.IsTrue(DataHandler.Shapes.Count == 2);
         }
 
-        
+        [TestMethod]
+        public void DataHandler_Unique_Fail()
+        {
+            Shape shape1 = new Shape();
+            shape1.Name = "Esfera";
+            DataHandler.AddShape(shape1);
+            Assert.ThrowsException<UniqueNameException>(() => DataHandler.AddShape(shape1));
+        }
+
+
+
+
     }
 }
