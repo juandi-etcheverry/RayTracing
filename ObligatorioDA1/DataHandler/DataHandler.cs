@@ -14,5 +14,7 @@ namespace DataHandlers
         {
            Shapes.Add(oneShape);
         }
+
+        public static void RemoveAllShapes() { Shapes.Clear(); }
     }
 }

@@ -8,6 +8,11 @@ namespace DataHandlerTest
     [TestClass]
     public class ShapeTest
     {
+        [TestCleanup]
+        public void DataHandler_RemoveAllShapes()
+        {
+            DataHandler.RemoveAllShapes();
+        }
 
         [TestMethod]
         public void DataHandler_AddOneShape_OK()
@@ -16,6 +21,7 @@ namespace DataHandlerTest
             DataHandler.AddShape(oneShape);
             Assert.IsTrue(DataHandler.Shapes.Count == 1);
         }
+
 
         [TestMethod]
         public void DataHandler_AddAnotherShape_OK()
