@@ -142,10 +142,19 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void IsAlphgNumeric_Juandi_True_OK_Test()
+        public void IsAlphaNumeric_Juandi_True_OK_Test()
         {
             bool isAlphaNumeric = "Juandi".IsAlphaNumeric();
             Assert.IsTrue(isAlphaNumeric);
         }
+
+        [TestMethod]
+        public void IsAlphaNumeric_Scribble_False_OK_Test()
+        {
+            string scribble = "~./-=>";
+            bool isAlphaNumeric = scribble.IsAlphaNumeric();
+            Assert.IsFalse(isAlphaNumeric);
+        }
+
     }
 }
