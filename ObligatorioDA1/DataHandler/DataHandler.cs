@@ -22,11 +22,18 @@ namespace DataHandlers
             if (StringValidatorExtension.IsEmpty(objectX.Name)) objectX.ThrowEmptyName();
         }
 
+        private static void HasTrailingSpaces<T>(T objectX) where T : Shape
+        {
+            if (StringValidatorExtension.HasTrailingSpaces(objectX.Name)) objectX.ThrowHasTrailingSpaces();
+        }
+
+
         public static void AddShape(Shape oneShape)
         {
+            HasTrailingSpaces(oneShape);
             IsNameEmpty(oneShape);
-           IsNameUnique(oneShape, Shapes); 
-           Shapes.Add(oneShape);
+            IsNameUnique(oneShape, Shapes); 
+            Shapes.Add(oneShape);
         }
 
         public static void RemoveAllShapes() { Shapes.Clear(); }
