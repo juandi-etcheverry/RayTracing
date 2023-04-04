@@ -3,7 +3,7 @@ using System;
 using BusinessLogic;
 using DataHandlers;
 
-namespace DataHandlerTest
+namespace BusinessLogicTest
 {
     [TestClass]
     public class ShapeTest

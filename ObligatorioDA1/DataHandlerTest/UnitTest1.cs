@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace DataHandlerTest
+namespace BusinessLogicTest
 {
     [TestClass]
     public class UnitTest1

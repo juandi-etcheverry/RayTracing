@@ -2,23 +2,25 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Xml.XPath;
 
 namespace DataHandlers
 {
     public static class DataHandler
     {
+        
         public static List<Shape> Shapes { get; } = new List<Shape>();
 
-        private static void IsShapeNameUnique(string shapeName) 
+        private static void IsNameUnique<T>(T objectX, List<T> objectList) where T : Shape
         {
-            bool doesNameExist = Shapes.Exists((currentShape) => currentShape.Name == shapeName);
-            if (doesNameExist) throw new UniqueNameException("Shape name already exists");
-             
+            bool doesNameExist = objectList.Exists((currentObject) => objectX.AreNamesEqual(currentObject));
+            if (doesNameExist) objectX.ThrowNameExists();
+
         }
 
         public static void AddShape(Shape oneShape)
         {
-           IsShapeNameUnique(oneShape.Name);
+           IsNameUnique(oneShape, Shapes);
            Shapes.Add(oneShape);
         }
 
