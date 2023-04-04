@@ -26,6 +26,11 @@ namespace BusinessLogic
         public static bool IsBetween(this string stringToValidate, int minLength, int maxLength)
         {
             return stringToValidate.Length <= maxLength && stringToValidate.Length >= minLength;
-        }       
+        }
+
+        public static bool IsAlphaNumeric(this string stringToValidate)
+        {
+            return true;
+        }
     }
 }

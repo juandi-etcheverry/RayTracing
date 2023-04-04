@@ -144,7 +144,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void IsAlphgNumeric_Juandi_True_OK_Test()
         {
-            bool isAlphaNumeric = "Juandi".isAlphaNumeric();
+            bool isAlphaNumeric = "Juandi".IsAlphaNumeric();
             Assert.IsTrue(isAlphaNumeric);
         }
     }
