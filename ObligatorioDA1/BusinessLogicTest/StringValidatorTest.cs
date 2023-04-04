@@ -11,132 +11,133 @@ namespace BusinessLogicTest
         [TestMethod]
         public void HasSpaces_EmptyString_False_OK_Test()
         {
-            bool hasSpaces = StringValidator.HasSpaces("");
+            bool hasSpaces = "".HasSpaces();
             Assert.IsFalse(hasSpaces);
         }
 
         [TestMethod]
         public void HasSpaces_SingleSpace_True_OK_Test()
         {
-            bool hasSpaces = StringValidator.HasSpaces(" ");
+            bool hasSpaces = " ".HasSpaces();
             Assert.IsTrue(hasSpaces);
         }
 
         [TestMethod]
         public void HasSpaces_SingleLetter_False_OK_Test()
         {
-            bool hasSpaces = StringValidator.HasSpaces("T");
+            bool hasSpaces = "T".HasSpaces();
             Assert.IsFalse(hasSpaces);
         }
 
         [TestMethod]
         public void HasSpaces_Letter_Space_True_OK_Test()
         {
-            bool hasSpaces = StringValidator.HasSpaces("T ");
+            bool hasSpaces = "T ".HasSpaces();
             Assert.IsTrue(hasSpaces);
         }
 
         [TestMethod]
         public void HasSpaces_WordWithSpaces_True_OK_Test()
         {
-            bool hasSpaces = StringValidator.HasSpaces("Word With Spaces");
+            bool hasSpaces = "Word With Spaces".HasSpaces();
             Assert.IsTrue(hasSpaces);
         }
 
+        [TestMethod]
         public void HasSpaces_WordWithTrailingSpaces_True_OK_Test()
         {
-            bool hasSpaces = StringValidator.HasSpaces("  WordWithTrailingSpaces    ");
+            bool hasSpaces = "  WordWithTrailingSpaces    ".HasSpaces();
             Assert.IsTrue(hasSpaces);
         }
         
         [TestMethod]
         public void HasTrailingSpaces_EmptyString_False_OK_Test()
         {
-            bool hasTrailingSpaces = StringValidator.HasTrailingSpaces("");
+            bool hasTrailingSpaces = "".HasTrailingSpaces();
             Assert.IsFalse(hasTrailingSpaces);
         }
 
         [TestMethod]
         public void HasTrailingSpaces_SingleLetter_False_OK_Test()
         {
-            bool hasTrailingSpaces = StringValidator.HasTrailingSpaces("T");
+            bool hasTrailingSpaces = "T".HasTrailingSpaces();
             Assert.IsFalse(hasTrailingSpaces);
         }
 
         [TestMethod]
         public void HasTrailingSpaces_SpaceLetter_True_OK_Test()
         {
-            bool hasTrailingSpaces = StringValidator.HasTrailingSpaces(" T");
+            bool hasTrailingSpaces = " T".HasTrailingSpaces();
             Assert.IsTrue(hasTrailingSpaces);
         }
         
         [TestMethod]
         public void HasTrailingSpaces_LetterSpace_True_OK_Test()
         {
-            bool hasTrailingSpaces = StringValidator.HasTrailingSpaces("T ");
+            bool hasTrailingSpaces = "T ".HasTrailingSpaces();
             Assert.IsTrue(hasTrailingSpaces);
         }
 
         [TestMethod]
         public void HasTrailingSpaces_WordWithSpaces_False_OK_Test()
         {
-            bool hasTrailingSpaces = StringValidator.HasTrailingSpaces("Test Word");
+            bool hasTrailingSpaces = "Test Word".HasTrailingSpaces();
             Assert.IsFalse(hasTrailingSpaces);
         }
 
         [TestMethod]
         public void HasTrailingSpaces_UnevenTrailingSpaces_True_OK_Test()
         {
-            bool hasTrailingSpaces = StringValidator.HasTrailingSpaces("  WordWithTrailingSpaces     ");
+            bool hasTrailingSpaces = "  WordWithTrailingSpaces     ".HasTrailingSpaces();
             Assert.IsTrue(hasTrailingSpaces);
         }
 
         [TestMethod]
         public void HasTrailingSpaces_WordWithMultipleSpaces_False_OK_Test()
         {
-            bool hasTrailingSpaces = StringValidator.HasTrailingSpaces("_   String with multiple    spaces   ->");
+            bool hasTrailingSpaces = "_   String with multiple    spaces   ->".HasTrailingSpaces();
             Assert.IsFalse(hasTrailingSpaces);
         }
 
         [TestMethod]
         public void IsEmpty_EmptyString_True_OK_Test()
         {
-            bool isEmpty = StringValidator.IsEmpty("");
+            bool isEmpty = "".IsEmpty();
             Assert.IsTrue(isEmpty);
         }
         
         [TestMethod]
         public void IsEmpty_Letter_False_OK_Test()
         {
-            bool isEmpty = StringValidator.IsEmpty("T");
+            bool isEmpty = "T".IsEmpty();
             Assert.IsFalse(isEmpty);
         }
 
         [TestMethod]
         public void IsBetween_EmptyString_0And5_True_OK_Test()
         {
-            bool isBetween = StringValidator.IsBetween("", 0, 5);
+            bool isBetween = "".IsBetween(0, 5);
             Assert.IsTrue(isBetween);
         }
 
         [TestMethod]
         public void IsBetween_Juandi_0And5_False_OK_Test()
         {
-            bool isBetween = StringValidator.IsBetween("Juandi", 0, 5);
+            bool isBetween = "Juandi".IsBetween(0, 5);
             Assert.IsFalse(isBetween);
         }
 
         [TestMethod]
         public void IsBetween_Mateo_0And5_True_OK_Test()
         {
-            bool isBetween = StringValidator.IsBetween("Mateo", 0, 5);
+            bool isBetween = "Mateo".IsBetween(0, 5);
             Assert.IsTrue(isBetween);
         }
 
         [TestMethod]
         public void IsBetween_Nico_5And10_False_OK_Test()
         {
-            bool isBetween = StringValidator.IsBetween("Nico", 5, 10);
+            bool isBetween = "Nico".IsBetween(5, 10);
             Assert.IsFalse(isBetween);
         }
     }

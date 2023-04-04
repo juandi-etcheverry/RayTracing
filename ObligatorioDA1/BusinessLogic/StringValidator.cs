@@ -6,29 +6,6 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
-    public static class StringValidator
-    {
-        public static bool HasSpaces(string stringToValidate)
-        {
-            return stringToValidate.HasSpaces();
-        }
-
-        public static bool HasTrailingSpaces(string stringToValidate)
-        {
-            return stringToValidate.HasTrailingSpaces();
-        }
-
-        public static bool IsEmpty(string stringToValidate)
-        {
-            return stringToValidate.IsEmpty();
-        }
-
-        public static bool IsBetween(string stringToValidate, int minLength, int maxLength)
-        {
-            return stringToValidate.IsBetween(minLength, maxLength);
-        }
-    }
-
     public static class StringValidatorExtension
     {
         public static bool HasSpaces(this string stringToValidate)
