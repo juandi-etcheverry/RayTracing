@@ -184,5 +184,12 @@ namespace BusinessLogicTest
             Assert.IsTrue(hasUpper);   
         }
 
+        [TestMethod]
+        public void HasUpper_LowercaseLetter_False_OK_Test()
+        {
+            bool hasUpper = "t".HasUpper();
+            Assert.IsFalse(hasUpper);
+        }
+
     }
 }
