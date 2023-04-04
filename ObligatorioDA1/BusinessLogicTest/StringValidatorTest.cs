@@ -118,5 +118,12 @@ namespace BusinessLogicTest
             bool isBetween = StringValidator.IsBetween("", 0, 5);
             Assert.IsTrue(isBetween);
         }
+
+        [TestMethod]
+        public void IsBetween_Juandi_0And5_False_OK_Test()
+        {
+            bool isBetween = StringValidator.IsBetween("Juandi", 0, 5);
+            Assert.IsFalse(isBetween);
+        }
     }
 }
