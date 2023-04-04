@@ -76,5 +76,12 @@ namespace BusinessLogicTest
             bool isEmpty = StringValidator.IsEmpty("");
             Assert.IsTrue(isEmpty);
         }
+        
+        [TestMethod]
+        public void IsEmpty_Letter_False_OK_Test()
+        {
+            bool isEmpty = StringValidator.IsEmpty("T");
+            Assert.IsFalse(isEmpty);
+        }
     }
 }
