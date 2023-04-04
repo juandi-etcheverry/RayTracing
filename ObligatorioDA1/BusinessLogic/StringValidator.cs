@@ -43,7 +43,7 @@ namespace BusinessLogic
             return stringToValidate.HasAnyUpper();
         }
 
-        public static bool HasUpper(this string stringToValidate, int uppercaseLetterAmount)
+        public static bool HasUpper(this string stringToValidate, uint uppercaseLetterAmount)
         {
             return stringToValidate.Count(char.IsUpper) == uppercaseLetterAmount;
         }
