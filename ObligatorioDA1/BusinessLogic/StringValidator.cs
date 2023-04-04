@@ -20,7 +20,7 @@ namespace BusinessLogic
 
         public static bool IsEmpty(this string stringToValidate)
         {
-            return String.IsNullOrEmpty(stringToValidate);
+            return string.IsNullOrEmpty(stringToValidate);
         }
 
         public static bool IsBetween(this string stringToValidate, uint minLength, uint maxLength)
@@ -30,12 +30,12 @@ namespace BusinessLogic
 
         public static bool IsAlphaNumeric(this string stringToValidate)
         {
-            return stringToValidate.All(letter => char.IsLetterOrDigit(letter)) && !stringToValidate.IsEmpty();
+            return stringToValidate.All(char.IsLetterOrDigit) && !stringToValidate.IsEmpty();
         }
 
         public static bool HasUpper(this string stringToValidate, uint uppercaseLetterAmount = 1)
         {
-            return stringToValidate.Count(letter => char.IsUpper(letter)) == uppercaseLetterAmount;
+            return stringToValidate.Count(char.IsUpper) == uppercaseLetterAmount;
         }
     }
 }
