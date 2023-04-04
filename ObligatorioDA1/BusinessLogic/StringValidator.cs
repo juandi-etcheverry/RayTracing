@@ -30,12 +30,12 @@ namespace BusinessLogic
 
         public static bool IsAlphaNumeric(this string stringToValidate)
         {
-            return stringToValidate.All(letter => Char.IsLetterOrDigit(letter)) && !stringToValidate.IsEmpty();
+            return stringToValidate.All(letter => char.IsLetterOrDigit(letter)) && !stringToValidate.IsEmpty();
         }
 
         public static bool HasUpper(this string stringToValidate, uint uppercaseLetterAmount = 1)
         {
-            return stringToValidate.Length > 0;
+            return stringToValidate.Any(letter => char.IsUpper(letter));
         }
     }
 }
