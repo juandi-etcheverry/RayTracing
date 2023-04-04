@@ -17,5 +17,10 @@ namespace BusinessLogic
         {
             return stringToValidate.StartsWith(" ") || stringToValidate.EndsWith(" ");
         }
+
+        public static bool IsEmpty(string stringToValidate)
+        {
+            return true;
+        }
     }
 }
