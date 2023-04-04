@@ -33,7 +33,17 @@ namespace BusinessLogic
             return stringToValidate.All(char.IsLetterOrDigit) && !stringToValidate.IsEmpty();
         }
 
-        public static bool HasUpper(this string stringToValidate, uint uppercaseLetterAmount = 1)
+        private static bool HasAnyUpper(this string stringToValidate)
+        {
+            return stringToValidate.Any(char.IsUpper);
+        }
+
+        public static bool HasUpper(this string stringToValidate)
+        {
+            return stringToValidate.HasAnyUpper();
+        }
+
+        public static bool HasUpper(this string stringToValidate, int uppercaseLetterAmount)
         {
             return stringToValidate.Count(char.IsUpper) == uppercaseLetterAmount;
         }
