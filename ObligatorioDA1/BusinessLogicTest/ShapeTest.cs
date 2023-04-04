@@ -44,6 +44,14 @@ namespace BusinessLogicTest
             Assert.ThrowsException<UniqueNameException>(() => DataHandler.AddShape(shape1));
         }
 
+        [TestMethod]
+        public void DataHandler_AddShapeEmptyName_Fail()
+        {
+            Shape shape1 = new Shape();
+            shape1.Name = "";
+            Assert.ThrowsException<EmptyNameException>(() => DataHandler.AddShape(shape1));
+        }
+
 
 
 
