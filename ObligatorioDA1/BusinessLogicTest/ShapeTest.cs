@@ -53,6 +53,19 @@ namespace BusinessLogicTest
             Assert.ThrowsException<EmptyNameException>(() => DataHandler.AddShape(shape1));
         }
 
+        [TestMethod]
+        public void DataHandler_AddShapeTrailingSpaces_Fail()
+        {
+            Shape shape1 = new Shape();
+            shape1.Name = "   Nicolas";
+            Assert.ThrowsException<TrailingSpacesNameException>(() => DataHandler.AddShape(shape1));
+        }
+
+        //Nuevo test que tire una nueva excepcion de con espacios vacios al final o principio
+        //Implementat la nueva excepcion -> Haciendo una clase y su logica en el add shape
+        //Hacerlo generico para cualquier tipo de dato
+
+
 
 
 
