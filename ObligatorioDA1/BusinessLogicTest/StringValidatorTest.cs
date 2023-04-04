@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Runtime.CompilerServices;
 using BusinessLogic;
 
 namespace BusinessLogicTest
@@ -34,19 +35,25 @@ namespace BusinessLogicTest
             bool hasSpaces = StringValidator.HasSpaces("T ");
             Assert.IsTrue(hasSpaces);
         }
+
+        [TestMethod]
+        public void HasSpaces_WordWithSpaces_True_OK_Test()
+        {
+            bool hasSpaces = StringValidator.HasSpaces("Word With Spaces");
+            Assert.IsTrue(hasSpaces);
+        }
+
+        public void HasSpaces_WordWithTrailingSpaces_True_OK_Test()
+        {
+            bool hasSpaces = StringValidator.HasSpaces("  WordWithTrailingSpaces    ");
+            Assert.IsTrue(hasSpaces);
+        }
         
         [TestMethod]
         public void HasTrailingSpaces_EmptyString_False_OK_Test()
         {
             bool hasTrailingSpaces = StringValidator.HasTrailingSpaces("");
             Assert.IsFalse(hasTrailingSpaces);
-        }
-
-        [TestMethod]
-        public void HasTrailingSpaces_SpaceLetter_True_OK_Test()
-        {
-            bool hasTrailingSpaces = StringValidator.HasTrailingSpaces(" T");
-            Assert.IsTrue(hasTrailingSpaces);
         }
 
         [TestMethod]
@@ -57,6 +64,20 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
+        public void HasTrailingSpaces_SpaceLetter_True_OK_Test()
+        {
+            bool hasTrailingSpaces = StringValidator.HasTrailingSpaces(" T");
+            Assert.IsTrue(hasTrailingSpaces);
+        }
+        
+        [TestMethod]
+        public void HasTrailingSpaces_LetterSpace_True_OK_Test()
+        {
+            bool hasTrailingSpaces = StringValidator.HasTrailingSpaces("T ");
+            Assert.IsTrue(hasTrailingSpaces);
+        }
+
+        [TestMethod]
         public void HasTrailingSpaces_WordWithSpaces_False_OK_Test()
         {
             bool hasTrailingSpaces = StringValidator.HasTrailingSpaces("Test Word");
@@ -64,10 +85,17 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void HasTrailingSpaces_LetterSpace_True_OK_Test()
+        public void HasTrailingSpaces_UnevenTrailingSpaces_True_OK_Test()
         {
-            bool hasTrailingSpaces = StringValidator.HasTrailingSpaces("T ");
+            bool hasTrailingSpaces = StringValidator.HasTrailingSpaces("  WordWithTrailingSpaces     ");
             Assert.IsTrue(hasTrailingSpaces);
+        }
+
+        [TestMethod]
+        public void HasTrailingSpaces_WordWithMultipleSpaces_False_OK_Test()
+        {
+            bool hasTrailingSpaces = StringValidator.HasTrailingSpaces("_   String with multiple    spaces   ->");
+            Assert.IsFalse(hasTrailingSpaces);
         }
 
         [TestMethod]
