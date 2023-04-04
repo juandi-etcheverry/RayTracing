@@ -162,5 +162,12 @@ namespace BusinessLogicTest
             bool isAlphaNumeric = "Juandi0402".IsAlphaNumeric();
             Assert.IsTrue(isAlphaNumeric);
         }
+
+        [TestMethod]
+        public void IsAlphaNumeric_EmptyString_False_OK_Test()
+        {
+            bool isAlphaNumeric = "".IsAlphaNumeric();
+            Assert.IsFalse(isAlphaNumeric);
+        }
     }
 }
