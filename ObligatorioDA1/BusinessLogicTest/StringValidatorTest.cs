@@ -140,5 +140,12 @@ namespace BusinessLogicTest
             bool isBetween = "Nico".IsBetween(5, 10);
             Assert.IsFalse(isBetween);
         }
+
+        [TestMethod]
+        public void IsAlphgNumeric_Juandi_True_OK_Test()
+        {
+            bool isAlphaNumeric = "Juandi".isAlphaNumeric();
+            Assert.IsTrue(isAlphaNumeric);
+        }
     }
 }
