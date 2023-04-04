@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using BusinessLogic;
 using DataHandlers;
+using BusinessLogic;
 
 namespace BusinessLogicTest
 {
@@ -18,6 +18,7 @@ namespace BusinessLogicTest
         public void DataHandler_AddOneShape_OK()
         {
             Shape oneShape = new Shape();
+            oneShape.Name = "Nicolas";
             DataHandler.AddShape(oneShape);
             Assert.IsTrue(DataHandler.Shapes.Count == 1);
         }

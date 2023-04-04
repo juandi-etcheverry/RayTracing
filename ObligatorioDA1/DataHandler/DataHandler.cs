@@ -17,10 +17,15 @@ namespace DataHandlers
             if (doesNameExist) objectX.ThrowNameExists();
 
         }
+        private static void IsNameEmpty<T>(T objectX) where T : Shape 
+        {
+            if (StringValidatorExtension.IsEmpty(objectX.Name)) objectX.ThrowEmptyName();
+        }
 
         public static void AddShape(Shape oneShape)
         {
-           IsNameUnique(oneShape, Shapes);
+            IsNameEmpty(oneShape);
+           IsNameUnique(oneShape, Shapes); 
            Shapes.Add(oneShape);
         }
 

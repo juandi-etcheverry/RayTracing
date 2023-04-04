@@ -16,5 +16,9 @@ namespace BusinessLogic
         {
             throw new UniqueNameException ("Shape name already exists");
         }
+        public void ThrowEmptyName()
+        {
+            throw new EmptyNameException("Shape Name can't be empty");
+        }
     }
 }
