@@ -48,7 +48,7 @@ namespace BusinessLogic
 
         public static bool IsBetween(this string stringToValidate, int minLength, int maxLength)
         {
-            return true;
+            return stringToValidate.Length < maxLength;
         }       
     }
 }
