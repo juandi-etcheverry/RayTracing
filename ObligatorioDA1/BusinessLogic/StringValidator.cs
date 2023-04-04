@@ -20,7 +20,7 @@ namespace BusinessLogic
 
         public static bool IsEmpty(string stringToValidate)
         {
-            return true;
+            return stringToValidate.Length == 0;
         }
     }
 }
