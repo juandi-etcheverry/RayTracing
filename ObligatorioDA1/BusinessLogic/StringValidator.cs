@@ -35,7 +35,7 @@ namespace BusinessLogic
 
         public static bool HasUpper(this string stringToValidate, uint uppercaseLetterAmount = 1)
         {
-            return stringToValidate.Any(letter => char.IsUpper(letter));
+            return stringToValidate.Count(letter => char.IsUpper(letter)) == uppercaseLetterAmount;
         }
     }
 }
