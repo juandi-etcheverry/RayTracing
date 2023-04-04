@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Xml.XPath;
 
 namespace DataHandlers
@@ -37,5 +38,10 @@ namespace DataHandlers
         }
 
         public static void RemoveAllShapes() { Shapes.Clear(); }
+
+        public static void DeleteShape(Shape shape1)
+        {
+            Shapes.Clear();
+        }
     }
 }

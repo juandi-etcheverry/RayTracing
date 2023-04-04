@@ -68,6 +68,16 @@ namespace BusinessLogicTest
             DataHandler.AddShape(shape1);
         }
 
+        [TestMethod]
+        public void DataHandler_DeleteOneShape()
+        {
+            Shape shape1 = new Shape();
+            shape1.Name = "Nicolas";
+            DataHandler.AddShape(shape1);
+            DataHandler.DeleteShape(shape1);
+            Assert.AreEqual(0, DataHandler.Shapes.Count);
+        }
+
 
 
 
