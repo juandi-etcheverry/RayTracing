@@ -22,6 +22,11 @@ namespace BusinessLogic
         {
             return stringToValidate.IsEmpty();
         }
+
+        public static bool IsBetween(string stringToValidate, int minLength, int maxLength)
+        {
+            return stringToValidate.IsBetween(minLength, maxLength);
+        }
     }
 
     public static class StringValidatorExtension
@@ -40,5 +45,10 @@ namespace BusinessLogic
         {
             return stringToValidate.Length == 0;
         }
+
+        public static bool IsBetween(this string stringToValidate, int minLength, int maxLength)
+        {
+            return true;
+        }       
     }
 }
