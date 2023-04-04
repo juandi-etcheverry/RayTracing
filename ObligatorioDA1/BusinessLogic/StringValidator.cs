@@ -30,7 +30,7 @@ namespace BusinessLogic
 
         public static bool IsAlphaNumeric(this string stringToValidate)
         {
-            return true;
+            return stringToValidate.All(letter => Char.IsLetter(letter));
         }
     }
 }
