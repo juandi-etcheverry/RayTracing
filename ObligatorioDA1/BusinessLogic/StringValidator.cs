@@ -20,10 +20,10 @@ namespace BusinessLogic
 
         public static bool IsEmpty(this string stringToValidate)
         {
-            return stringToValidate.Length == 0;
+            return String.IsNullOrEmpty(stringToValidate);
         }
 
-        public static bool IsBetween(this string stringToValidate, int minLength, int maxLength)
+        public static bool IsBetween(this string stringToValidate, uint minLength, uint maxLength)
         {
             return stringToValidate.Length <= maxLength && stringToValidate.Length >= minLength;
         }
