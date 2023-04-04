@@ -169,5 +169,12 @@ namespace BusinessLogicTest
             bool isAlphaNumeric = "".IsAlphaNumeric();
             Assert.IsFalse(isAlphaNumeric);
         }
+
+        [TestMethod]
+        public void HasUpper_EmptyString_False_OK_Test()
+        {
+            bool hasUpper = "".HasUpper();
+            Assert.IsFalse(hasUpper);
+        }
     }
 }
