@@ -111,5 +111,12 @@ namespace BusinessLogicTest
             bool isEmpty = StringValidator.IsEmpty("T");
             Assert.IsFalse(isEmpty);
         }
+
+        [TestMethod]
+        public void IsBetween_EmptyString_0And5_True_OK_Test()
+        {
+            bool isBetween = StringValidator.IsBetween("", 0, 5);
+            Assert.IsTrue(isBetween);
+        }
     }
 }
