@@ -198,5 +198,26 @@ namespace BusinessLogicTest
             Assert.IsFalse(hasUpper);
         }
 
+        [TestMethod]
+        public void HasUpper_0Upper_Word_False_OK_Test()
+        {
+            bool hasUpper = "Word".HasUpper(0);
+            Assert.IsFalse(hasUpper);
+        }
+
+        [TestMethod]
+        public void HasUpper_5Upper_WORD_False_OK_Test()
+        {
+            bool hasUpper = "WORD".HasUpper(5);
+            Assert.IsFalse(hasUpper);
+        }
+
+        [TestMethod]
+        public void HasUpper_0Upper_word_True_OK_Test()
+        {
+            bool hasUpper = "word".HasUpper(0);
+            Assert.IsTrue(hasUpper);
+        }
+
     }
 }
