@@ -156,5 +156,11 @@ namespace BusinessLogicTest
             Assert.IsFalse(isAlphaNumeric);
         }
 
+        [TestMethod]
+        public void IsAlphaNumeric_Juandi0402_True_OK_Test()
+        {
+            bool isAlphaNumeric = "Juandi0402".IsAlphaNumeric();
+            Assert.IsTrue(isAlphaNumeric);
+        }
     }
 }
