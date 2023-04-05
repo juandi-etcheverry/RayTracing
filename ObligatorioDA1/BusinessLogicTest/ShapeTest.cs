@@ -79,7 +79,7 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void DataHandler_DeleteOneSpecificShape_Fail()
+        public void DataHandler_DeleteOneSpecificShape_OK()
         {
             Shape shape1 = new Shape();
             shape1.Name = "Nicolas";
@@ -89,6 +89,15 @@ namespace BusinessLogicTest
             DataHandler.AddShape(shape2);
             DataHandler.DeleteShape(shape2);
             Assert.AreEqual(1, DataHandler.Shapes.Count);
+        }
+
+        [TestMethod]
+        public void DataHandler_DeleteShapeNotInList()
+        {
+            Shape shape1 = new Shape();
+            shape1.Name = "Nicolas";
+            Shape shape2 = new Shape();
+            Assert.ThrowsException<ShapeNotInListException>(() => DataHandler.AddShape(shape1));
         }
 
 
