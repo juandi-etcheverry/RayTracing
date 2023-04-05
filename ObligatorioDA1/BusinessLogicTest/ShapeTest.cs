@@ -107,8 +107,8 @@ namespace BusinessLogicTest
             Shape shape1 = new Shape();
             shape1.Name = "Nicolas";
             DataHandler.AddShape(shape1);
-            DataHandler.RenameShape(shape1, "Mateito");
-            Assert.AreEqual("Mateito", shape1.Name);
+            DataHandler.RenameShape(shape1, "JuanDiego");
+            Assert.AreEqual("JuanDiego", shape1.Name);
         }
 
 
