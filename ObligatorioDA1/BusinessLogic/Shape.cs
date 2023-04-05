@@ -2,7 +2,7 @@
 
 namespace BusinessLogic
 {
-    public class Shape
+    public class Shape: DataEntity
     {
         private string _name { get; set; }
         public string Name { get; set; }

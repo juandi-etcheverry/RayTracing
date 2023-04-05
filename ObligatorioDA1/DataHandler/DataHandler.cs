@@ -9,11 +9,11 @@ namespace DataHandlers
 {
     public static class DataHandler
     {
-        
+
         public static List<Shape> Shapes { get; } = new List<Shape>();
         public static List<Client> Clients { get; } = new List<Client>();
 
-        private static void IsNameUnique<T>(T objectX, List<T> objectList) where T : Shape
+        private static void IsNameUnique<T>(T objectX, List<T> objectList) where T : DataEntity
         {
             bool doesNameExist = objectList.Exists((currentObject) => objectX.AreNamesEqual(currentObject));
             if (doesNameExist) objectX.ThrowNameExists();
@@ -39,6 +39,7 @@ namespace DataHandlers
 
         public static void AddClient(Client oneClient)
         {
+            IsNameUnique(oneClient, Clients);
             Clients.Add(oneClient);
         }
 
