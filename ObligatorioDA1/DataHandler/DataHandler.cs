@@ -41,7 +41,7 @@ namespace DataHandlers
 
         public static void DeleteShape(Shape shape1)
         {
-            Shapes.Clear();
+            Shapes.Remove(shape1);
         }
     }
 }
