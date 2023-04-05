@@ -24,5 +24,10 @@ namespace BusinessLogic
         {
             throw new TrailingSpacesNameException("Shape Name can't have trailing spaces");
         }
+        public void ThrowNotInList()
+        {
+            throw new ShapeNotInListException("The shape is not in list");
+        }
+
     }
 }

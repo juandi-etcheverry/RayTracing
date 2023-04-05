@@ -96,8 +96,9 @@ namespace BusinessLogicTest
         {
             Shape shape1 = new Shape();
             shape1.Name = "Nicolas";
+            DataHandler.AddShape(shape1);
             Shape shape2 = new Shape();
-            Assert.ThrowsException<ShapeNotInListException>(() => DataHandler.AddShape(shape1));
+            Assert.ThrowsException<ShapeNotInListException>(() => DataHandler.DeleteShape(shape2));
         }
 
 
