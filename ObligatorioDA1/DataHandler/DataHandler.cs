@@ -28,7 +28,6 @@ namespace DataHandlers
             if (StringValidatorExtension.HasTrailingSpaces(objectX.Name)) objectX.ThrowHasTrailingSpaces();
         }
 
-
         public static void AddShape(Shape oneShape)
         {
             HasTrailingSpaces(oneShape);
@@ -41,8 +40,8 @@ namespace DataHandlers
 
         public static void DeleteShape(Shape shape1)
         {
-            bool inList = Shapes.Remove(shape1);
-            if (!inList) shape1.ThrowNotInList();
+            bool removed = Shapes.Remove(shape1);
+            if (!removed) shape1.ThrowNotInList();
         }
     }
 }

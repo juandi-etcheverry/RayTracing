@@ -92,7 +92,7 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void DataHandler_DeleteShapeNotInList()
+        public void DataHandler_DeleteShapeNotInList_FAIL()
         {
             Shape shape1 = new Shape();
             shape1.Name = "Nicolas";
@@ -101,7 +101,15 @@ namespace BusinessLogicTest
             Assert.ThrowsException<ShapeNotInListException>(() => DataHandler.DeleteShape(shape2));
         }
 
-
+        [TestMethod]
+        public void DataHandler_RenameExistingShape_OK()
+        {
+            Shape shape1 = new Shape();
+            shape1.Name = "Nicolas";
+            DataHandler.AddShape(shape1);
+            DataHandler.RenameShape(shape1, "Mateito");
+            Assert.AreEqual("Mateito", shape1.Name);
+        }
 
 
 
