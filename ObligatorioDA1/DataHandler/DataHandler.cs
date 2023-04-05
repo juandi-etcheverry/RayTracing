@@ -11,6 +11,7 @@ namespace DataHandlers
     {
         
         public static List<Shape> Shapes { get; } = new List<Shape>();
+        public static List<Client> Clients { get; } = new List<Client>();
 
         private static void IsNameUnique<T>(T objectX, List<T> objectList) where T : Shape
         {
@@ -36,7 +37,13 @@ namespace DataHandlers
             Shapes.Add(oneShape);
         }
 
+        public static void AddClient(Client oneClient)
+        {
+            Clients.Add(oneClient);
+        }
+
         public static void RemoveAllShapes() { Shapes.Clear(); }
+        public static void RemoveAllClients() { Shapes.Clear();}
 
         public static void DeleteShape(Shape shape1)
         {
