@@ -2,15 +2,16 @@
 
 namespace BusinessLogic
 {
-    public class Shape: DataEntity
+    public class Shape: IDataEntity
     {
         private string _name { get; set; }
         public string Name { get; set; }
         public string Owner { get; private set; }
 
-        public bool AreNamesEqual(Shape other)
+        public bool AreNamesEqual(IDataEntity other)
         {
-            return this.Name == other.Name;
+            Shape otherShape = other as Shape;
+            return this.Name == otherShape.Name;
         }
         public void ThrowNameExists()
         {

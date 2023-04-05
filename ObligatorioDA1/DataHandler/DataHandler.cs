@@ -13,7 +13,7 @@ namespace DataHandlers
         public static List<Shape> Shapes { get; } = new List<Shape>();
         public static List<Client> Clients { get; } = new List<Client>();
 
-        private static void IsNameUnique<T>(T objectX, List<T> objectList) where T : DataEntity
+        private static void IsNameUnique<T>(T objectX, List<T> objectList) where T : IDataEntity
         {
             bool doesNameExist = objectList.Exists((currentObject) => objectX.AreNamesEqual(currentObject));
             if (doesNameExist) objectX.ThrowNameExists();
@@ -21,12 +21,12 @@ namespace DataHandlers
         }
         private static void IsNameEmpty<T>(T objectX) where T : Shape 
         {
-            if (StringValidatorExtension.IsEmpty(objectX.Name)) objectX.ThrowEmptyName();
+            if (objectX.Name.IsEmpty()) objectX.ThrowEmptyName();
         }
 
         private static void HasTrailingSpaces<T>(T objectX) where T : Shape
         {
-            if (StringValidatorExtension.HasTrailingSpaces(objectX.Name)) objectX.ThrowHasTrailingSpaces();
+            if (objectX.Name.HasTrailingSpaces()) objectX.ThrowHasTrailingSpaces();
         }
 
         public static void AddShape(Shape oneShape)
@@ -39,12 +39,12 @@ namespace DataHandlers
 
         public static void AddClient(Client oneClient)
         {
-            IsNameUnique(oneClient, Clients);
+            IsNameUnique<Client>(oneClient, Clients);
             Clients.Add(oneClient);
         }
 
         public static void RemoveAllShapes() { Shapes.Clear(); }
-        public static void RemoveAllClients() { Shapes.Clear();}
+        public static void RemoveAllClients() { Clients.Clear();}
 
         public static void DeleteShape(Shape shape1)
         {

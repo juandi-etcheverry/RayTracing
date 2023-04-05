@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
-    public class Client: DataEntity
+    public class Client: IDataEntity
     {
         private string _name;
             private string _password;
@@ -26,12 +26,13 @@ namespace BusinessLogic
 
             public Client() { }
 
-            public bool AreNamesEqual(Client other)
+            public bool AreNamesEqual(IDataEntity other)
             {
-                return this.Name == other.Name;
+                Client otherClient = other as Client;
+                return this.Name == otherClient.Name;
             }
 
-            public override void ThrowNameExists()
+            public void ThrowNameExists()
             {
                 throw new UniqueNameException("Client name already exists");
             }
