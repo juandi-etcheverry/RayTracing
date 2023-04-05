@@ -111,7 +111,17 @@ namespace BusinessLogicTest
             Assert.AreEqual("JuanDiego", shape1.Name);
         }
 
-
+        [TestMethod]
+        public void DataHandler_RenameExistingShape_FAIL()
+        {
+            Shape shape1 = new Shape();
+            shape1.Name = "Nicolas";
+            DataHandler.AddShape(shape1);
+            Shape shape2 = new Shape();
+            shape2.Name = "Mateo";
+            DataHandler.AddShape(shape2);
+            Assert.ThrowsException<UniqueNameException>(()=> DataHandler.RenameShape(shape1, "Mateo"));
+        }
 
 
 

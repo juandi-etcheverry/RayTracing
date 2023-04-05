@@ -43,12 +43,12 @@ namespace DataHandlers
             bool removed = Shapes.Remove(shape1);
             if (!removed) shape1.ThrowNotInList();
         }
-        public static void RenameShape(Shape shape, string name)
+        public static void RenameShape(Shape shape, string newName)
         {
             Shape aux = new Shape();
-            aux.Name = name;
+            aux.Name = newName;
             IsNameUnique<Shape>(aux, Shapes);
-            shape.Name = name;
+            shape.Name = newName;
         }
     }
 }
