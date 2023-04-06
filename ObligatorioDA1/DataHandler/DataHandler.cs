@@ -29,6 +29,11 @@ namespace DataHandlers
             if (objectX.Name.HasTrailingSpaces()) objectX.ThrowHasTrailingSpaces();
         }
 
+        private static void IsClientNameAlphanumeric(Client client)
+        {
+            if (!client.Name.IsAlphaNumeric()) client.ThrowNotAlphanumeric();
+        }
+
         public static void AddShape(Shape oneShape)
         {
             HasTrailingSpaces(oneShape);
@@ -39,7 +44,7 @@ namespace DataHandlers
 
         public static void AddClient(Client oneClient)
         {
-            if(!oneClient.Name.IsAlphaNumeric()) oneClient.ThrowNotAlphanumeric();
+            IsClientNameAlphanumeric(oneClient);
             IsNameUnique<Client>(oneClient, Clients);
             Clients.Add(oneClient);
         }
