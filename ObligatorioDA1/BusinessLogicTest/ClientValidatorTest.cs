@@ -26,7 +26,7 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void SignUp_Client_Name_NotUnique_Password_OK_FAIL_Test()
+        public void SignUp_Client_Name_NotUnique_FAIL_Test()
         {
             Client client1 = new Client();
             client1.Name = "Nicolas";
@@ -36,6 +36,17 @@ namespace BusinessLogicTest
             client2.Name = "Nicolas";
             client2.Password = "noimporta123";
             Assert.ThrowsException<UniqueNameException>(() => DataHandler.AddClient(client2));
+        }
+
+        [TestMethod]
+        public void SignUp_Client_Name_NotAlphanumeric_FAIL_Test()
+        {
+            Client client = new Client()
+            {
+                Name = "Mateo!",
+                Password = "password123"
+            };
+            Assert.ThrowsException<NotAlphanumericException>(() => DataHandler.AddClient(client));
         }
     }
 }
