@@ -48,5 +48,16 @@ namespace BusinessLogicTest
             };
             Assert.ThrowsException<AlphanumericNameException>(() => DataHandler.AddClient(client));
         }
+
+        [TestMethod]
+        public void SignUp_Client_Name_TrailingSpace_FAIL_Test()
+        {
+            Client client = new Client()
+            {
+                Name = "Nicolas ",
+                Password = "password123"
+            };
+            Assert.ThrowsException<TrailingSpacesNameException>(() => DataHandler.AddClient(client));
+        }
     }
 }
