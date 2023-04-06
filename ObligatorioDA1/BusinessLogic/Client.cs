@@ -6,35 +6,39 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
-    public class Client: IDataEntity
+    public class Client : IDataEntity
     {
         private string _name;
-            private string _password;
-            private DateTime _registrationDate;
+        private string _password;
+        private DateTime _registrationDate;
 
-            public string Name
-            {
-                get => _name;
-                set => _name = value;
-            }
+        public string Name
+        {
+            get => _name;
+            set => _name = value;
+        }
 
-            public string Password
-            {
-                get => _password;
-                set => _password = value;
-            }
+        public string Password
+        {
+            get => _password;
+            set => _password = value;
+        }
 
-            public Client() { }
+        public Client() { }
 
-            public bool AreNamesEqual(IDataEntity other)
-            {
-                Client otherClient = other as Client;
-                return this.Name == otherClient.Name;
-            }
+        public bool AreNamesEqual(IDataEntity other)
+        {
+            Client otherClient = other as Client;
+            return this.Name == otherClient.Name;
+        }
 
-            public void ThrowNameExists()
-            {
-                throw new UniqueNameException("Client name already exists");
-            }
+        public void ThrowNameExists()
+        {
+            throw new UniqueNameException("Client name already exists");
+        }
+        public void ThrowNotAlphanumeric()
+        {
+            throw new AlphanumericNameException("Client name can't have non-alphanumeric characters");
+        }
     }
-    }
+}

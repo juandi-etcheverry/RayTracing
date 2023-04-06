@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlphanumericNameException.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="EmptyNameException.cs" />
     <Compile Include="IDataEntity.cs" />

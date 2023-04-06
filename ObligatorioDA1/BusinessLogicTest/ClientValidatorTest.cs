@@ -46,7 +46,7 @@ namespace BusinessLogicTest
                 Name = "Mateo!",
                 Password = "password123"
             };
-            Assert.ThrowsException<NotAlphanumericException>(() => DataHandler.AddClient(client));
+            Assert.ThrowsException<AlphanumericNameException>(() => DataHandler.AddClient(client));
         }
     }
 }
