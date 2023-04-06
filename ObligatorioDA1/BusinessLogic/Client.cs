@@ -40,5 +40,9 @@ namespace BusinessLogic
         {
             throw new AlphanumericNameException("Client name can't have non-alphanumeric characters");
         }
+        public void ThrowHasNoSpaces()
+        {
+            throw new NoSpacesException("Client name can't have spaces");
+        }
     }
 }

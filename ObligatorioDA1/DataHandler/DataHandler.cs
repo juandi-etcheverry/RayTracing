@@ -44,6 +44,7 @@ namespace DataHandlers
 
         public static void AddClient(Client oneClient)
         {
+            if (oneClient.Name.HasSpaces()) oneClient.ThrowHasNoSpaces();
             IsClientNameAlphanumeric(oneClient);
             IsNameUnique<Client>(oneClient, Clients);
             Clients.Add(oneClient);
