@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NoCapitalLetterException.cs" />
+    <Compile Include="NoNumberException.cs" />
     <Compile Include="NoSpacesException.cs" />
     <Compile Include="AlphanumericNameException.cs" />
     <Compile Include="Client.cs" />

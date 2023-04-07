@@ -63,5 +63,10 @@ namespace BusinessLogic
         {
             throw new NoCapitalLetterException("Client password must have at least one capital letter");
         }
+
+        public void ThrowNoNumberPassword()
+        {
+            throw new NoNumberException("Client password must have at least one number");
+        }
     }
 }

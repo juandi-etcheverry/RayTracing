@@ -53,6 +53,11 @@ namespace DataHandlers
         {
             if (!client.Password.HasUpper()) client.ThrowPasswordNoCapitalLetter();
         }
+
+        private static void NoNumberPassword(Client client)
+        {
+            if (!client.Password.HasNumber()) client.ThrowNoNumberPassword();
+        }
         
         public static void AddShape(Shape oneShape)
         {
@@ -65,8 +70,9 @@ namespace DataHandlers
         public static void AddClient(Client oneClient)
         {
             NameNotInRange(oneClient);
-            PasswordNoCapitalLetter(oneClient);
             PasswordNotInRange(oneClient);
+            PasswordNoCapitalLetter(oneClient);
+            NoNumberPassword(oneClient);
             HasSpaces(oneClient);
             IsClientNameAlphanumeric(oneClient);
             IsNameUnique<Client>(oneClient, Clients);
