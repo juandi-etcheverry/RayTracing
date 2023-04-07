@@ -48,6 +48,11 @@ namespace DataHandlers
         {
             if (!client.Password.IsBetween(Client.MIN_PASSWORD_LENGTH, Client.MAX_PASSWORD_LENGTH)) client.ThrowPasswordNotInRange();
         }
+
+        private static void PasswordNoCapitalLetter(Client client)
+        {
+            if (!client.Password.HasUpper()) client.ThrowPasswordNoCapitalLetter();
+        }
         
         public static void AddShape(Shape oneShape)
         {
@@ -60,6 +65,7 @@ namespace DataHandlers
         public static void AddClient(Client oneClient)
         {
             NameNotInRange(oneClient);
+            PasswordNoCapitalLetter(oneClient);
             PasswordNotInRange(oneClient);
             HasSpaces(oneClient);
             IsClientNameAlphanumeric(oneClient);

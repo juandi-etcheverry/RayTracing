@@ -20,7 +20,7 @@ namespace BusinessLogicTest
         {
             Client newClient = new Client();
             newClient.Name = "Nicolas";
-            newClient.Password = "password123";
+            newClient.Password = "passworD123";
             DataHandler.AddClient(newClient);
             Assert.AreEqual(1, DataHandler.Clients.Count);
         }
@@ -30,11 +30,11 @@ namespace BusinessLogicTest
         {
             Client client1 = new Client();
             client1.Name = "Nicolas";
-            client1.Password = "password123";
+            client1.Password = "passworD123";
             DataHandler.AddClient(client1);
             Client client2 = new Client();
             client2.Name = "Nicolas";
-            client2.Password = "noimporta123";
+            client2.Password = "noimportA123";
             Assert.ThrowsException<UniqueNameException>(() => DataHandler.AddClient(client2));
         }
 
@@ -44,7 +44,7 @@ namespace BusinessLogicTest
             Client client = new Client()
             {
                 Name = "Mateo!",
-                Password = "password123"
+                Password = "passworD123"
             };
             Assert.ThrowsException<AlphanumericNameException>(() => DataHandler.AddClient(client));
         }
@@ -55,7 +55,7 @@ namespace BusinessLogicTest
             Client client = new Client()
             {
                 Name = "Nicolas ",
-                Password = "password123"
+                Password = "passWord123"
             };
             Assert.ThrowsException<NoSpacesException>(() => DataHandler.AddClient(client));
         }
@@ -66,7 +66,7 @@ namespace BusinessLogicTest
             Client client = new Client()
             {
                 Name = "Ni",
-                Password = "password123"
+                Password = "passWord123"
             };
             Assert.ThrowsException<NotInRangeException>(() => DataHandler.AddClient(client));
         }

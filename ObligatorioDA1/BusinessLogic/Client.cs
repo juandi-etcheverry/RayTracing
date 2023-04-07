@@ -58,5 +58,10 @@ namespace BusinessLogic
         {
             throw new NotInRangeException("Client password must be between 5 and 25 characters");
         }
+
+        public void ThrowPasswordNoCapitalLetter()
+        {
+            throw new NoCapitalLetterException("Client password must have at least one capital letter");
+        }
     }
 }
