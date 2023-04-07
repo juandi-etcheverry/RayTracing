@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataHandler
+namespace DataHandlers
 {
     public class Class1
     {

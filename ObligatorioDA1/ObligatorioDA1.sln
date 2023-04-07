@@ -5,11 +5,14 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObligatorioDA1", "ObligatorioDA1\ObligatorioDA1.csproj", "{AB7A66A9-6DDF-469F-AC83-D9562A513A78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataHandler", "DataHandler\DataHandler.csproj", "{C181DB03-FE0B-4D67-B31D-5BA6A2424D91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataHandlers", "DataHandler\DataHandlers.csproj", "{C181DB03-FE0B-4D67-B31D-5BA6A2424D91}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{42D14B1A-D217-41D2-9879-B603CBBD0E91}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicTest", "BusinessLogicTest\BusinessLogicTest.csproj", "{1D00A594-11D8-4D7A-8514-FA41D558AE68}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C181DB03-FE0B-4D67-B31D-5BA6A2424D91} = {C181DB03-FE0B-4D67-B31D-5BA6A2424D91}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataHandlerTest", "DataHandlerTest\DataHandlerTest.csproj", "{78BC52D5-A455-497A-B084-07A5CF3D073F}"
 EndProject
