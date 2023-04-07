@@ -123,7 +123,15 @@ namespace BusinessLogicTest
             Assert.ThrowsException<UniqueNameException>(()=> DataHandler.RenameShape(shape1, "Mateo"));
         }
 
-
+        [TestMethod]
+        public void DataHandler_AddOneSphere()
+        {
+            Sphere newSphere = new Sphere();
+            newSphere.Name = "Nicolas";
+            newSphere.Radius = 3;
+            DataHandler.AddShape(newSphere);
+            Assert.AreEqual(1, DataHandler.Shapes.Count);
+        }
 
     }
 }
