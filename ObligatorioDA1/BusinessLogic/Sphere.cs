@@ -6,11 +6,11 @@
 
         public void ThrowNegativeRadius()
         {
-            throw new NegativeRadiusException("Shpere's Radius can't be negative");
+            throw new NegativeRadiusException("Sphere's Radius can't be negative");
         }
         public override void SpecificShapeValidator()
         {
-            if (Radius < 0) { ThrowNegativeRadius(); }
+            if (Radius <= 0) { ThrowNegativeRadius(); }
         }
     }
 }
