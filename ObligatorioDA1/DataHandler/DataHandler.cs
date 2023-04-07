@@ -39,6 +39,11 @@ namespace DataHandlers
             if (objectX.Name.HasSpaces()) objectX.ThrowHasNoSpaces();
         }
 
+        private static void NameNotInRange(Client client)
+        {
+            if (!client.Name.IsBetween(Client.MIN_NAME_LENGTH, Client.MAX_NAME_LENGTH)) client.ThrowNameNotInRange();
+        }
+
         public static void AddShape(Shape oneShape)
         {
             HasTrailingSpaces(oneShape);
@@ -49,6 +54,7 @@ namespace DataHandlers
 
         public static void AddClient(Client oneClient)
         {
+            NameNotInRange(oneClient);
             HasSpaces(oneClient);
             IsClientNameAlphanumeric(oneClient);
             IsNameUnique<Client>(oneClient, Clients);

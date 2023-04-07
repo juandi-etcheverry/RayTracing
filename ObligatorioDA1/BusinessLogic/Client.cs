@@ -12,6 +12,10 @@ namespace BusinessLogic
         private string _password;
         private DateTime _registrationDate;
 
+        public static uint MIN_NAME_LENGTH = 3;
+        public static uint MAX_NAME_LENGTH = 20;
+        public static uint MIN_PASSWORD_LENGTH = 5;
+        public static uint MAX_PASSWORD_LENGTH = 25;
         public string Name
         {
             get => _name;
@@ -43,6 +47,16 @@ namespace BusinessLogic
         public void ThrowHasNoSpaces()
         {
             throw new NoSpacesException("Client name can't have spaces");
+        }
+
+        public void ThrowNameNotInRange()
+        {
+            throw new NotInRangeException("Client name must be between 3 and 20 characters");
+        }
+
+        public void ThrowPasswordNotInRange()
+        {
+            throw new NotInRangeException("Client password must be between 5 and 25 characters");
         }
     }
 }
