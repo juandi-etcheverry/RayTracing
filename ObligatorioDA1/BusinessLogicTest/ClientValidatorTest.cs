@@ -70,5 +70,16 @@ namespace BusinessLogicTest
             };
             Assert.ThrowsException<NotInRangeException>(() => DataHandler.AddClient(client));
         }
+
+        [TestMethod]
+        public void SignUp_Client_Name_TooLong_FAIL_Test()
+        {
+            Client client = new Client()
+            {
+                Name = "Ninkgrjkrgnegglknregklre",
+                Password = "Pgnjergrjk43533"
+            };
+            Assert.ThrowsException<NotInRangeException>(() => DataHandler.AddClient(client));
+        }
     }
 }
