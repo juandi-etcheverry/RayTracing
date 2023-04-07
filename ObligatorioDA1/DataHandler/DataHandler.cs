@@ -44,6 +44,11 @@ namespace DataHandlers
             if (!client.Name.IsBetween(Client.MIN_NAME_LENGTH, Client.MAX_NAME_LENGTH)) client.ThrowNameNotInRange();
         }
 
+        private static void PasswordNotInRange(Client client)
+        {
+            if (!client.Password.IsBetween(Client.MIN_PASSWORD_LENGTH, Client.MAX_PASSWORD_LENGTH)) client.ThrowPasswordNotInRange();
+        }
+
         public static void AddShape(Shape oneShape)
         {
             HasTrailingSpaces(oneShape);
@@ -55,6 +60,7 @@ namespace DataHandlers
         public static void AddClient(Client oneClient)
         {
             NameNotInRange(oneClient);
+            PasswordNotInRange(oneClient);
             HasSpaces(oneClient);
             IsClientNameAlphanumeric(oneClient);
             IsNameUnique<Client>(oneClient, Clients);

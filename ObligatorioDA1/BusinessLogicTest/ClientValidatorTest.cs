@@ -99,7 +99,7 @@ namespace BusinessLogicTest
             Client client = new Client()
             {
                 Name = "Mateo",
-                Password = "Pgnjergrjk43533ojoirgoirgigreer"
+                Password = "Pgnjergrjk43533ojoirgoirgigreeriunuinmkki"
             };
             Assert.ThrowsException<NotInRangeException>(() => DataHandler.AddClient(client));
         }
