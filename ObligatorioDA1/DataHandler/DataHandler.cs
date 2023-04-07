@@ -9,7 +9,7 @@ namespace DataHandlers
 {
     public static class DataHandler
     {
-
+        
         public static List<Shape> Shapes { get; } = new List<Shape>();
         public static List<Client> Clients { get; } = new List<Client>();
 
@@ -48,7 +48,7 @@ namespace DataHandlers
         {
             if (!client.Password.IsBetween(Client.MIN_PASSWORD_LENGTH, Client.MAX_PASSWORD_LENGTH)) client.ThrowPasswordNotInRange();
         }
-
+        
         public static void AddShape(Shape oneShape)
         {
             HasTrailingSpaces(oneShape);
@@ -83,4 +83,4 @@ namespace DataHandlers
             shape.Name = newName;
         }
     }
-}
+ }
