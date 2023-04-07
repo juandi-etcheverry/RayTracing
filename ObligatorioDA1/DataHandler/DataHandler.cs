@@ -30,6 +30,7 @@ namespace DataHandlers
 
         public static void AddShape(Shape oneShape)
         {
+            oneShape.SpecificShapeValidator();
             HasTrailingSpaces(oneShape);
             IsNameEmpty(oneShape);
             IsNameUnique(oneShape, Shapes); 

@@ -134,13 +134,12 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void DataHandler_AddSphere_NegativeRadius_Fail()
+        public void DataHandler_AddSphere_NegativeRadius_FAIL()
         {
             Sphere newSphere = new Sphere();
             newSphere.Name = "Nicolas";
             newSphere.Radius = -3;
-            DataHandler.AddShape(newSphere);
-            Assert.AreEqual(0, DataHandler.Shapes.Count);
+            Assert.ThrowsException<NegativeRadiusException>(() => DataHandler.AddShape(newSphere));
         }
 
     }
