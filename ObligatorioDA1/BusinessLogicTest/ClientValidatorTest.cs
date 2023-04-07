@@ -68,7 +68,7 @@ namespace BusinessLogicTest
                 Name = "Ni",
                 Password = "password123"
             };
-            Assert.ThrowsException<TooShortNameException>(() => DataHandler.AddClient(client));
+            Assert.ThrowsException<NotInRangeException>(() => DataHandler.AddClient(client));
         }
     }
 }

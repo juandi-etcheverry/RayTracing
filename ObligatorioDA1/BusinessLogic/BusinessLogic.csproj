@@ -50,6 +50,7 @@
     <Compile Include="ShapeNotInListException.cs" />
     <Compile Include="StringValidator.cs" />
     <Compile Include="Shape.cs" />
+    <Compile Include="NotInRangeException.cs" />
     <Compile Include="TrailingSpacesNameException.cs" />
     <Compile Include="UniqueNameException.cs" />
   </ItemGroup>
