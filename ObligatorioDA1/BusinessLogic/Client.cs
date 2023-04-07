@@ -28,7 +28,10 @@ namespace BusinessLogic
             set => _password = value;
         }
 
-        public Client() { }
+        public Client()
+        {
+            _registrationDate = DateTime.Now;
+        }
 
         public bool AreNamesEqual(IDataEntity other)
         {
