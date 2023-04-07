@@ -114,5 +114,16 @@ namespace BusinessLogicTest
             };
             Assert.ThrowsException<NoCapitalLetterException>(() => DataHandler.AddClient(client));
         }
+
+        [TestMethod]
+        public void SignUp_Client_Password_NoNumber_FAIL_Test()
+        {
+            Client client = new Client()
+            {
+                Name = "Mateo",
+                Password = "NoNumberPassword"
+            };
+            Assert.ThrowsException<NoNumberException>(() => DataHandler.AddClient(client));
+        }
     }
 }
