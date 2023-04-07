@@ -59,5 +59,16 @@ namespace BusinessLogicTest
             };
             Assert.ThrowsException<NoSpacesException>(() => DataHandler.AddClient(client));
         }
+
+        [TestMethod]
+        public void SignUp_Client_Name_TooShort_FAIL_Test()
+        {
+            Client client = new Client()
+            {
+                Name = "Ni",
+                Password = "password123"
+            };
+            Assert.ThrowsException<TooShortNameException>(() => DataHandler.AddClient(client));
+        }
     }
 }
