@@ -18,9 +18,11 @@ namespace BusinessLogicTest
         [TestMethod]
         public void SignUp_Client_Name_OK_Password_OK_Test()
         {
-            Client newClient = new Client();
-            newClient.Name = "Nicolas";
-            newClient.Password = "passworD123";
+            Client newClient = new Client()
+            {
+                Name = "Nicolas",
+                Password = "passworD123"
+            };
             DataHandler.AddClient(newClient);
             Assert.AreEqual(1, DataHandler.Clients.Count);
         }
@@ -28,13 +30,17 @@ namespace BusinessLogicTest
         [TestMethod]
         public void SignUp_Client_Name_NotUnique_FAIL_Test()
         {
-            Client client1 = new Client();
-            client1.Name = "Nicolas";
-            client1.Password = "passworD123";
+            Client client1 = new Client()
+            {
+                Name = "Nicolas",
+                Password = "passworD123"
+            };
             DataHandler.AddClient(client1);
-            Client client2 = new Client();
-            client2.Name = "Nicolas";
-            client2.Password = "noimportA123";
+            Client client2 = new Client()
+            {
+                Name = "Nicolas",
+                Password = "noimportA123"
+            };
             Assert.ThrowsException<UniqueNameException>(() => DataHandler.AddClient(client2));
         }
 
