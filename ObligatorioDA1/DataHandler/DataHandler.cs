@@ -19,46 +19,7 @@ namespace DataHandlers
             if (doesNameExist) objectX.ThrowNameExists();
 
         }
-        private static void IsNameEmpty<T>(T objectX) where T : Shape 
-        {
-            if (objectX.Name.IsEmpty()) objectX.ThrowEmptyName();
-        }
 
-        private static void HasTrailingSpaces<T>(T objectX) where T : Shape
-        {
-            if (objectX.Name.HasTrailingSpaces()) objectX.ThrowHasTrailingSpaces();
-        }
-
-        private static void IsClientNameAlphanumeric(Client client)
-        {
-            if (!client.Name.IsAlphaNumeric()) client.ThrowNotAlphanumeric();
-        }
-
-        private static void HasSpaces<T>(T objectX) where T : Client
-        {
-            if (objectX.Name.HasSpaces()) objectX.ThrowHasNoSpaces();
-        }
-
-        private static void NameNotInRange(Client client)
-        {
-            if (!client.Name.IsBetween(Client.MIN_NAME_LENGTH, Client.MAX_NAME_LENGTH)) client.ThrowNameNotInRange();
-        }
-
-        private static void PasswordNotInRange(Client client)
-        {
-            if (!client.Password.IsBetween(Client.MIN_PASSWORD_LENGTH, Client.MAX_PASSWORD_LENGTH)) client.ThrowPasswordNotInRange();
-        }
-
-        private static void PasswordNoCapitalLetter(Client client)
-        {
-            if (!client.Password.HasUpper()) client.ThrowPasswordNoCapitalLetter();
-        }
-
-        private static void NoNumberPassword(Client client)
-        {
-            if (!client.Password.HasNumber()) client.ThrowNoNumberPassword();
-        }
-        
         public static void AddShape(Shape oneShape)
         {
             oneShape.SpecificShapeValidator();
@@ -68,13 +29,7 @@ namespace DataHandlers
 
         public static void AddClient(Client oneClient)
         {
-            NameNotInRange(oneClient);
-            PasswordNotInRange(oneClient);
-            PasswordNoCapitalLetter(oneClient);
-            NoNumberPassword(oneClient);
-            HasSpaces(oneClient);
-            IsClientNameAlphanumeric(oneClient);
-            IsNameUnique<Client>(oneClient, Clients);
+            IsNameUnique(oneClient, Clients);
             Clients.Add(oneClient);
         }
 

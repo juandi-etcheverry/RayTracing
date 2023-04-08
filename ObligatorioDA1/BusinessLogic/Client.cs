@@ -13,20 +13,32 @@ namespace BusinessLogic
         private string _password;
         private DateTime _registrationDate;
 
-        public static uint MIN_NAME_LENGTH = 3;
-        public static uint MAX_NAME_LENGTH = 20;
-        public static uint MIN_PASSWORD_LENGTH = 5;
-        public static uint MAX_PASSWORD_LENGTH = 25;
+        private static uint MIN_NAME_LENGTH = 3;
+        private static uint MAX_NAME_LENGTH = 20;
+        private static uint MIN_PASSWORD_LENGTH = 5;
+        private static uint MAX_PASSWORD_LENGTH = 25;
         public string Name
         {
             get => _name;
-            set => _name = value;
+            set
+            {
+                if (!value.IsBetween(MIN_NAME_LENGTH, MAX_NAME_LENGTH)) ThrowNameNotInRange();
+                if (value.HasSpaces()) ThrowHasSpaces();
+                if (!value.IsAlphaNumeric()) ThrowNotAlphanumeric();
+                _name = value;
+            }
         }
 
         public string Password
         {
             get => _password;
-            set => _password = value;
+            set
+            {
+                if (!value.IsBetween(MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH)) ThrowPasswordNotInRange();
+                if (!value.HasUpper()) ThrowPasswordNoCapitalLetter();
+                if (!value.HasNumber()) ThrowNoNumberPassword();
+                _password = value;
+            }
         }
 
         public Client()
@@ -48,7 +60,7 @@ namespace BusinessLogic
         {
             throw new AlphanumericNameException("Client name can't have non-alphanumeric characters");
         }
-        public void ThrowHasNoSpaces()
+        public void ThrowHasSpaces()
         {
             throw new NoSpacesException("Client name can't have spaces");
         }

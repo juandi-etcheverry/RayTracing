@@ -48,89 +48,105 @@ namespace BusinessLogicTest
         [TestMethod]
         public void SignUp_Client_Name_NotAlphanumeric_FAIL_Test()
         {
-            Client client = new Client()
+            Assert.ThrowsException<AlphanumericNameException>(() =>
             {
-                Name = "Mateo!",
-                Password = "passworD123"
-            };
-            Assert.ThrowsException<AlphanumericNameException>(() => DataHandler.AddClient(client));
+                Client client = new Client()
+                {
+                    Name = "Mateo!",
+                    Password = "passworD123"
+                };
+            });
         }
 
         [TestMethod]
         public void SignUp_Client_Name_HasSpace_FAIL_Test()
         {
-            Client client = new Client()
+            Assert.ThrowsException<NoSpacesException>(() =>
             {
-                Name = "Nicolas ",
-                Password = "passWord123"
-            };
-            Assert.ThrowsException<NoSpacesException>(() => DataHandler.AddClient(client));
+                Client client = new Client()
+                {
+                    Name = "Nicolas ",
+                    Password = "passWord123"
+                };
+            });
         }
 
         [TestMethod]
         public void SignUp_Client_Name_TooShort_FAIL_Test()
         {
-            Client client = new Client()
+            Assert.ThrowsException<NotInRangeException>(() =>
             {
-                Name = "Ni",
-                Password = "passWord123"
-            };
-            Assert.ThrowsException<NotInRangeException>(() => DataHandler.AddClient(client));
+                Client client = new Client()
+                {
+                    Name = "Ni",
+                    Password = "passWord123"
+                };
+            });
         }
 
         [TestMethod]
         public void SignUp_Client_Name_TooLong_FAIL_Test()
         {
-            Client client = new Client()
+            Assert.ThrowsException<NotInRangeException>(() =>
             {
-                Name = "Ninkgrjkrgnegglknregklre",
-                Password = "Pgnjergrjk43533"
-            };
-            Assert.ThrowsException<NotInRangeException>(() => DataHandler.AddClient(client));
+                Client client = new Client()
+                {
+                    Name = "Ninkgrjkrgnegglknregklre",
+                    Password = "Pgnjergrjk43533"
+                };
+            });
         }
 
         [TestMethod]
         public void SignUp_Client_Password_TooShort_FAIL_Test()
         {
-            Client client = new Client()
+            Assert.ThrowsException<NotInRangeException>(() =>
             {
-                Name = "Mateo",
-                Password = "P"
-            };
-            Assert.ThrowsException<NotInRangeException>(() => DataHandler.AddClient(client));
+                Client client = new Client()
+                {
+                    Name = "Mateo",
+                    Password = "P"
+                };
+            });
         }
 
         [TestMethod]
         public void SignUp_Client_Password_TooLong_FAIL_Test()
         {
-            Client client = new Client()
+            Assert.ThrowsException<NotInRangeException>(() =>
             {
-                Name = "Mateo",
-                Password = "Pgnjergrjk43533ojoirgoirgigreeriunuinmkki"
-            };
-            Assert.ThrowsException<NotInRangeException>(() => DataHandler.AddClient(client));
+                Client client = new Client()
+                {
+                    Name = "Mateo",
+                    Password = "Pgnjergrjk43533ojoirgoirgigreeriunuinmkki"
+                };
+            });
         }
 
         [TestMethod]
         public void SignUp_Client_Password_NoCapitalLetter_FAIL_Test()
         {
-            Client client = new Client()
+            Assert.ThrowsException<NoCapitalLetterException>(() =>
             {
-                Name = "Mateo",
-                Password = "nocapitalletter123"
-            };
-            Assert.ThrowsException<NoCapitalLetterException>(() => DataHandler.AddClient(client));
+                Client client = new Client()
+                {
+                    Name = "Mateo",
+                    Password = "nocapitalletter123"
+                };
+            });
         }
 
         [TestMethod]
         public void SignUp_Client_Password_NoNumber_FAIL_Test()
         {
-            Client client = new Client()
+            Assert.ThrowsException<NoNumberException>(() =>
             {
-                Name = "Mateo",
-                Password = "NoNumberPassword"
-            };
-            Assert.ThrowsException<NoNumberException>(() => DataHandler.AddClient(client));
+                Client client = new Client()
+                {
+                    Name = "Mateo",
+                    Password = "NoNumberPassword"
+                };
+            });
         }
     }
 }
