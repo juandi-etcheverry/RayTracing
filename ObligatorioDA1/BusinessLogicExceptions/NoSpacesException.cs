@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BusinessLogic
+namespace BusinessLogicExceptions
 {
     public class NoSpacesException : Exception
     {

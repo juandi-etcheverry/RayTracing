@@ -2,6 +2,8 @@
 using System;
 using DataHandlers;
 using BusinessLogic;
+using BusinessLogicExceptions;
+using System.Security.Cryptography;
 
 namespace BusinessLogicTest
 {
@@ -56,21 +58,27 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DataHandler_AddShapeEmptyName_Fail()
         {
-            Shape shape1 = new Shape
+            
+            Assert.ThrowsException<EmptyNameException>(() =>
             {
-                Name = ""
-            };
-            Assert.ThrowsException<EmptyNameException>(() => DataHandler.AddShape(shape1));
+                Shape shape1 = new Shape
+                {
+                    Name = ""
+                };
+            });
         }
 
         [TestMethod]
         public void DataHandler_AddShapeTrailingSpaces_Fail()
         {
-            Shape shape1 = new Shape
+            
+            Assert.ThrowsException<TrailingSpacesNameException>(() =>
             {
-                Name = "   Nicolas"
-            };
-            Assert.ThrowsException<TrailingSpacesNameException>(() => DataHandler.AddShape(shape1));
+                Shape shape1 = new Shape
+                {
+                    Name = "   Nicolas"
+                };
+            });
         }
         [TestMethod]
         public void DataHandler_AddShapeTrailingSpaces_OK()

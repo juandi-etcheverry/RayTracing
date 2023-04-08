@@ -1,11 +1,22 @@
-﻿using System.Net.Http;
+﻿using BusinessLogicExceptions;
 
 namespace BusinessLogic
 {
     public class Shape: IDataEntity
     {
         private string _name { get; set; }
-        public string Name { get; set; }
+
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                if (value.IsEmpty()) ThrowEmptyName();
+                if (value.HasTrailingSpaces()) ThrowHasTrailingSpaces();
+                _name = value;
+            }
+        }
+
         public string Owner { get; private set; }
 
         public bool AreNamesEqual(IDataEntity other)

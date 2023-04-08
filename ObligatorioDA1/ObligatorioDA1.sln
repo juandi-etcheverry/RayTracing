@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicTest", "Busine
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataHandlerTest", "DataHandlerTest\DataHandlerTest.csproj", "{78BC52D5-A455-497A-B084-07A5CF3D073F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicExceptions", "BusinessLogicExceptions\BusinessLogicExceptions.csproj", "{2DB3FBDC-1F9B-48D9-B75E-D349CA59AD32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 		{78BC52D5-A455-497A-B084-07A5CF3D073F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78BC52D5-A455-497A-B084-07A5CF3D073F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78BC52D5-A455-497A-B084-07A5CF3D073F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DB3FBDC-1F9B-48D9-B75E-D349CA59AD32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DB3FBDC-1F9B-48D9-B75E-D349CA59AD32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DB3FBDC-1F9B-48D9-B75E-D349CA59AD32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DB3FBDC-1F9B-48D9-B75E-D349CA59AD32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

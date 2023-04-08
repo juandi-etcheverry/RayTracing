@@ -3,6 +3,7 @@ using DataHandlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using BusinessLogicExceptions;
 
 namespace BusinessLogicTest
 {

@@ -59,6 +59,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogicExceptions\BusinessLogicExceptions.csproj">
+      <Project>{2DB3FBDC-1F9B-48D9-B75E-D349CA59AD32}</Project>
+      <Name>BusinessLogicExceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{42D14B1A-D217-41D2-9879-B603CBBD0E91}</Project>
       <Name>BusinessLogic</Name>

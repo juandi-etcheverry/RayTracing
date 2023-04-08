@@ -1,4 +1,6 @@
-﻿namespace BusinessLogic
+﻿using BusinessLogicExceptions;
+
+namespace BusinessLogic
 {
     public class Sphere : Shape
     {
