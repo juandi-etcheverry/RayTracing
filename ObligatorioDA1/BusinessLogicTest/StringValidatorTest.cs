@@ -219,5 +219,19 @@ namespace BusinessLogicTest
             Assert.IsTrue(hasUpper);
         }
 
+        [TestMethod]
+        public void HasNumber_EmptyString_False_OK_Test()
+        {
+            bool hasNumber = "".HasNumber();
+            Assert.IsFalse(hasNumber);
+        }
+
+        [TestMethod]
+        public void HasNumber_StringWithNumber_True_OK_Test()
+        {
+            bool hasNumber = "Mkjenrgngr4kjgnr".HasNumber();
+            Assert.IsTrue(hasNumber);
+        }
+
     }
 }

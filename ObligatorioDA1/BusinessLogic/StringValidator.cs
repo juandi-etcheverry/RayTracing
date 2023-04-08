@@ -47,5 +47,10 @@ namespace BusinessLogic
         {
             return stringToValidate.Count(char.IsUpper) == uppercaseLetterAmount;
         }
+
+        public static bool HasNumber(this string stringToValidate)
+        {
+            return stringToValidate.Any(char.IsDigit);
+        }
     }
 }
