@@ -9,7 +9,6 @@ namespace DataHandlers
 {
     public static class DataHandler
     {
-        
         public static List<Shape> Shapes { get; } = new List<Shape>();
         public static List<Client> Clients { get; } = new List<Client>();
 
@@ -17,7 +16,6 @@ namespace DataHandlers
         {
             bool doesNameExist = objectList.Exists((currentObject) => objectX.AreNamesEqual(currentObject));
             if (doesNameExist) objectX.ThrowNameExists();
-
         }
 
         public static void AddShape(Shape oneShape)
@@ -43,8 +41,10 @@ namespace DataHandlers
         }
         public static void RenameShape(Shape shape, string newName)
         {
-            Shape aux = new Shape();
-            aux.Name = newName;
+            Shape aux = new Shape
+            {
+                Name = newName
+            };
             IsNameUnique<Shape>(aux, Shapes);
             shape.Name = newName;
         }

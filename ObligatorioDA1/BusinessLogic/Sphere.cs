@@ -12,7 +12,7 @@ namespace BusinessLogic
         }
         public override void SpecificShapeValidator()
         {
-            if (Radius <= 0) { ThrowNegativeRadius(); }
+            if (Radius <= 0) ThrowNegativeRadius();
         }
     }
 }

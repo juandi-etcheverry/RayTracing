@@ -182,5 +182,17 @@ namespace BusinessLogicTest
             Assert.ThrowsException<NegativeRadiusException>(() => DataHandler.AddShape(newSphere));
         }
 
+        [TestMethod]
+        public void DataHandler_AddSphere_ValidRadius_OK()
+        {
+            Sphere newSphere = new Sphere()
+            {
+                Name = "JD",
+                Radius = 2
+            };
+            DataHandler.AddShape(newSphere);
+            Assert.AreEqual(1, DataHandler.Shapes.Count);
+        }
+
     }
 }
