@@ -1,4 +1,5 @@
-﻿using BusinessLogicExceptions;
+﻿using BusinessLogic;
+using BusinessLogicExceptions;
 using DataHandlers;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,10 +9,15 @@ namespace BusinessLogicTest
     [TestClass]
     public class ClientValidatorTest
     {
+        private readonly ClientLogic clientLogic = new ClientLogic();
+
         [TestCleanup]
-        public void DataHandler_RemoveAllShapes()
+        public void RemoveAllClients()
         {
-            DataHandler.RemoveAllClients();
+            foreach (Client addedClient in clientLogic.GetClients())
+            {
+                clientLogic.RemoveClient(addedClient);
+            }
         }
 
         [TestMethod]
@@ -22,8 +28,8 @@ namespace BusinessLogicTest
                 Name = "Nicolas",
                 Password = "passworD123"
             };
-            DataHandler.AddClient(newClient);
-            Assert.AreEqual(1, DataHandler.Clients.Count);
+            clientLogic.AddClient(newClient);
+            Assert.AreEqual(1, clientLogic.GetClients().Count);
         }
 
         [TestMethod]
@@ -34,13 +40,13 @@ namespace BusinessLogicTest
                 Name = "Nicolas",
                 Password = "passworD123"
             };
-            DataHandler.AddClient(client1);
+            clientLogic.AddClient(client1);
             Client client2 = new Client()
             {
                 Name = "Nicolas",
                 Password = "noimportA123"
             };
-            Assert.ThrowsException<NameException>(() => DataHandler.AddClient(client2));
+            Assert.ThrowsException<NameException>(() => clientLogic.AddClient(client2));
         }
 
         [TestMethod]

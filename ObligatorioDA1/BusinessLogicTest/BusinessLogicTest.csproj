@@ -75,6 +75,10 @@
       <Project>{D68AA8F8-57F2-4044-98F4-11211E8BF654}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ValidationService\ValidationService.csproj">
+      <Project>{4566B165-F155-4475-965F-C549CB664BC3}</Project>
+      <Name>ValidationService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

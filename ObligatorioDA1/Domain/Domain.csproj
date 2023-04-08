@@ -51,9 +51,9 @@
       <Project>{2DB3FBDC-1F9B-48D9-B75E-D349CA59AD32}</Project>
       <Name>BusinessLogicExceptions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
-      <Project>{42D14B1A-D217-41D2-9879-B603CBBD0E91}</Project>
-      <Name>BusinessLogic</Name>
+    <ProjectReference Include="..\ValidationService\ValidationService.csproj">
+      <Project>{4566B165-F155-4475-965F-C549CB664BC3}</Project>
+      <Name>ValidationService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

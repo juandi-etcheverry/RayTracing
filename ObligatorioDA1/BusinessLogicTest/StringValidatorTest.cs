@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Runtime.CompilerServices;
-using BusinessLogic.Utils;
+using ValidationService;
 
 namespace BusinessLogicTest
 {

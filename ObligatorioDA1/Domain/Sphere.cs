@@ -6,7 +6,7 @@ namespace Domain
     {
         public double Radius { get; set; }
 
-        public void ThrowNegativeRadius()
+        public static void ThrowNegativeRadius()
         {
             throw new NegativeRadiusException("Sphere's Radius can't be negative");
         }

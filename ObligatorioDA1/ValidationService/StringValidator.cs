@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace BusinessLogic.Utils
+namespace ValidationService
 {
     public static class StringValidatorExtension
     {

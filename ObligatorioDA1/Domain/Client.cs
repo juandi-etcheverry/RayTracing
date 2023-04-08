@@ -1,6 +1,6 @@
 ﻿using System;
-using BusinessLogic.Utils;
 using BusinessLogicExceptions;
+using ValidationService;
 
 namespace Domain
 {
@@ -43,40 +43,35 @@ namespace Domain
             _registrationDate = DateTime.Now;
         }
 
-        public bool AreNamesEqual(Client other)
-        {
-            return this.Name == other.Name;
-        }
-
-        public void ThrowNameExists()
+        public static void ThrowNameExists()
         {
             throw new NameException("Client name already exists");
         }
-        public void ThrowNotAlphanumeric()
+        public static void ThrowNotAlphanumeric()
         {
             throw new NameException("Client name can't have non-alphanumeric characters");
         }
-        public void ThrowHasSpaces()
+        public static void ThrowHasSpaces()
         {
             throw new NameException("Client name can't have spaces");
         }
 
-        public void ThrowNameNotInRange()
+        public static void ThrowNameNotInRange()
         {
             throw new NameException("Client name must be between 3 and 20 characters");
         }
 
-        public void ThrowPasswordNotInRange()
+        public static void ThrowPasswordNotInRange()
         {
             throw new PasswordException("Client password must be between 5 and 25 characters");
         }
 
-        public void ThrowPasswordNoCapitalLetter()
+        public static void ThrowPasswordNoCapitalLetter()
         {
             throw new PasswordException("Client password must have at least one capital letter");
         }
 
-        public void ThrowNoNumberPassword()
+        public static void ThrowNoNumberPassword()
         {
             throw new PasswordException("Client password must have at least one number");
         }

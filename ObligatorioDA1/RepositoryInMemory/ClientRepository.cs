@@ -7,26 +7,25 @@ namespace RepositoryInMemory
 {
     public class ClientRepository : IRepositoryClient
     {
-        private static readonly IList<Client> Clients = new List<Client>();
+        private static readonly IList<Client> _clients = new List<Client>();
 
         public IList<Client> GetClients()
         {
-            return Clients;
+            return _clients;
         }
         public Client GetClient(string name)
         {
-            return Clients.FirstOrDefault(c => c.Name == name);
+            return _clients.FirstOrDefault(c => c.Name == name);
         }
 
         public Client AddClient(Client client)
         {
-            Clients.Add(client);
+            _clients.Add(client);
             return client;
         }
-
         public Client RemoveClient(Client client)
         {
-            Clients.Remove(client);
+            _clients.Remove(client);
             return client;
         }
     }
