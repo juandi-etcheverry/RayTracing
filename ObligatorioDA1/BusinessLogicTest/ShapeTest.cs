@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using DataHandlers;
-using BusinessLogic;
 using BusinessLogicExceptions;
 using System.Security.Cryptography;
+using Domain;
 
 namespace BusinessLogicTest
 {
@@ -52,14 +52,14 @@ namespace BusinessLogicTest
                 Name = "Esfera"
             };
             DataHandler.AddShape(shape1);
-            Assert.ThrowsException<UniqueNameException>(() => DataHandler.AddShape(shape1));
+            Assert.ThrowsException<NameException>(() => DataHandler.AddShape(shape1));
         }
 
         [TestMethod]
         public void DataHandler_AddShapeEmptyName_Fail()
         {
             
-            Assert.ThrowsException<EmptyNameException>(() =>
+            Assert.ThrowsException<NameException>(() =>
             {
                 Shape shape1 = new Shape
                 {
@@ -72,7 +72,7 @@ namespace BusinessLogicTest
         public void DataHandler_AddShapeTrailingSpaces_Fail()
         {
             
-            Assert.ThrowsException<TrailingSpacesNameException>(() =>
+            Assert.ThrowsException<NameException>(() =>
             {
                 Shape shape1 = new Shape
                 {
@@ -128,7 +128,7 @@ namespace BusinessLogicTest
             };
             DataHandler.AddShape(shape1);
             Shape shape2 = new Shape();
-            Assert.ThrowsException<ShapeNotInListException>(() => DataHandler.DeleteShape(shape2));
+            Assert.ThrowsException<NotFoundException>(() => DataHandler.DeleteShape(shape2));
         }
 
         [TestMethod]
@@ -156,7 +156,7 @@ namespace BusinessLogicTest
                 Name = "Mateo"
             };
             DataHandler.AddShape(shape2);
-            Assert.ThrowsException<UniqueNameException>(()=> DataHandler.RenameShape(shape1, "Mateo"));
+            Assert.ThrowsException<NameException>(()=> DataHandler.RenameShape(shape1, "Mateo"));
         }
 
         [TestMethod]

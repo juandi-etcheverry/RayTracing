@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BusinessLogic.Utils;
 using BusinessLogicExceptions;
 
-namespace BusinessLogic
+namespace Domain
 {
-    public class Client : IDataEntity
+    public class Client
     {
         private string _name;
         private string _password;
-        private DateTime _registrationDate;
+        private DateTime _registrationDate { get; set; }
 
         private static uint MIN_NAME_LENGTH = 3;
         private static uint MAX_NAME_LENGTH = 20;
@@ -46,43 +43,42 @@ namespace BusinessLogic
             _registrationDate = DateTime.Now;
         }
 
-        public bool AreNamesEqual(IDataEntity other)
+        public bool AreNamesEqual(Client other)
         {
-            Client otherClient = other as Client;
-            return this.Name == otherClient.Name;
+            return this.Name == other.Name;
         }
 
         public void ThrowNameExists()
         {
-            throw new UniqueNameException("Client name already exists");
+            throw new NameException("Client name already exists");
         }
         public void ThrowNotAlphanumeric()
         {
-            throw new AlphanumericNameException("Client name can't have non-alphanumeric characters");
+            throw new NameException("Client name can't have non-alphanumeric characters");
         }
         public void ThrowHasSpaces()
         {
-            throw new NoSpacesException("Client name can't have spaces");
+            throw new NameException("Client name can't have spaces");
         }
 
         public void ThrowNameNotInRange()
         {
-            throw new NotInRangeException("Client name must be between 3 and 20 characters");
+            throw new NameException("Client name must be between 3 and 20 characters");
         }
 
         public void ThrowPasswordNotInRange()
         {
-            throw new NotInRangeException("Client password must be between 5 and 25 characters");
+            throw new PasswordException("Client password must be between 5 and 25 characters");
         }
 
         public void ThrowPasswordNoCapitalLetter()
         {
-            throw new NoCapitalLetterException("Client password must have at least one capital letter");
+            throw new PasswordException("Client password must have at least one capital letter");
         }
 
         public void ThrowNoNumberPassword()
         {
-            throw new NoNumberException("Client password must have at least one number");
+            throw new PasswordException("Client password must have at least one number");
         }
     }
 }

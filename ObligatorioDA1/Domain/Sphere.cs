@@ -1,6 +1,6 @@
 ﻿using BusinessLogicExceptions;
 
-namespace BusinessLogic
+namespace Domain
 {
     public class Sphere : Shape
     {

@@ -71,6 +71,10 @@
       <Project>{c181db03-fe0b-4d67-b31d-5ba6a2424d91}</Project>
       <Name>DataHandlers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{D68AA8F8-57F2-4044-98F4-11211E8BF654}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

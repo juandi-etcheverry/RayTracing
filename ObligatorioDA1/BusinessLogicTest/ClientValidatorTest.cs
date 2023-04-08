@@ -1,9 +1,7 @@
-﻿using BusinessLogic;
+﻿using BusinessLogicExceptions;
 using DataHandlers;
+using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using BusinessLogicExceptions;
 
 namespace BusinessLogicTest
 {
@@ -42,13 +40,13 @@ namespace BusinessLogicTest
                 Name = "Nicolas",
                 Password = "noimportA123"
             };
-            Assert.ThrowsException<UniqueNameException>(() => DataHandler.AddClient(client2));
+            Assert.ThrowsException<NameException>(() => DataHandler.AddClient(client2));
         }
 
         [TestMethod]
         public void SignUp_Client_Name_NotAlphanumeric_FAIL_Test()
         {
-            Assert.ThrowsException<AlphanumericNameException>(() =>
+            Assert.ThrowsException<NameException>(() =>
             {
                 Client client = new Client()
                 {
@@ -61,7 +59,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void SignUp_Client_Name_HasSpace_FAIL_Test()
         {
-            Assert.ThrowsException<NoSpacesException>(() =>
+            Assert.ThrowsException<NameException>(() =>
             {
                 Client client = new Client()
                 {
@@ -74,7 +72,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void SignUp_Client_Name_TooShort_FAIL_Test()
         {
-            Assert.ThrowsException<NotInRangeException>(() =>
+            Assert.ThrowsException<NameException>(() =>
             {
                 Client client = new Client()
                 {
@@ -87,7 +85,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void SignUp_Client_Name_TooLong_FAIL_Test()
         {
-            Assert.ThrowsException<NotInRangeException>(() =>
+            Assert.ThrowsException<NameException>(() =>
             {
                 Client client = new Client()
                 {
@@ -100,7 +98,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void SignUp_Client_Password_TooShort_FAIL_Test()
         {
-            Assert.ThrowsException<NotInRangeException>(() =>
+            Assert.ThrowsException<PasswordException>(() =>
             {
                 Client client = new Client()
                 {
@@ -113,7 +111,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void SignUp_Client_Password_TooLong_FAIL_Test()
         {
-            Assert.ThrowsException<NotInRangeException>(() =>
+            Assert.ThrowsException<PasswordException>(() =>
             {
                 Client client = new Client()
                 {
@@ -126,7 +124,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void SignUp_Client_Password_NoCapitalLetter_FAIL_Test()
         {
-            Assert.ThrowsException<NoCapitalLetterException>(() =>
+            Assert.ThrowsException<PasswordException>(() =>
             {
                 Client client = new Client()
                 {
@@ -139,7 +137,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void SignUp_Client_Password_NoNumber_FAIL_Test()
         {
-            Assert.ThrowsException<NoNumberException>(() =>
+            Assert.ThrowsException<PasswordException>(() =>
             {
                 Client client = new Client()
                 {

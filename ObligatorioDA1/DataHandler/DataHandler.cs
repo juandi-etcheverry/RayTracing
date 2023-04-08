@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Xml.XPath;
-using BusinessLogic;
+using Domain;
 
 namespace DataHandlers
 {
@@ -12,22 +12,28 @@ namespace DataHandlers
         public static List<Shape> Shapes { get; } = new List<Shape>();
         public static List<Client> Clients { get; } = new List<Client>();
 
-        private static void IsNameUnique<T>(T objectX, List<T> objectList) where T : IDataEntity
+        private static void IsNameUnique(Client client)
         {
-            bool doesNameExist = objectList.Exists((currentObject) => objectX.AreNamesEqual(currentObject));
-            if (doesNameExist) objectX.ThrowNameExists();
+            bool doesNameExist = Clients.Exists(client.AreNamesEqual);
+            if (doesNameExist) client.ThrowNameExists();
+        }
+
+        private static void IsNameUnique(Shape shape)
+        {
+            bool doesNameExist = Shapes.Exists(shape.AreNamesEqual);
+            if (doesNameExist) shape.ThrowNameExists();
         }
 
         public static void AddShape(Shape oneShape)
         {
             oneShape.SpecificShapeValidator();
-            IsNameUnique(oneShape, Shapes); 
+            IsNameUnique(oneShape); 
             Shapes.Add(oneShape);
         }
 
         public static void AddClient(Client oneClient)
         {
-            IsNameUnique(oneClient, Clients);
+            IsNameUnique(oneClient);
             Clients.Add(oneClient);
         }
 
@@ -45,7 +51,7 @@ namespace DataHandlers
             {
                 Name = newName
             };
-            IsNameUnique<Shape>(aux, Shapes);
+            IsNameUnique(aux);
             shape.Name = newName;
         }
     }
