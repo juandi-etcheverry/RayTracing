@@ -29,6 +29,7 @@ namespace BusinessLogic
         {
             throw new ShapeNotInListException("The shape is not in list");
         }
+        public virtual void SpecificShapeValidator() { }
 
     }
 }

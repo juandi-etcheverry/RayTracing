@@ -63,12 +63,6 @@
       <Project>{42D14B1A-D217-41D2-9879-B603CBBD0E91}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
-      <Project>{42D14B1A-D217-41D2-9879-B603CBBD0E91}</Project>
-      <Name>BusinessLogic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataHandler\DataHandlers.csproj">
       <Project>{c181db03-fe0b-4d67-b31d-5ba6a2424d91}</Project>
       <Name>DataHandlers</Name>
