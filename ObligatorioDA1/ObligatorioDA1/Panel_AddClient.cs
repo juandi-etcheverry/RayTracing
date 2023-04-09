@@ -1,4 +1,5 @@
-﻿using BusinessLogicExceptions;
+﻿using BusinessLogic;
+using BusinessLogicExceptions;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,11 @@ namespace ObligatorioDA1
 {
     public partial class Panel_AddClient : UserControl
     {
-        
-        public Panel_AddClient()
+        private readonly ClientLogic clientLogic;
+        public Panel_AddClient(ClientLogic clientLogic)
         {
             InitializeComponent();
+            this.clientLogic = clientLogic;
         }
 
         private void btnAddNewClient_Click(object sender, EventArgs e)
@@ -29,6 +31,8 @@ namespace ObligatorioDA1
                     Name = txbClientName.Text,
                     Password = txbClientPassword.Text,
                 };
+                clientLogic.AddClient(newClient);
+                System.Windows.Forms.MessageBox.Show("New client added correctly");
             }
             catch (NameException nameEx)
             {

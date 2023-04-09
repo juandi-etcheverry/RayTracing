@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogic;
+using RepositoryInMemory;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,11 +17,14 @@ namespace ObligatorioDA1
         private UserControl userControlWelcome;
         private UserControl userControlAddClient;
 
+        private ClientLogic clientLogic;
         public Form1()
         {
             InitializeComponent();
+            ClientRepository clientRepository = new ClientRepository();
+            clientLogic = new ClientLogic(clientRepository);
             userControlWelcome = new Panel_Welcome();
-            userControlAddClient = new Panel_AddClient();
+            userControlAddClient = new Panel_AddClient(clientLogic);
 
             flyPanelPrincipal.Controls.Add(userControlWelcome);
         }

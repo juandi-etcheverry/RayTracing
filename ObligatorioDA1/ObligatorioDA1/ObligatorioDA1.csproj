@@ -102,9 +102,21 @@
       <Project>{2DB3FBDC-1F9B-48D9-B75E-D349CA59AD32}</Project>
       <Name>BusinessLogicExceptions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{42d14b1a-d217-41d2-9879-b603cbbd0e91}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{D68AA8F8-57F2-4044-98F4-11211E8BF654}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IRepository\IRepository.csproj">
+      <Project>{E9806FC1-AD64-4403-B098-E8B202C28478}</Project>
+      <Name>IRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RepositoryInMemory\RepositoryInMemory.csproj">
+      <Project>{ED16732A-5D62-4315-8571-BF41BA6B2852}</Project>
+      <Name>RepositoryInMemory</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

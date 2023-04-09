@@ -15,6 +15,10 @@ namespace BusinessLogic
         {
             return _repository.GetClients();
         }
+        public ClientLogic(IRepositoryClient clientRepository)
+        {
+            _repository = clientRepository;
+        }
 
         public Client GetClient(string name)
         {
