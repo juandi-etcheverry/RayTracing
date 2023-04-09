@@ -59,13 +59,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogicExceptions\BusinessLogicExceptions.csproj">
+      <Project>{2DB3FBDC-1F9B-48D9-B75E-D349CA59AD32}</Project>
+      <Name>BusinessLogicExceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{42D14B1A-D217-41D2-9879-B603CBBD0E91}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataHandler\DataHandlers.csproj">
-      <Project>{c181db03-fe0b-4d67-b31d-5ba6a2424d91}</Project>
-      <Name>DataHandlers</Name>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{D68AA8F8-57F2-4044-98F4-11211E8BF654}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ValidationService\ValidationService.csproj">
+      <Project>{4566B165-F155-4475-965F-C549CB664BC3}</Project>
+      <Name>ValidationService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
