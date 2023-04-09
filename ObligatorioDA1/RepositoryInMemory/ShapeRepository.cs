@@ -15,8 +15,7 @@ namespace RepositoryInMemory
 
         public Shape GetShape(string name)
         {
-            Shape comparisonShape = new Shape() { Name = name };
-            return Shapes.FirstOrDefault(s => s.AreNamesEqual(comparisonShape));
+            return Shapes.FirstOrDefault(s => s.AreNamesEqual(name));
         }
 
         public Shape AddShape(Shape shape)

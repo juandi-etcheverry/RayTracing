@@ -1,6 +1,5 @@
 ﻿using BusinessLogic;
 using BusinessLogicExceptions;
-using DataHandlers;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,10 +13,7 @@ namespace BusinessLogicTest
         [TestCleanup]
         public void RemoveAllClients()
         {
-            foreach (Client addedClient in clientLogic.GetClients())
-            {
-                clientLogic.RemoveClient(addedClient);
-            }
+            clientLogic.GetClients().Clear();
         }
 
         [TestMethod]

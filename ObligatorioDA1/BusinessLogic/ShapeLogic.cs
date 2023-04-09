@@ -22,7 +22,8 @@ namespace BusinessLogic
 
         public Shape RemoveShape(Shape shape)
         {
-            _repository.RemoveShape(shape);
+            Shape removedShape = _repository.RemoveShape(shape);
+            if (removedShape.Name is null) Shape.ThrowNotFound();
             return shape;
         }
 
@@ -43,13 +44,8 @@ namespace BusinessLogic
         private void EnsureShapeNameUniqueness(string name)
         {
             bool nameAlreadyExists = _repository.GetShapes().
-                Any(currentShape => NormalizedName(currentShape.Name) == NormalizedName(name));
+                Any(currentShape => currentShape.AreNamesEqual(name));
             if (nameAlreadyExists) Shape.ThrowNameExists();
-        }
-
-        private string NormalizedName(string name)
-        {
-            return name.ToLower();
         }
     }
 }

@@ -43,6 +43,16 @@ namespace Domain
             _registrationDate = DateTime.Now;
         }
 
+        public bool AreNamesEqual(string otherName)
+        {
+            return _name.Equals(otherName);
+        }
+
+        public bool AreNamesEqual(Client otherClient)
+        {
+            return AreNamesEqual(otherClient.Name);
+        }
+
         public static void ThrowNameExists()
         {
             throw new NameException("Client name already exists");

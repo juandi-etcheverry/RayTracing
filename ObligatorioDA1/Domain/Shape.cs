@@ -19,6 +19,16 @@ namespace Domain
         }
 
         public string Owner { get; private set; }
+
+        public bool AreNamesEqual(string otherName)
+        {
+            return _name.ToLower() == otherName.ToLower();
+        }
+
+        public bool AreNamesEqual(Shape otherShape)
+        {
+            return AreNamesEqual(otherShape.Name);
+        }
         public static void ThrowNameExists()
         {
             throw new NameException("Shape name already exists");
@@ -31,11 +41,10 @@ namespace Domain
         {
             throw new NameException("Shape Name can't have trailing spaces");
         }
-        public static void ThrowNotInList()
+        public static void ThrowNotFound()
         {
             throw new NotFoundException("The shape is not in list");
         }
-        public virtual void SpecificShapeValidator() { }
 
     }
 }
