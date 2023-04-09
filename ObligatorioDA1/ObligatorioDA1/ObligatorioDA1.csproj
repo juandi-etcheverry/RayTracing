@@ -52,8 +52,29 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panel_AddClient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_AddClient.Designer.cs">
+      <DependentUpon>Panel_AddClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panel_Welcome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_Welcome.Designer.cs">
+      <DependentUpon>Panel_Welcome.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel_AddClient.resx">
+      <DependentUpon>Panel_AddClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel_Welcome.resx">
+      <DependentUpon>Panel_Welcome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +96,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogicExceptions\BusinessLogicExceptions.csproj">
+      <Project>{2DB3FBDC-1F9B-48D9-B75E-D349CA59AD32}</Project>
+      <Name>BusinessLogicExceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{D68AA8F8-57F2-4044-98F4-11211E8BF654}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
