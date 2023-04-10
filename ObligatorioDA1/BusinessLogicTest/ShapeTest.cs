@@ -58,7 +58,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddShapeEmptyName_Fail()
         {
-            
+
             Assert.ThrowsException<NameException>(() =>
             {
                 Shape shape1 = new Shape
@@ -71,7 +71,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddShapeTrailingSpaces_Fail()
         {
-            
+
             Assert.ThrowsException<NameException>(() =>
             {
                 Shape shape1 = new Shape
@@ -156,7 +156,7 @@ namespace BusinessLogicTest
                 Name = "Mateo"
             };
             shapeLogic.AddShape(shape2);
-            Assert.ThrowsException<NameException>(()=> shapeLogic.RenameShape(shape1, "Mateo"));
+            Assert.ThrowsException<NameException>(() => shapeLogic.RenameShape(shape1, "Mateo"));
         }
 
         [TestMethod]
