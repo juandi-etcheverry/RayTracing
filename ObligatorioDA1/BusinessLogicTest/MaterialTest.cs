@@ -33,5 +33,19 @@ namespace BusinessLogicTest
                 };
             });
         }
+
+        [TestMethod]
+        public void Material_NameTrailingSpaces_Fail_Test()
+        {
+            Assert.ThrowsException<NameException>(() =>
+            {
+                Material material = new Material()
+                {
+                    Name = "Light Gray ",
+                    Color = (40, 40, 40),
+                    Type = MaterialType.Lambertian
+                };
+            });
+        }
     }
 }
