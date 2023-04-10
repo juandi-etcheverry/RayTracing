@@ -12,11 +12,11 @@ namespace BusinessLogicTest
         {
             Material material = new Material()
             {
-                Name = "JD",
+                Name = "VantaBlack",
                 Color = (0, 0, 0),
                 Type = MaterialType.Lambertian
             };
-            Assert.AreEqual("JD", material.Name);
+            Assert.AreEqual("VantaBlack", material.Name);
 
         }
     }
