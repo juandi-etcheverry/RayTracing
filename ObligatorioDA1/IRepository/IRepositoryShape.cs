@@ -7,11 +7,5 @@ using Domain;
 
 namespace IRepository
 {
-    public interface IRepositoryShape: IRepository<Shape>
-    {
-        IList<Shape> GetAll();
-        Shape Get(string name);
-        Shape Add(Shape shape);
-        Shape Remove(Shape shape);
-    }
+    public interface IRepositoryShape: IRepository<Shape> { }
 }
