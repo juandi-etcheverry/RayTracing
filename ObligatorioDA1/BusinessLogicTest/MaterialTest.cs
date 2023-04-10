@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using BusinessLogic;
-using DataHandlers;
+using Domain;
 
 namespace BusinessLogicTest
 {
@@ -9,16 +8,16 @@ namespace BusinessLogicTest
     public class MaterialTest
     {
         [TestMethod]
-        public void Name_ValidLambertianMaterial_True_OK_Test()
+        public void Material_ValidMaterial_OK_Test()
         {
-            Material m = new Material()
+            Material material = new Material()
             {
-                Name = "Pasto",
-                Color = (25, 180, 35),
+                Name = "JD",
+                Color = (0, 0, 0),
                 Type = MaterialType.Lambertian
             };
-            DataHandler.AddMaterial(m);
-            Assert.AreEqual(1, DataHandler.Materials.Count);
+            Assert.AreEqual("JD", material.Name);
+
         }
     }
 }
