@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace IRepository
 {
-    public interface IRepositoryClient
+    public interface IRepositoryClient: IRepository<Client>
     {
-        IList<Client> GetClients();
-        Client GetClient(string name);
-        Client AddClient(Client client);
-        Client RemoveClient(Client client);
+        IList<Client> GetAll();
+        Client Get(string name);
+        Client Add(Client client);
+        Client Remove(Client client);
     }
 }
