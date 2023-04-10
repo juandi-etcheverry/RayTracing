@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using BusinessLogicExceptions;
 using Domain;
 
 namespace BusinessLogicTest
@@ -17,7 +18,20 @@ namespace BusinessLogicTest
                 Type = MaterialType.Lambertian
             };
             Assert.AreEqual("VantaBlack", material.Name);
+        }
 
+        [TestMethod]
+        public void Material_EmptyName_Fail_Test()
+        {
+            Assert.ThrowsException<NameException>(() =>
+            {
+                Material material = new Material()
+                {
+                    Name = "",
+                    Color = (0, 0, 0),
+                    Type = MaterialType.Lambertian
+                };
+            });
         }
     }
 }
