@@ -15,9 +15,23 @@ namespace Domain
 
     public class Material
     {
-        public string Name { get; set; }
+        private string _name;
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                if (value.IsEmpty()) ThrowEmptyName();
+                _name = value;
+            }
+        }
+
         public ValueTuple<uint, uint, uint> Color { get; set; }
         public MaterialType Type { get; set; }
 
+        public static void ThrowEmptyName()
+        {
+            throw new NameException("Material name can't be empty");
+        }
     }
 }
