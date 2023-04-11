@@ -24,9 +24,7 @@ namespace ObligatorioDA1
             userControlWelcome = new Panel_Welcome();
             userControlGeneral = new Panel_General(this);
             userControlAddClient = new Panel_AddClient(this);
-
-            flyPanelPrincipal.Controls.Clear();
-            flyPanelPrincipal.Visible = false;
+            GoBackToWelcome();
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
@@ -45,6 +43,8 @@ namespace ObligatorioDA1
         {
             flyPanelPrincipal.Controls.Clear();
             flyPanelPrincipal.Visible = false;
+            lblNameException.Visible = false;
+            lblPasswordException.Visible = false;
         }
         public void SignOut()
         {

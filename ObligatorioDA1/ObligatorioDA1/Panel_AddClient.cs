@@ -20,6 +20,9 @@ namespace ObligatorioDA1
         {
             _formPrincipal = form1;
             InitializeComponent();
+            lblNewNameException.Visible = false;
+            lblNewPasswordException.Visible = false;
+            lblNewConfirmPasswordException.Visible = false;
         }
 
         private void btnAddNewClient_Click(object sender, EventArgs e)

@@ -37,6 +37,9 @@
             this.lblConfirmPassword = new System.Windows.Forms.Label();
             this.txbNewClientRepeatPassword = new System.Windows.Forms.TextBox();
             this.btnGoBack = new System.Windows.Forms.Button();
+            this.lblNewNameException = new System.Windows.Forms.Label();
+            this.lblNewPasswordException = new System.Windows.Forms.Label();
+            this.lblNewConfirmPasswordException = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblAddClient
@@ -73,7 +76,7 @@
             // btnAddNewClient
             // 
             this.btnAddNewClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNewClient.Location = new System.Drawing.Point(614, 696);
+            this.btnAddNewClient.Location = new System.Drawing.Point(615, 737);
             this.btnAddNewClient.Name = "btnAddNewClient";
             this.btnAddNewClient.Size = new System.Drawing.Size(265, 68);
             this.btnAddNewClient.TabIndex = 5;
@@ -97,6 +100,7 @@
             this.txbNewClientPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNewClientPassword.Location = new System.Drawing.Point(231, 433);
             this.txbNewClientPassword.Name = "txbNewClientPassword";
+            this.txbNewClientPassword.PasswordChar = '*';
             this.txbNewClientPassword.Size = new System.Drawing.Size(817, 49);
             this.txbNewClientPassword.TabIndex = 7;
             // 
@@ -116,25 +120,62 @@
             this.txbNewClientRepeatPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNewClientRepeatPassword.Location = new System.Drawing.Point(231, 591);
             this.txbNewClientRepeatPassword.Name = "txbNewClientRepeatPassword";
+            this.txbNewClientRepeatPassword.PasswordChar = '*';
             this.txbNewClientRepeatPassword.Size = new System.Drawing.Size(817, 49);
             this.txbNewClientRepeatPassword.TabIndex = 9;
             // 
             // btnGoBack
             // 
             this.btnGoBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGoBack.Location = new System.Drawing.Point(1154, 814);
+            this.btnGoBack.Location = new System.Drawing.Point(42, 47);
             this.btnGoBack.Name = "btnGoBack";
-            this.btnGoBack.Size = new System.Drawing.Size(265, 68);
+            this.btnGoBack.Size = new System.Drawing.Size(154, 68);
             this.btnGoBack.TabIndex = 10;
-            this.btnGoBack.Text = "Go Back";
+            this.btnGoBack.Text = "Return";
             this.btnGoBack.UseVisualStyleBackColor = true;
             this.btnGoBack.Click += new System.EventHandler(this.btnGoBack_Click);
+            // 
+            // lblNewNameException
+            // 
+            this.lblNewNameException.AutoSize = true;
+            this.lblNewNameException.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewNameException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblNewNameException.Location = new System.Drawing.Point(226, 341);
+            this.lblNewNameException.Name = "lblNewNameException";
+            this.lblNewNameException.Size = new System.Drawing.Size(255, 29);
+            this.lblNewNameException.TabIndex = 11;
+            this.lblNewNameException.Text = "* New name exception";
+            // 
+            // lblNewPasswordException
+            // 
+            this.lblNewPasswordException.AutoSize = true;
+            this.lblNewPasswordException.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewPasswordException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblNewPasswordException.Location = new System.Drawing.Point(226, 485);
+            this.lblNewPasswordException.Name = "lblNewPasswordException";
+            this.lblNewPasswordException.Size = new System.Drawing.Size(300, 29);
+            this.lblNewPasswordException.TabIndex = 12;
+            this.lblNewPasswordException.Text = "* New password exception";
+            // 
+            // lblNewConfirmPasswordException
+            // 
+            this.lblNewConfirmPasswordException.AutoSize = true;
+            this.lblNewConfirmPasswordException.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewConfirmPasswordException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblNewConfirmPasswordException.Location = new System.Drawing.Point(226, 643);
+            this.lblNewConfirmPasswordException.Name = "lblNewConfirmPasswordException";
+            this.lblNewConfirmPasswordException.Size = new System.Drawing.Size(385, 29);
+            this.lblNewConfirmPasswordException.TabIndex = 13;
+            this.lblNewConfirmPasswordException.Text = "* New confirm password exception";
             // 
             // Panel_AddClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
+            this.Controls.Add(this.lblNewConfirmPasswordException);
+            this.Controls.Add(this.lblNewPasswordException);
+            this.Controls.Add(this.lblNewNameException);
             this.Controls.Add(this.btnGoBack);
             this.Controls.Add(this.txbNewClientRepeatPassword);
             this.Controls.Add(this.lblConfirmPassword);
@@ -164,5 +205,8 @@
         private System.Windows.Forms.Label lblConfirmPassword;
         private System.Windows.Forms.TextBox txbNewClientRepeatPassword;
         private System.Windows.Forms.Button btnGoBack;
+        private System.Windows.Forms.Label lblNewNameException;
+        private System.Windows.Forms.Label lblNewPasswordException;
+        private System.Windows.Forms.Label lblNewConfirmPasswordException;
     }
 }
