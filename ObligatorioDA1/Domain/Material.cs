@@ -27,7 +27,18 @@ namespace Domain
             }
         }
 
-        public ValueTuple<uint, uint, uint> Color { get; set; }
+        private ValueTuple<uint, uint, uint> _color { get; set; }
+
+        public ValueTuple<uint, uint, uint> Color
+        {
+            get => _color;
+            set
+            {
+                if (value.Item1 > 255)
+                    throw new ArgumentOutOfRangeException("Material color can only be between 0 and 255");
+            }
+        }
+
         public MaterialType Type { get; set; }
 
         public static void ThrowEmptyName()
