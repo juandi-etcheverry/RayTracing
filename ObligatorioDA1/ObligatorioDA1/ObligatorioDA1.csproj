@@ -58,6 +58,12 @@
     <Compile Include="Panel_AddClient.Designer.cs">
       <DependentUpon>Panel_AddClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panel_General.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_General.Designer.cs">
+      <DependentUpon>Panel_General.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panel_Welcome.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panel_AddClient.resx">
       <DependentUpon>Panel_AddClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel_General.resx">
+      <DependentUpon>Panel_General.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panel_Welcome.resx">
       <DependentUpon>Panel_Welcome.cs</DependentUpon>

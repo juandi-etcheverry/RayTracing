@@ -16,30 +16,47 @@ namespace ObligatorioDA1
     {
         private UserControl userControlWelcome;
         private UserControl userControlAddClient;
-
-        private ClientLogic clientLogic;
+        private UserControl userControlGeneral;
+        
         public Form1()
         {
             InitializeComponent();
-            ClientRepository clientRepository = new ClientRepository();
-            clientLogic = new ClientLogic(clientRepository);
             userControlWelcome = new Panel_Welcome();
-            userControlAddClient = new Panel_AddClient(clientLogic);
+            userControlGeneral = new Panel_General(this);
+            userControlAddClient = new Panel_AddClient(this);
 
-            flyPanelPrincipal.Controls.Add(userControlWelcome);
+            flyPanelPrincipal.Controls.Clear();
+            flyPanelPrincipal.Visible = false;
         }
 
-        private void btnAddClient_Click(object sender, EventArgs e)
+        private void btnSignUp_Click(object sender, EventArgs e)
         {
-            flyPanelPrincipal.Controls.Clear();
+            flyPanelPrincipal.Visible = true;
             flyPanelPrincipal.Controls.Add(userControlAddClient);
         }
 
-        private void btnHome_Click(object sender, EventArgs e)
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            //Sign in validation
+            GoToGeneral();
+        }
+
+        public void GoBackToWelcome()
         {
             flyPanelPrincipal.Controls.Clear();
-            flyPanelPrincipal.Controls.Add(userControlWelcome);
-
+            flyPanelPrincipal.Visible = false;
+        }
+        public void SignOut()
+        {
+            flyPanelPrincipal.Controls.Clear();
+            flyPanelPrincipal.Visible = false;
+        }
+        public void GoToGeneral()
+        {
+            flyPanelPrincipal.Controls.Clear();
+            flyPanelPrincipal.Visible = true;
+            flyPanelPrincipal.Controls.Add(userControlGeneral);
         }
     }
+
 }

@@ -15,34 +15,23 @@ namespace ObligatorioDA1
 {
     public partial class Panel_AddClient : UserControl
     {
-        private readonly ClientLogic clientLogic;
-        public Panel_AddClient(ClientLogic clientLogic)
+        private Form1 _formPrincipal;
+        public Panel_AddClient(Form1 form1)
         {
+            _formPrincipal = form1;
             InitializeComponent();
-            this.clientLogic = clientLogic;
         }
 
         private void btnAddNewClient_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Client newClient = new Client()
-                {
-                    Name = txbClientName.Text,
-                    Password = txbClientPassword.Text,
-                };
-                clientLogic.AddClient(newClient);
-                System.Windows.Forms.MessageBox.Show("New client added correctly");
-            }
-            catch (NameException nameEx)
-            {
-                System.Windows.Forms.MessageBox.Show(nameEx.Message);
-            }
-            catch(PasswordException passEx)
-            {
-                System.Windows.Forms.MessageBox.Show(passEx.Message);
-            }
-            
+            //flyPanelPrincipal.Controls.Clear();
+            //flyPanelPrincipal.Controls.Add(UserControlGeneral);
+        }
+
+        private void btnGoBack_Click(object sender, EventArgs e)
+        {
+            _formPrincipal.GoBackToWelcome();
+
         }
     }
 }
