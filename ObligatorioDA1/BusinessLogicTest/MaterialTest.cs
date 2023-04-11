@@ -69,12 +69,26 @@ namespace BusinessLogicTest
             {
                 Material material = new Material()
                 {
-                    Name = "Vibranium Violet",
-                    Color = (256, 80, 130),
+                    Name = "Geologic Green",
+                    Color = (80, 300, 130),
                     Type = MaterialType.Lambertian
                 };
             });
         }
 
+
+        [TestMethod]
+        public void Material_BlueAbove255_Fail_Test()
+        {
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+            {
+                Material material = new Material()
+                {
+                    Name = "Beautiful Blue",
+                    Color = (20, 0, 256),
+                    Type = MaterialType.Lambertian
+                };
+            });
+        }
     }
 }
