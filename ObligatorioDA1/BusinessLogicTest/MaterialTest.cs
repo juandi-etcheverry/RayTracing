@@ -47,5 +47,19 @@ namespace BusinessLogicTest
                 };
             });
         }
+
+        [TestMethod]
+        public void Material_RedAbove255_Fail_Test()
+        {
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+            {
+                Material material = new Material()
+                {
+                    Name = "Vibranium Violet",
+                    Color = (256, 80, 130),
+                    Type = MaterialType.Lambertian
+                };
+            });
+        }
     }
 }
