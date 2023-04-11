@@ -13,16 +13,16 @@ namespace BusinessLogic
 
         public IList<Shape> GetShapes()
         {
-            return _repository.GetShapes();
+            return _repository.GetAll();
         }
         public Shape GetShape(string name)
         {
-            return _repository.GetShape(name);
+            return _repository.Get(name);
         }
 
         public Shape RemoveShape(Shape shape)
         {
-            Shape removedShape = _repository.RemoveShape(shape);
+            Shape removedShape = _repository.Remove(shape);
             if (removedShape.Name is null) Shape.ThrowNotFound();
             return shape;
         }
@@ -30,7 +30,7 @@ namespace BusinessLogic
         public Shape AddShape(Shape shape)
         {
             EnsureShapeNameUniqueness(shape.Name);
-            _repository.AddShape(shape);
+            _repository.Add(shape);
             return shape;
         }
 
@@ -43,7 +43,7 @@ namespace BusinessLogic
 
         private void EnsureShapeNameUniqueness(string name)
         {
-            bool nameAlreadyExists = _repository.GetShapes().
+            bool nameAlreadyExists = _repository.GetAll().
                 Any(currentShape => currentShape.AreNamesEqual(name));
             if (nameAlreadyExists) Shape.ThrowNameExists();
         }
