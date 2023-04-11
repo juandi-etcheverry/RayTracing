@@ -34,21 +34,31 @@ namespace Domain
             get => _color;
             set
             {
-                if (value.Item1 > 255 || value.Item2 > 255 || value.Item3 > 255)
-                    throw new ArgumentOutOfRangeException("Material color can only be between 0 and 255");
+                if (HasInvalidColor(value)) ThrowColorsOutOfRange();
+                _color = value;
             }
         }
 
         public MaterialType Type { get; set; }
 
-        public static void ThrowEmptyName()
+        private static void ThrowEmptyName()
         {
             throw new NameException("Material name can't be empty");
         }
 
-        public static void ThrowHasTrailingSpaces()
+        private static void ThrowHasTrailingSpaces()
         {
             throw new NameException("Material name can't have trailing spaces");
+        }
+
+        private static void ThrowColorsOutOfRange()
+        {
+            throw new ArgumentOutOfRangeException("Material color can only be between 0 and 255");
+        }
+
+        private bool HasInvalidColor(ValueTuple<uint, uint, uint> color)
+        {
+            return color.Item1 > 255 || color.Item2 > 255 || color.Item3 > 255;
         }
     }
 }
