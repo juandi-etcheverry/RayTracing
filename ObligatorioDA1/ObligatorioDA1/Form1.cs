@@ -41,6 +41,7 @@ namespace ObligatorioDA1
 
         public void GoBackToWelcome()
         {
+            refreshWelcome();
             flyPanelPrincipal.Controls.Clear();
             flyPanelPrincipal.Visible = false;
             lblNameException.Visible = false;
@@ -48,6 +49,7 @@ namespace ObligatorioDA1
         }
         public void SignOut()
         {
+            refreshWelcome();
             flyPanelPrincipal.Controls.Clear();
             flyPanelPrincipal.Visible = false;
         }
@@ -56,6 +58,13 @@ namespace ObligatorioDA1
             flyPanelPrincipal.Controls.Clear();
             flyPanelPrincipal.Visible = true;
             flyPanelPrincipal.Controls.Add(userControlGeneral);
+        }
+        private void refreshWelcome()
+        {
+            txbPassword.Clear();
+            txbUserName.Clear();
+            lblNameException.Visible = false;
+            lblPasswordException.Visible = false;
         }
     }
 

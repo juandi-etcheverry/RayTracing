@@ -27,14 +27,24 @@ namespace ObligatorioDA1
 
         private void btnAddNewClient_Click(object sender, EventArgs e)
         {
-            //flyPanelPrincipal.Controls.Clear();
-            //flyPanelPrincipal.Controls.Add(UserControlGeneral);
+            refreshAddClient();
+            _formPrincipal.GoToGeneral();
         }
 
         private void btnGoBack_Click(object sender, EventArgs e)
         {
+            refreshAddClient();
             _formPrincipal.GoBackToWelcome();
 
+        }
+        private void refreshAddClient()
+        {
+            txbNewClientName.Clear();
+            txbNewClientPassword.Clear();
+            txbNewClientRepeatPassword.Clear();
+            lblNewNameException.Visible = false;
+            lblNewPasswordException.Visible = false;
+            lblNewConfirmPasswordException.Visible = false;
         }
     }
 }
