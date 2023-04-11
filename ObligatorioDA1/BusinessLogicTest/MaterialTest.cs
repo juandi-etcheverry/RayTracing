@@ -100,7 +100,8 @@ namespace BusinessLogicTest
                 Color = (180, 60, 60),
                 Type = MaterialType.Lambertian
             };
-            materialLogic.AddMaterial(material);
+            materialLogic.Add(material);
+            Assert.AreEqual(1, materialLogic.GetAll().Count);
         }
     }
 }
