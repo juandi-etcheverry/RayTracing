@@ -34,7 +34,7 @@ namespace Domain
             get => _color;
             set
             {
-                if (value.Item1 > 255)
+                if (value.Item1 > 255 || value.Item2 > 255)
                     throw new ArgumentOutOfRangeException("Material color can only be between 0 and 255");
             }
         }
