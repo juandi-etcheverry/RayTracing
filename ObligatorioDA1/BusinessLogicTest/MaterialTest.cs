@@ -90,5 +90,17 @@ namespace BusinessLogicTest
                 };
             });
         }
+
+        [TestMethod]
+        public void AddMaterial_ValidMaterial_OK_Test()
+        {
+            Material material = new Material()
+            {
+                Name = "Organic Orange",
+                Color = (180, 60, 60),
+                Type = MaterialType.Lambertian
+            };
+            materialLogic.AddMaterial(material);
+        }
     }
 }
