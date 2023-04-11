@@ -22,6 +22,7 @@ namespace Domain
             set
             {
                 if (value.IsEmpty()) ThrowEmptyName();
+                if (value.HasTrailingSpaces()) ThrowHasTrailingSpaces();
                 _name = value;
             }
         }
@@ -32,6 +33,11 @@ namespace Domain
         public static void ThrowEmptyName()
         {
             throw new NameException("Material name can't be empty");
+        }
+
+        public static void ThrowHasTrailingSpaces()
+        {
+            throw new NameException("Material name can't have trailing spaces");
         }
     }
 }
