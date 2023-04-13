@@ -9,10 +9,19 @@ namespace BusinessLogicTest
     [TestClass]
     public class SessionTest
     {
+
+        private readonly ClientLogic clientLogic = new ClientLogic();
+
+        [TestCleanup]
+        public void RemoveAllClientsAndSession()
+        {
+            if(clientLogic.GetLoggedClient() != null) clientLogic.Logout();
+            clientLogic.GetClients().Clear();
+        }
+
         [TestMethod]
         public void Initialize_Session_Test_OK()
         {
-            ClientLogic clientLogic = new ClientLogic();
             Client client = new Client()
             {
                 Name = "Mateo",
@@ -28,7 +37,6 @@ namespace BusinessLogicTest
         [TestMethod]
         public void Initialize_Session_Client_Not_Exist_Test_FAIL()
         {
-            ClientLogic clientLogic = new ClientLogic();
             Client client = new Client()
             {
                 Name = "Mateo",
@@ -41,7 +49,6 @@ namespace BusinessLogicTest
         [TestMethod]
         public void Initialize_Session_Already_Initialized_Test_FAIL()
         {
-            ClientLogic clientLogic = new ClientLogic();
             Client client1 = new Client()
             {
                 Name = "Mateo",

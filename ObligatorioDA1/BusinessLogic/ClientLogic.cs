@@ -61,5 +61,10 @@ namespace BusinessLogic
         {
             return Session.LoggedClient;
         }
+
+        public void Logout()
+        {
+            Session.LoggedClient = null;
+        }
     }
 }
