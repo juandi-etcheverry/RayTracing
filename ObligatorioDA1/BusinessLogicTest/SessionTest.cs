@@ -80,5 +80,11 @@ namespace BusinessLogicTest
             clientLogic.Logout();
             Assert.IsNull(clientLogic.GetLoggedClient());
         }
+
+        [TestMethod]
+        public void Logout_Not_Initialized_Test_FAIL()
+        {
+            Assert.ThrowsException<SessionNotInitializedException>(() => clientLogic.Logout());
+        }
     }
 }
