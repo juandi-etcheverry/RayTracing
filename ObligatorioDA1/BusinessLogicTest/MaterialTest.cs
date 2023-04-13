@@ -174,5 +174,18 @@ namespace BusinessLogicTest
             _materialLogic.Rename(material, "Balid Blue");
             Assert.AreEqual(_materialLogic.Get("Balid Blue"), material);
         }
+
+        [TestMethod]
+        public void RenameMaterial_InvalidMaterial_FAIL_Test()
+        {
+            Material material = new Material()
+            {
+                Name = "Valid Vlue",
+                Color = (180, 20, 170),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Rename(material, "Balid Blue");
+            Assert.ThrowsException<NotFoundException>(() => { _materialLogic.Get("Balid Blue"); });
+        }
     }
 }
