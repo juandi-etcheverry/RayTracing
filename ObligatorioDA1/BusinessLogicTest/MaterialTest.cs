@@ -10,6 +10,13 @@ namespace BusinessLogicTest
     public class MaterialTest
     {
         private MaterialLogic _materialLogic = new MaterialLogic();
+
+        [TestCleanup]
+        public void RemoveAllMaterials()
+        {
+            _materialLogic.GetAll().Clear();
+        }
+
         [TestMethod]
         public void Material_ValidMaterial_OK_Test()
         {
@@ -139,7 +146,7 @@ namespace BusinessLogicTest
             };
             _materialLogic.Add(material);
             _materialLogic.Remove(material);
-            Assert.AreEqual(1, _materialLogic.GetAll().Count);
+            Assert.AreEqual(0, _materialLogic.GetAll().Count);
         }
     }
 }
