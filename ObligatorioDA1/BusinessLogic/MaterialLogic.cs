@@ -28,6 +28,8 @@ namespace BusinessLogic
 
         public Material Remove(Material material)
         {
+            if (Get(material.Name) != material)
+                throw new NotFoundException($"No material with the name {material.Name} was found");
             _repository.Remove(material);
             return material;
         }
