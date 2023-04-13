@@ -1,6 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Runtime.CompilerServices;
 using ValidationService;
 
 namespace BusinessLogicTest
@@ -49,7 +47,7 @@ namespace BusinessLogicTest
             bool hasSpaces = "  WordWithTrailingSpaces    ".HasSpaces();
             Assert.IsTrue(hasSpaces);
         }
-        
+
         [TestMethod]
         public void HasTrailingSpaces_EmptyString_False_OK_Test()
         {
@@ -70,7 +68,7 @@ namespace BusinessLogicTest
             bool hasTrailingSpaces = " T".HasTrailingSpaces();
             Assert.IsTrue(hasTrailingSpaces);
         }
-        
+
         [TestMethod]
         public void HasTrailingSpaces_LetterSpace_True_OK_Test()
         {
@@ -105,7 +103,7 @@ namespace BusinessLogicTest
             bool isEmpty = "".IsEmpty();
             Assert.IsTrue(isEmpty);
         }
-        
+
         [TestMethod]
         public void IsEmpty_Letter_False_OK_Test()
         {
@@ -176,12 +174,12 @@ namespace BusinessLogicTest
             bool hasUpper = "".HasUpper();
             Assert.IsFalse(hasUpper);
         }
-        
+
         [TestMethod]
         public void HasUpper_UppercaseLetter_True_OK_Test()
         {
             bool hasUpper = "T".HasUpper();
-            Assert.IsTrue(hasUpper);   
+            Assert.IsTrue(hasUpper);
         }
 
         [TestMethod]
