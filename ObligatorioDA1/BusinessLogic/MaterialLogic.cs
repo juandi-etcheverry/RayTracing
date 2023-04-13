@@ -29,34 +29,50 @@ namespace BusinessLogic
 
         public Material Remove(Material material)
         {
-            if (Get(material.Name) != material)
-                throw new NotFoundException($"No material with the name {material.Name} was found");
+            ValidateMaterialExists(material);
             _repository.Remove(material);
             return material;
         }
 
         public Material Rename(Material material, string newName)
         {
-            if (!IsMaterialNameInUse(material))
-                throw new NotFoundException($"No material with the name {material.Name} was found");
-            Material nameUniquenessValidationMaterial = new Material() { Name = newName };
-            if (IsMaterialNameInUse(nameUniquenessValidationMaterial))
-                throw new NameException($"Material name {newName} is already in use");
+            ValidateRenaming(material, newName);
             material.Name = newName;
             return material;
         }
 
+
         public Material Get(string name)
         {
+            Material existanceValidationMaterial = new Material() { Name = name };
+            ValidateMaterialExists(existanceValidationMaterial);
             return _repository.Get(name);
+        }
+        private void ValidateRenaming(Material material, string newName)
+        {
+            ValidateMaterialExists(material);
+            Material nameUniquenessValidationMaterial = new Material() { Name = newName };
+            ValidateMaterialNameUniqueness(nameUniquenessValidationMaterial);
         }
 
         private void ValidateMaterialNameUniqueness(Material material)
         {
-            if (IsMaterialNameInUse(material))
-            {
-                throw new NameException($"Material name {material.Name} is already in use");
-            }
+            if (IsMaterialNameInUse(material)) ThrowNameInUse(material.Name);
+        }
+
+        private void ValidateMaterialExists(Material material)
+        {
+            if (!IsMaterialNameInUse(material)) ThrowNotFound(material.Name);
+        }
+
+        private void ThrowNameInUse(string name)
+        {
+            throw new NameException($"Material name {name} is already in use");
+        }
+
+        private void ThrowNotFound(string name)
+        {
+            throw new NotFoundException($"No material with the name {name} was found");
         }
 
         private bool IsMaterialNameInUse(Material material)
