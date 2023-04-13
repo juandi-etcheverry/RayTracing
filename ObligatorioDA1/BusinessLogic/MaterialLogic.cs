@@ -34,6 +34,12 @@ namespace BusinessLogic
             return material;
         }
 
+        public Material Rename(Material material, string newName)
+        {
+            material.Name = newName;
+            return material;
+        }
+
         public Material Get(string name)
         {
             return _repository.Get(name);
