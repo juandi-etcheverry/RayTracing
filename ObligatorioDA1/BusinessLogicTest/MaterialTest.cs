@@ -184,8 +184,11 @@ namespace BusinessLogicTest
                 Color = (180, 20, 170),
                 Type = MaterialType.Lambertian
             };
-            _materialLogic.Rename(material, "Balid Blue");
-            Assert.ThrowsException<NotFoundException>(() => { _materialLogic.Get("Balid Blue"); });
+            Assert.ThrowsException<NotFoundException>(() =>
+            {
+                _materialLogic.Rename(material, "Balid Blue");
+                ;
+            });
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using BusinessLogicExceptions;
 using Domain;
 using IRepository;
@@ -36,6 +37,8 @@ namespace BusinessLogic
 
         public Material Rename(Material material, string newName)
         {
+            if (!IsMaterialNameInUse(material))
+                throw new NotFoundException($"No material with the name {material.Name} was found");
             material.Name = newName;
             return material;
         }
@@ -55,7 +58,7 @@ namespace BusinessLogic
 
         private bool IsMaterialNameInUse(Material material)
         {
-            return Get(material.Name) != null;
+            return _repository.Get(material.Name) != null;
         }
     }
 }
