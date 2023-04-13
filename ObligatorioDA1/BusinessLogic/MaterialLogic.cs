@@ -26,6 +26,12 @@ namespace BusinessLogic
             return newMaterial;
         }
 
+        public Material Remove(Material material)
+        {
+            _repository.Remove(material);
+            return material;
+        }
+
         public Material Get(string name)
         {
             return _repository.Get(name);
