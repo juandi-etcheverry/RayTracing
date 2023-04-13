@@ -55,6 +55,7 @@
     <Compile Include="StringValidatorTest.cs" />
     <Compile Include="ClientValidatorTest.cs" />
     <Compile Include="SessionTest.cs" />
+    <Compile Include="MaterialTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
