@@ -148,5 +148,17 @@ namespace BusinessLogicTest
             _materialLogic.Remove(material);
             Assert.AreEqual(0, _materialLogic.GetAll().Count);
         }
+
+        [TestMethod]
+        public void RemoveMaterial_NonExistantMaterial_FAIL_Test()
+        {
+            Material material = new Material()
+            {
+                Name = "Nonexistant Neon",
+                Color = (245, 60, 60),
+                Type = MaterialType.Lambertian
+            };
+            Assert.ThrowsException<NotFoundException>(() => _materialLogic.Remove(material));
+        }
     }
 }
