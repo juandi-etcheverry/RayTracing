@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
 
@@ -8,6 +9,7 @@ namespace BusinessLogicTest
     [TestClass]
     public class MaterialTest
     {
+        private MaterialLogic _materialLogic = new MaterialLogic();
         [TestMethod]
         public void Material_ValidMaterial_OK_Test()
         {
@@ -100,8 +102,8 @@ namespace BusinessLogicTest
                 Color = (180, 60, 60),
                 Type = MaterialType.Lambertian
             };
-            materialLogic.Add(material);
-            Assert.AreEqual(1, materialLogic.GetAll().Count);
+            _materialLogic.Add(material);
+            Assert.AreEqual(1, _materialLogic.GetAll().Count);
         }
     }
 }
