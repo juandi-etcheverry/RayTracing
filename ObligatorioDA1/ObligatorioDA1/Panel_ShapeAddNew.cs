@@ -25,5 +25,11 @@ namespace ObligatorioDA1
         {
             _panelGeneral.goToShapeList();
         }
+
+        private void btnNewShape_Click(object sender, EventArgs e)
+        {
+            //Add new shape
+            _panelGeneral.goToShapeList();
+        }
     }
 }

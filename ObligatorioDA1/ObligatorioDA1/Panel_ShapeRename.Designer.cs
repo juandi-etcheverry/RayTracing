@@ -30,10 +30,10 @@
         {
             this.btnReturnRename = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblRenameException = new System.Windows.Forms.Label();
             this.btnConfirmRename = new System.Windows.Forms.Button();
             this.txbShapeRename = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblRenameException = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +47,7 @@
             this.btnReturnRename.TabIndex = 0;
             this.btnReturnRename.Text = "Return";
             this.btnReturnRename.UseVisualStyleBackColor = false;
+            this.btnReturnRename.Click += new System.EventHandler(this.btnReturnRename_Click_1);
             // 
             // panel1
             // 
@@ -59,6 +60,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(978, 377);
             this.panel1.TabIndex = 1;
+            // 
+            // lblRenameException
+            // 
+            this.lblRenameException.AutoSize = true;
+            this.lblRenameException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblRenameException.Location = new System.Drawing.Point(142, 187);
+            this.lblRenameException.Name = "lblRenameException";
+            this.lblRenameException.Size = new System.Drawing.Size(183, 25);
+            this.lblRenameException.TabIndex = 3;
+            this.lblRenameException.Text = "* Name Exception";
             // 
             // btnConfirmRename
             // 
@@ -90,16 +101,6 @@
             this.label1.Size = new System.Drawing.Size(179, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "New name:";
-            // 
-            // lblRenameException
-            // 
-            this.lblRenameException.AutoSize = true;
-            this.lblRenameException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblRenameException.Location = new System.Drawing.Point(142, 187);
-            this.lblRenameException.Name = "lblRenameException";
-            this.lblRenameException.Size = new System.Drawing.Size(183, 25);
-            this.lblRenameException.TabIndex = 3;
-            this.lblRenameException.Text = "* Name Exception";
             // 
             // Panel_ShapeRename
             // 

@@ -81,6 +81,7 @@
             this.btnNewShape.TabIndex = 3;
             this.btnNewShape.Text = "Add Shape";
             this.btnNewShape.UseVisualStyleBackColor = false;
+            this.btnNewShape.Click += new System.EventHandler(this.btnNewShape_Click);
             // 
             // lblNewShapeRadiusException
             // 

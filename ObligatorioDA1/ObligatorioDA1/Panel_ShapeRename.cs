@@ -20,14 +20,14 @@ namespace ObligatorioDA1
             lblRenameException.Visible = false;
         }
 
-        private void btnReturnRename_Click(object sender, EventArgs e)
-        {
-            _panelGeneral.goToShapeList();
-        }
-
         private void btnConfirmRename_Click(object sender, EventArgs e)
         {
             //Rename
+            _panelGeneral.goToShapeList();
+        }
+
+        private void btnReturnRename_Click_1(object sender, EventArgs e)
+        {
             _panelGeneral.goToShapeList();
         }
     }

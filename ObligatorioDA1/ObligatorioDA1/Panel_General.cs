@@ -24,6 +24,7 @@ namespace ObligatorioDA1
             userControlShapeList = new Panel_ShapeList(this);
             userControlShapeAddNew = new Panel_ShapeAddNew(this);
             userControlShapeRename = new Panel_ShapeRename(this);
+            flyGeneral.Controls.Clear();
 
         }
         private void btnShapes_Click(object sender, EventArgs e)
@@ -45,7 +46,7 @@ namespace ObligatorioDA1
             flyGeneral.Controls.Clear();
             flyGeneral.Controls.Add(userControlShapeList);
         }
-        public void goToShapeRename(Shape shape)
+        public void goToShapeRename(String name)
         {
             flyGeneral.Controls.Clear();
             flyGeneral.Controls.Add(userControlShapeRename);
