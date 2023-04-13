@@ -85,5 +85,10 @@ namespace Domain
         {
             throw new PasswordException("Client password must have at least one number");
         }
+
+        public static void ThrowNoClientFound()
+        {
+            throw new NotFoundException("No client found");
+        }
     }
 }
