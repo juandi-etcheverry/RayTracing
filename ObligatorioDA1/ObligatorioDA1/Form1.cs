@@ -17,7 +17,8 @@ namespace ObligatorioDA1
         private UserControl userControlWelcome;
         private UserControl userControlAddClient;
         private UserControl userControlGeneral;
-        
+
+
         public Form1()
         {
             InitializeComponent();

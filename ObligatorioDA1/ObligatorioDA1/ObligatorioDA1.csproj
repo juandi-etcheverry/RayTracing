@@ -64,6 +64,24 @@
     <Compile Include="Panel_General.Designer.cs">
       <DependentUpon>Panel_General.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panel_ShapeAddNew.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_ShapeAddNew.Designer.cs">
+      <DependentUpon>Panel_ShapeAddNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panel_ShapeList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_ShapeList.Designer.cs">
+      <DependentUpon>Panel_ShapeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panel_ShapeRename.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_ShapeRename.Designer.cs">
+      <DependentUpon>Panel_ShapeRename.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panel_Welcome.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -80,6 +98,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panel_General.resx">
       <DependentUpon>Panel_General.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel_ShapeAddNew.resx">
+      <DependentUpon>Panel_ShapeAddNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel_ShapeList.resx">
+      <DependentUpon>Panel_ShapeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel_ShapeRename.resx">
+      <DependentUpon>Panel_ShapeRename.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panel_Welcome.resx">
       <DependentUpon>Panel_Welcome.cs</DependentUpon>

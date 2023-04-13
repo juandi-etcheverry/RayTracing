@@ -34,6 +34,7 @@
             this.btnModels = new System.Windows.Forms.Button();
             this.btnScenes = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
+            this.lblUsername = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // flyGeneral
@@ -103,11 +104,23 @@
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
+            // lblUsername
+            // 
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.ForeColor = System.Drawing.Color.White;
+            this.lblUsername.Location = new System.Drawing.Point(98, 59);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(84, 37);
+            this.lblUsername.TabIndex = 6;
+            this.lblUsername.Text = "User";
+            // 
             // Panel_General
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
+            this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnScenes);
             this.Controls.Add(this.btnModels);
@@ -119,6 +132,7 @@
             this.Name = "Panel_General";
             this.Size = new System.Drawing.Size(1500, 1000);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -130,5 +144,6 @@
         private System.Windows.Forms.Button btnModels;
         private System.Windows.Forms.Button btnScenes;
         private System.Windows.Forms.Button btnLogOut;
+        private System.Windows.Forms.Label lblUsername;
     }
 }
