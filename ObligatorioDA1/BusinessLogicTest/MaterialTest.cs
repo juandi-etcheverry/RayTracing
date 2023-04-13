@@ -187,8 +187,27 @@ namespace BusinessLogicTest
             Assert.ThrowsException<NotFoundException>(() =>
             {
                 _materialLogic.Rename(material, "Balid Blue");
-                ;
             });
+        }
+
+        [TestMethod]
+        public void RenameMaterial_NameInUse_FAIL_Test()
+        {
+            Material presentMaterial = new Material()
+            {
+                Name = "Present Purple",
+                Color = (180, 20, 170),
+                Type = MaterialType.Lambertian
+            };
+            Material newMaterial = new Material()
+            {
+                Name = "Unique Unicorn",
+                Color = (10, 45, 11),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(presentMaterial);
+            _materialLogic.Add(newMaterial);
+            Assert.ThrowsException<NameException>(() => { _materialLogic.Rename(newMaterial, "Present Purple"); });
         }
     }
 }
