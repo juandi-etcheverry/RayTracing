@@ -105,5 +105,27 @@ namespace BusinessLogicTest
             _materialLogic.Add(material);
             Assert.AreEqual(1, _materialLogic.GetAll().Count);
         }
+
+        [TestMethod]
+        public void AddMaterial_RepeatedMaterials_FAIL_Test()
+        {
+            Material m1 = new Material()
+            {
+                Name = "Double Dummy",
+                Color = (110, 221, 123),
+                Type = MaterialType.Lambertian
+            };
+            Material m2 = new Material()
+            {
+                Name = "double dummY",
+                Color = (30, 60, 90),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(m1);
+            Assert.ThrowsException<Exception>(() =>
+            {
+                _materialLogic.Add(m2);
+            });
+        }
     }
 }
