@@ -48,6 +48,7 @@ namespace BusinessLogic
 
         public void InitializeSession(Client client)
         {
+            if (Session.LoggedClient != null) Client.ThrowClientAlreadyLoggedIn();
             EnsureClientExists(client);
             Session.LoggedClient = client;
         }

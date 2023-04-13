@@ -90,5 +90,10 @@ namespace Domain
         {
             throw new NotFoundException("No client found");
         }
+
+        public static void ThrowClientAlreadyLoggedIn()
+        {
+            throw new SessionAlreadyInitializedException("Client already logged in");
+        }
     }
 }
