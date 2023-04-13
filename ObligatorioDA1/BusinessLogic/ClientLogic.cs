@@ -48,8 +48,13 @@ namespace BusinessLogic
 
         public void InitializeSession(Client client)
         {
-            if (GetClient(client.Name) == null) Client.ThrowNoClientFound();
+            EnsureClientExists(client);
             Session.LoggedClient = client;
+        }
+
+        private void EnsureClientExists(Client client)
+        {
+            if (GetClient(client.Name) == null) Client.ThrowNoClientFound();
         }
 
         public Client GetLoggedClient()
