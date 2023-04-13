@@ -127,5 +127,19 @@ namespace BusinessLogicTest
                 _materialLogic.Add(m2);
             });
         }
+
+        [TestMethod]
+        public void RemoveMaterial_ValidMaterial_OK_Test()
+        {
+            Material material = new Material()
+            {
+                Name = "Tan Tangerine",
+                Color = (180, 60, 60),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(material);
+            _materialLogic.Remove(material);
+            Assert.AreEqual(1, _materialLogic.GetAll().Count);
+        }
     }
 }
