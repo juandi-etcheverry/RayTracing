@@ -46,8 +46,7 @@
     <Compile Include="NegativeRadiusException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NotFoundException.cs" />
-    <Compile Include="SessionAlreadyInitializedException.cs" />
-    <Compile Include="SessionNotInitializedException.cs" />
+    <Compile Include="SessionException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

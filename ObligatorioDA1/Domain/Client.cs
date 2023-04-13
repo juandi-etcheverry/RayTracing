@@ -93,12 +93,12 @@ namespace Domain
 
         public static void ThrowClientAlreadyLoggedIn()
         {
-            throw new SessionAlreadyInitializedException("Client already logged in");
+            throw new SessionException("Client already logged in");
         }
 
         public static void ThrowClientNotLoggedIn()
         {
-            throw new SessionNotInitializedException("Client not logged in");
+            throw new SessionException("Client not logged in");
         }
     }
 }

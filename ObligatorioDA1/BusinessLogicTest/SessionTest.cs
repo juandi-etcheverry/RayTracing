@@ -64,7 +64,7 @@ namespace BusinessLogicTest
 
             clientLogic.InitializeSession(client1);
 
-            Assert.ThrowsException<SessionAlreadyInitializedException>(() => clientLogic.InitializeSession(client2));
+            Assert.ThrowsException<SessionException>(() => clientLogic.InitializeSession(client2));
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void Logout_Not_Initialized_Test_FAIL()
         {
-            Assert.ThrowsException<SessionNotInitializedException>(() => clientLogic.Logout());
+            Assert.ThrowsException<SessionException>(() => clientLogic.Logout());
         }
     }
 }
