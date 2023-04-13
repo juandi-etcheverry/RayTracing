@@ -45,5 +45,15 @@ namespace BusinessLogic
             bool nameAlreadyExist = _repository.GetAll().Any(currentClient => name == currentClient.Name);
             if (nameAlreadyExist) Client.ThrowNameExists();
         }
+
+        public void InitializeSession(Client client)
+        {
+            Session.LoggedClient = client;
+        }
+
+        public Client GetLoggedClient()
+        {
+            return Session.LoggedClient;
+        }
     }
 }
