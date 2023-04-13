@@ -66,5 +66,19 @@ namespace BusinessLogicTest
 
             Assert.ThrowsException<SessionAlreadyInitializedException>(() => clientLogic.InitializeSession(client2));
         }
+
+        [TestMethod]
+        public void Logout_Test_OK()
+        {
+            Client client = new Client()
+            {
+                Name = "Mateo",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
+            clientLogic.Logout();
+            Assert.IsNull(clientLogic.GetLoggedClient());
+        }
     }
 }
