@@ -37,5 +37,27 @@ namespace BusinessLogicTest
 
             Assert.ThrowsException<NotFoundException>(() => clientLogic.InitializeSession(client));
         }
+
+        [TestMethod]
+        public void Initialize_Session_Already_Initialized_Test_FAIL()
+        {
+            ClientLogic clientLogic = new ClientLogic();
+            Client client1 = new Client()
+            {
+                Name = "Mateo",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client1);
+            Client client2 = new Client()
+            {
+                Name = "Juan",
+                Password = "AlsoValidPassword123"
+            };
+            clientLogic.AddClient(client2);
+
+            clientLogic.InitializeSession(client1);
+
+            Assert.ThrowsException<SessionAlreadyInitializedException>(() => clientLogic.InitializeSession(client2));
+        }
     }
 }
