@@ -70,8 +70,13 @@ namespace BusinessLogic
 
         public void Logout()
         {
-            if(Session.LoggedClient == null) Client.ThrowClientNotLoggedIn();
+            EnsureClientIsLoggedIn();
             Session.LoggedClient = null;
+        }
+
+        private void EnsureClientIsLoggedIn()
+        {
+            if(Session.LoggedClient == null) Client.ThrowClientNotLoggedIn();
         }
     }
 }
