@@ -122,7 +122,7 @@ namespace BusinessLogicTest
                 Type = MaterialType.Lambertian
             };
             _materialLogic.Add(m1);
-            Assert.ThrowsException<Exception>(() =>
+            Assert.ThrowsException<NameException>(() =>
             {
                 _materialLogic.Add(m2);
             });

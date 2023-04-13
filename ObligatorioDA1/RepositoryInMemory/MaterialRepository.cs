@@ -18,7 +18,7 @@ namespace RepositoryInMemory
 
         public Material Get(string name)
         {
-            return _materials.FirstOrDefault(m => m.Name == name);
+            return _materials.FirstOrDefault(m => m.Name.ToLower() == name.ToLower());
         }
 
         public Material Add(Material x)
