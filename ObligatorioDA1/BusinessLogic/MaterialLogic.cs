@@ -39,6 +39,9 @@ namespace BusinessLogic
         {
             if (!IsMaterialNameInUse(material))
                 throw new NotFoundException($"No material with the name {material.Name} was found");
+            Material nameUniquenessValidationMaterial = new Material() { Name = newName };
+            if (IsMaterialNameInUse(nameUniquenessValidationMaterial))
+                throw new NameException($"Material name {newName} is already in use");
             material.Name = newName;
             return material;
         }
