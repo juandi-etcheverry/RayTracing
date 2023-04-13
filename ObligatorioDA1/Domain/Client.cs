@@ -95,5 +95,10 @@ namespace Domain
         {
             throw new SessionAlreadyInitializedException("Client already logged in");
         }
+
+        public static void ThrowClientNotLoggedIn()
+        {
+            throw new SessionNotInitializedException("Client not logged in");
+        }
     }
 }
