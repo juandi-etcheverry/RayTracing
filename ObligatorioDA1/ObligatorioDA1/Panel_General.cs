@@ -34,6 +34,7 @@ namespace ObligatorioDA1
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
+            flyGeneral.Controls.Clear();
             _formPrincipal.SignOut();
         }
         public void goToAddNewShape()

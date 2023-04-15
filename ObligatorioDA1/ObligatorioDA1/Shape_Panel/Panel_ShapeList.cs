@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObligatorioDA1.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,19 +11,29 @@ using System.Windows.Forms;
 
 namespace ObligatorioDA1
 {
+    
     public partial class Panel_ShapeList : UserControl
     {
         private Panel_General _panelGeneral;
         List<String> _shapeList = new List<String>();
+        Bitmap imgTrash = new Bitmap(Application.StartupPath + @"\Images\trash.ico");
         public Panel_ShapeList(Panel_General userControl)
         {
             _panelGeneral = userControl;
             InitializeComponent();
+            
             _shapeList.Add("Nicolas");
             _shapeList.Add("Mateo");
             _shapeList.Add("Juan Diego");
             _shapeList.Add("Martin");
             _shapeList.Add("Tomas");
+
+            dgvShapeList.Columns.Add("name", "Name");
+            dgvShapeList.Columns.Add("radius", "Radius");
+            dgvShapeList.Columns["name"].DisplayIndex = 0;
+            dgvShapeList.Columns["radius"].DisplayIndex = 1;
+            dgvShapeList.Columns["Rename"].DisplayIndex = 2;
+            dgvShapeList.Columns["Delete"].DisplayIndex = 3;
             refreshShapeList();
         }
 
@@ -33,19 +44,17 @@ namespace ObligatorioDA1
         private void refreshShapeList()
         {
             dgvShapeList.Rows.Clear();
-            dgvShapeList.Columns.Clear();
-            dgvShapeList.Columns.Add("name", "NAME");
-            //dgvShapeList.Columns.Add("radius", "RADIUS");
-            DataGridViewButtonColumn btnclmRename = new DataGridViewButtonColumn();
-            DataGridViewButtonColumn btnclmDelete = new DataGridViewButtonColumn();
-            btnclmRename.Name = "Rename";
-            btnclmDelete.Name = "Delete";
 
-            dgvShapeList.Columns.Add(btnclmRename);
-            dgvShapeList.Columns.Add(btnclmDelete);
+            //DataGridViewButtonColumn btnclmRename = new DataGridViewButtonColumn();
+            //DataGridViewButtonColumn btnclmDelete = new DataGridViewButtonColumn();
+            //btnclmRename.Name = "Rename";
+            //btnclmDelete.Name = "Delete";
+
+            //dgvShapeList.Columns.Add(btnclmRename);
+            //dgvShapeList.Columns.Add(btnclmDelete);
             foreach (String x in _shapeList)
             {
-                dgvShapeList.Rows.Add(x);
+                dgvShapeList.Rows.Add(null, null, x, 3);
             }
         }
 
@@ -65,11 +74,13 @@ namespace ObligatorioDA1
 
         private void dgvShapeList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
+
             if (e.ColumnIndex>=0 
                 && e.RowIndex>=0
                 && (this.dgvShapeList.Columns[e.ColumnIndex].Name == "Delete" 
                 || this.dgvShapeList.Columns[e.ColumnIndex].Name == "Rename"))
             {
+                
                 this.dgvShapeList.Rows[e.RowIndex].Height = 50;
                 this.dgvShapeList.Columns[e.ColumnIndex].Width = 70;
             }

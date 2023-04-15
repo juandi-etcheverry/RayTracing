@@ -30,8 +30,11 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_ShapeList));
             this.btnAddShape = new System.Windows.Forms.Button();
             this.dgvShapeList = new System.Windows.Forms.DataGridView();
+            this.Rename = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvShapeList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +74,9 @@
             this.dgvShapeList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvShapeList.ColumnHeadersHeight = 30;
             this.dgvShapeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvShapeList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Rename,
+            this.Delete});
             this.dgvShapeList.EnableHeadersVisualStyles = false;
             this.dgvShapeList.Location = new System.Drawing.Point(124, 228);
             this.dgvShapeList.Name = "dgvShapeList";
@@ -89,6 +95,28 @@
             this.dgvShapeList.TabIndex = 1;
             this.dgvShapeList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvShapeList_CellClick);
             this.dgvShapeList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvShapeList_CellPainting);
+            // 
+            // Rename
+            // 
+            this.Rename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Rename.FillWeight = 187.1795F;
+            this.Rename.HeaderText = "Rename";
+            this.Rename.Image = ((System.Drawing.Image)(resources.GetObject("Rename.Image")));
+            this.Rename.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Rename.MinimumWidth = 10;
+            this.Rename.Name = "Rename";
+            this.Rename.Width = 140;
+            // 
+            // Delete
+            // 
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Delete.FillWeight = 12.82051F;
+            this.Delete.HeaderText = "Delete";
+            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
+            this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Delete.MinimumWidth = 10;
+            this.Delete.Name = "Delete";
+            this.Delete.Width = 140;
             // 
             // Panel_ShapeList
             // 
@@ -110,5 +138,7 @@
 
         private System.Windows.Forms.Button btnAddShape;
         private System.Windows.Forms.DataGridView dgvShapeList;
+        private System.Windows.Forms.DataGridViewImageColumn Rename;
+        private System.Windows.Forms.DataGridViewImageColumn Delete;
     }
 }
