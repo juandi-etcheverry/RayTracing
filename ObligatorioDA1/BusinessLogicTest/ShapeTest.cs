@@ -9,6 +9,7 @@ namespace BusinessLogicTest
     public class ShapeTest
     {
         ShapeLogic shapeLogic = new ShapeLogic();
+        private readonly ClientLogic clientLogic = new ClientLogic();
 
         [TestCleanup]
         public void RemoveAllShapes()
@@ -195,6 +196,27 @@ namespace BusinessLogicTest
             shapeLogic.AddShape(newSphere);
             Assert.AreEqual(1, shapeLogic.GetShapes().Count);
         }
+
+        [TestMethod]
+        public void AddShape_Valid_Owner_Test_OK()
+        {
+            Client newClient = new Client()
+            {
+                Name = "Nicolas",
+                Password = "ValidPass123"
+            };
+            clientLogic.AddClient(newClient);
+            clientLogic.InitializeSession(newClient);
+            
+            Shape newShape = new Shape()
+            {
+                Name = "NewShape",
+            };
+            shapeLogic.AddShape(newShape);
+
+            Assert.AreEqual(newClient, newShape.Owner);
+        }
+
 
     }
 }
