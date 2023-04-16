@@ -214,7 +214,7 @@ namespace BusinessLogicTest
             };
             shapeLogic.AddShape(newShape);
 
-            Assert.AreEqual(newClient, newShape.Owner);
+            Assert.AreEqual(newClient.Name, newShape.OwnerName);
         }
 
 

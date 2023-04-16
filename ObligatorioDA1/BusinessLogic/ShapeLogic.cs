@@ -30,6 +30,7 @@ namespace BusinessLogic
         public Shape AddShape(Shape shape)
         {
             EnsureShapeNameUniqueness(shape.Name);
+            shape.OwnerName = Session.LoggedClient.Name;
             _repository.Add(shape);
             return shape;
         }

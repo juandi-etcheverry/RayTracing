@@ -6,6 +6,7 @@ namespace Domain
     public class Shape
     {
         private string _name { get; set; }
+        private string _ownerName;
 
         public string Name
         {
@@ -18,7 +19,11 @@ namespace Domain
             }
         }
 
-        public string Owner { get; private set; }
+        public string OwnerName
+        {
+            get => _ownerName;
+            set => _ownerName = value;
+        }
 
         public bool AreNamesEqual(string otherName)
         {
