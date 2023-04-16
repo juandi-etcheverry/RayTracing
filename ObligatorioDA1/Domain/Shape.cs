@@ -51,5 +51,10 @@ namespace Domain
             throw new NotFoundException("The shape is not in list");
         }
 
+        public static void ThrowClientNotLoggedIn()
+        {
+            throw new SessionException("Client not logged in");
+        }
+
     }
 }

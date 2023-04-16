@@ -37,6 +37,7 @@ namespace BusinessLogic
 
         private void AssignShapeToClient(Shape shape)
         {
+            if(Session.LoggedClient == null) Shape.ThrowClientNotLoggedIn();
             shape.OwnerName = Session.LoggedClient.Name;
         }
 
