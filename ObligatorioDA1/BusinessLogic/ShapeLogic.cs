@@ -37,8 +37,13 @@ namespace BusinessLogic
 
         private void AssignShapeToClient(Shape shape)
         {
-            if(Session.LoggedClient == null) Shape.ThrowClientNotLoggedIn();
+            EnsureClientIsLoggedIn();
             shape.OwnerName = Session.LoggedClient.Name;
+        }
+
+        private void EnsureClientIsLoggedIn()
+        {
+            if (Session.LoggedClient == null) Shape.ThrowClientNotLoggedIn();
         }
 
         public Shape RenameShape(Shape shape, string newName)
