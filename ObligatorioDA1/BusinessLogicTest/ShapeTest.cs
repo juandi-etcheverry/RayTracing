@@ -12,8 +12,10 @@ namespace BusinessLogicTest
         private readonly ClientLogic clientLogic = new ClientLogic();
 
         [TestCleanup]
-        public void RemoveAllShapes()
+        public void RemoveAllShapesAndClients()
         {
+            if (clientLogic.GetLoggedClient() != null) clientLogic.Logout();
+            clientLogic.GetClients().Clear();
             shapeLogic.GetShapes().Clear();
         }
 
@@ -215,6 +217,24 @@ namespace BusinessLogicTest
             shapeLogic.AddShape(newShape);
 
             Assert.AreEqual(newClient.Name, newShape.OwnerName);
+        }
+
+        [TestMethod]
+        public void AddShape_NotLogged_Test_FAIL()
+        {
+            Client newClient = new Client()
+            {
+                Name = "Andrew",
+                Password = "VadPass12332"
+            };
+            clientLogic.AddClient(newClient);
+
+            Shape newShape = new Shape()
+            {
+                Name = "NewShape",
+            };
+
+            Assert.ThrowsException<SessionException>(() => shapeLogic.AddShape(newShape));
         }
 
 
