@@ -23,9 +23,14 @@ namespace BusinessLogic
         public Material Add(Material newMaterial)
         {
             ValidateMaterialNameUniqueness(newMaterial);
-            newMaterial.OwnerName = Session.LoggedClient.Name;
+            AssignMaterialToClient(newMaterial);
             _repository.Add(newMaterial);
             return newMaterial;
+        }
+
+        private void AssignMaterialToClient(Material material)
+        {
+            material.OwnerName = Session.LoggedClient.Name;
         }
 
         public Material Remove(Material material)
