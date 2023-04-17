@@ -254,5 +254,38 @@ namespace BusinessLogicTest
 
             Assert.ThrowsException<SessionException>(() => _materialLogic.Add(newMaterial));
         }
+
+        [TestMethod]
+        public void AddMaterial_SameName_DifferentOwner_Test_OK()
+        {
+            Material material1 = new Material()
+            {
+                Name = "Same Name",
+                Color = (10, 50, 11),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(material1);
+            _clientLogic.Logout();
+
+            Client anotherClient = new Client()
+            {
+                Name = "Andrew",
+                Password = "ValidPassword123"
+            };
+            _clientLogic.AddClient(anotherClient);
+            _clientLogic.InitializeSession(anotherClient);
+
+            Material material2 = new Material()
+            {
+                Name = "Same Name",
+                Color = (10, 50, 11),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(material2);
+
+
+            Assert.AreEqual(2, _materialLogic.GetAll().Count);
+
+        }
     }
 }
