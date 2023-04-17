@@ -41,6 +41,14 @@ namespace Domain
 
         public MaterialType Type { get; set; }
 
+        private string _ownerName;
+
+        public string OwnerName
+        {
+            get => _ownerName;
+            set => _ownerName = value;
+        }
+
         private static void ThrowEmptyName()
         {
             throw new NameException("Material name can't be empty");
