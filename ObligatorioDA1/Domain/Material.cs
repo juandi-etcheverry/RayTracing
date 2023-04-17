@@ -68,5 +68,10 @@ namespace Domain
         {
             return color.Item1 > 255 || color.Item2 > 255 || color.Item3 > 255;
         }
+
+        public static void ThrowClientNotLoggedIn()
+        {
+            throw new SessionException("Client needs to be logged in to create new Material");
+        }
     }
 }
