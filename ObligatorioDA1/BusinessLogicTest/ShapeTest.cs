@@ -9,16 +9,26 @@ namespace BusinessLogicTest
     public class ShapeTest
     {
         ShapeLogic shapeLogic = new ShapeLogic();
+        private readonly ClientLogic clientLogic = new ClientLogic();
 
         [TestCleanup]
-        public void RemoveAllShapes()
+        public void RemoveAllShapesAndClients()
         {
+            if (clientLogic.GetLoggedClient() != null) clientLogic.Logout();
+            clientLogic.GetClients().Clear();
             shapeLogic.GetShapes().Clear();
         }
 
         [TestMethod]
         public void AddOneShape_OK()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
             Shape oneShape = new Shape
             {
                 Name = "Nicolas"
@@ -31,6 +41,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddAnotherShape_OK()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
+
             Shape shape1 = new Shape
             {
                 Name = "Ticu"
@@ -47,6 +65,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddShape_NotUnique_Fail()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
+
             Shape shape1 = new Shape
             {
                 Name = "Esfera"
@@ -58,6 +84,13 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddShapeEmptyName_Fail()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
 
             Assert.ThrowsException<NameException>(() =>
             {
@@ -71,6 +104,13 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddShapeTrailingSpaces_Fail()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
 
             Assert.ThrowsException<NameException>(() =>
             {
@@ -83,6 +123,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddShapeTrailingSpaces_OK()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
+
             Shape shape1 = new Shape
             {
                 Name = "Nicolas"
@@ -93,6 +141,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DeleteOneShape()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
+
             Shape shape1 = new Shape
             {
                 Name = "Nicolas"
@@ -105,6 +161,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DeleteOneSpecificShape_OK()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
+
             Shape shape1 = new Shape
             {
                 Name = "Nicolas"
@@ -122,6 +186,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DeleteShapeNotInList_FAIL()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
+
             Shape shape1 = new Shape
             {
                 Name = "Nicolas"
@@ -134,6 +206,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RenameExistingShape_OK()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
+
             Shape shape1 = new Shape
             {
                 Name = "Nicolas"
@@ -146,6 +226,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RenameExistingShape_FAIL()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
+
             Shape shape1 = new Shape
             {
                 Name = "Nicolas"
@@ -162,6 +250,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddOneSphere_OK()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
+
             Sphere newSphere = new Sphere
             {
                 Name = "Nicolas",
@@ -174,6 +270,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddSphere_NegativeRadius_FAIL()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
+
             Assert.ThrowsException<NegativeRadiusException>(() =>
             {
                 Sphere newSphere = new Sphere
@@ -187,6 +291,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddSphere_ValidRadius_OK()
         {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            clientLogic.AddClient(client);
+            clientLogic.InitializeSession(client);
+
             Sphere newSphere = new Sphere()
             {
                 Name = "JD",
@@ -195,6 +307,45 @@ namespace BusinessLogicTest
             shapeLogic.AddShape(newSphere);
             Assert.AreEqual(1, shapeLogic.GetShapes().Count);
         }
+
+        [TestMethod]
+        public void AddShape_Valid_Owner_Test_OK()
+        {
+            Client newClient = new Client()
+            {
+                Name = "Nicolas",
+                Password = "ValidPass123"
+            };
+            clientLogic.AddClient(newClient);
+            clientLogic.InitializeSession(newClient);
+            
+            Shape newShape = new Shape()
+            {
+                Name = "NewShape",
+            };
+            shapeLogic.AddShape(newShape);
+
+            Assert.AreEqual(newClient.Name, newShape.OwnerName);
+        }
+
+        [TestMethod]
+        public void AddShape_NotLogged_Test_FAIL()
+        {
+            Client newClient = new Client()
+            {
+                Name = "Andrew",
+                Password = "VadPass12332"
+            };
+            clientLogic.AddClient(newClient);
+
+            Shape newShape = new Shape()
+            {
+                Name = "NewShape",
+            };
+
+            Assert.ThrowsException<SessionException>(() => shapeLogic.AddShape(newShape));
+        }
+
 
     }
 }
