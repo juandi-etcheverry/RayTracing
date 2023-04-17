@@ -22,8 +22,8 @@ namespace BusinessLogic
 
         public Material Add(Material newMaterial)
         {
-            ValidateMaterialNameUniqueness(newMaterial);
             AssignMaterialToClient(newMaterial);
+            ValidateMaterialNameUniqueness(newMaterial);
             _repository.Add(newMaterial);
             return newMaterial;
         }
@@ -89,7 +89,13 @@ namespace BusinessLogic
 
         private bool IsMaterialNameInUse(Material material)
         {
-            return _repository.Get(material.Name) != null;
+            Material existingMaterial = _repository.Get(material.Name);
+            if (existingMaterial != null)
+            {
+                return existingMaterial.OwnerName == material.OwnerName;
+            }
+
+            return false;
         }
     }
 }
