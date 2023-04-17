@@ -240,5 +240,19 @@ namespace BusinessLogicTest
 
             Assert.AreEqual(client.Name, newMaterial.OwnerName);
         }
+
+        [TestMethod]
+        public void AddMaterial_NotLogged_Test_FAIL()
+        {
+            _clientLogic.Logout();
+            Material newMaterial = new Material()
+            {
+                Name = "Unicorn",
+                Color = (10, 50, 11),
+                Type = MaterialType.Lambertian
+            };
+
+            Assert.ThrowsException<SessionException>(() => _materialLogic.Add(newMaterial));
+        }
     }
 }
