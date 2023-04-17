@@ -30,8 +30,13 @@ namespace BusinessLogic
 
         private void AssignMaterialToClient(Material material)
         {
-            if(Session.LoggedClient == null) Material.ThrowClientNotLoggedIn();
+            EnsureClientIsLoggedIn();
             material.OwnerName = Session.LoggedClient.Name;
+        }
+
+        private void EnsureClientIsLoggedIn()
+        {
+            if (Session.LoggedClient == null) Material.ThrowClientNotLoggedIn();
         }
 
         public Material Remove(Material material)
