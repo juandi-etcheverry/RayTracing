@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRepositoryMaterial.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="IRepositoryClient.cs" />
     <Compile Include="IRepositoryShape.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

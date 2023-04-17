@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientLogic.cs" />
+    <Compile Include="MaterialLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Session.cs" />
     <Compile Include="ShapeLogic.cs" />
   </ItemGroup>
   <ItemGroup>

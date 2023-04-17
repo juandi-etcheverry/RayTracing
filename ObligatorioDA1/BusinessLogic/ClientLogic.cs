@@ -13,7 +13,7 @@ namespace BusinessLogic
 
         public IList<Client> GetClients()
         {
-            return _repository.GetClients();
+            return _repository.GetAll();
         }
         public ClientLogic(IRepositoryClient clientRepository)
         {
@@ -22,19 +22,19 @@ namespace BusinessLogic
 
         public Client GetClient(string name)
         {
-            return _repository.GetClient(name);
+            return _repository.Get(name);
         }
 
         public Client RemoveClient(Client c)
         {
-            _repository.RemoveClient(c);
+            _repository.Remove(c);
             return c;
         }
 
         public Client AddClient(Client c)
         {
             EnsureClientNameUniqueness(c.Name);
-            return _repository.AddClient(c);
+            return _repository.Add(c);
         }
 
         public Client RenameClient(Client c, string newName)
@@ -46,8 +46,41 @@ namespace BusinessLogic
 
         private void EnsureClientNameUniqueness(string name)
         {
-            bool nameAlreadyExist = _repository.GetClients().Any(currentClient => name == currentClient.Name);
+            bool nameAlreadyExist = _repository.GetAll().Any(currentClient => name == currentClient.Name);
             if (nameAlreadyExist) Client.ThrowNameExists();
+        }
+
+        public void InitializeSession(Client client)
+        {
+            EnsureNoClientIsLoggedIn();
+            EnsureClientExists(client);
+            Session.LoggedClient = client;
+        }
+
+        private void EnsureClientExists(Client client)
+        {
+            if (GetClient(client.Name) == null) Client.ThrowNoClientFound();
+        }
+
+        private void EnsureNoClientIsLoggedIn()
+        {
+            if (Session.LoggedClient != null) Client.ThrowClientAlreadyLoggedIn();
+        }
+
+        public Client GetLoggedClient()
+        {
+            return Session.LoggedClient;
+        }
+
+        public void Logout()
+        {
+            EnsureClientIsLoggedIn();
+            Session.LoggedClient = null;
+        }
+
+        private void EnsureClientIsLoggedIn()
+        {
+            if(Session.LoggedClient == null) Client.ThrowClientNotLoggedIn();
         }
     }
 }
