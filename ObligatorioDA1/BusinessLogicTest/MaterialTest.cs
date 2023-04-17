@@ -3,6 +3,7 @@ using System;
 using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
+using System.Net;
 
 namespace BusinessLogicTest
 {
@@ -10,10 +11,26 @@ namespace BusinessLogicTest
     public class MaterialTest
     {
         private MaterialLogic _materialLogic = new MaterialLogic();
+        private readonly ClientLogic _clientLogic = new ClientLogic();
+        private Client client;
+
+        [TestInitialize]
+        public void CreateAndInitializeClient()
+        {
+            client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
+        }
 
         [TestCleanup]
-        public void RemoveAllMaterials()
+        public void RemoveAllMaterialsAndClients()
         {
+            if (_clientLogic.GetLoggedClient() != null) _clientLogic.Logout();
+            _clientLogic.GetClients().Clear();
             _materialLogic.GetAll().Clear();
         }
 
@@ -208,6 +225,20 @@ namespace BusinessLogicTest
             _materialLogic.Add(presentMaterial);
             _materialLogic.Add(newMaterial);
             Assert.ThrowsException<NameException>(() => { _materialLogic.Rename(newMaterial, "Present Purple"); });
+        }
+
+        [TestMethod]
+        public void AddMaterial_Valid_Owner_Test_OK()
+        {
+            Material newMaterial = new Material()
+            {
+                Name = "Unicorn",
+                Color = (10, 45, 11),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(newMaterial);
+
+            Assert.AreEqual(client.Name, newMaterial.OwnerName);
         }
     }
 }
