@@ -3,6 +3,7 @@ using System;
 using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
+using System.Net;
 
 namespace BusinessLogicTest
 {
@@ -10,10 +11,26 @@ namespace BusinessLogicTest
     public class MaterialTest
     {
         private MaterialLogic _materialLogic = new MaterialLogic();
+        private readonly ClientLogic _clientLogic = new ClientLogic();
+        private Client client;
+
+        [TestInitialize]
+        public void CreateAndInitializeClient()
+        {
+            client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
+        }
 
         [TestCleanup]
-        public void RemoveAllMaterials()
+        public void RemoveAllMaterialsAndClients()
         {
+            if (_clientLogic.GetLoggedClient() != null) _clientLogic.Logout();
+            _clientLogic.GetClients().Clear();
             _materialLogic.GetAll().Clear();
         }
 
@@ -208,6 +225,67 @@ namespace BusinessLogicTest
             _materialLogic.Add(presentMaterial);
             _materialLogic.Add(newMaterial);
             Assert.ThrowsException<NameException>(() => { _materialLogic.Rename(newMaterial, "Present Purple"); });
+        }
+
+        [TestMethod]
+        public void AddMaterial_Valid_Owner_Test_OK()
+        {
+            Material newMaterial = new Material()
+            {
+                Name = "Unicorn",
+                Color = (10, 45, 11),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(newMaterial);
+
+            Assert.AreEqual(client.Name, newMaterial.OwnerName);
+        }
+
+        [TestMethod]
+        public void AddMaterial_NotLogged_Test_FAIL()
+        {
+            _clientLogic.Logout();
+            Material newMaterial = new Material()
+            {
+                Name = "Unicorn",
+                Color = (10, 50, 11),
+                Type = MaterialType.Lambertian
+            };
+
+            Assert.ThrowsException<SessionException>(() => _materialLogic.Add(newMaterial));
+        }
+
+        [TestMethod]
+        public void AddMaterial_SameName_DifferentOwner_Test_OK()
+        {
+            Material material1 = new Material()
+            {
+                Name = "Same Name",
+                Color = (10, 50, 11),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(material1);
+            _clientLogic.Logout();
+
+            Client anotherClient = new Client()
+            {
+                Name = "Andrew",
+                Password = "ValidPassword123"
+            };
+            _clientLogic.AddClient(anotherClient);
+            _clientLogic.InitializeSession(anotherClient);
+
+            Material material2 = new Material()
+            {
+                Name = "Same Name",
+                Color = (10, 50, 11),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(material2);
+
+
+            Assert.AreEqual(2, _materialLogic.GetAll().Count);
+
         }
     }
 }
