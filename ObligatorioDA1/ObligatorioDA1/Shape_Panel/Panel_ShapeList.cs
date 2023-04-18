@@ -1,4 +1,6 @@
-﻿using ObligatorioDA1.Properties;
+﻿using BusinessLogic;
+using Domain;
+using ObligatorioDA1.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +17,8 @@ namespace ObligatorioDA1
     public partial class Panel_ShapeList : UserControl
     {
         private Panel_General _panelGeneral;
+        private Client _client;
+        ShapeLogic shapeLogic = new ShapeLogic(); 
         List<String> _shapeList = new List<String>();
         Bitmap imgTrash = new Bitmap(Application.StartupPath + @"\Images\trash.ico");
         public Panel_ShapeList(Panel_General userControl)
@@ -34,14 +38,14 @@ namespace ObligatorioDA1
             dgvShapeList.Columns["radius"].DisplayIndex = 1;
             dgvShapeList.Columns["Rename"].DisplayIndex = 2;
             dgvShapeList.Columns["Delete"].DisplayIndex = 3;
-            refreshShapeList();
+            refreshShapeList(_client);
         }
 
         private void btnAddShape_Click(object sender, EventArgs e)
         {
             _panelGeneral.goToAddNewShape();
         }
-        private void refreshShapeList()
+        public void refreshShapeList(Client _client)
         {
             dgvShapeList.Rows.Clear();
 
@@ -52,23 +56,27 @@ namespace ObligatorioDA1
 
             //dgvShapeList.Columns.Add(btnclmRename);
             //dgvShapeList.Columns.Add(btnclmDelete);
-            foreach (String x in _shapeList)
+            foreach (Sphere shape in shapeLogic.GetShapes().ToList())
             {
-                dgvShapeList.Rows.Add(null, null, x, 3);
+                if (shape.OwnerName == _client.Name)
+                {
+                    dgvShapeList.Rows.Add(null, null, shape.Name, shape.Radius);
+                }
             }
         }
 
         private void dgvShapeList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            String shapeName = dgvShapeList.CurrentRow.Cells[2].Value.ToString();
+            Shape shape = shapeLogic.GetShape(shapeName);
             if (this.dgvShapeList.Columns[e.ColumnIndex].Name == "Delete" )
             {
-                //Delete that figure from list
-                //dgvShapeList.CurrentRow.Cells[0].Value.ToString();
+                shapeLogic.RemoveShape(shape);
                 dgvShapeList.Rows.Remove(dgvShapeList.CurrentRow);
             }
             if(this.dgvShapeList.Columns[e.ColumnIndex].Name == "Rename")
             {
-                _panelGeneral.goToShapeRename(this.dgvShapeList.CurrentRow.Cells[0].ToString());
+                _panelGeneral.goToShapeRename(shape);
             }
         }
 

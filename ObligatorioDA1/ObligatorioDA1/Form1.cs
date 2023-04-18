@@ -23,7 +23,7 @@ namespace ObligatorioDA1
     {
         private UserControl userControlWelcome;
         private UserControl userControlAddClient;
-        private UserControl userControlGeneral;
+        private Panel_General userControlGeneral;
         ClientLogic _clientLogic = new ClientLogic();
 
 
@@ -32,6 +32,7 @@ namespace ObligatorioDA1
             InitializeComponent();
             userControlWelcome = new Panel_Welcome();
             userControlAddClient = new Panel_AddClient(this);
+            userControlGeneral = new Panel_General(this);
             GoBackToWelcome();
             flyPanelPrincipal.Dock = DockStyle.Fill;
         }
@@ -98,7 +99,7 @@ namespace ObligatorioDA1
         {
             flyPanelPrincipal.Controls.Clear();
             flyPanelPrincipal.Visible = true;
-            userControlGeneral = new Panel_General(this, client);
+            userControlGeneral.refreshGeneralPanel(client);
             flyPanelPrincipal.Controls.Add(userControlGeneral);
         }
         private void refreshWelcome()

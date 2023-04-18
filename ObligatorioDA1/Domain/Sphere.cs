@@ -12,6 +12,7 @@ namespace Domain
             set
             {
                 if (value <= 0) ThrowNegativeRadius();
+                _radius = value;
             }
         }
 
