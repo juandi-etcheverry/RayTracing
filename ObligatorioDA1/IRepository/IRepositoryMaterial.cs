@@ -9,5 +9,6 @@ namespace IRepository
 {
     public interface IRepositoryMaterial : IRepository<Material>
     {
+        List<Material> FindMany(string name);
     }
 }

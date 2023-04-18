@@ -22,9 +22,21 @@ namespace BusinessLogic
 
         public Material Add(Material newMaterial)
         {
+            AssignMaterialToClient(newMaterial);
             ValidateMaterialNameUniqueness(newMaterial);
             _repository.Add(newMaterial);
             return newMaterial;
+        }
+
+        private void AssignMaterialToClient(Material material)
+        {
+            EnsureClientIsLoggedIn();
+            material.OwnerName = Session.LoggedClient.Name;
+        }
+
+        private void EnsureClientIsLoggedIn()
+        {
+            if (Session.LoggedClient == null) Material.ThrowClientNotLoggedIn();
         }
 
         public Material Remove(Material material)
@@ -45,6 +57,7 @@ namespace BusinessLogic
         public Material Get(string name)
         {
             Material existanceValidationMaterial = new Material() { Name = name };
+            AssignMaterialToClient(existanceValidationMaterial);
             ValidateMaterialExists(existanceValidationMaterial);
             return _repository.Get(name);
         }
@@ -52,12 +65,13 @@ namespace BusinessLogic
         {
             ValidateMaterialExists(material);
             Material nameUniquenessValidationMaterial = new Material() { Name = newName };
+            AssignMaterialToClient(nameUniquenessValidationMaterial);
             ValidateMaterialNameUniqueness(nameUniquenessValidationMaterial);
         }
 
         private void ValidateMaterialNameUniqueness(Material material)
         {
-            if (IsMaterialNameInUse(material)) ThrowNameInUse(material.Name);
+            if(IsMaterialNameInUse(material)) ThrowNameInUse(material.Name);
         }
 
         private void ValidateMaterialExists(Material material)
@@ -77,7 +91,8 @@ namespace BusinessLogic
 
         private bool IsMaterialNameInUse(Material material)
         {
-            return _repository.Get(material.Name) != null;
+            List<Material> existingMaterials = _repository.FindMany(material.Name);
+            return existingMaterials.Exists((existingMaterial) => existingMaterial.OwnerName == material.OwnerName);
         }
     }
 }

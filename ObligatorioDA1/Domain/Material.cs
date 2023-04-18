@@ -41,6 +41,14 @@ namespace Domain
 
         public MaterialType Type { get; set; }
 
+        private string _ownerName;
+
+        public string OwnerName
+        {
+            get => _ownerName;
+            set => _ownerName = value;
+        }
+
         private static void ThrowEmptyName()
         {
             throw new NameException("Material name can't be empty");
@@ -59,6 +67,11 @@ namespace Domain
         private bool HasInvalidColor(ValueTuple<uint, uint, uint> color)
         {
             return color.Item1 > 255 || color.Item2 > 255 || color.Item3 > 255;
+        }
+
+        public static void ThrowClientNotLoggedIn()
+        {
+            throw new SessionException("Client needs to be logged in to create new Material");
         }
     }
 }
