@@ -57,6 +57,7 @@ namespace BusinessLogic
         public Material Get(string name)
         {
             Material existanceValidationMaterial = new Material() { Name = name };
+            AssignMaterialToClient(existanceValidationMaterial);
             ValidateMaterialExists(existanceValidationMaterial);
             return _repository.Get(name);
         }
@@ -64,12 +65,13 @@ namespace BusinessLogic
         {
             ValidateMaterialExists(material);
             Material nameUniquenessValidationMaterial = new Material() { Name = newName };
+            AssignMaterialToClient(nameUniquenessValidationMaterial);
             ValidateMaterialNameUniqueness(nameUniquenessValidationMaterial);
         }
 
         private void ValidateMaterialNameUniqueness(Material material)
         {
-            if (IsMaterialNameInUse(material)) ThrowNameInUse(material.Name);
+            if(IsMaterialNameInUse(material)) ThrowNameInUse(material.Name);
         }
 
         private void ValidateMaterialExists(Material material)
@@ -89,13 +91,8 @@ namespace BusinessLogic
 
         private bool IsMaterialNameInUse(Material material)
         {
-            Material existingMaterial = _repository.Get(material.Name);
-            if (existingMaterial != null)
-            {
-                return existingMaterial.OwnerName == material.OwnerName;
-            }
-
-            return false;
+            List<Material> existingMaterials = _repository.FindMany(material.Name);
+            return existingMaterials.Exists((existingMaterial) => existingMaterial.OwnerName == material.OwnerName);
         }
     }
 }
