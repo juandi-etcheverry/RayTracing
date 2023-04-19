@@ -52,6 +52,24 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Material_Panel\Panel_MaterialAddNew.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Material_Panel\Panel_MaterialAddNew.Designer.cs">
+      <DependentUpon>Panel_MaterialAddNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material_Panel\Panel_MaterialList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Material_Panel\Panel_MaterialList.Designer.cs">
+      <DependentUpon>Panel_MaterialList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material_Panel\Panel_MaterialRename.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Material_Panel\Panel_MaterialRename.Designer.cs">
+      <DependentUpon>Panel_MaterialRename.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panel_AddClient.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,6 +110,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Material_Panel\Panel_MaterialAddNew.resx">
+      <DependentUpon>Panel_MaterialAddNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Material_Panel\Panel_MaterialList.resx">
+      <DependentUpon>Panel_MaterialList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Material_Panel\Panel_MaterialRename.resx">
+      <DependentUpon>Panel_MaterialRename.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panel_AddClient.resx">
       <DependentUpon>Panel_AddClient.cs</DependentUpon>

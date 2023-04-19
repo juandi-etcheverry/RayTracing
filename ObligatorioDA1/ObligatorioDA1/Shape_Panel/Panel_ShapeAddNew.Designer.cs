@@ -47,7 +47,7 @@
             this.btnShowAllShapes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShowAllShapes.ForeColor = System.Drawing.Color.White;
             this.btnShowAllShapes.Location = new System.Drawing.Point(82, 60);
-            this.btnShowAllShapes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnShowAllShapes.Margin = new System.Windows.Forms.Padding(2);
             this.btnShowAllShapes.Name = "btnShowAllShapes";
             this.btnShowAllShapes.Size = new System.Drawing.Size(434, 37);
             this.btnShowAllShapes.TabIndex = 1;
@@ -66,8 +66,8 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(82, 137);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Location = new System.Drawing.Point(82, 116);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(434, 304);
             this.panel1.TabIndex = 2;
@@ -78,7 +78,7 @@
             this.btnNewShape.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewShape.ForeColor = System.Drawing.Color.White;
             this.btnNewShape.Location = new System.Drawing.Point(98, 244);
-            this.btnNewShape.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNewShape.Margin = new System.Windows.Forms.Padding(2);
             this.btnNewShape.Name = "btnNewShape";
             this.btnNewShape.Size = new System.Drawing.Size(238, 31);
             this.btnNewShape.TabIndex = 3;
@@ -91,7 +91,7 @@
             this.lblNewShapeRadiusException.AutoSize = true;
             this.lblNewShapeRadiusException.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNewShapeRadiusException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblNewShapeRadiusException.Location = new System.Drawing.Point(49, 200);
+            this.lblNewShapeRadiusException.Location = new System.Drawing.Point(49, 202);
             this.lblNewShapeRadiusException.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNewShapeRadiusException.Name = "lblNewShapeRadiusException";
             this.lblNewShapeRadiusException.Size = new System.Drawing.Size(167, 15);
@@ -103,7 +103,7 @@
             this.lblNewShapeNameException.AutoSize = true;
             this.lblNewShapeNameException.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNewShapeNameException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblNewShapeNameException.Location = new System.Drawing.Point(49, 115);
+            this.lblNewShapeNameException.Location = new System.Drawing.Point(49, 118);
             this.lblNewShapeNameException.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNewShapeNameException.Name = "lblNewShapeNameException";
             this.lblNewShapeNameException.Size = new System.Drawing.Size(165, 15);
@@ -114,7 +114,7 @@
             // 
             this.txbNewShapeRadius.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNewShapeRadius.Location = new System.Drawing.Point(52, 175);
-            this.txbNewShapeRadius.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNewShapeRadius.Margin = new System.Windows.Forms.Padding(2);
             this.txbNewShapeRadius.Name = "txbNewShapeRadius";
             this.txbNewShapeRadius.Size = new System.Drawing.Size(337, 26);
             this.txbNewShapeRadius.TabIndex = 2;
@@ -123,7 +123,7 @@
             // 
             this.txbNewShapeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNewShapeName.Location = new System.Drawing.Point(52, 91);
-            this.txbNewShapeName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNewShapeName.Margin = new System.Windows.Forms.Padding(2);
             this.txbNewShapeName.Name = "txbNewShapeName";
             this.txbNewShapeName.Size = new System.Drawing.Size(337, 26);
             this.txbNewShapeName.TabIndex = 1;
@@ -169,7 +169,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnShowAllShapes);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(600, 520);
             this.MinimumSize = new System.Drawing.Size(600, 520);
             this.Name = "Panel_ShapeAddNew";
