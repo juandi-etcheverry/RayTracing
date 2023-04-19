@@ -73,6 +73,7 @@
             this.btnConfirmRename.TabIndex = 2;
             this.btnConfirmRename.Text = "Rename";
             this.btnConfirmRename.UseVisualStyleBackColor = false;
+            this.btnConfirmRename.Click += new System.EventHandler(this.btnConfirmRename_Click);
             // 
             // txbMaterialRename
             // 
@@ -105,6 +106,7 @@
             this.btnReturnRename.TabIndex = 4;
             this.btnReturnRename.Text = "Return";
             this.btnReturnRename.UseVisualStyleBackColor = false;
+            this.btnReturnRename.Click += new System.EventHandler(this.btnReturnRename_Click);
             // 
             // Panel_MaterialRename
             // 

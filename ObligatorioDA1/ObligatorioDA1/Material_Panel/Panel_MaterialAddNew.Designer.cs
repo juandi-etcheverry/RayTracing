@@ -30,6 +30,8 @@
         {
             this.btnShowAllMaterials = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txbNewBMaterial = new System.Windows.Forms.TextBox();
+            this.txbNewGMaterial = new System.Windows.Forms.TextBox();
             this.btnNewMaterial = new System.Windows.Forms.Button();
             this.lblNewRGBException = new System.Windows.Forms.Label();
             this.lblNewMaterialNameException = new System.Windows.Forms.Label();
@@ -38,8 +40,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txbNewGMaterial = new System.Windows.Forms.TextBox();
-            this.txbNewBMaterial = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +55,7 @@
             this.btnShowAllMaterials.TabIndex = 2;
             this.btnShowAllMaterials.Text = "SHOW ALL MATERIALS";
             this.btnShowAllMaterials.UseVisualStyleBackColor = false;
+            this.btnShowAllMaterials.Click += new System.EventHandler(this.btnShowAllMaterials_Click);
             // 
             // panel1
             // 
@@ -75,6 +76,26 @@
             this.panel1.Size = new System.Drawing.Size(434, 304);
             this.panel1.TabIndex = 3;
             // 
+            // txbNewBMaterial
+            // 
+            this.txbNewBMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbNewBMaterial.Location = new System.Drawing.Point(307, 175);
+            this.txbNewBMaterial.Margin = new System.Windows.Forms.Padding(2);
+            this.txbNewBMaterial.Name = "txbNewBMaterial";
+            this.txbNewBMaterial.Size = new System.Drawing.Size(82, 26);
+            this.txbNewBMaterial.TabIndex = 4;
+            this.txbNewBMaterial.Text = "B:";
+            // 
+            // txbNewGMaterial
+            // 
+            this.txbNewGMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbNewGMaterial.Location = new System.Drawing.Point(183, 175);
+            this.txbNewGMaterial.Margin = new System.Windows.Forms.Padding(2);
+            this.txbNewGMaterial.Name = "txbNewGMaterial";
+            this.txbNewGMaterial.Size = new System.Drawing.Size(82, 26);
+            this.txbNewGMaterial.TabIndex = 3;
+            this.txbNewGMaterial.Text = "G:";
+            // 
             // btnNewMaterial
             // 
             this.btnNewMaterial.BackColor = System.Drawing.Color.DodgerBlue;
@@ -87,6 +108,7 @@
             this.btnNewMaterial.TabIndex = 3;
             this.btnNewMaterial.Text = "Add Material";
             this.btnNewMaterial.UseVisualStyleBackColor = false;
+            this.btnNewMaterial.Click += new System.EventHandler(this.btnNewMaterial_Click);
             // 
             // lblNewRGBException
             // 
@@ -164,26 +186,6 @@
             this.label1.Size = new System.Drawing.Size(55, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name:";
-            // 
-            // txbNewGMaterial
-            // 
-            this.txbNewGMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNewGMaterial.Location = new System.Drawing.Point(183, 175);
-            this.txbNewGMaterial.Margin = new System.Windows.Forms.Padding(2);
-            this.txbNewGMaterial.Name = "txbNewGMaterial";
-            this.txbNewGMaterial.Size = new System.Drawing.Size(82, 26);
-            this.txbNewGMaterial.TabIndex = 3;
-            this.txbNewGMaterial.Text = "G:";
-            // 
-            // txbNewBMaterial
-            // 
-            this.txbNewBMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNewBMaterial.Location = new System.Drawing.Point(307, 175);
-            this.txbNewBMaterial.Margin = new System.Windows.Forms.Padding(2);
-            this.txbNewBMaterial.Name = "txbNewBMaterial";
-            this.txbNewBMaterial.Size = new System.Drawing.Size(82, 26);
-            this.txbNewBMaterial.TabIndex = 4;
-            this.txbNewBMaterial.Text = "B:";
             // 
             // Panel_MaterialAddNew
             // 

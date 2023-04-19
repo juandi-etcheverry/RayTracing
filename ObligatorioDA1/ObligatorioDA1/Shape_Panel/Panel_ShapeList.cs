@@ -19,19 +19,10 @@ namespace ObligatorioDA1
         private Panel_General _panelGeneral;
         private Client _client;
         ShapeLogic shapeLogic = new ShapeLogic(); 
-        List<String> _shapeList = new List<String>();
-        Bitmap imgTrash = new Bitmap(Application.StartupPath + @"\Images\trash.ico");
         public Panel_ShapeList(Panel_General userControl)
         {
             _panelGeneral = userControl;
             InitializeComponent();
-            
-            _shapeList.Add("Nicolas");
-            _shapeList.Add("Mateo");
-            _shapeList.Add("Juan Diego");
-            _shapeList.Add("Martin");
-            _shapeList.Add("Tomas");
-
             dgvShapeList.Columns.Add("name", "Name");
             dgvShapeList.Columns.Add("radius", "Radius");
             dgvShapeList.Columns["name"].DisplayIndex = 0;
@@ -48,14 +39,6 @@ namespace ObligatorioDA1
         public void refreshShapeList(Client _client)
         {
             dgvShapeList.Rows.Clear();
-
-            //DataGridViewButtonColumn btnclmRename = new DataGridViewButtonColumn();
-            //DataGridViewButtonColumn btnclmDelete = new DataGridViewButtonColumn();
-            //btnclmRename.Name = "Rename";
-            //btnclmDelete.Name = "Delete";
-
-            //dgvShapeList.Columns.Add(btnclmRename);
-            //dgvShapeList.Columns.Add(btnclmDelete);
             foreach (Sphere shape in shapeLogic.GetShapes().ToList())
             {
                 if (shape.OwnerName == _client.Name)

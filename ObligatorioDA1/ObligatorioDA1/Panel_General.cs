@@ -1,5 +1,6 @@
 ﻿using BusinessLogic;
 using Domain;
+using ObligatorioDA1.Material_Panel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,11 +17,15 @@ namespace ObligatorioDA1
 {
     public partial class Panel_General : UserControl
     {
+        private Form1 _formPrincipal;
+        private Client client = new Client();
         private Panel_ShapeList userControlShapeList;
         private Panel_ShapeAddNew userControlShapeAddNew;
         private Panel_ShapeRename userControlShapeRename;
-        private Form1 _formPrincipal;
-        private Client client = new Client(); 
+        private Panel_MaterialList userControlMaterialList;
+        private Panel_MaterialAddNew userControlMaterialAddNew;
+        private Panel_MaterialRename userControlMaterialRename;
+        
         
         public Panel_General(Form1 form1)
         {
@@ -29,41 +34,66 @@ namespace ObligatorioDA1
             userControlShapeList = new Panel_ShapeList(this);
             userControlShapeAddNew = new Panel_ShapeAddNew(this);
             userControlShapeRename = new Panel_ShapeRename(this);
+            userControlMaterialList = new Panel_MaterialList(this);
+            userControlMaterialAddNew = new Panel_MaterialAddNew(this);
+            userControlMaterialList = new Panel_MaterialList(this);
             flyGeneral.Controls.Clear();
             refreshGeneralPanel(client);
         }
-        private void btnShapes_Click(object sender, EventArgs e)
+        public void refreshGeneralPanel(Client _client)
         {
-            goToShapeList();
+            this.client = _client;
+            lblUsername.Text = _client.Name;
         }
-
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             flyGeneral.Controls.Clear();
             _formPrincipal.SignOut();
         }
-        public void goToAddNewShape()
+        private void switchPanel(UserControl userControl)
         {
             flyGeneral.Controls.Clear();
-            flyGeneral.Controls.Add(userControlShapeAddNew);
-            userControlShapeAddNew.refreshShapeAddNew(client);
+            flyGeneral.Controls.Add(userControl);
+        }
+        private void btnShapes_Click(object sender, EventArgs e)
+        {
+            goToShapeList();
         }
         public void goToShapeList()
         {
-            flyGeneral.Controls.Clear();
-            flyGeneral.Controls.Add(userControlShapeList);
+            switchPanel(userControlShapeList);
             userControlShapeList.refreshShapeList(client);
+        }
+        public void goToAddNewShape()
+        {
+            switchPanel(userControlShapeAddNew);
+            userControlShapeAddNew.refreshShapeAddNew(client);
         }
         public void goToShapeRename(Shape shape)
         {
-            flyGeneral.Controls.Clear();
-            flyGeneral.Controls.Add(userControlShapeRename);
+            switchPanel(userControlShapeRename);
             userControlShapeRename.refreshShapeRename(shape);
         }
-        public void refreshGeneralPanel(Client _client)
+        private void btnMaterials_Click(object sender, EventArgs e)
         {
-           this.client = _client;
-           lblUsername.Text = _client.Name;
+            goToMaterialList();
         }
+        public void goToMaterialList()
+        {
+            switchPanel(userControlMaterialList);
+           //userControlMaterialList.refreshMaterialList(client);
+        }
+        public void goToAddNewMaterial()
+        {
+            switchPanel(userControlMaterialAddNew);
+            //userControlMaterialAddNew.refreshMaterialAddNew(client);
+        }
+        public void goToMaterialRename(Material material)
+        {
+            switchPanel(userControlMaterialRename);
+            //userControlMaterialRename.refreshMaterialRename(material);
+        }
+
+        
     }
 }

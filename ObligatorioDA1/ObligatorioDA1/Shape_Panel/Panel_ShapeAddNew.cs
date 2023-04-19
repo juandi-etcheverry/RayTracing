@@ -29,6 +29,10 @@ namespace ObligatorioDA1
         public void refreshShapeAddNew(Client client)
         {
             _client = client;
+            lblNewShapeNameException.Visible = false;
+            lblNewShapeRadiusException.Visible = false;
+            txbNewShapeName.Clear();
+            txbNewShapeRadius.Clear();
         }
 
         private void btnShowAllShapes_Click(object sender, EventArgs e)

@@ -51,6 +51,7 @@
             this.btnAddMaterial.TabIndex = 1;
             this.btnAddMaterial.Text = "ADD MATERIAL";
             this.btnAddMaterial.UseVisualStyleBackColor = false;
+            this.btnAddMaterial.Click += new System.EventHandler(this.btnAddMaterial_Click);
             // 
             // dgvMaterialList
             // 

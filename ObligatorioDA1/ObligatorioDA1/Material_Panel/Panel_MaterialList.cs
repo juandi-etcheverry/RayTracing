@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,16 @@ namespace ObligatorioDA1.Material_Panel
 {
     public partial class Panel_MaterialList : UserControl
     {
-        public Panel_MaterialList()
+        private Panel_General _panelGeneral;
+        public Panel_MaterialList(Panel_General userControl)
         {
+            _panelGeneral = userControl;
             InitializeComponent();
+        }
+
+        private void btnAddMaterial_Click(object sender, EventArgs e)
+        {
+            _panelGeneral.goToAddNewMaterial();
         }
     }
 }

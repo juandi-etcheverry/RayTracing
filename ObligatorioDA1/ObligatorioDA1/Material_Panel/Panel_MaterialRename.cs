@@ -12,9 +12,21 @@ namespace ObligatorioDA1.Material_Panel
 {
     public partial class Panel_MaterialRename : UserControl
     {
-        public Panel_MaterialRename()
+        private Panel_General _panelGeneral;
+        public Panel_MaterialRename(Panel_General userControl)
         {
+            _panelGeneral = userControl;
             InitializeComponent();
+        }
+
+        private void btnReturnRename_Click(object sender, EventArgs e)
+        {
+            _panelGeneral.goToMaterialList();
+        }
+
+        private void btnConfirmRename_Click(object sender, EventArgs e)
+        {
+            _panelGeneral.goToMaterialList();
         }
     }
 }
