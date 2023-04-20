@@ -74,5 +74,19 @@ namespace BusinessLogicTest
 
             Assert.AreEqual("New Model", model.Name);
         }
+
+        [TestMethod]
+        public void AddModel_Valid_Owner_Test_OK()
+        {
+            Model model = new Model()
+            {
+                Name = "Modelius",
+                Shape = _shapeLogic.GetShape("New Sphere 1"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+            _modelLogic.AddModel(model);
+
+            Assert.AreEqual(_client.Name, model.OwnerName);
+        }
     }
 }
