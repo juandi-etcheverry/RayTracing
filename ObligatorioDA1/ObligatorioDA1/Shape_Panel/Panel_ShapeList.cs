@@ -18,28 +18,18 @@ namespace ObligatorioDA1
     {
         private Panel_General _panelGeneral;
         private Client _client;
-        ShapeLogic shapeLogic = new ShapeLogic(); 
+        ShapeLogic _shapeLogic = new ShapeLogic(); 
         public Panel_ShapeList(Panel_General userControl)
         {
             _panelGeneral = userControl;
             InitializeComponent();
-            dgvShapeList.Columns.Add("name", "Name");
-            dgvShapeList.Columns.Add("radius", "Radius");
-            dgvShapeList.Columns["name"].DisplayIndex = 0;
-            dgvShapeList.Columns["radius"].DisplayIndex = 1;
-            dgvShapeList.Columns["Rename"].DisplayIndex = 2;
-            dgvShapeList.Columns["Delete"].DisplayIndex = 3;
-            refreshShapeList(_client);
-        }
-
-        private void btnAddShape_Click(object sender, EventArgs e)
-        {
-            _panelGeneral.goToAddNewShape();
+            inititializeList();
+            
         }
         public void refreshShapeList(Client _client)
         {
             dgvShapeList.Rows.Clear();
-            foreach (Sphere shape in shapeLogic.GetShapes().ToList())
+            foreach (Sphere shape in _shapeLogic.GetShapes().ToList())
             {
                 if (shape.OwnerName == _client.Name)
                 {
@@ -47,14 +37,23 @@ namespace ObligatorioDA1
                 }
             }
         }
-
+        private void inititializeList()
+        {
+            addColumns();
+            setDisplayColumns();
+            refreshShapeList(_client);
+        }
+        private void btnAddShape_Click(object sender, EventArgs e)
+        {
+            _panelGeneral.goToAddNewShape();
+        }
         private void dgvShapeList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             String shapeName = dgvShapeList.CurrentRow.Cells[2].Value.ToString();
-            Shape shape = shapeLogic.GetShape(shapeName);
+            Shape shape = _shapeLogic.GetShape(shapeName);
             if (this.dgvShapeList.Columns[e.ColumnIndex].Name == "Delete" )
             {
-                shapeLogic.RemoveShape(shape);
+                _shapeLogic.RemoveShape(shape);
                 dgvShapeList.Rows.Remove(dgvShapeList.CurrentRow);
             }
             if(this.dgvShapeList.Columns[e.ColumnIndex].Name == "Rename")
@@ -62,19 +61,22 @@ namespace ObligatorioDA1
                 _panelGeneral.goToShapeRename(shape);
             }
         }
-
         private void dgvShapeList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-
-            if (e.ColumnIndex>=0 
-                && e.RowIndex>=0
-                && (this.dgvShapeList.Columns[e.ColumnIndex].Name == "Delete" 
-                || this.dgvShapeList.Columns[e.ColumnIndex].Name == "Rename"))
-            {
-                
+            if (e.ColumnIndex>=0 && e.RowIndex>=0) 
                 this.dgvShapeList.Rows[e.RowIndex].Height = 50;
-                this.dgvShapeList.Columns[e.ColumnIndex].Width = 70;
-            }
+        }
+       private void addColumns()
+        {
+            dgvShapeList.Columns.Add("name", "Name");
+            dgvShapeList.Columns.Add("radius", "Radius");
+        }
+        private void setDisplayColumns()
+        {
+            dgvShapeList.Columns["name"].DisplayIndex = 0;
+            dgvShapeList.Columns["radius"].DisplayIndex = 1;
+            dgvShapeList.Columns["Rename"].DisplayIndex = 2;
+            dgvShapeList.Columns["Delete"].DisplayIndex = 3;
         }
     }
 }

@@ -36,7 +36,7 @@ namespace ObligatorioDA1
             userControlShapeRename = new Panel_ShapeRename(this);
             userControlMaterialList = new Panel_MaterialList(this);
             userControlMaterialAddNew = new Panel_MaterialAddNew(this);
-            userControlMaterialList = new Panel_MaterialList(this);
+            userControlMaterialRename = new Panel_MaterialRename(this);
             flyGeneral.Controls.Clear();
             refreshGeneralPanel(client);
         }
@@ -81,17 +81,17 @@ namespace ObligatorioDA1
         public void goToMaterialList()
         {
             switchPanel(userControlMaterialList);
-           //userControlMaterialList.refreshMaterialList(client);
+           userControlMaterialList.refreshMaterialList(client);
         }
         public void goToAddNewMaterial()
         {
             switchPanel(userControlMaterialAddNew);
-            //userControlMaterialAddNew.refreshMaterialAddNew(client);
+            userControlMaterialAddNew.refreshMaterialAddNew(client);
         }
         public void goToMaterialRename(Material material)
         {
             switchPanel(userControlMaterialRename);
-            //userControlMaterialRename.refreshMaterialRename(material);
+            userControlMaterialRename.refreshMaterialRename(material);
         }
 
         

@@ -33,7 +33,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_MaterialList));
             this.btnAddMaterial = new System.Windows.Forms.Button();
             this.dgvMaterialList = new System.Windows.Forms.DataGridView();
-            this.Color = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Rename = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterialList)).BeginInit();
@@ -77,7 +76,6 @@
             this.dgvMaterialList.ColumnHeadersHeight = 30;
             this.dgvMaterialList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvMaterialList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Color,
             this.Rename,
             this.Delete});
             this.dgvMaterialList.EnableHeadersVisualStyles = false;
@@ -97,33 +95,30 @@
             this.dgvMaterialList.RowTemplate.Height = 33;
             this.dgvMaterialList.Size = new System.Drawing.Size(466, 316);
             this.dgvMaterialList.TabIndex = 2;
-            // 
-            // Color
-            // 
-            this.Color.HeaderText = "Color";
-            this.Color.Name = "Color";
+            this.dgvMaterialList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaterialList_CellClick);
+            this.dgvMaterialList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvMaterialList_CellPainting);
             // 
             // Rename
             // 
-            this.Rename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Rename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Rename.FillWeight = 187.1795F;
             this.Rename.HeaderText = "Rename";
             this.Rename.Image = ((System.Drawing.Image)(resources.GetObject("Rename.Image")));
             this.Rename.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Rename.MinimumWidth = 10;
             this.Rename.Name = "Rename";
-            this.Rename.Width = 140;
+            this.Rename.Width = 71;
             // 
             // Delete
             // 
-            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Delete.FillWeight = 12.82051F;
             this.Delete.HeaderText = "Delete";
             this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
             this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Delete.MinimumWidth = 10;
             this.Delete.Name = "Delete";
-            this.Delete.Width = 140;
+            this.Delete.Width = 59;
             // 
             // Panel_MaterialList
             // 
@@ -145,7 +140,6 @@
 
         private System.Windows.Forms.Button btnAddMaterial;
         private System.Windows.Forms.DataGridView dgvMaterialList;
-        private System.Windows.Forms.DataGridViewButtonColumn Color;
         private System.Windows.Forms.DataGridViewImageColumn Rename;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
     }

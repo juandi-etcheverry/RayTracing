@@ -16,15 +16,14 @@ namespace ObligatorioDA1
 {
     public partial class Panel_ShapeAddNew : UserControl
     {
-        ShapeLogic shapeLogic = new ShapeLogic();
+        ShapeLogic _shapeLogic = new ShapeLogic();
         private Panel_General _panelGeneral;
         private Client _client;
         public Panel_ShapeAddNew(Panel_General userControl)
         {
             _panelGeneral = userControl;
             InitializeComponent();
-            lblNewShapeNameException.Visible = false;
-            lblNewShapeRadiusException.Visible = false;
+            refreshShapeAddNew(_client);
         }
         public void refreshShapeAddNew(Client client)
         {
@@ -55,7 +54,7 @@ namespace ObligatorioDA1
                     Radius = radius,
                     OwnerName = _client.Name
                 };
-                shapeLogic.AddShape(newSphere);
+                _shapeLogic.AddShape(newSphere);
                 _panelGeneral.goToShapeList();
             }
             catch (NameException nameEx)
