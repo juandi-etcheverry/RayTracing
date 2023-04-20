@@ -1,7 +1,5 @@
 ﻿using BusinessLogic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Reflection;
 using Domain;
 
 namespace BusinessLogicTest
@@ -15,21 +13,16 @@ namespace BusinessLogicTest
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
 
         [TestInitialize]
-        public void CreateAndInitializeClient()
+        public void LoginClients_CreateShapes_Create_Materials()
         {
             _client = new Client()
             {
                 Name = "NewClient",
                 Password = "NewPassword1"
             };
-
             _clientLogic.AddClient(_client);
             _clientLogic.InitializeSession(_client);
-        }
 
-        [TestInitialize]
-        public void AddShapes()
-        {
             Shape sphere1 = new Sphere()
             {
                 Name = "New Sphere 1",
@@ -37,17 +30,12 @@ namespace BusinessLogicTest
             };
             Shape sphere2 = new Sphere()
             {
-                Name = "New Sphere 1",
+                Name = "New Sphere 2",
                 Radius = 3
             };
-
             _shapeLogic.AddShape(sphere1);
             _shapeLogic.AddShape(sphere2);
-        }
 
-        [TestInitialize]
-        public void AddMaterials()
-        {
             Material material1 = new Material()
             {
                 Name = "New Material 1",
@@ -60,10 +48,17 @@ namespace BusinessLogicTest
                 Color = (190, 2, 42),
                 Type = MaterialType.Lambertian
             };
-
             _materialLogic.Add(material1);
             _materialLogic.Add(material2);
+        }
 
+        [TestCleanup]
+        public void CleanUpTests()
+        {
+            _clientLogic.Logout();
+            _clientLogic.GetClients().Clear();
+            _shapeLogic.GetShapes().Clear();
+            _materialLogic.GetAll().Clear();
         }
 
 
