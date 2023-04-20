@@ -50,6 +50,7 @@
             this.btnAddModel.TabIndex = 1;
             this.btnAddModel.Text = "ADD MODEL";
             this.btnAddModel.UseVisualStyleBackColor = false;
+            this.btnAddModel.Click += new System.EventHandler(this.btnAddModel_Click);
             // 
             // dgvModelList
             // 

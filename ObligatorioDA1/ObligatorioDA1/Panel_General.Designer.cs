@@ -85,6 +85,7 @@
             this.btnModels.TabIndex = 3;
             this.btnModels.Text = "Models";
             this.btnModels.UseVisualStyleBackColor = true;
+            this.btnModels.Click += new System.EventHandler(this.btnModels_Click);
             // 
             // btnScenes
             // 

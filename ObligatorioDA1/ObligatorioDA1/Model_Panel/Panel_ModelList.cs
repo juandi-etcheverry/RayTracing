@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,16 @@ namespace ObligatorioDA1.Model_Panel
 {
     public partial class Panel_ModelList : UserControl
     {
-        public Panel_ModelList()
+        private Panel_General _panelGeneral;
+        public Panel_ModelList(Panel_General userControl)
         {
+            _panelGeneral = userControl;
             InitializeComponent();
+        }
+
+        private void btnAddModel_Click(object sender, EventArgs e)
+        {
+            _panelGeneral.goToAddNewModel();
         }
     }
 }

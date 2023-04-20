@@ -1,6 +1,7 @@
 ﻿using BusinessLogic;
 using Domain;
 using ObligatorioDA1.Material_Panel;
+using ObligatorioDA1.Model_Panel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,9 @@ namespace ObligatorioDA1
         private Panel_MaterialList userControlMaterialList;
         private Panel_MaterialAddNew userControlMaterialAddNew;
         private Panel_MaterialRename userControlMaterialRename;
+        private Panel_ModelList userControlModelList;
+        private Panel_ModelAddNew userControlModelAddNew;
+        private Panel_ModelRename userControlModelRename;
         
         
         public Panel_General(Form1 form1)
@@ -37,6 +41,9 @@ namespace ObligatorioDA1
             userControlMaterialList = new Panel_MaterialList(this);
             userControlMaterialAddNew = new Panel_MaterialAddNew(this);
             userControlMaterialRename = new Panel_MaterialRename(this);
+            userControlModelList = new Panel_ModelList(this);
+            userControlModelAddNew = new Panel_ModelAddNew(this);
+            //userControlModelRename = new Panel_ModelRename(this);
             flyGeneral.Controls.Clear();
             refreshGeneralPanel(client);
         }
@@ -94,6 +101,25 @@ namespace ObligatorioDA1
             userControlMaterialRename.refreshMaterialRename(material);
         }
 
-        
+        private void btnModels_Click(object sender, EventArgs e)
+        {
+            goToModelList();
+        }
+        public void goToModelList()
+        {
+            switchPanel(userControlModelList);
+            //userControlModelList.refreshModelList(client);
+        }
+        public void goToAddNewModel()
+        {
+            switchPanel(userControlModelAddNew);
+            //userControlModelAddNew.refreshModelAddNew(client);
+        }
+        /*public void goToModelRename(Model model)
+        {
+            switchPanel(userControlModelRename);
+            //userControlModelRename.refreshModelRename(model);
+        }*/
+
     }
 }
