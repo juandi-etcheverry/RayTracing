@@ -1,4 +1,5 @@
 ﻿using BusinessLogic;
+using BusinessLogicExceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
 
@@ -88,6 +89,20 @@ namespace BusinessLogicTest
             _modelLogic.Add(model);
 
             Assert.AreEqual(_client.Name, model.OwnerName);
+        }
+
+        [TestMethod]
+        public void AddModel_NotLogged_Test_FAIL()
+        {
+            _clientLogic.Logout();
+            Model model = new Model()
+            {
+                Name = "Modelius",
+                Shape = _shapeLogic.GetShape("New Sphere 1"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+
+            Assert.ThrowsException<SessionException>(() => _modelLogic.Add(model));
         }
     }
 }
