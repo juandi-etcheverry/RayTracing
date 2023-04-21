@@ -32,5 +32,10 @@ namespace RepositoryInMemory
             _models.Remove(model);
             return model;
         }
+
+        public List<Model> FindMany(string name)
+        {
+            return _models.Where(m => m.Name.ToLower().Equals(name.ToLower())).ToList();
+        }
     }
 }

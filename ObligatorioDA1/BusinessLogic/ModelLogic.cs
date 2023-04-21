@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain;
+using BusinessLogicExceptions;
 
 namespace BusinessLogic
 {
@@ -16,6 +17,7 @@ namespace BusinessLogic
         public void Add(Model model)
         {
             AssignModelToClient(model);
+            ValidateMaterialNameUniqueness(model);
             _repository.Add(model);
         }
 
@@ -28,6 +30,13 @@ namespace BusinessLogic
         private void EnsureClientIsLoggedIn()
         {
             if (Session.LoggedClient == null) Model.ThrowClientNotLoggedIn();
+        }
+
+        private void ValidateMaterialNameUniqueness(Model model)
+        {
+            List<Model> existingModels = _repository.FindMany(model.Name);
+            bool nameIsTaken = existingModels.Exists(existingModel => existingModel.OwnerName == model.OwnerName);
+            if(nameIsTaken) throw new NameException("Model name is already in use");
         }
     }
 }
