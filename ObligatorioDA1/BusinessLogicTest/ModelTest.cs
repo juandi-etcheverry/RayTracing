@@ -105,5 +105,19 @@ namespace BusinessLogicTest
 
             Assert.ThrowsException<SessionException>(() => _modelLogic.Add(model));
         }
+
+        [TestMethod]
+        public void Model_EmptyName_Fail_Test()
+        {
+            Assert.ThrowsException<NameException>(() =>
+            {
+                Model model = new Model()
+                {
+                    Name = "",
+                    Shape = _shapeLogic.GetShape("New Sphere 1"),
+                    Material = _materialLogic.Get("New Material 1")
+                };
+            });
+        }
     }
 }
