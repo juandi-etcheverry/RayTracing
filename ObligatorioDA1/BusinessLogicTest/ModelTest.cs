@@ -57,9 +57,10 @@ namespace BusinessLogicTest
         [TestCleanup]
         public void CleanUpTests()
         {
-            _clientLogic.Logout();
+            if (_clientLogic.GetLoggedClient() != null) _clientLogic.Logout();
             _clientLogic.GetClients().Clear();
             _shapeLogic.GetShapes().Clear();
+            _materialLogic.GetAll().Clear();
             _materialLogic.GetAll().Clear();
         }
 
@@ -94,13 +95,13 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddModel_NotLogged_Test_FAIL()
         {
-            _clientLogic.Logout();
             Model model = new Model()
             {
                 Name = "Modelius",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
+            _clientLogic.Logout();
 
             Assert.ThrowsException<SessionException>(() => _modelLogic.Add(model));
         }

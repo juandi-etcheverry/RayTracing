@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLogicExceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,11 @@ namespace Domain
         {
             get => _ownerName;
             set => _ownerName = value;
+        }
+
+        public static void ThrowClientNotLoggedIn()
+        {
+            throw new SessionException("Client needs to be logged in to create new model");
         }
     }
 }

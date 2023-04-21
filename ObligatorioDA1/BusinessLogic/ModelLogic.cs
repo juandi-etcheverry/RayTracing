@@ -21,6 +21,7 @@ namespace BusinessLogic
 
         private void AssignModelToClient(Model model)
         {
+            if (Session.LoggedClient == null) Model.ThrowClientNotLoggedIn();
             model.OwnerName = Session.LoggedClient.Name;
         }
     }
