@@ -153,5 +153,19 @@ namespace BusinessLogicTest
 
             Assert.ThrowsException<NameException>(() => _modelLogic.Add(model2));
         }
+
+        [TestMethod]
+        public void RenameModel_OK_Test()
+        {
+            Model model = new Model()
+            {
+                Name = "model 1",
+                Shape = _shapeLogic.GetShape("New Sphere 1"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+            _modelLogic.Add(model);
+            _modelLogic.Rename(model, "Azucar");
+            Assert.AreEqual(_modelLogic.Get("Azucar"), model);
+        }
     }
 }
