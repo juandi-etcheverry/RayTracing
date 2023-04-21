@@ -15,8 +15,13 @@ namespace BusinessLogic
 
         public void Add(Model model)
         {
-            model.OwnerName = Session.LoggedClient.Name;
+            AssignModelToClient(model);
             _repository.Add(model);
+        }
+
+        private void AssignModelToClient(Model model)
+        {
+            model.OwnerName = Session.LoggedClient.Name;
         }
     }
 }
