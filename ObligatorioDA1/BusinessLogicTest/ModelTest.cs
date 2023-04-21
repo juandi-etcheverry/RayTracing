@@ -11,6 +11,7 @@ namespace BusinessLogicTest
         private readonly ClientLogic _clientLogic = new ClientLogic();
         private readonly ShapeLogic _shapeLogic = new ShapeLogic();
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
+        private readonly ModelLogic _modelLogic = new ModelLogic();
 
         [TestInitialize]
         public void LoginClients_CreateShapes_Create_Materials()
@@ -84,7 +85,7 @@ namespace BusinessLogicTest
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
-            _modelLogic.AddModel(model);
+            _modelLogic.Add(model);
 
             Assert.AreEqual(_client.Name, model.OwnerName);
         }

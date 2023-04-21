@@ -11,6 +11,7 @@ namespace Domain
         private string _name;
         private Shape _shape;
         private Material _material;
+        private string _ownerName;
 
         public string Name
         {
@@ -28,6 +29,12 @@ namespace Domain
         {
             get => _material;
             set => _material = value;
+        }
+
+        public string OwnerName
+        {
+            get => _ownerName;
+            set => _ownerName = value;
         }
     }
 }
