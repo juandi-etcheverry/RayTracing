@@ -34,9 +34,18 @@ namespace BusinessLogic
 
         private void ValidateMaterialNameUniqueness(Model model)
         {
+            if(IsModelNameInUse(model)) ThrowNameInUse(model.Name);
+        }
+
+        private bool IsModelNameInUse(Model model)
+        {
             List<Model> existingModels = _repository.FindMany(model.Name);
-            bool nameIsTaken = existingModels.Exists(existingModel => existingModel.OwnerName == model.OwnerName);
-            if(nameIsTaken) throw new NameException("Model name is already in use");
+            return existingModels.Exists(existingModel => existingModel.OwnerName == model.OwnerName);
+        }
+
+        private void ThrowNameInUse(string name)
+        {
+            throw new NameException("Model name is already in use");
         }
     }
 }
