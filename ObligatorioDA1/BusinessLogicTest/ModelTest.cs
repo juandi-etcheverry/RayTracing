@@ -133,5 +133,25 @@ namespace BusinessLogicTest
                 };
             });
         }
+
+        [TestMethod]
+        public void AddModel_RepeatedModels_FAIL_Test()
+        {
+            Model model1 = new Model()
+            {
+                Name = "ModEl 1",
+                Shape = _shapeLogic.GetShape("New Sphere 1"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+            Model model2 = new Model()
+            {
+                Name = "model 1",
+                Shape = _shapeLogic.GetShape("New Sphere 1"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+            _modelLogic.Add(model1);
+
+            Assert.ThrowsException<NameException>(() => _modelLogic.Add(model2));
+        }
     }
 }
