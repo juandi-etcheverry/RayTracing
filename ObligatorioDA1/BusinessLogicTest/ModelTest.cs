@@ -119,5 +119,19 @@ namespace BusinessLogicTest
                 };
             });
         }
+
+        [TestMethod]
+        public void Model_NameTrailingSpaces_Fail_Test()
+        {
+            Assert.ThrowsException<NameException>(() =>
+            {
+                Model model = new Model()
+                {
+                    Name = " Incorrect Model",
+                    Shape = _shapeLogic.GetShape("New Sphere 1"),
+                    Material = _materialLogic.Get("New Material 1")
+                };
+            });
+        }
     }
 }
