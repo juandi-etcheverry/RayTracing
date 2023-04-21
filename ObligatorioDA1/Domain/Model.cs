@@ -21,7 +21,7 @@ namespace Domain
             set
             {
                 if (value.IsEmpty()) ThrowEmptyName();
-                if (value.HasTrailingSpaces()) throw new NameException("Model name can't have trailing spaces");
+                if (value.HasTrailingSpaces()) ThrowHasTrailingSpaces();
                 _name = value;
             }
         }
@@ -52,6 +52,11 @@ namespace Domain
         private static void ThrowEmptyName()
         {
             throw new NameException("Model name can't be empty");
+        }
+
+        private static void ThrowHasTrailingSpaces()
+        {
+            throw new NameException("Model name can't have trailing spaces");
         }
     }
 }
