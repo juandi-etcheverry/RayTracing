@@ -33,14 +33,22 @@ namespace BusinessLogic
 
         public Model Rename(Model model, string newName)
         {
-            ValidateModelExists(model);
-            Model nameUniquenessValidationModel = new Model() { Name = newName };
-            if (Session.LoggedClient == null) Model.ThrowClientNotLoggedIn();
-            nameUniquenessValidationModel.OwnerName = Session.LoggedClient.Name;
-            if (IsModelNameInUse(nameUniquenessValidationModel)) throw new NameException("Model name is already in use");
-
+            ValidateRenaming(model, newName);
             model.Name = newName;
             return model;
+        }
+
+        private void ValidateRenaming(Model model, string newName)
+        {
+            ValidateModelExists(model);
+            Model nameUniquenessValidationModel = new Model() { Name = newName };
+            AssignModelToClient(nameUniquenessValidationModel);
+            ValidateModelNameUniqueness(nameUniquenessValidationModel);
+        }
+
+        private void ValidateModelNameUniqueness(Model model)
+        {
+            if(IsModelNameInUse(model)) ThrowNameInUse(model.Name);
         }
 
         private void ValidateModelExists(Model model)
@@ -72,7 +80,7 @@ namespace BusinessLogic
 
         private void ThrowNameInUse(string name)
         {
-            throw new NameException("Model name is already in use");
+            throw new NameException($"Model {name} name is already in use");
         }
 
         private void ThrowNotFound(string name)
