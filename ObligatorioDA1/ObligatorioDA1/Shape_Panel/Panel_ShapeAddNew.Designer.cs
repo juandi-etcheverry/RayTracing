@@ -118,6 +118,7 @@
             this.txbNewShapeRadius.Name = "txbNewShapeRadius";
             this.txbNewShapeRadius.Size = new System.Drawing.Size(337, 26);
             this.txbNewShapeRadius.TabIndex = 2;
+            this.txbNewShapeRadius.TextChanged += new System.EventHandler(this.txbNewShapeRadius_TextChanged);
             // 
             // txbNewShapeName
             // 
@@ -127,6 +128,7 @@
             this.txbNewShapeName.Name = "txbNewShapeName";
             this.txbNewShapeName.Size = new System.Drawing.Size(337, 26);
             this.txbNewShapeName.TabIndex = 1;
+            this.txbNewShapeName.TextChanged += new System.EventHandler(this.txbNewShapeName_TextChanged);
             // 
             // label3
             // 

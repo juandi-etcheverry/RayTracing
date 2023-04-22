@@ -30,6 +30,9 @@
         {
             this.btnShowAllMaterials = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.txbNewBMaterial = new System.Windows.Forms.TextBox();
             this.txbNewGMaterial = new System.Windows.Forms.TextBox();
             this.btnNewMaterial = new System.Windows.Forms.Button();
@@ -40,9 +43,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,6 +82,39 @@
             this.panel1.Size = new System.Drawing.Size(434, 304);
             this.panel1.TabIndex = 3;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(299, 178);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(24, 20);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "B:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(170, 178);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(26, 20);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "G:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(48, 178);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(25, 20);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "R:";
+            // 
             // txbNewBMaterial
             // 
             this.txbNewBMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -90,6 +123,7 @@
             this.txbNewBMaterial.Name = "txbNewBMaterial";
             this.txbNewBMaterial.Size = new System.Drawing.Size(62, 26);
             this.txbNewBMaterial.TabIndex = 4;
+            this.txbNewBMaterial.TextChanged += new System.EventHandler(this.txbNewBMaterial_TextChanged);
             // 
             // txbNewGMaterial
             // 
@@ -99,6 +133,7 @@
             this.txbNewGMaterial.Name = "txbNewGMaterial";
             this.txbNewGMaterial.Size = new System.Drawing.Size(62, 26);
             this.txbNewGMaterial.TabIndex = 3;
+            this.txbNewGMaterial.TextChanged += new System.EventHandler(this.txbNewGMaterial_TextChanged);
             // 
             // btnNewMaterial
             // 
@@ -146,6 +181,7 @@
             this.txbNewRMaterial.Name = "txbNewRMaterial";
             this.txbNewRMaterial.Size = new System.Drawing.Size(62, 26);
             this.txbNewRMaterial.TabIndex = 2;
+            this.txbNewRMaterial.TextChanged += new System.EventHandler(this.txbNewRMaterial_TextChanged);
             // 
             // txbNewMaterialName
             // 
@@ -155,6 +191,7 @@
             this.txbNewMaterialName.Name = "txbNewMaterialName";
             this.txbNewMaterialName.Size = new System.Drawing.Size(337, 26);
             this.txbNewMaterialName.TabIndex = 1;
+            this.txbNewMaterialName.TextChanged += new System.EventHandler(this.txbNewMaterialName_TextChanged);
             // 
             // label3
             // 
@@ -189,39 +226,6 @@
             this.label1.Size = new System.Drawing.Size(55, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(48, 178);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(25, 20);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "R:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(298, 178);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(26, 20);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "G:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(171, 178);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(24, 20);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "B:";
             // 
             // Panel_MaterialAddNew
             // 

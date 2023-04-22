@@ -61,7 +61,7 @@ namespace Domain
 
         private static void ThrowColorsOutOfRange()
         {
-            throw new ArgumentOutOfRangeException("Material color can only be between 0 and 255");
+            throw new ArgumentOutOfRangeException("RGB must be numbers between 0 and 255");
         }
 
         private bool HasInvalidColor(ValueTuple<uint, uint, uint> color)

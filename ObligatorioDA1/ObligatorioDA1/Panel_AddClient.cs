@@ -17,6 +17,7 @@ namespace ObligatorioDA1
     {
         private Form1 _formPrincipal;
         ClientLogic _clientLogic = new ClientLogic();
+        Client newClient;
         public Panel_AddClient(Form1 form1)
         {
             _formPrincipal = form1;
@@ -31,17 +32,13 @@ namespace ObligatorioDA1
             lblNewNameException.Visible = false;
             lblNewPasswordException.Visible = false;
             lblNewConfirmPasswordException.Visible = false;
-            if(txbNewClientPassword.Text == txbNewClientRepeatPassword.Text)
-            {
                 try
                 {
-                    Client newClient = new Client()
-                    {
-                        Name = txbNewClientName.Text,
-                        Password = txbNewClientPassword.Text
-                    };
+                    newClient.Name = txbNewClientName.Text;
+                    newClient.Password = txbNewClientPassword.Text;
+                    if (txbNewClientPassword.Text != txbNewClientRepeatPassword.Text)
+                        throw new ArgumentException("Password does not match");
                     _clientLogic.AddClient(newClient);
-                    refreshAddClient();
                     _clientLogic.InitializeSession(newClient);
                     _formPrincipal.GoToGeneral(newClient);
                 }
@@ -55,31 +52,56 @@ namespace ObligatorioDA1
                     lblNewPasswordException.Visible = true;
                     lblNewPasswordException.Text = PassEx.Message;
                 }
-            }
-            else
-            {
-                lblNewConfirmPasswordException.Visible = true;
-                lblNewConfirmPasswordException.Text = "Password does not match";
-            }
-                
+                catch (ArgumentException ArgEx)
+                {
+                    lblNewConfirmPasswordException.Visible = true;
+                    lblNewConfirmPasswordException.Text = ArgEx.Message;
+                }
         }
             
-        
-
         private void btnGoBack_Click(object sender, EventArgs e)
         {
-            refreshAddClient();
+            //delete newClient
             _formPrincipal.GoBackToWelcome();
 
         }
-        private void refreshAddClient()
+        public void refreshAddClient()
         {
+            newClient = new Client();
             txbNewClientName.Clear();
             txbNewClientPassword.Clear();
             txbNewClientRepeatPassword.Clear();
             lblNewNameException.Visible = false;
             lblNewPasswordException.Visible = false;
             lblNewConfirmPasswordException.Visible = false;
+        }
+
+        private void txbNewClientName_TextChanged(object sender, EventArgs e)
+        {
+            lblNewNameException.Visible = false;
+            try
+            {
+                newClient.Name = txbNewClientName.Text;
+            }
+            catch (NameException nameEx)
+            {
+                lblNewNameException.Visible = true;
+                lblNewNameException.Text = nameEx.Message;
+            }
+            
+        }
+        private void txbNewClientPassword_TextChanged(object sender, EventArgs e)
+        {
+            lblNewPasswordException.Visible = false;
+            try
+            {
+                newClient.Password = txbNewClientPassword.Text;
+            }
+            catch (PasswordException passEx)
+            {
+                lblNewPasswordException.Visible = true;
+                lblNewPasswordException.Text = passEx.Message;
+            }
         }
     }
 }

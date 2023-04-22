@@ -59,10 +59,11 @@
             // 
             this.txbNewClientName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNewClientName.Location = new System.Drawing.Point(116, 150);
-            this.txbNewClientName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNewClientName.Margin = new System.Windows.Forms.Padding(2);
             this.txbNewClientName.Name = "txbNewClientName";
             this.txbNewClientName.Size = new System.Drawing.Size(410, 28);
             this.txbNewClientName.TabIndex = 1;
+            this.txbNewClientName.TextChanged += new System.EventHandler(this.txbNewClientName_TextChanged);
             // 
             // lblName
             // 
@@ -80,7 +81,7 @@
             // 
             this.btnAddNewClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNewClient.Location = new System.Drawing.Point(308, 383);
-            this.btnAddNewClient.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddNewClient.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddNewClient.Name = "btnAddNewClient";
             this.btnAddNewClient.Size = new System.Drawing.Size(132, 35);
             this.btnAddNewClient.TabIndex = 4;
@@ -104,11 +105,12 @@
             // 
             this.txbNewClientPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNewClientPassword.Location = new System.Drawing.Point(116, 225);
-            this.txbNewClientPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNewClientPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txbNewClientPassword.Name = "txbNewClientPassword";
             this.txbNewClientPassword.PasswordChar = '*';
             this.txbNewClientPassword.Size = new System.Drawing.Size(410, 28);
             this.txbNewClientPassword.TabIndex = 2;
+            this.txbNewClientPassword.TextChanged += new System.EventHandler(this.txbNewClientPassword_TextChanged);
             // 
             // lblConfirmPassword
             // 
@@ -126,7 +128,7 @@
             // 
             this.txbNewClientRepeatPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNewClientRepeatPassword.Location = new System.Drawing.Point(116, 307);
-            this.txbNewClientRepeatPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNewClientRepeatPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txbNewClientRepeatPassword.Name = "txbNewClientRepeatPassword";
             this.txbNewClientRepeatPassword.PasswordChar = '*';
             this.txbNewClientRepeatPassword.Size = new System.Drawing.Size(410, 28);
@@ -136,7 +138,7 @@
             // 
             this.btnGoBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGoBack.Location = new System.Drawing.Point(21, 24);
-            this.btnGoBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGoBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnGoBack.Name = "btnGoBack";
             this.btnGoBack.Size = new System.Drawing.Size(77, 35);
             this.btnGoBack.TabIndex = 5;
@@ -197,7 +199,7 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txbNewClientName);
             this.Controls.Add(this.lblAddClient);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(750, 520);
             this.MinimumSize = new System.Drawing.Size(750, 520);
             this.Name = "Panel_AddClient";

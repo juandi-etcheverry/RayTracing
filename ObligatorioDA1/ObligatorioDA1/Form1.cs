@@ -22,7 +22,7 @@ namespace ObligatorioDA1
     public partial class Form1 : Form
     {
         private UserControl userControlWelcome;
-        private UserControl userControlAddClient;
+        private Panel_AddClient userControlAddClient;
         private Panel_General userControlGeneral;
         ClientLogic _clientLogic = new ClientLogic();
 
@@ -41,6 +41,7 @@ namespace ObligatorioDA1
         {
             flyPanelPrincipal.Visible = true;
             flyPanelPrincipal.Controls.Add(userControlAddClient);
+            userControlAddClient.refreshAddClient();
             refreshWelcome();
         }
 
