@@ -205,5 +205,53 @@ namespace BusinessLogicTest
 
             Assert.ThrowsException<NameException>(() => _modelLogic.Rename(model2, "model 1"));
         }
+
+        [TestMethod]
+        public void AddModel_SameName_DifferentOwner_Test_OK()
+        {
+            Model model1 = new Model()
+            {
+                Name = "SameNameModel",
+                Shape = _shapeLogic.GetShape("New Sphere 1"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+            _modelLogic.Add(model1);
+
+            _clientLogic.Logout();
+            Client anotherClient = new Client()
+            {
+                Name = "HarryPotter",
+                Password = "ValidPassWord1233"
+            };
+            _clientLogic.AddClient(anotherClient);
+            _clientLogic.InitializeSession(anotherClient);
+
+            Shape sphere2 = new Sphere()
+            {
+                Name = "Sphere2",
+                Radius = 3
+            };
+            _shapeLogic.AddShape(sphere2);
+
+            Material material2 = new Material()
+            {
+                Name = "Material2",
+                Color = (190, 2, 42),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(material2);
+
+            Model model2 = new Model()
+            {
+                Name = "SameNameModel",
+                Shape = _shapeLogic.GetShape("Sphere2"),
+                Material = _materialLogic.Get("Material2")
+            };
+            _modelLogic.Add(model2);
+
+
+            Assert.AreEqual(2, _modelLogic.GetAll().Count);
+
+        }
     }
 }
