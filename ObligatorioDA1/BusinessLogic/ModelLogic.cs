@@ -33,6 +33,9 @@ namespace BusinessLogic
 
         public Model Rename(Model model, string newName)
         {
+            List<Model> existingModels = _repository.FindMany(model.Name);
+            bool modelExists = existingModels.Exists((existingModel) => existingModel.OwnerName == model.OwnerName);
+            if (!modelExists) throw new NotFoundException("No model found");
             model.Name = newName;
             return model;
         }
