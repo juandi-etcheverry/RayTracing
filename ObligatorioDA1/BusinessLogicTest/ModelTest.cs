@@ -278,5 +278,56 @@ namespace BusinessLogicTest
             };
             Assert.ThrowsException<NotFoundException>(() => _modelLogic.Remove(model));
         }
+
+        public void GetClientModels_OK_Test()
+        {
+            Model model1 = new Model()
+            {
+                Name = "ModelName1",
+                Shape = _shapeLogic.GetShape("New Sphere 2"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+            Model model2 = new Model()
+            {
+                Name = "ModelName1",
+                Shape = _shapeLogic.GetShape("New Sphere 1"),
+                Material = _materialLogic.Get("New Material 2")
+            };
+            _modelLogic.Add(model1);
+            _modelLogic.Add(model2);
+
+            _clientLogic.Logout();
+            Client newClient = new Client()
+            {
+                Name = "Spiderman",
+                Password = "ValidPassWord1233"
+            };
+            _clientLogic.AddClient(newClient);
+            _clientLogic.InitializeSession(newClient);
+
+            Shape newShape = new Sphere()
+            {
+                Name = "newShape",
+                Radius = 3
+            };
+            _shapeLogic.AddShape(newShape);
+            Material newMaterial = new Material()
+            {
+                Name = "newMaterial",
+                Color = (10, 2, 154),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(newMaterial);
+
+            Model newModel = new Model()
+            {
+                Name = "newModel",
+                Shape = _shapeLogic.GetShape("newShape"),
+                Material = _materialLogic.Get("newMaterial")
+            };
+            _modelLogic.Add(newModel);
+
+            Assert.AreEqual(1, _modelLogic.GetClientModels().Count);
+        }
     }
 }
