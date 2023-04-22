@@ -40,6 +40,7 @@ namespace BusinessLogic
 
         public Model Remove(Model model)
         {
+            ValidateModelExists(model);
             _repository.Remove(model);
             return model;
         }
