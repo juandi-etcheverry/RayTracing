@@ -33,6 +33,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_ModelList));
             this.btnAddModel = new System.Windows.Forms.Button();
             this.dgvModelList = new System.Windows.Forms.DataGridView();
+            this.Preview = new System.Windows.Forms.DataGridViewImageColumn();
             this.Rename = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvModelList)).BeginInit();
@@ -76,6 +77,7 @@
             this.dgvModelList.ColumnHeadersHeight = 30;
             this.dgvModelList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvModelList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Preview,
             this.Rename,
             this.Delete});
             this.dgvModelList.EnableHeadersVisualStyles = false;
@@ -95,6 +97,14 @@
             this.dgvModelList.RowTemplate.Height = 33;
             this.dgvModelList.Size = new System.Drawing.Size(466, 316);
             this.dgvModelList.TabIndex = 3;
+            // 
+            // Preview
+            // 
+            this.Preview.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Preview.HeaderText = "";
+            this.Preview.Name = "Preview";
+            this.Preview.ReadOnly = true;
+            this.Preview.Width = 30;
             // 
             // Rename
             // 
@@ -138,6 +148,7 @@
 
         private System.Windows.Forms.Button btnAddModel;
         private System.Windows.Forms.DataGridView dgvModelList;
+        private System.Windows.Forms.DataGridViewImageColumn Preview;
         private System.Windows.Forms.DataGridViewImageColumn Rename;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
     }

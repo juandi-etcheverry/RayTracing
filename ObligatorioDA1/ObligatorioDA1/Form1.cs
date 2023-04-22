@@ -71,8 +71,8 @@ namespace ObligatorioDA1
             }
             catch (SessionException sessEx)
             {
-                lblNameException.Text = sessEx.Message;
-                lblNameException.Visible = true;
+                lblPasswordException.Text = sessEx.Message;
+                lblPasswordException.Visible = true;
             }
             catch (NameException nameEx)
             {

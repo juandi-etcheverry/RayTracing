@@ -44,7 +44,7 @@
             this.btnAddShape.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddShape.ForeColor = System.Drawing.Color.White;
             this.btnAddShape.Location = new System.Drawing.Point(62, 60);
-            this.btnAddShape.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddShape.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddShape.Name = "btnAddShape";
             this.btnAddShape.Size = new System.Drawing.Size(466, 37);
             this.btnAddShape.TabIndex = 0;
@@ -77,7 +77,7 @@
             this.Delete});
             this.dgvShapeList.EnableHeadersVisualStyles = false;
             this.dgvShapeList.Location = new System.Drawing.Point(62, 119);
-            this.dgvShapeList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvShapeList.Margin = new System.Windows.Forms.Padding(2);
             this.dgvShapeList.Name = "dgvShapeList";
             this.dgvShapeList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvShapeList.RowHeadersVisible = false;
@@ -97,25 +97,25 @@
             // 
             // Rename
             // 
-            this.Rename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Rename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Rename.FillWeight = 187.1795F;
             this.Rename.HeaderText = "Rename";
             this.Rename.Image = ((System.Drawing.Image)(resources.GetObject("Rename.Image")));
             this.Rename.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Rename.MinimumWidth = 10;
             this.Rename.Name = "Rename";
-            this.Rename.Width = 140;
+            this.Rename.Width = 71;
             // 
             // Delete
             // 
-            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Delete.FillWeight = 12.82051F;
             this.Delete.HeaderText = "Delete";
             this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
             this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Delete.MinimumWidth = 10;
             this.Delete.Name = "Delete";
-            this.Delete.Width = 140;
+            this.Delete.Width = 59;
             // 
             // Panel_ShapeList
             // 
@@ -124,7 +124,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.dgvShapeList);
             this.Controls.Add(this.btnAddShape);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(600, 520);
             this.MinimumSize = new System.Drawing.Size(600, 520);
             this.Name = "Panel_ShapeList";
