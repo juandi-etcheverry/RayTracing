@@ -251,7 +251,20 @@ namespace BusinessLogicTest
 
 
             Assert.AreEqual(2, _modelLogic.GetAll().Count);
+        }
 
+        [TestMethod]
+        public void RemoveModel_OK_Test()
+        {
+            Model model = new Model()
+            {
+                Name = "SameNameModel",
+                Shape = _shapeLogic.GetShape("New Sphere 2"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+            _modelLogic.Add(model);
+            _modelLogic.Remove(model);
+            Assert.AreEqual(0, _materialLogic.GetAll().Count);
         }
     }
 }
