@@ -167,5 +167,21 @@ namespace BusinessLogicTest
             _modelLogic.Rename(model, "Azucar");
             Assert.AreEqual(_modelLogic.Get("Azucar"), model);
         }
+
+        [TestMethod]
+        public void RenameModel_InvalidMaterial_FAIL_Test()
+        {
+            Model model = new Model()
+            {
+                Name = "model 1",
+                Shape = _shapeLogic.GetShape("New Sphere 1"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+
+            Assert.ThrowsException<NotFoundException>(() =>
+            {
+                _modelLogic.Rename(model, "Balid Blue");
+            });
+        }
     }
 }
