@@ -21,6 +21,22 @@ namespace BusinessLogic
             _repository.Add(model);
         }
 
+        public Model Get(string name)
+        {
+            return _repository.Get(name);
+        }
+
+        public IList<Model> GetAll()
+        {
+            return _repository.GetAll();
+        }
+
+        public Model Rename(Model model, string newName)
+        {
+            model.Name = newName;
+            return model;
+        }
+
         private void AssignModelToClient(Model model)
         {
             EnsureClientIsLoggedIn();

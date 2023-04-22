@@ -61,7 +61,7 @@ namespace BusinessLogicTest
             _clientLogic.GetClients().Clear();
             _shapeLogic.GetShapes().Clear();
             _materialLogic.GetAll().Clear();
-            _materialLogic.GetAll().Clear();
+            _modelLogic.GetAll().Clear();
         }
 
 
