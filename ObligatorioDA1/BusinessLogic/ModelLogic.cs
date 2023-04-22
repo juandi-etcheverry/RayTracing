@@ -38,6 +38,12 @@ namespace BusinessLogic
             return model;
         }
 
+        public Model Remove(Model model)
+        {
+            _repository.Remove(model);
+            return model;
+        }
+
         private void ValidateRenaming(Model model, string newName)
         {
             ValidateModelExists(model);
