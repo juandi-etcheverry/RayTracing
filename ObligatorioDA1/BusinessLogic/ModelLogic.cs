@@ -33,11 +33,14 @@ namespace BusinessLogic
 
         public Model Rename(Model model, string newName)
         {
-            List<Model> existingModels = _repository.FindMany(model.Name);
-            bool modelExists = existingModels.Exists((existingModel) => existingModel.OwnerName == model.OwnerName);
-            if (!modelExists) throw new NotFoundException("No model found");
+            ValidateModelExists(model);
             model.Name = newName;
             return model;
+        }
+
+        private void ValidateModelExists(Model model)
+        {
+            if (!IsModelNameInUse(model)) ThrowNotFound(model.Name);
         }
 
         private void AssignModelToClient(Model model)
@@ -65,6 +68,11 @@ namespace BusinessLogic
         private void ThrowNameInUse(string name)
         {
             throw new NameException("Model name is already in use");
+        }
+
+        private void ThrowNotFound(string name)
+        {
+            throw new NotFoundException($"No material with the name {name} was found");
         }
     }
 }
