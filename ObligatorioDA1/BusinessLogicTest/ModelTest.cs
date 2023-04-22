@@ -264,7 +264,7 @@ namespace BusinessLogicTest
             };
             _modelLogic.Add(model);
             _modelLogic.Remove(model);
-            Assert.AreEqual(0, _materialLogic.GetAll().Count);
+            Assert.AreEqual(0, _modelLogic.GetAll().Count);
         }
     }
 }
