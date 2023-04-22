@@ -183,5 +183,27 @@ namespace BusinessLogicTest
                 _modelLogic.Rename(model, "Balid Blue");
             });
         }
+
+        [TestMethod]
+        public void RenameModel_NameInUse_FAIL_Test()
+        {
+            Model model1 = new Model()
+            {
+                Name = "model 1",
+                Shape = _shapeLogic.GetShape("New Sphere 1"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+            Model model2 = new Model()
+            {
+                Name = "model 2",
+                Shape = _shapeLogic.GetShape("New Sphere 2"),
+                Material = _materialLogic.Get("New Material 2")
+            };
+
+            _modelLogic.Add(model1);
+            _modelLogic.Add(model2);
+
+            Assert.ThrowsException<NameException>(() => _modelLogic.Rename(model2, "model 1"));
+        }
     }
 }
