@@ -34,6 +34,11 @@ namespace BusinessLogic
         public Model Rename(Model model, string newName)
         {
             ValidateModelExists(model);
+            Model nameUniquenessValidationModel = new Model() { Name = newName };
+            if (Session.LoggedClient == null) Model.ThrowClientNotLoggedIn();
+            nameUniquenessValidationModel.OwnerName = Session.LoggedClient.Name;
+            if (IsModelNameInUse(nameUniquenessValidationModel)) throw new NameException("Model name is already in use");
+
             model.Name = newName;
             return model;
         }
