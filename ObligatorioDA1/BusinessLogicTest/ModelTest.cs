@@ -266,5 +266,17 @@ namespace BusinessLogicTest
             _modelLogic.Remove(model);
             Assert.AreEqual(0, _modelLogic.GetAll().Count);
         }
+
+        [TestMethod]
+        public void RemoveModel_NonExistant_FAIL_Test()
+        {
+            Model model = new Model()
+            {
+                Name = "ModelName",
+                Shape = _shapeLogic.GetShape("New Sphere 2"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+            Assert.ThrowsException<NotFoundException>(() => _modelLogic.Remove(model));
+        }
     }
 }
