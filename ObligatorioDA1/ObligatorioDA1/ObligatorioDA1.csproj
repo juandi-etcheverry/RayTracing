@@ -100,6 +100,12 @@
     <Compile Include="Panel_General.Designer.cs">
       <DependentUpon>Panel_General.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panel_SceneAddNew.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_SceneAddNew.Designer.cs">
+      <DependentUpon>Panel_SceneAddNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="Shape_Panel\Panel_ShapeAddNew.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panel_General.resx">
       <DependentUpon>Panel_General.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel_SceneAddNew.resx">
+      <DependentUpon>Panel_SceneAddNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shape_Panel\Panel_ShapeAddNew.resx">
       <DependentUpon>Panel_ShapeAddNew.cs</DependentUpon>
