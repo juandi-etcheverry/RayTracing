@@ -279,6 +279,7 @@ namespace BusinessLogicTest
             Assert.ThrowsException<NotFoundException>(() => _modelLogic.Remove(model));
         }
 
+        [TestMethod]
         public void GetClientModels_OK_Test()
         {
             Model model1 = new Model()
@@ -289,7 +290,7 @@ namespace BusinessLogicTest
             };
             Model model2 = new Model()
             {
-                Name = "ModelName1",
+                Name = "ModelName2",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 2")
             };

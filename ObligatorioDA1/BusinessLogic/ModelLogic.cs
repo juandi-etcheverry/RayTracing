@@ -26,6 +26,12 @@ namespace BusinessLogic
             return _repository.Get(name);
         }
 
+        public IList<Model> GetClientModels()
+        {
+            EnsureClientIsLoggedIn();
+            return GetAll().Where(model => model.OwnerName == Session.LoggedClient.Name).ToList();
+        }
+
         public IList<Model> GetAll()
         {
             return _repository.GetAll();
