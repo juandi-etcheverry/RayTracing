@@ -8,15 +8,15 @@ namespace BusinessLogicTest
     [TestClass]
     public class ShapeTest
     {
-        ShapeLogic shapeLogic = new ShapeLogic();
-        private readonly ClientLogic clientLogic = new ClientLogic();
+        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
+        private readonly ClientLogic _clientLogic = new ClientLogic();
 
         [TestCleanup]
         public void RemoveAllShapesAndClients()
         {
-            if (clientLogic.GetLoggedClient() != null) clientLogic.Logout();
-            clientLogic.GetClients().Clear();
-            shapeLogic.GetShapes().Clear();
+            if (_clientLogic.GetLoggedClient() != null) _clientLogic.Logout();
+            _clientLogic.GetClients().Clear();
+            _shapeLogic.GetShapes().Clear();
         }
 
         [TestMethod]
@@ -27,14 +27,14 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
             Shape oneShape = new Shape
             {
                 Name = "Nicolas"
             };
-            shapeLogic.AddShape(oneShape);
-            Assert.IsTrue(shapeLogic.GetShapes().Count == 1);
+            _shapeLogic.AddShape(oneShape);
+            Assert.IsTrue(_shapeLogic.GetShapes().Count == 1);
         }
 
 
@@ -46,8 +46,8 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Shape shape1 = new Shape
             {
@@ -57,9 +57,9 @@ namespace BusinessLogicTest
             {
                 Name = "Teito"
             };
-            shapeLogic.AddShape(shape1);
-            shapeLogic.AddShape(shape2);
-            Assert.IsTrue(shapeLogic.GetShapes().Count == 2);
+            _shapeLogic.AddShape(shape1);
+            _shapeLogic.AddShape(shape2);
+            Assert.IsTrue(_shapeLogic.GetShapes().Count == 2);
         }
 
         [TestMethod]
@@ -70,15 +70,15 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Shape shape1 = new Shape
             {
                 Name = "Esfera"
             };
-            shapeLogic.AddShape(shape1);
-            Assert.ThrowsException<NameException>(() => shapeLogic.AddShape(shape1));
+            _shapeLogic.AddShape(shape1);
+            Assert.ThrowsException<NameException>(() => _shapeLogic.AddShape(shape1));
         }
 
         [TestMethod]
@@ -89,8 +89,8 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Assert.ThrowsException<NameException>(() =>
             {
@@ -109,8 +109,8 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Assert.ThrowsException<NameException>(() =>
             {
@@ -128,14 +128,14 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Shape shape1 = new Shape
             {
                 Name = "Nicolas"
             };
-            shapeLogic.AddShape(shape1);
+            _shapeLogic.AddShape(shape1);
         }
 
         [TestMethod]
@@ -146,16 +146,16 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Shape shape1 = new Shape
             {
                 Name = "Nicolas"
             };
-            shapeLogic.AddShape(shape1);
-            shapeLogic.RemoveShape(shape1);
-            Assert.AreEqual(0, shapeLogic.GetShapes().Count);
+            _shapeLogic.AddShape(shape1);
+            _shapeLogic.RemoveShape(shape1);
+            Assert.AreEqual(0, _shapeLogic.GetShapes().Count);
         }
 
         [TestMethod]
@@ -166,8 +166,8 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Shape shape1 = new Shape
             {
@@ -177,10 +177,10 @@ namespace BusinessLogicTest
             {
                 Name = "Mateo"
             };
-            shapeLogic.AddShape(shape1);
-            shapeLogic.AddShape(shape2);
-            shapeLogic.RemoveShape(shape2);
-            Assert.AreEqual(1, shapeLogic.GetShapes().Count);
+            _shapeLogic.AddShape(shape1);
+            _shapeLogic.AddShape(shape2);
+            _shapeLogic.RemoveShape(shape2);
+            Assert.AreEqual(1, _shapeLogic.GetShapes().Count);
         }
 
         [TestMethod]
@@ -191,16 +191,16 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Shape shape1 = new Shape
             {
                 Name = "Nicolas"
             };
-            shapeLogic.AddShape(shape1);
+            _shapeLogic.AddShape(shape1);
             Shape shape2 = new Shape();
-            Assert.ThrowsException<NotFoundException>(() => shapeLogic.RemoveShape(shape2));
+            Assert.ThrowsException<NotFoundException>(() => _shapeLogic.RemoveShape(shape2));
         }
 
         [TestMethod]
@@ -211,15 +211,15 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Shape shape1 = new Shape
             {
                 Name = "Nicolas"
             };
-            shapeLogic.AddShape(shape1);
-            shapeLogic.RenameShape(shape1, "JuanDiego");
+            _shapeLogic.AddShape(shape1);
+            _shapeLogic.RenameShape(shape1, "JuanDiego");
             Assert.AreEqual("JuanDiego", shape1.Name);
         }
 
@@ -231,20 +231,20 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Shape shape1 = new Shape
             {
                 Name = "Nicolas"
             };
-            shapeLogic.AddShape(shape1);
+            _shapeLogic.AddShape(shape1);
             Shape shape2 = new Shape
             {
                 Name = "Mateo"
             };
-            shapeLogic.AddShape(shape2);
-            Assert.ThrowsException<NameException>(() => shapeLogic.RenameShape(shape1, "Mateo"));
+            _shapeLogic.AddShape(shape2);
+            Assert.ThrowsException<NameException>(() => _shapeLogic.RenameShape(shape1, "Mateo"));
         }
 
         [TestMethod]
@@ -255,16 +255,16 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Sphere newSphere = new Sphere
             {
                 Name = "Nicolas",
                 Radius = 3
             };
-            shapeLogic.AddShape(newSphere);
-            Assert.AreEqual(1, shapeLogic.GetShapes().Count);
+            _shapeLogic.AddShape(newSphere);
+            Assert.AreEqual(1, _shapeLogic.GetShapes().Count);
         }
 
         [TestMethod]
@@ -275,8 +275,8 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Assert.ThrowsException<NegativeRadiusException>(() =>
             {
@@ -296,16 +296,16 @@ namespace BusinessLogicTest
                 Name = "NewClient",
                 Password = "ValidPassword123"
             };
-            clientLogic.AddClient(client);
-            clientLogic.InitializeSession(client);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Sphere newSphere = new Sphere()
             {
                 Name = "JD",
                 Radius = 2
             };
-            shapeLogic.AddShape(newSphere);
-            Assert.AreEqual(1, shapeLogic.GetShapes().Count);
+            _shapeLogic.AddShape(newSphere);
+            Assert.AreEqual(1, _shapeLogic.GetShapes().Count);
         }
 
         [TestMethod]
@@ -316,14 +316,14 @@ namespace BusinessLogicTest
                 Name = "Nicolas",
                 Password = "ValidPass123"
             };
-            clientLogic.AddClient(newClient);
-            clientLogic.InitializeSession(newClient);
+            _clientLogic.AddClient(newClient);
+            _clientLogic.InitializeSession(newClient);
             
             Shape newShape = new Shape()
             {
                 Name = "NewShape",
             };
-            shapeLogic.AddShape(newShape);
+            _shapeLogic.AddShape(newShape);
 
             Assert.AreEqual(newClient.Name, newShape.OwnerName);
         }
@@ -336,16 +336,52 @@ namespace BusinessLogicTest
                 Name = "Andrew",
                 Password = "VadPass12332"
             };
-            clientLogic.AddClient(newClient);
+            _clientLogic.AddClient(newClient);
 
             Shape newShape = new Shape()
             {
                 Name = "NewShape",
             };
 
-            Assert.ThrowsException<SessionException>(() => shapeLogic.AddShape(newShape));
+            Assert.ThrowsException<SessionException>(() => _shapeLogic.AddShape(newShape));
         }
 
+        [TestMethod]
+        public void GetClientShapes_OK_Test()
+        {
+            Client client = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
+            Shape oneShape = new Shape
+            {
+                Name = "Shape1"
+            };
+            _shapeLogic.AddShape(oneShape);
 
+            _clientLogic.Logout();
+            Client anotherClient = new Client()
+            {
+                Name = "anotherClient",
+                Password = "ValidPassword1"
+            };
+            _clientLogic.AddClient(anotherClient);
+            _clientLogic.InitializeSession(anotherClient);
+            Shape newShape1 = new Shape
+            {
+                Name = "newShape1"
+            };
+            Shape newShape2 = new Shape
+            {
+                Name = "newShape2"
+            };
+            _shapeLogic.AddShape(newShape1);
+            _shapeLogic.AddShape(newShape2);
+
+            Assert.AreEqual(2, _shapeLogic.GetClientShapes().Count);
+        }
     }
 }
