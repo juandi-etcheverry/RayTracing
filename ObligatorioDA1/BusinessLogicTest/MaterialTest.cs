@@ -287,5 +287,41 @@ namespace BusinessLogicTest
             Assert.AreEqual(2, _materialLogic.GetAll().Count);
 
         }
+
+        [TestMethod]
+        public void GetClientMaterials_OK_Test()
+        {
+            Material material1 = new Material()
+            {
+                Name = "Material 1",
+                Color = (10, 50, 11),
+                Type = MaterialType.Lambertian
+            };
+            Material material2 = new Material()
+            {
+                Name = "Material 2",
+                Color = (107, 50, 15),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(material1);
+            _materialLogic.Add(material2);
+            _clientLogic.Logout();
+
+            Client newCient = new Client()
+            {
+                Name = "NewClient",
+                Password = "ValidPassword123"
+            };
+            _clientLogic.AddClient(newCient);
+            _clientLogic.InitializeSession(newCient);
+            Material material3 = new Material()
+            {
+                Name = "Material 3",
+                Color = (1, 29, 114),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(material3);
+            Assert.AreEqual(1, _materialLogic.GetClientMaterials(client).Count);
+        }
     }
 }
