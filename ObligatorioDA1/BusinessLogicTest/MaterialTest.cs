@@ -307,13 +307,13 @@ namespace BusinessLogicTest
             _materialLogic.Add(material2);
             _clientLogic.Logout();
 
-            Client newCient = new Client()
+            Client anotherClient = new Client()
             {
-                Name = "NewClient",
+                Name = "anotherClient",
                 Password = "ValidPassword123"
             };
-            _clientLogic.AddClient(newCient);
-            _clientLogic.InitializeSession(newCient);
+            _clientLogic.AddClient(anotherClient);
+            _clientLogic.InitializeSession(anotherClient);
             Material material3 = new Material()
             {
                 Name = "Material 3",
@@ -321,7 +321,7 @@ namespace BusinessLogicTest
                 Type = MaterialType.Lambertian
             };
             _materialLogic.Add(material3);
-            Assert.AreEqual(1, _materialLogic.GetClientMaterials(client).Count);
+            Assert.AreEqual(1, _materialLogic.GetClientMaterials().Count);
         }
     }
 }
