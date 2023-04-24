@@ -34,7 +34,7 @@ namespace BusinessLogicTest
                 Name = "Nicolas"
             };
             _shapeLogic.AddShape(oneShape);
-            Assert.IsTrue(_shapeLogic.GetShapes().Count == 1);
+            Assert.IsTrue(_shapeLogic.GetClientShapes().Count == 1);
         }
 
 
@@ -59,7 +59,7 @@ namespace BusinessLogicTest
             };
             _shapeLogic.AddShape(shape1);
             _shapeLogic.AddShape(shape2);
-            Assert.IsTrue(_shapeLogic.GetShapes().Count == 2);
+            Assert.IsTrue(_shapeLogic.GetClientShapes().Count == 2);
         }
 
         [TestMethod]
@@ -155,7 +155,7 @@ namespace BusinessLogicTest
             };
             _shapeLogic.AddShape(shape1);
             _shapeLogic.RemoveShape(shape1);
-            Assert.AreEqual(0, _shapeLogic.GetShapes().Count);
+            Assert.AreEqual(0, _shapeLogic.GetClientShapes().Count);
         }
 
         [TestMethod]
@@ -180,7 +180,7 @@ namespace BusinessLogicTest
             _shapeLogic.AddShape(shape1);
             _shapeLogic.AddShape(shape2);
             _shapeLogic.RemoveShape(shape2);
-            Assert.AreEqual(1, _shapeLogic.GetShapes().Count);
+            Assert.AreEqual(1, _shapeLogic.GetClientShapes().Count);
         }
 
         [TestMethod]
@@ -264,7 +264,7 @@ namespace BusinessLogicTest
                 Radius = 3
             };
             _shapeLogic.AddShape(newSphere);
-            Assert.AreEqual(1, _shapeLogic.GetShapes().Count);
+            Assert.AreEqual(1, _shapeLogic.GetClientShapes().Count);
         }
 
         [TestMethod]
