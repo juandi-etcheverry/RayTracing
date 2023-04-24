@@ -20,6 +20,12 @@ namespace BusinessLogic
             return _repository.GetAll();
         }
 
+        public IList<Material> GetClientMaterials()
+        {
+            EnsureClientIsLoggedIn();
+            return _repository.GetAll().Where(material => material.OwnerName == Session.LoggedClient.Name).ToList();
+        }
+
         public Material Add(Material newMaterial)
         {
             AssignMaterialToClient(newMaterial);

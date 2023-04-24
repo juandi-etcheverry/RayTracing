@@ -15,6 +15,12 @@ namespace BusinessLogic
         {
             return _repository.GetAll();
         }
+
+        public IList<Shape> GetClientShapes()
+        {
+            EnsureClientIsLoggedIn();
+            return _repository.GetAll().Where(shape => shape.OwnerName == Session.LoggedClient.Name).ToList();
+        }
         public Shape GetShape(string name)
         {
             return _repository.Get(name);
