@@ -94,11 +94,11 @@
     <Compile Include="Scene_Panel\Panel_AddModelToScene.Designer.cs">
       <DependentUpon>Panel_AddModelToScene.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scene_Panel\Panel_NewSceneName.cs">
+    <Compile Include="Scene_Panel\Panel_SceneNewName.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Scene_Panel\Panel_NewSceneName.Designer.cs">
-      <DependentUpon>Panel_NewSceneName.cs</DependentUpon>
+    <Compile Include="Scene_Panel\Panel_SceneNewName.Designer.cs">
+      <DependentUpon>Panel_SceneNewName.cs</DependentUpon>
     </Compile>
     <Compile Include="Panel_AddClient.cs">
       <SubType>UserControl</SubType>
@@ -112,11 +112,11 @@
     <Compile Include="Panel_General.Designer.cs">
       <DependentUpon>Panel_General.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scene_Panel\Panel_SceneAddNew.cs">
+    <Compile Include="Scene_Panel\Panel_SceneEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Scene_Panel\Panel_SceneAddNew.Designer.cs">
-      <DependentUpon>Panel_SceneAddNew.cs</DependentUpon>
+    <Compile Include="Scene_Panel\Panel_SceneEditor.Designer.cs">
+      <DependentUpon>Panel_SceneEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Scene_Panel\Panel_SceneList.cs">
       <SubType>UserControl</SubType>
@@ -186,11 +186,11 @@
     <EmbeddedResource Include="Scene_Panel\Panel_AddModelToScene.resx">
       <DependentUpon>Panel_AddModelToScene.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scene_Panel\Panel_NewSceneName.resx">
-      <DependentUpon>Panel_NewSceneName.cs</DependentUpon>
+    <EmbeddedResource Include="Scene_Panel\Panel_SceneNewName.resx">
+      <DependentUpon>Panel_SceneNewName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scene_Panel\Panel_SceneAddNew.resx">
-      <DependentUpon>Panel_SceneAddNew.cs</DependentUpon>
+    <EmbeddedResource Include="Scene_Panel\Panel_SceneEditor.resx">
+      <DependentUpon>Panel_SceneEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scene_Panel\Panel_SceneList.resx">
       <DependentUpon>Panel_SceneList.cs</DependentUpon>

@@ -12,9 +12,16 @@ namespace ObligatorioDA1.Scene_Panel
 {
     public partial class Panel_SceneList : UserControl
     {
-        public Panel_SceneList()
+        private Panel_General _panelGeneral;
+        public Panel_SceneList(Panel_General userControl)
         {
+            _panelGeneral = userControl;
             InitializeComponent();
+        }
+
+        private void btnAddNewScene_Click(object sender, EventArgs e)
+        {
+            _panelGeneral.goToNewSceneName();
         }
     }
 }

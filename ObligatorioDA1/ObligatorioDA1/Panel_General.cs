@@ -2,6 +2,7 @@
 using Domain;
 using ObligatorioDA1.Material_Panel;
 using ObligatorioDA1.Model_Panel;
+using ObligatorioDA1.Scene_Panel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,11 @@ namespace ObligatorioDA1
         private Panel_ModelList userControlModelList;
         private Panel_ModelAddNew userControlModelAddNew;
         private Panel_ModelRename userControlModelRename;
+        private Panel_SceneList userControlSceneList;
+        private Panel_SceneEditor userControlSceneEditor;
+        private Panel_SceneRename userControlSceneRename;
+        private Panel_SceneNewName userControlSceneNewName;
+        private Panel_AddModelToScene userControlModelToScene;
         
         
         public Panel_General(Form1 form1)
@@ -44,6 +50,11 @@ namespace ObligatorioDA1
             userControlModelList = new Panel_ModelList(this);
             userControlModelAddNew = new Panel_ModelAddNew(this);
             //userControlModelRename = new Panel_ModelRename(this);
+            userControlSceneList = new Panel_SceneList(this);
+            userControlSceneEditor = new Panel_SceneEditor(this);
+            //userControlSceneRename = new Panel_SceneRename(this);
+            userControlSceneNewName = new Panel_SceneNewName(this);
+            //userControlModelToScene = new Panel_AddModelToScene(this);
             flyGeneral.Controls.Clear();
             refreshGeneralPanel(client);
         }
@@ -117,9 +128,26 @@ namespace ObligatorioDA1
         }
         /*public void goToModelRename(Model model)
         {
-            switchPanel(userControlModelRename);
-            //userControlModelRename.refreshModelRename(model);
+           switchPanel(userControlModelRename);
+           userControlModelRename.refreshModelRename(model);
         }*/
+        private void btnScenes_Click(object sender, EventArgs e)
+        {
+            goToSceneList();
+        }
+        public void goToSceneList()
+        {
+            switchPanel(userControlSceneList);
+        }
+        public void goToSceneEditor()
+        {
+            switchPanel(userControlSceneEditor);
+        }
+        public void goToNewSceneName()
+        {
+            switchPanel(userControlSceneNewName);
+        }
+        
 
     }
 }

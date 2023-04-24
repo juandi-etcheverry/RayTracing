@@ -1,6 +1,6 @@
 ﻿namespace ObligatorioDA1
 {
-    partial class Panel_SceneAddNew
+    partial class Panel_SceneEditor
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_SceneAddNew));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_SceneEditor));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblNewSceneName = new System.Windows.Forms.Label();
@@ -39,6 +39,14 @@
             this.lblDateLastModified = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRender = new System.Windows.Forms.Button();
+            this.lblOutdatedImage = new System.Windows.Forms.Label();
+            this.lblLastRenderedDate = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lblLastRenderedTime = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -66,14 +74,6 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Coord = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.lblLastRenderedTime = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.lblLastRenderedDate = new System.Windows.Forms.Label();
-            this.lblOutdatedImage = new System.Windows.Forms.Label();
-            this.btnRender = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -153,6 +153,94 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(324, 363);
             this.panel1.TabIndex = 14;
+            // 
+            // btnRender
+            // 
+            this.btnRender.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnRender.ForeColor = System.Drawing.Color.White;
+            this.btnRender.Location = new System.Drawing.Point(194, 321);
+            this.btnRender.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRender.Name = "btnRender";
+            this.btnRender.Size = new System.Drawing.Size(112, 37);
+            this.btnRender.TabIndex = 19;
+            this.btnRender.Text = "Render";
+            this.btnRender.UseVisualStyleBackColor = false;
+            // 
+            // lblOutdatedImage
+            // 
+            this.lblOutdatedImage.AutoSize = true;
+            this.lblOutdatedImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOutdatedImage.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblOutdatedImage.Location = new System.Drawing.Point(13, 319);
+            this.lblOutdatedImage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblOutdatedImage.Name = "lblOutdatedImage";
+            this.lblOutdatedImage.Size = new System.Drawing.Size(123, 20);
+            this.lblOutdatedImage.TabIndex = 20;
+            this.lblOutdatedImage.Text = "Outdated image";
+            // 
+            // lblLastRenderedDate
+            // 
+            this.lblLastRenderedDate.AutoSize = true;
+            this.lblLastRenderedDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastRenderedDate.Location = new System.Drawing.Point(217, 299);
+            this.lblLastRenderedDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLastRenderedDate.Name = "lblLastRenderedDate";
+            this.lblLastRenderedDate.Size = new System.Drawing.Size(89, 20);
+            this.lblLastRenderedDate.TabIndex = 19;
+            this.lblLastRenderedDate.Text = "20/04/2023";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(204, 299);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(14, 20);
+            this.label15.TabIndex = 19;
+            this.label15.Text = "-";
+            // 
+            // lblLastRenderedTime
+            // 
+            this.lblLastRenderedTime.AutoSize = true;
+            this.lblLastRenderedTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastRenderedTime.Location = new System.Drawing.Point(156, 299);
+            this.lblLastRenderedTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLastRenderedTime.Name = "lblLastRenderedTime";
+            this.lblLastRenderedTime.Size = new System.Drawing.Size(49, 20);
+            this.lblLastRenderedTime.TabIndex = 19;
+            this.lblLastRenderedTime.Text = "15:32";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(13, 299);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(112, 20);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "Last rendered:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label12.Location = new System.Drawing.Point(12, 20);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(55, 20);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "Scene";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Location = new System.Drawing.Point(17, 43);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(289, 253);
+            this.panel3.TabIndex = 0;
             // 
             // label3
             // 
@@ -359,6 +447,7 @@
             this.btnReturnNewScene.TabIndex = 16;
             this.btnReturnNewScene.Text = "Return";
             this.btnReturnNewScene.UseVisualStyleBackColor = false;
+            this.btnReturnNewScene.Click += new System.EventHandler(this.btnReturnNewScene_Click);
             // 
             // dgvAvailableModelsList
             // 
@@ -504,94 +593,6 @@
             this.Delete.Name = "Delete";
             this.Delete.Width = 30;
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Location = new System.Drawing.Point(17, 43);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(289, 253);
-            this.panel3.TabIndex = 0;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label12.Location = new System.Drawing.Point(12, 20);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(55, 20);
-            this.label12.TabIndex = 19;
-            this.label12.Text = "Scene";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(13, 299);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(112, 20);
-            this.label13.TabIndex = 19;
-            this.label13.Text = "Last rendered:";
-            // 
-            // lblLastRenderedTime
-            // 
-            this.lblLastRenderedTime.AutoSize = true;
-            this.lblLastRenderedTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastRenderedTime.Location = new System.Drawing.Point(156, 299);
-            this.lblLastRenderedTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblLastRenderedTime.Name = "lblLastRenderedTime";
-            this.lblLastRenderedTime.Size = new System.Drawing.Size(49, 20);
-            this.lblLastRenderedTime.TabIndex = 19;
-            this.lblLastRenderedTime.Text = "15:32";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(204, 299);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(14, 20);
-            this.label15.TabIndex = 19;
-            this.label15.Text = "-";
-            // 
-            // lblLastRenderedDate
-            // 
-            this.lblLastRenderedDate.AutoSize = true;
-            this.lblLastRenderedDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastRenderedDate.Location = new System.Drawing.Point(217, 299);
-            this.lblLastRenderedDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblLastRenderedDate.Name = "lblLastRenderedDate";
-            this.lblLastRenderedDate.Size = new System.Drawing.Size(89, 20);
-            this.lblLastRenderedDate.TabIndex = 19;
-            this.lblLastRenderedDate.Text = "20/04/2023";
-            // 
-            // lblOutdatedImage
-            // 
-            this.lblOutdatedImage.AutoSize = true;
-            this.lblOutdatedImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOutdatedImage.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblOutdatedImage.Location = new System.Drawing.Point(13, 319);
-            this.lblOutdatedImage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblOutdatedImage.Name = "lblOutdatedImage";
-            this.lblOutdatedImage.Size = new System.Drawing.Size(123, 20);
-            this.lblOutdatedImage.TabIndex = 20;
-            this.lblOutdatedImage.Text = "Outdated image";
-            // 
-            // btnRender
-            // 
-            this.btnRender.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnRender.ForeColor = System.Drawing.Color.White;
-            this.btnRender.Location = new System.Drawing.Point(194, 321);
-            this.btnRender.Margin = new System.Windows.Forms.Padding(2);
-            this.btnRender.Name = "btnRender";
-            this.btnRender.Size = new System.Drawing.Size(112, 37);
-            this.btnRender.TabIndex = 19;
-            this.btnRender.Text = "Render";
-            this.btnRender.UseVisualStyleBackColor = false;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -635,7 +636,6 @@
             this.Controls.Add(this.lblNewSceneName);
             this.MaximumSize = new System.Drawing.Size(600, 520);
             this.MinimumSize = new System.Drawing.Size(600, 520);
-            this.Name = "Panel_SceneAddNew";
             this.Size = new System.Drawing.Size(600, 520);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

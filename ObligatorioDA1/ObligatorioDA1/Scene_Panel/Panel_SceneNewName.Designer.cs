@@ -1,6 +1,6 @@
 ﻿namespace ObligatorioDA1.Model_Panel
 {
-    partial class Panel_NewSceneName
+    partial class Panel_SceneNewName
     {
         /// <summary> 
         /// Required designer variable.
@@ -73,6 +73,7 @@
             this.btnConfirmSceneName.TabIndex = 2;
             this.btnConfirmSceneName.Text = "Create new scene";
             this.btnConfirmSceneName.UseVisualStyleBackColor = false;
+            this.btnConfirmSceneName.Click += new System.EventHandler(this.btnConfirmSceneName_Click);
             // 
             // txbSceneName
             // 
@@ -105,6 +106,7 @@
             this.btnReturnSceneName.TabIndex = 6;
             this.btnReturnSceneName.Text = "Return";
             this.btnReturnSceneName.UseVisualStyleBackColor = false;
+            this.btnReturnSceneName.Click += new System.EventHandler(this.btnReturnSceneName_Click);
             // 
             // Panel_NewSceneName
             // 

@@ -98,6 +98,7 @@
             this.btnScenes.TabIndex = 4;
             this.btnScenes.Text = "Scenes";
             this.btnScenes.UseVisualStyleBackColor = true;
+            this.btnScenes.Click += new System.EventHandler(this.btnScenes_Click);
             // 
             // btnLogOut
             // 

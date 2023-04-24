@@ -51,6 +51,7 @@
             this.btnAddNewScene.TabIndex = 2;
             this.btnAddNewScene.Text = "ADD NEW SCENE";
             this.btnAddNewScene.UseVisualStyleBackColor = false;
+            this.btnAddNewScene.Click += new System.EventHandler(this.btnAddNewScene_Click);
             // 
             // dgvSceneList
             // 
