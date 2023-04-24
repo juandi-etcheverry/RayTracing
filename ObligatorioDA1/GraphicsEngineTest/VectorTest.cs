@@ -32,5 +32,18 @@ namespace GraphicsEngineTest
             };
         }
 
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [TestMethod]
+        public void CreateVector_InvalidY_Fail()
+        {
+            Vector v = new Vector()
+            {
+                X = 0.1,
+                Y = -0.4,
+                Z = 0.0
+            };
+        }
+
+
     }
 }
