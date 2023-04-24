@@ -8,7 +8,20 @@ namespace GraphicsEngine
 {
     public class Vector
     {
-        public double X { get; set; }
+        private double _x;
+        public double X
+        {
+            get => _x;
+            set
+            {
+                if (value > 1)
+                {
+                    throw new ArgumentOutOfRangeException("X coordinate can not be greater than 1");
+                }
+                _x = value;
+            }
+        }
+
         public double Y { get; set; }
         public double Z { get; set; }
     }
