@@ -250,7 +250,7 @@ namespace BusinessLogicTest
             _modelLogic.Add(model2);
 
 
-            Assert.AreEqual(2, _modelLogic.GetAll().Count);
+            Assert.AreEqual(1, _modelLogic.GetClientModels().Count);
         }
 
         [TestMethod]
@@ -264,7 +264,7 @@ namespace BusinessLogicTest
             };
             _modelLogic.Add(model);
             _modelLogic.Remove(model);
-            Assert.AreEqual(0, _modelLogic.GetAll().Count);
+            Assert.AreEqual(0, _modelLogic.GetClientModels().Count);
         }
 
         [TestMethod]
