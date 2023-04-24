@@ -19,7 +19,7 @@ namespace BusinessLogic
         public IList<Shape> GetClientShapes()
         {
             EnsureClientIsLoggedIn();
-            return GetShapes().Where(shape => shape.OwnerName == Session.LoggedClient.Name).ToList();
+            return _repository.GetAll().Where(shape => shape.OwnerName == Session.LoggedClient.Name).ToList();
         }
         public Shape GetShape(string name)
         {
