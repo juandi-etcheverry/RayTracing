@@ -19,5 +19,18 @@ namespace GraphicsEngineTest
 
             Assert.AreEqual((0.3, 1.0, 0.0), (v.X, v.Y, v.Z));
         }
+
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [TestMethod]
+        public void CreateVector_InvalidX_Fail()
+        {
+            Vector v = new Vector()
+            {
+                X = 1.2,
+                Y = 1.0,
+                Z = 0.0
+            };
+        }
+
     }
 }
