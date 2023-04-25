@@ -46,6 +46,11 @@ namespace GraphicsEngine
             return Convert.ToInt32(Math.Round(_y * 255));
         }
 
+        public int Blue()
+        {
+            return Convert.ToInt32(Math.Round(_z * 255));
+        }
+
 
 
         private void ValidateVectorIsBetweenZeroAndOne(double value, string coordinateName)
