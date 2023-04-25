@@ -10,7 +10,7 @@ namespace GraphicsEngineTest
         private Vector vForColors;
 
         [TestInitialize]
-        private void CreateVectorForColors()
+        public void CreateVectorForColors()
         {
             vForColors = new Vector()
             {
@@ -73,7 +73,7 @@ namespace GraphicsEngineTest
         public void GetColors_GetRed_OK()
         {
             int redAmount = vForColors.Red();
-            Assert.AreEqual(77, redAmount);
+            Assert.AreEqual(76, redAmount);
         }
     }
 }

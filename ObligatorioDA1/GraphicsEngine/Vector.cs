@@ -35,6 +35,11 @@ namespace GraphicsEngine
             }
         }
 
+        public int Red()
+        {
+            return Convert.ToInt32(Math.Round(_x * 255));
+        }
+
         private void ValidateVectorIsBetweenZeroAndOne(double value, string coordinateName)
         {
             ValidateVectorIsZeroOrGreater(value, coordinateName);
