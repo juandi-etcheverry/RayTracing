@@ -35,6 +35,7 @@ namespace GraphicsEngine
             }
         }
 
+        // C# Math.Round method rounds down in _.5 values
         public int Red()
         {
             return Convert.ToInt32(Math.Round(_x * 255));
