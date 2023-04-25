@@ -44,6 +44,7 @@ namespace BusinessLogicTest
             {
                 Name = "NewModel",
                 Shape = newShape,
+                Material = newMaterial,
                 Coordinates = (0, 5, 2)
             };
             _modelLogic.Add(newModel);
