@@ -49,7 +49,7 @@ namespace ObligatorioDA1
             userControlMaterialRename = new Panel_MaterialRename(this);
             userControlModelList = new Panel_ModelList(this);
             userControlModelAddNew = new Panel_ModelAddNew(this);
-            //userControlModelRename = new Panel_ModelRename(this);
+            userControlModelRename = new Panel_ModelRename(this);
             userControlSceneList = new Panel_SceneList(this);
             userControlSceneEditor = new Panel_SceneEditor(this);
             //userControlSceneRename = new Panel_SceneRename(this);
@@ -119,18 +119,18 @@ namespace ObligatorioDA1
         public void goToModelList()
         {
             switchPanel(userControlModelList);
-            //userControlModelList.refreshModelList(client);
+            userControlModelList.RefreshModelList(client);
         }
         public void goToAddNewModel()
         {
             switchPanel(userControlModelAddNew);
-            //userControlModelAddNew.refreshModelAddNew(client);
+            userControlModelAddNew.refreshModelAddNew(client);
         }
-        /*public void goToModelRename(Model model)
+        public void goToModelRename(Model model)
         {
            switchPanel(userControlModelRename);
-           userControlModelRename.refreshModelRename(model);
-        }*/
+           userControlModelRename.RefreshModelRename(model);
+        }
         private void btnScenes_Click(object sender, EventArgs e)
         {
             goToSceneList();

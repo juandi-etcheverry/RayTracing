@@ -28,7 +28,7 @@ namespace ObligatorioDA1.Material_Panel
             addColumns();
             setDisplayOrderColumns();
             setWidthColumns();
-            refreshMaterialList(_client);
+            //refreshMaterialList(_client);
         }
 
         private void btnAddMaterial_Click(object sender, EventArgs e)
@@ -38,7 +38,7 @@ namespace ObligatorioDA1.Material_Panel
         public void refreshMaterialList(Client _client)
         {
             dgvMaterialList.Rows.Clear();
-            foreach (Material material in _materialLogic.GetAll().ToList())
+            foreach (Material material in _materialLogic.GetClientMaterials().ToList())
             {
                 if (material.OwnerName == _client.Name)
                 {

@@ -97,13 +97,14 @@
             this.dgvModelList.RowTemplate.Height = 33;
             this.dgvModelList.Size = new System.Drawing.Size(466, 316);
             this.dgvModelList.TabIndex = 3;
+            this.dgvModelList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvModelList_CellClick);
+            this.dgvModelList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvModelList_CellPainting);
             // 
             // Preview
             // 
             this.Preview.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Preview.HeaderText = "";
+            this.Preview.HeaderText = "Preview";
             this.Preview.Name = "Preview";
-            this.Preview.ReadOnly = true;
             this.Preview.Width = 30;
             // 
             // Rename

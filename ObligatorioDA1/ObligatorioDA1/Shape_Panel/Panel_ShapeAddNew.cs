@@ -30,10 +30,7 @@ namespace ObligatorioDA1
         {
             _client = client;
             newSphere = new Sphere();
-            lblNewShapeNameException.Visible = false;
-            lblNewShapeRadiusException.Visible = false;
-            txbNewShapeName.Clear();
-            txbNewShapeRadius.Clear();
+            RefreshPanel();
         }
 
         private void btnShowAllShapes_Click(object sender, EventArgs e)
@@ -52,6 +49,7 @@ namespace ObligatorioDA1
                 if (!validRadius) throw new ArgumentException("Radius must be a decimal number");
                 newSphere.Name = txbNewShapeName.Text;
                 newSphere.OwnerName = _client.Name;
+                RefreshPanel();
                 _shapeLogic.AddShape(newSphere);
                 _panelGeneral.goToShapeList();
             }
@@ -104,6 +102,13 @@ namespace ObligatorioDA1
                 lblNewShapeRadiusException.Visible = true;
                 lblNewShapeRadiusException.Text = negRadEx.Message;
             }
+        }
+        private void RefreshPanel()
+        {
+            lblNewShapeNameException.Visible = false;
+            lblNewShapeRadiusException.Visible = false;
+            txbNewShapeName.Clear();
+            txbNewShapeRadius.Clear();
         }
     }
 }

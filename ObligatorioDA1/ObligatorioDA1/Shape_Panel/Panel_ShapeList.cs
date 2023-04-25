@@ -29,7 +29,7 @@ namespace ObligatorioDA1
         public void refreshShapeList(Client _client)
         {
             dgvShapeList.Rows.Clear();
-            foreach (Sphere shape in _shapeLogic.GetShapes().ToList())
+            foreach (Sphere shape in _shapeLogic.GetClientShapes().ToList())
             {
                 if (shape.OwnerName == _client.Name)
                 {
@@ -41,7 +41,7 @@ namespace ObligatorioDA1
         {
             addColumns();
             setDisplayColumns();
-            refreshShapeList(_client);
+            //refreshShapeList(_client);
         }
         private void btnAddShape_Click(object sender, EventArgs e)
         {

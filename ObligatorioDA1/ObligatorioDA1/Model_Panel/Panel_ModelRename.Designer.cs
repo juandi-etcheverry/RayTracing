@@ -31,7 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblRenameException = new System.Windows.Forms.Label();
             this.btnConfirmRename = new System.Windows.Forms.Button();
-            this.txbModellRename = new System.Windows.Forms.TextBox();
+            this.txbModelRename = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnReturnRename = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -42,7 +42,7 @@
             this.panel1.BackColor = System.Drawing.Color.Gainsboro;
             this.panel1.Controls.Add(this.lblRenameException);
             this.panel1.Controls.Add(this.btnConfirmRename);
-            this.panel1.Controls.Add(this.txbModellRename);
+            this.panel1.Controls.Add(this.txbModelRename);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(55, 111);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -73,15 +73,16 @@
             this.btnConfirmRename.TabIndex = 2;
             this.btnConfirmRename.Text = "Rename";
             this.btnConfirmRename.UseVisualStyleBackColor = false;
+            this.btnConfirmRename.Click += new System.EventHandler(this.btnConfirmRename_Click);
             // 
-            // txbModellRename
+            // txbModelRename
             // 
-            this.txbModellRename.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbModellRename.Location = new System.Drawing.Point(74, 70);
-            this.txbModellRename.Margin = new System.Windows.Forms.Padding(2);
-            this.txbModellRename.Name = "txbModellRename";
-            this.txbModellRename.Size = new System.Drawing.Size(338, 28);
-            this.txbModellRename.TabIndex = 1;
+            this.txbModelRename.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbModelRename.Location = new System.Drawing.Point(74, 70);
+            this.txbModelRename.Margin = new System.Windows.Forms.Padding(2);
+            this.txbModelRename.Name = "txbModelRename";
+            this.txbModelRename.Size = new System.Drawing.Size(338, 28);
+            this.txbModelRename.TabIndex = 1;
             // 
             // label1
             // 
@@ -105,6 +106,7 @@
             this.btnReturnRename.TabIndex = 5;
             this.btnReturnRename.Text = "Return";
             this.btnReturnRename.UseVisualStyleBackColor = false;
+            this.btnReturnRename.Click += new System.EventHandler(this.btnReturnRename_Click);
             // 
             // Panel_ModelRename
             // 
@@ -128,7 +130,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblRenameException;
         private System.Windows.Forms.Button btnConfirmRename;
-        private System.Windows.Forms.TextBox txbModellRename;
+        private System.Windows.Forms.TextBox txbModelRename;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnReturnRename;
     }

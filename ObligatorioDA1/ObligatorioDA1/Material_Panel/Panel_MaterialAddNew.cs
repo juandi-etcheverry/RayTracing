@@ -30,12 +30,7 @@ namespace ObligatorioDA1.Material_Panel
         {
             newMaterial = new Material();
             _client = client;
-            lblNewMaterialNameException.Visible = false;
-            lblNewRGBException.Visible = false;
-            txbNewMaterialName.Clear();
-            txbNewRMaterial.Clear();
-            txbNewGMaterial.Clear();
-            txbNewBMaterial.Clear();
+            RefreshPanel();
         }
 
         private void btnShowAllMaterials_Click(object sender, EventArgs e)
@@ -57,6 +52,7 @@ namespace ObligatorioDA1.Material_Panel
                 newMaterial.Name = txbNewMaterialName.Text;
                 newMaterial.Color = (r, g, b);
                 _materialLogic.Add(newMaterial);
+                RefreshPanel();
                 _panelGeneral.goToMaterialList();
             }
             catch (NameException nameEx)
@@ -107,7 +103,7 @@ namespace ObligatorioDA1.Material_Panel
             try
             {
                 uint g;
-                bool validG = uint.TryParse(txbNewRMaterial.Text, out g) && g <= 255 && g>=0;
+                bool validG = uint.TryParse(txbNewGMaterial.Text, out g) && g <= 255 && g>=0;
                 if (!validG) throw new ArgumentException("RGB must be numbers between 0 and 255");
             }
             catch (ArgumentException argEx)
@@ -123,14 +119,23 @@ namespace ObligatorioDA1.Material_Panel
             try
             {
                 uint b;
-                bool validG = uint.TryParse(txbNewRMaterial.Text, out b) && b <= 255 && b >= 0;
-                if (!validG) throw new ArgumentException("RGB must be numbers between 0 and 255");
+                bool validB = uint.TryParse(txbNewBMaterial.Text, out b) && b <= 255 && b >= 0;
+                if (!validB) throw new ArgumentException("RGB must be numbers between 0 and 255");
             }
             catch (ArgumentException argEx)
             {
                 lblNewRGBException.Visible = true;
                 lblNewRGBException.Text = argEx.Message;
             }
+        }
+        private void RefreshPanel()
+        {
+            lblNewMaterialNameException.Visible = false;
+            lblNewRGBException.Visible = false;
+            txbNewMaterialName.Clear();
+            txbNewRMaterial.Clear();
+            txbNewGMaterial.Clear();
+            txbNewBMaterial.Clear();
         }
     }
 }

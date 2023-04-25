@@ -38,7 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnNewModel = new System.Windows.Forms.Button();
             this.lblNewModelNameException = new System.Windows.Forms.Label();
-            this.txbNewModellName = new System.Windows.Forms.TextBox();
+            this.txbNewModelName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,7 +54,7 @@
             this.btnShowAllModels.Margin = new System.Windows.Forms.Padding(2);
             this.btnShowAllModels.Name = "btnShowAllModels";
             this.btnShowAllModels.Size = new System.Drawing.Size(434, 37);
-            this.btnShowAllModels.TabIndex = 3;
+            this.btnShowAllModels.TabIndex = 6;
             this.btnShowAllModels.Text = "SHOW ALL MODELS";
             this.btnShowAllModels.UseVisualStyleBackColor = false;
             this.btnShowAllModels.Click += new System.EventHandler(this.btnShowAllModels_Click);
@@ -70,7 +70,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.btnNewModel);
             this.panel1.Controls.Add(this.lblNewModelNameException);
-            this.panel1.Controls.Add(this.txbNewModellName);
+            this.panel1.Controls.Add(this.txbNewModelName);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -85,7 +85,7 @@
             this.lblModelSelectMaterial.AutoSize = true;
             this.lblModelSelectMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblModelSelectMaterial.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblModelSelectMaterial.Location = new System.Drawing.Point(246, 199);
+            this.lblModelSelectMaterial.Location = new System.Drawing.Point(246, 207);
             this.lblModelSelectMaterial.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblModelSelectMaterial.Name = "lblModelSelectMaterial";
             this.lblModelSelectMaterial.Size = new System.Drawing.Size(93, 15);
@@ -97,7 +97,7 @@
             this.lblModelSelectShape.AutoSize = true;
             this.lblModelSelectShape.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblModelSelectShape.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblModelSelectShape.Location = new System.Drawing.Point(49, 199);
+            this.lblModelSelectShape.Location = new System.Drawing.Point(49, 207);
             this.lblModelSelectShape.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblModelSelectShape.Name = "lblModelSelectShape";
             this.lblModelSelectShape.Size = new System.Drawing.Size(93, 15);
@@ -107,28 +107,31 @@
             // ckbModelPreview
             // 
             this.ckbModelPreview.AutoSize = true;
-            this.ckbModelPreview.Location = new System.Drawing.Point(52, 252);
+            this.ckbModelPreview.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckbModelPreview.Location = new System.Drawing.Point(52, 245);
             this.ckbModelPreview.Name = "ckbModelPreview";
-            this.ckbModelPreview.Size = new System.Drawing.Size(151, 17);
-            this.ckbModelPreview.TabIndex = 10;
+            this.ckbModelPreview.Size = new System.Drawing.Size(212, 24);
+            this.ckbModelPreview.TabIndex = 4;
             this.ckbModelPreview.Text = "Generate preview on save";
             this.ckbModelPreview.UseVisualStyleBackColor = true;
             // 
             // cmbNewModelMaterial
             // 
+            this.cmbNewModelMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbNewModelMaterial.FormattingEnabled = true;
             this.cmbNewModelMaterial.Location = new System.Drawing.Point(249, 175);
             this.cmbNewModelMaterial.Name = "cmbNewModelMaterial";
-            this.cmbNewModelMaterial.Size = new System.Drawing.Size(140, 21);
-            this.cmbNewModelMaterial.TabIndex = 8;
+            this.cmbNewModelMaterial.Size = new System.Drawing.Size(140, 28);
+            this.cmbNewModelMaterial.TabIndex = 3;
             // 
             // cmbNewModelShape
             // 
+            this.cmbNewModelShape.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbNewModelShape.FormattingEnabled = true;
             this.cmbNewModelShape.Location = new System.Drawing.Point(52, 175);
             this.cmbNewModelShape.Name = "cmbNewModelShape";
-            this.cmbNewModelShape.Size = new System.Drawing.Size(140, 21);
-            this.cmbNewModelShape.TabIndex = 7;
+            this.cmbNewModelShape.Size = new System.Drawing.Size(140, 28);
+            this.cmbNewModelShape.TabIndex = 2;
             // 
             // label4
             // 
@@ -167,14 +170,14 @@
             this.lblNewModelNameException.TabIndex = 5;
             this.lblNewModelNameException.Text = "*New model name exception";
             // 
-            // txbNewModellName
+            // txbNewModelName
             // 
-            this.txbNewModellName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNewModellName.Location = new System.Drawing.Point(52, 89);
-            this.txbNewModellName.Margin = new System.Windows.Forms.Padding(2);
-            this.txbNewModellName.Name = "txbNewModellName";
-            this.txbNewModellName.Size = new System.Drawing.Size(337, 26);
-            this.txbNewModellName.TabIndex = 1;
+            this.txbNewModelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbNewModelName.Location = new System.Drawing.Point(52, 89);
+            this.txbNewModelName.Margin = new System.Windows.Forms.Padding(2);
+            this.txbNewModelName.Name = "txbNewModelName";
+            this.txbNewModelName.Size = new System.Drawing.Size(337, 26);
+            this.txbNewModelName.TabIndex = 1;
             // 
             // label3
             // 
@@ -233,15 +236,15 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnNewModel;
         private System.Windows.Forms.Label lblNewModelNameException;
-        private System.Windows.Forms.TextBox txbNewModellName;
+        private System.Windows.Forms.TextBox txbNewModelName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblModelSelectMaterial;
         private System.Windows.Forms.Label lblModelSelectShape;
         private System.Windows.Forms.CheckBox ckbModelPreview;
         private System.Windows.Forms.ComboBox cmbNewModelMaterial;
         private System.Windows.Forms.ComboBox cmbNewModelShape;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblModelSelectMaterial;
     }
 }
