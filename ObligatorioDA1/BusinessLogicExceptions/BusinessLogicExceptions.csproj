@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="PasswordException.cs" />
     <Compile Include="NameException.cs" />
-    <Compile Include="NegativeRadiusException.cs" />
+    <Compile Include="NonPositiveRadiusException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NotFoundException.cs" />
     <Compile Include="SessionException.cs" />

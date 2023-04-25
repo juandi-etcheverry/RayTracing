@@ -49,6 +49,7 @@ namespace ObligatorioDA1
                 if (!validRadius) throw new ArgumentException("Radius must be a decimal number");
                 newSphere.Name = txbNewShapeName.Text;
                 newSphere.OwnerName = _client.Name;
+                newSphere.Radius = radius;
                 RefreshPanel();
                 _shapeLogic.AddShape(newSphere);
                 _panelGeneral.goToShapeList();
@@ -63,7 +64,7 @@ namespace ObligatorioDA1
                 lblNewShapeRadiusException.Visible = true;
                 lblNewShapeRadiusException.Text = radEx.Message;
             }
-            catch (NegativeRadiusException negRadEx)
+            catch (NonPositiveRadiusException negRadEx)
             {
                 lblNewShapeRadiusException.Visible = true;
                 lblNewShapeRadiusException.Text = negRadEx.Message;
@@ -97,7 +98,7 @@ namespace ObligatorioDA1
                 lblNewShapeRadiusException.Visible = true;
                 lblNewShapeRadiusException.Text = argEx.Message;
             }
-            catch (NegativeRadiusException negRadEx)
+            catch (NonPositiveRadiusException negRadEx)
             {
                 lblNewShapeRadiusException.Visible = true;
                 lblNewShapeRadiusException.Text = negRadEx.Message;

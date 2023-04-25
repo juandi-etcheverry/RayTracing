@@ -278,7 +278,7 @@ namespace BusinessLogicTest
             _clientLogic.AddClient(client);
             _clientLogic.InitializeSession(client);
 
-            Assert.ThrowsException<NegativeRadiusException>(() =>
+            Assert.ThrowsException<NonPositiveRadiusException>(() =>
             {
                 Sphere newSphere = new Sphere
                 {
