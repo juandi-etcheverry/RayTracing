@@ -18,11 +18,27 @@ namespace GraphicsEngine
                 {
                     throw new ArgumentOutOfRangeException("X coordinate can not be greater than 1");
                 }
+
                 _x = value;
             }
         }
 
-        public double Y { get; set; }
+        private double _y;
+
+        public double Y
+        {
+            get => _y;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Y coordinate can not be less than 0");
+                }
+
+                _y = value;
+            }
+        }
+
         public double Z { get; set; }
     }
 }
