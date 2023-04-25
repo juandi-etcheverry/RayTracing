@@ -9,48 +9,56 @@ namespace GraphicsEngine
     public class Vector
     {
         private double _x;
+        private double _y;
+        private double _z;
         public double X
         {
             get => _x;
             set
             {
-                if (value > 1)
-                {
-                    throw new ArgumentOutOfRangeException("X coordinate can not be greater than 1");
-                }
-
+                ValidateVectorIsBetweenZeroAndOne(value, "X");
                 _x = value;
             }
         }
-
-        private double _y;
-
         public double Y
         {
             get => _y;
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException("Y coordinate can not be less than 0");
-                }
-
+                ValidateVectorIsBetweenZeroAndOne(value, "Y");
                 _y = value;
             }
         }
-
-        private double _z;
-
         public double Z
         {
             get => _z;
             set
             {
-                if (value > 1)
-                {
-                    throw new ArgumentOutOfRangeException("Z coordinate can not be greater than 1");
-                }
+                ValidateVectorIsBetweenZeroAndOne(value, "Z");
+                _z = value;
             }
+        }
+
+        private void ValidateVectorIsBetweenZeroAndOne(double value, string coordinateName)
+        {
+            ValidateVectorIsZeroOrGreater(value, coordinateName);
+            ValidateVectorIsOneOrBelow(value, coordinateName);
+        }
+
+        private void ValidateVectorIsZeroOrGreater(double value, string coordinateName)
+        {
+            if (value < 0) ThrowVectorCoordinateIsOutOfRange(coordinateName);
+
+        }
+
+        private void ValidateVectorIsOneOrBelow(double value, string coordinateName)
+        {
+            if (value > 1) ThrowVectorCoordinateIsOutOfRange(coordinateName);
+        }
+
+        private void ThrowVectorCoordinateIsOutOfRange(string coordinateName)
+        {
+            throw new ArgumentOutOfRangeException("{0} coordinate must be between 0 and 1", coordinateName);
         }
     }
 }
