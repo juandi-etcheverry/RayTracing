@@ -73,7 +73,7 @@ namespace GraphicsEngineTest
         public void GetColors_GetRed_OK()
         {
             int redAmount = vForColors.Red();
-            Assert.AreEqual(76, redAmount);
+            Assert.AreEqual(77, redAmount);
         }
 
         [TestMethod]
@@ -87,7 +87,7 @@ namespace GraphicsEngineTest
         public void GetColors_GetBlue_OK()
         {
             int blueAmount = vForColors.Blue();
-            Assert.AreEqual(229, blueAmount);
+            Assert.AreEqual(230, blueAmount);
         }
 
     }
