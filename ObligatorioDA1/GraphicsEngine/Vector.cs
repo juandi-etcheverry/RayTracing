@@ -38,17 +38,17 @@ namespace GraphicsEngine
         // C# Math.Round method rounds down in .5 values
         public int Red()
         {
-            return Convert.ToInt32(Math.Round(_x * 255));
+            return Convert.ToInt32(Math.Round(_x * 255, MidpointRounding.AwayFromZero));
         }
 
         public int Green()
         {
-            return Convert.ToInt32(Math.Round(_y * 255));
+            return Convert.ToInt32(Math.Round(_y * 255, MidpointRounding.AwayFromZero));
         }
 
         public int Blue()
         {
-            return Convert.ToInt32(Math.Round(_z * 255));
+            return Convert.ToInt32(Math.Round(_z * 255, MidpointRounding.AwayFromZero));
         }
 
 
