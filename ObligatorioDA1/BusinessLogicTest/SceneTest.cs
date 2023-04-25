@@ -12,6 +12,7 @@ namespace BusinessLogicTest
         private readonly ClientLogic _clientLogic = new ClientLogic();
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private readonly ModelLogic _modelLogic = new ModelLogic();
+        private readonly SceneLogic _sceneLogic = new SceneLogic();
 
 
         [TestInitialize]
@@ -54,6 +55,17 @@ namespace BusinessLogicTest
         [TestMethod]
         public void Create_Scene_OK_Test()
         {
+            Scene newScene = new Scene()
+            {
+                Name = "NewScene",
+                Models = _modelLogic.GetClientModels(),
+                LookFrom = (20, 10, 30),
+                LookAt = (0, 0, 15),
+                FoV = 50
+            };
+            _sceneLogic.Add(newScene);
+
+            Assert.AreEqual(1, _sceneLogic.GetClientScenes().Count);
         }
     }
 }
