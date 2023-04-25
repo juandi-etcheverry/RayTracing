@@ -44,6 +44,16 @@ namespace GraphicsEngineTest
             };
         }
 
-
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [TestMethod]
+        public void CreateVector_InvalidZ_Fail()
+        {
+            Vector v = new Vector()
+            {
+                X = 0.1,
+                Y = 0.4,
+                Z = 1.4
+            };
+        }
     }
 }
