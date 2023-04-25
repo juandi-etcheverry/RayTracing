@@ -7,6 +7,19 @@ namespace GraphicsEngineTest
     [TestClass]
     public class VectorTest
     {
+        private Vector vForColors;
+
+        [TestInitialize]
+        private void CreateVectorForColors()
+        {
+            vForColors = new Vector()
+            {
+                X = 0.3,
+                Y = 0.6,
+                Z = 0.9
+            };
+        }
+
         [TestMethod]
         public void CreateVector_ValidXYZ_OK()
         {
@@ -54,6 +67,13 @@ namespace GraphicsEngineTest
                 Y = 0.4,
                 Z = 1.4
             };
+        }
+
+        [TestMethod]
+        public void GetColors_GetRed_OK()
+        {
+            int redAmount = vForColors.Red();
+            Assert.AreEqual(77, redAmount);
         }
     }
 }
