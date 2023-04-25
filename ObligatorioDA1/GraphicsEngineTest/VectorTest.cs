@@ -82,5 +82,13 @@ namespace GraphicsEngineTest
             int greenAmount = vForColors.Green();
             Assert.AreEqual(153, greenAmount);
         }
+
+        [TestMethod]
+        public void GetColors_GetBlue_OK()
+        {
+            int blueAmount = vForColors.Blue();
+            Assert.AreEqual(229, blueAmount);
+        }
+
     }
 }
