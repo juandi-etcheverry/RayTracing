@@ -39,6 +39,18 @@ namespace GraphicsEngine
             }
         }
 
-        public double Z { get; set; }
+        private double _z;
+
+        public double Z
+        {
+            get => _z;
+            set
+            {
+                if (value > 1)
+                {
+                    throw new ArgumentOutOfRangeException("Z coordinate can not be greater than 1");
+                }
+            }
+        }
     }
 }
