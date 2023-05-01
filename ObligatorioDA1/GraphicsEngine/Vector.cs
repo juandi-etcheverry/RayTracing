@@ -4,10 +4,10 @@ namespace GraphicsEngine
 {
     public class Vector
     {
-        private double _x;
-        private double _y;
-        private double _z;
-        public double X
+        private decimal _x;
+        private decimal _y;
+        private decimal _z;
+        public decimal X
         {
             get => _x;
             set
@@ -16,7 +16,7 @@ namespace GraphicsEngine
                 _x = value;
             }
         }
-        public double Y
+        public decimal Y
         {
             get => _y;
             set
@@ -25,7 +25,7 @@ namespace GraphicsEngine
                 _y = value;
             }
         }
-        public double Z
+        public decimal Z
         {
             get => _z;
             set
@@ -51,21 +51,40 @@ namespace GraphicsEngine
             return Convert.ToInt32(Math.Round(_z * 255, MidpointRounding.AwayFromZero));
         }
 
+        private int CalculateCoordinateColor(decimal coordinate)
+        {
+            decimal roundedCoordinateColorValue = RoundedCoordinateColor(coordinate);
+            return ConvertedColorToInt32(roundedCoordinateColorValue);
+        }
 
+        private decimal RoundedCoordinateColor(decimal coordinate)
+        {
+            return Math.Round(CoordinateColorConversion(coordinate), MidpointRounding.AwayFromZero);
+        }
 
-        private void ValidateVectorIsBetweenZeroAndOne(double value, string coordinateName)
+        private decimal CoordinateColorConversion(decimal coordinate)
+        {
+            return coordinate * 255;
+        }
+
+        private int ConvertedColorToInt32(decimal coordinate)
+        {
+            return Convert.ToInt32(coordinate);
+        }
+
+        private void ValidateVectorIsBetweenZeroAndOne(decimal value, string coordinateName)
         {
             ValidateVectorIsZeroOrGreater(value, coordinateName);
             ValidateVectorIsOneOrBelow(value, coordinateName);
         }
 
-        private void ValidateVectorIsZeroOrGreater(double value, string coordinateName)
+        private void ValidateVectorIsZeroOrGreater(decimal value, string coordinateName)
         {
             if (value < 0) ThrowVectorCoordinateIsOutOfRange(coordinateName);
 
         }
 
-        private void ValidateVectorIsOneOrBelow(double value, string coordinateName)
+        private void ValidateVectorIsOneOrBelow(decimal value, string coordinateName)
         {
             if (value > 1) ThrowVectorCoordinateIsOutOfRange(coordinateName);
         }
