@@ -3,6 +3,7 @@ using System;
 using System.Runtime.CompilerServices;
 using Domain;
 using BusinessLogic;
+using BusinessLogicExceptions;
 
 namespace BusinessLogicTest
 {
@@ -78,6 +79,23 @@ namespace BusinessLogicTest
             _sceneLogic.Add(newScene);
 
             Assert.AreEqual(1, _sceneLogic.GetClientScenes().Count);
+        }
+
+        [TestMethod]
+        public void AddScene_NotLogged_FAIL_Test()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "NewScene",
+                LookFrom = (20, 10, 30),
+                LookAt = (0, 0, 15),
+                FoV = 50
+            };
+            newScene.AddPositionedModel(_newModel, (10, 10, 10));
+
+            _clientLogic.Logout();
+
+            Assert.ThrowsException<SessionException>(() => _sceneLogic.Add(newScene));
         }
     }
 }
