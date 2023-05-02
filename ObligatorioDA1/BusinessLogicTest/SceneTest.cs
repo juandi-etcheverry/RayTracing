@@ -97,5 +97,20 @@ namespace BusinessLogicTest
 
             Assert.ThrowsException<SessionException>(() => _sceneLogic.Add(newScene));
         }
+
+        [TestMethod]
+        public void Scene_EmptyName_FAIL_Test()
+        {
+            Assert.ThrowsException<NameException>(() =>
+            {
+                Scene newScene = new Scene()
+                {
+                    Name = "",
+                    LookFrom = (20, 10, 30),
+                    LookAt = (0, 0, 15),
+                    FoV = 50
+                };
+            });
+        }
     }
 }
