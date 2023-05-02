@@ -23,7 +23,7 @@ namespace BusinessLogic
 
         private void EnsureSceneNameUniqueness(string name)
         {
-            bool nameAlreadyExists = _repository.GetAll().
+            bool nameAlreadyExists = GetClientScenes().
                 Any(currentScene => currentScene.AreNamesEqual(name));
             if (nameAlreadyExists) Scene.ThrowNameExists();
         }
