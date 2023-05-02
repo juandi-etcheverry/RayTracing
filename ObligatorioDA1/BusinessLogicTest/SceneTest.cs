@@ -82,6 +82,20 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
+        public void Create_Scene_RegistrationDate_OK_Test()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "NewScene",
+                LookFrom = (20, 10, 30),
+                LookAt = (0, 0, 15),
+                FoV = 50
+            };
+
+            Assert.AreEqual(DateTime.Today, newScene.RegistrationDate);
+        }
+
+        [TestMethod]
         public void AddScene_NotLogged_FAIL_Test()
         {
             Scene newScene = new Scene()
