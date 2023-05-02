@@ -61,7 +61,7 @@ namespace BusinessLogic
 
         private void EnsureShapeNameUniqueness(string name)
         {
-            bool nameAlreadyExists = _repository.GetAll().
+            bool nameAlreadyExists = GetClientShapes().
                 Any(currentShape => currentShape.AreNamesEqual(name));
             if (nameAlreadyExists) Scene.ThrowNameExists();
         }
