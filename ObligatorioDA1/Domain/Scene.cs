@@ -26,6 +26,7 @@ namespace Domain
             set
             {
                 if (value.IsEmpty()) ThrowEmptyName();
+                if (value.HasTrailingSpaces()) throw new NameException("Scene name can't have trailing spaces");
                 _name = value;
             }
         }
