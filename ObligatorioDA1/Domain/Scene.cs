@@ -45,7 +45,13 @@ namespace Domain
 
         public void AddPositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
         {
-            PositionedModel newPositionedModel = new PositionedModel()
+            PositionedModel newPositionedModel = CreatePositionedModel(model, coordinates);
+            _models.Add(newPositionedModel);
+        }
+
+        private PositionedModel CreatePositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
+        {
+            PositionedModel positionedModel = new PositionedModel()
             {
                 Name = model.Name,
                 OwnerName = model.OwnerName,
@@ -53,7 +59,8 @@ namespace Domain
                 Material = model.Material,
                 Coordinates = coordinates
             };
-            _models.Add(newPositionedModel);
+
+            return positionedModel;
         }
 
         public DateTime LastModificationDate
