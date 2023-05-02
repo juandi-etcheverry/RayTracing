@@ -137,5 +137,20 @@ namespace BusinessLogicTest
 
             Assert.ThrowsException<NameException>(() => _sceneLogic.Add(anotherScene));
         }
+
+        [TestMethod]
+        public void Scene_NameTrailingSpaces_Fail_Test()
+        {
+            Assert.ThrowsException<NameException>(() =>
+            {
+                Scene anotherScene = new Scene()
+                {
+                    Name = "  Invalid Name",
+                    LookFrom = (20, 10, 30),
+                    LookAt = (0, 0, 15),
+                    FoV = 50
+                };
+            });
+        }
     }
 }
