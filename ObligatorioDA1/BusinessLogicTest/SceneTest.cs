@@ -112,5 +112,30 @@ namespace BusinessLogicTest
                 };
             });
         }
+
+        [TestMethod]
+        public void AddScene_RepeatedScenes_FAIL_Test()
+        {
+            Scene oneScene = new Scene()
+            {
+                Name = "SameName",
+                LookFrom = (20, 10, 30),
+                LookAt = (0, 0, 15),
+                FoV = 50
+            };
+            oneScene.AddPositionedModel(_newModel, (10, 10, 30));
+            _sceneLogic.Add(oneScene);
+
+            Scene anotherScene = new Scene()
+            {
+                Name = "SameName",
+                LookFrom = (20, 10, 30),
+                LookAt = (0, 0, 15),
+                FoV = 50
+            };
+            oneScene.AddPositionedModel(_newModel, (40, 0, 30));
+
+            Assert.ThrowsException<NameException>(() => _sceneLogic.Add(anotherScene));
+        }
     }
 }
