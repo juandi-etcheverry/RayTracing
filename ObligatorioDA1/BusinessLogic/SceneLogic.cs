@@ -15,9 +15,17 @@ namespace BusinessLogic
 
         public Scene Add(Scene scene)
         {
+            EnsureSceneNameUniqueness(scene.Name);
             AssignSceneToClient(scene);
             _repository.Add(scene);
             return scene;
+        }
+
+        private void EnsureSceneNameUniqueness(string name)
+        {
+            bool nameAlreadyExists = _repository.GetAll().
+                Any(currentScene => currentScene.AreNamesEqual(name));
+            if (nameAlreadyExists) Scene.ThrowNameExists();
         }
 
         private void AssignSceneToClient(Scene scene)

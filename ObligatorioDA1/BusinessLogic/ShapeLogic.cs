@@ -63,7 +63,7 @@ namespace BusinessLogic
         {
             bool nameAlreadyExists = _repository.GetAll().
                 Any(currentShape => currentShape.AreNamesEqual(name));
-            if (nameAlreadyExists) Shape.ThrowNameExists();
+            if (nameAlreadyExists) Scene.ThrowNameExists();
         }
     }
 }

@@ -107,5 +107,15 @@ namespace Domain
         {
             throw new NameException("Scene name can't be empty");
         }
+
+        public bool AreNamesEqual(string otherName)
+        {
+            return _name.ToLower() == otherName.ToLower();
+        }
+
+        public static void ThrowNameExists()
+        {
+            throw new NameException("Scene name already exists");
+        }
     }
 }
