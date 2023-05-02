@@ -25,7 +25,7 @@ namespace Domain
             get => _name;
             set
             {
-                if (value.IsEmpty()) throw new NameException("Scene name can't be empty");
+                if (value.IsEmpty()) ThrowEmptyName();
                 _name = value;
             }
         }
@@ -101,6 +101,11 @@ namespace Domain
         public static void ThrowClientNotLoggedIn()
         {
             throw new SessionException("Client not logged in");
+        }
+
+        private static void ThrowEmptyName()
+        {
+            throw new NameException("Scene name can't be empty");
         }
     }
 }
