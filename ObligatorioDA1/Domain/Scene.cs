@@ -99,6 +99,11 @@ namespace Domain
             set => _fov = value;
         }
 
+        public Scene()
+        {
+            _registrationDate = DateTime.Today;
+        }
+
         public static void ThrowClientNotLoggedIn()
         {
             throw new SessionException("Client not logged in");
