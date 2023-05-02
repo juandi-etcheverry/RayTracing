@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ValidationService;
 
 namespace Domain
 {
@@ -22,7 +23,11 @@ namespace Domain
         public string Name
         {
             get => _name;
-            set => _name = value;
+            set
+            {
+                if (value.IsEmpty()) throw new NameException("Scene name can't be empty");
+                _name = value;
+            }
         }
 
         public string OwnerName
