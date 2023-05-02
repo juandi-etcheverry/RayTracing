@@ -26,7 +26,7 @@ namespace Domain
             set
             {
                 if (value.IsEmpty()) ThrowEmptyName();
-                if (value.HasTrailingSpaces()) throw new NameException("Scene name can't have trailing spaces");
+                if (value.HasTrailingSpaces()) ThrowHasTrailingSpaces();
                 _name = value;
             }
         }
@@ -117,6 +117,11 @@ namespace Domain
         public static void ThrowNameExists()
         {
             throw new NameException("Scene name already exists");
+        }
+
+        public void ThrowHasTrailingSpaces()
+        {
+            throw new NameException("Scene name can't have trailing spaces");
         }
     }
 }
