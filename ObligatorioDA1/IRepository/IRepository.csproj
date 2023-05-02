@@ -45,6 +45,7 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="IRepositoryClient.cs" />
     <Compile Include="IRepositoryModel.cs" />
+    <Compile Include="IRepositoryScene.cs" />
     <Compile Include="IRepositoryShape.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

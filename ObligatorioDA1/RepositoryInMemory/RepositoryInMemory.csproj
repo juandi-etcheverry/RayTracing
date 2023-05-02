@@ -45,6 +45,7 @@
     <Compile Include="MaterialRepository.cs" />
     <Compile Include="ModelRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SceneRepository.cs" />
     <Compile Include="ShapeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
