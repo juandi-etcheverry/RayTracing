@@ -276,5 +276,22 @@ namespace BusinessLogicTest
 
             Assert.AreEqual("NewScene2", _sceneLogic.GetClientScenes()[0].Name);
         }
+
+        [TestMethod]
+        public void DeleteScene_OK_Test()
+        {
+            Scene scene = new Scene()
+            {
+                Name = "NewScene1",
+            };
+            _sceneLogic.Add(scene);
+
+            _sceneLogic.RemoveScene(scene);
+
+            Assert.AreEqual(0, _sceneLogic.GetClientScenes().Count);
+            Assert.AreEqual(1, _modelLogic.GetClientModels().Count);
+            Assert.AreEqual(1, _shapeLogic.GetClientShapes().Count);
+            Assert.AreEqual(1, _materialLogic.GetClientMaterials().Count);
+        }
     }
 }
