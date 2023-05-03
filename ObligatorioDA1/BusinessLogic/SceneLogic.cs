@@ -46,7 +46,8 @@ namespace BusinessLogic
 
         public IList<Scene> GetClientScenes()
         {
-            return _repository.GetAll().Where(scene => scene.OwnerName == Session.LoggedClient.Name).ToList();
+            return _repository.GetAll().Where(scene => scene.OwnerName == Session.LoggedClient.Name).
+                                        OrderByDescending(scene => scene.LastModificationDate).ToList();
         }
     }
 }
