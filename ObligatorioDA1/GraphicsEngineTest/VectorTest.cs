@@ -40,42 +40,6 @@ namespace GraphicsEngineTest
             Assert.AreEqual((0.3m, 1.0m, 0.0m), (v.X, v.Y, v.Z));
         }
 
-        //[ExpectedException(typeof(ArgumentOutOfRangeException))]
-        //[TestMethod]
-        //public void CreateVector_InvalidX_Fail()
-        //{
-        //    Vector v = new Vector()
-        //    {
-        //        X = 1.2m,
-        //        Y = 1.0m,
-        //        Z = 0.0m
-        //    };
-        //}
-
-        //[ExpectedException(typeof(ArgumentOutOfRangeException))]
-        //[TestMethod]
-        //public void CreateVector_InvalidY_Fail()
-        //{
-        //    Vector v = new Vector()
-        //    {
-        //        X = 0.1m,
-        //        Y = -0.4m,
-        //        Z = 0.0m
-        //    };
-        //}
-
-        //[ExpectedException(typeof(ArgumentOutOfRangeException))]
-        //[TestMethod]
-        //public void CreateVector_InvalidZ_Fail()
-        //{
-        //    Vector v = new Vector()
-        //    {
-        //        X = 0.1m,
-        //        Y = 0.4m,
-        //        Z = 1.4m
-        //    };
-        //}
-
         [TestMethod]
         public void GetColors_GetRed_OK()
         {
