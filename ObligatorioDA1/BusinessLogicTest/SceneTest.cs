@@ -256,5 +256,25 @@ namespace BusinessLogicTest
                 };
             });
         }
+
+        [TestMethod]
+        public void Scenes_OrderByModificationDateDescending_OK_Test()
+        {
+            Scene firstScene = new Scene()
+            {
+                Name = "NewScene1",
+            };
+            _sceneLogic.Add(firstScene);
+
+            Scene secondScene = new Scene()
+            {
+                Name = "NewScene2",
+            };
+            _sceneLogic.Add(secondScene);
+
+            firstScene.LastModificationDate = DateTime.Today.AddDays(-1);
+
+            Assert.AreEqual("NewScene2", _sceneLogic.GetClientScenes()[0].Name);
+        }
     }
 }
