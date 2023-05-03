@@ -93,5 +93,15 @@ namespace GraphicsEngine
         {
             throw new ArgumentOutOfRangeException("{0} coordinate must be between 0 and 1", coordinateName);
         }
+
+        public Vector Add(Vector vector)
+        {
+            return new Vector()
+            {
+                X = this.X,
+                Y = this.Y,
+                Z = this.Z
+            };
+        }
     }
 }

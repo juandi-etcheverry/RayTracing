@@ -97,6 +97,7 @@ namespace GraphicsEngineTest
             Assert.AreEqual(230, blueAmount);
         }
 
+        [TestMethod]
         public void AddVector_NullVector_OK()
         {
             Vector sum = vForColors.Add(nullVector);
