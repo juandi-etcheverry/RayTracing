@@ -79,7 +79,7 @@ namespace GraphicsEngineTest
         public void SubstractVector_ValidVector_OK()
         {
             Vector sub = vForColors.Substract(vForColors);
-            Assert.AreEqual((0m, 0m, 0m), (vForColors.X, vForColors.Y, vForColors.Z));
+            Assert.AreEqual((0m, 0m, 0m), (sub.X, sub.Y, sub.Z));
         }
     }
 }
