@@ -49,15 +49,19 @@ namespace ObligatorioDA1.Material_Panel
 
         private void dgvMaterialList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            String materialName = dgvMaterialList.CurrentRow.Cells[3].Value.ToString();
-            Material material = _materialLogic.Get(materialName);
+            String materialName;
+            Material material;
             if (this.dgvMaterialList.Columns[e.ColumnIndex].Name == "Delete")
             {
+                 materialName = dgvMaterialList.CurrentRow.Cells[3].Value.ToString();
+                 material = _materialLogic.Get(materialName);
                 _materialLogic.Remove(material);
                 dgvMaterialList.Rows.Remove(dgvMaterialList.CurrentRow);
             }
             if (this.dgvMaterialList.Columns[e.ColumnIndex].Name == "Rename")
             {
+                materialName = dgvMaterialList.CurrentRow.Cells[3].Value.ToString();
+                material = _materialLogic.Get(materialName);
                 _panelGeneral.goToMaterialRename(material);
             } 
         }

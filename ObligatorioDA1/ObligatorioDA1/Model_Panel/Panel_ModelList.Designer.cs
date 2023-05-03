@@ -44,10 +44,10 @@
             this.btnAddModel.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnAddModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddModel.ForeColor = System.Drawing.Color.White;
-            this.btnAddModel.Location = new System.Drawing.Point(62, 60);
+            this.btnAddModel.Location = new System.Drawing.Point(27, 60);
             this.btnAddModel.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddModel.Name = "btnAddModel";
-            this.btnAddModel.Size = new System.Drawing.Size(466, 37);
+            this.btnAddModel.Size = new System.Drawing.Size(542, 37);
             this.btnAddModel.TabIndex = 1;
             this.btnAddModel.Text = "ADD MODEL";
             this.btnAddModel.UseVisualStyleBackColor = false;
@@ -81,7 +81,7 @@
             this.Rename,
             this.Delete});
             this.dgvModelList.EnableHeadersVisualStyles = false;
-            this.dgvModelList.Location = new System.Drawing.Point(62, 116);
+            this.dgvModelList.Location = new System.Drawing.Point(27, 116);
             this.dgvModelList.Margin = new System.Windows.Forms.Padding(2);
             this.dgvModelList.Name = "dgvModelList";
             this.dgvModelList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -95,17 +95,19 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvModelList.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvModelList.RowTemplate.Height = 33;
-            this.dgvModelList.Size = new System.Drawing.Size(466, 316);
+            this.dgvModelList.Size = new System.Drawing.Size(542, 316);
             this.dgvModelList.TabIndex = 3;
             this.dgvModelList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvModelList_CellClick);
             this.dgvModelList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvModelList_CellPainting);
             // 
             // Preview
             // 
-            this.Preview.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Preview.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Preview.HeaderText = "Preview";
+            this.Preview.Image = ((System.Drawing.Image)(resources.GetObject("Preview.Image")));
+            this.Preview.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Preview.Name = "Preview";
-            this.Preview.Width = 30;
+            this.Preview.Width = 68;
             // 
             // Rename
             // 

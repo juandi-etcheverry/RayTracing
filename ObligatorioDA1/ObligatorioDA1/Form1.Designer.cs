@@ -183,7 +183,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ClientSize = new System.Drawing.Size(722, 463);
+            this.ClientSize = new System.Drawing.Size(734, 481);
             this.Controls.Add(this.lblPasswordException);
             this.Controls.Add(this.lblNameException);
             this.Controls.Add(this.flyPanelPrincipal);
@@ -197,8 +197,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MaximumSize = new System.Drawing.Size(758, 539);
-            this.MinimumSize = new System.Drawing.Size(727, 461);
+            this.MaximumSize = new System.Drawing.Size(750, 520);
+            this.MinimumSize = new System.Drawing.Size(750, 520);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);

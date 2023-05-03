@@ -49,15 +49,19 @@ namespace ObligatorioDA1
         }
         private void dgvShapeList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            String shapeName = dgvShapeList.CurrentRow.Cells[2].Value.ToString();
-            Shape shape = _shapeLogic.GetShape(shapeName);
+            String shapeName;
+            Shape shape;
             if (this.dgvShapeList.Columns[e.ColumnIndex].Name == "Delete" )
             {
+                shapeName = dgvShapeList.CurrentRow.Cells[2].Value.ToString();
+                shape = _shapeLogic.GetShape(shapeName);
                 _shapeLogic.RemoveShape(shape);
                 dgvShapeList.Rows.Remove(dgvShapeList.CurrentRow);
             }
             if(this.dgvShapeList.Columns[e.ColumnIndex].Name == "Rename")
             {
+                shapeName = dgvShapeList.CurrentRow.Cells[2].Value.ToString();
+                shape = _shapeLogic.GetShape(shapeName);
                 _panelGeneral.goToShapeRename(shape);
             }
         }

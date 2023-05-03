@@ -26,7 +26,7 @@ namespace ObligatorioDA1.Model_Panel
             _panelGeneral = panelGeneral;
             InitializeComponent();
             //refreshModelAddNew(_client);
-            
+
         }
         public void refreshModelAddNew(Client client)
         {
@@ -53,6 +53,7 @@ namespace ObligatorioDA1.Model_Panel
                 _newModel.Name = txbNewModelName.Text;
                 _newModel.Material = _materialLogic.Get(cmbNewModelMaterial.SelectedItem.ToString());
                 _newModel.Shape = _shapeLogic.GetShape(cmbNewModelShape.SelectedItem.ToString());
+                _newModel.WantPreview = ckbModelPreview.Checked;
                 _modelLogic.Add(_newModel);
                 RefreshPage();
                 _panelGeneral.goToModelList();
@@ -92,11 +93,13 @@ namespace ObligatorioDA1.Model_Panel
         }
         private void refreshShapeCombo()
         {
+            cmbNewModelShape.Items.Clear();
             foreach (Shape s in _shapeLogic.GetClientShapes())
                 cmbNewModelShape.Items.Add(s.Name);
         }
         private void refreshMaterialCombo()
         {
+            cmbNewModelMaterial.Items.Clear();
             foreach (Material m in _materialLogic.GetClientMaterials())
                 cmbNewModelMaterial.Items.Add(m.Name);
         }
@@ -104,9 +107,8 @@ namespace ObligatorioDA1.Model_Panel
         {
             lblNewModelNameException.Visible = false;
             lblModelSelectShape.Visible = false;
+            lblModelSelectMaterial.Visible = false;
             txbNewModelName.Clear();
-            cmbNewModelMaterial.Items.Clear();
-            cmbNewModelShape.Items.Clear();
             ckbModelPreview.Checked = false;
             refreshShapeCombo();
             refreshMaterialCombo();

@@ -617,7 +617,7 @@
             this.label16.TabIndex = 22;
             this.label16.Text = "Used models";
             // 
-            // Panel_SceneAddNew
+            // Panel_SceneEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -636,6 +636,7 @@
             this.Controls.Add(this.lblNewSceneName);
             this.MaximumSize = new System.Drawing.Size(600, 520);
             this.MinimumSize = new System.Drawing.Size(600, 520);
+            //this.Name = "Panel_SceneEditor";
             this.Size = new System.Drawing.Size(600, 520);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
