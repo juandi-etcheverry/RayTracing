@@ -74,5 +74,12 @@ namespace GraphicsEngineTest
             Vector sum = vForColors.Add(vForColors);
             Assert.AreEqual((2 * vForColors.X, 2 * vForColors.Y, 2 * vForColors.Z), (sum.X, sum.Y, sum.Z));
         }
+
+        [TestMethod]
+        public void SubstractVector_ValidVector_OK()
+        {
+            Vector sub = vForColors.Substract(vForColors);
+            Assert.AreEqual((0m, 0m, 0m), (vForColors.X, vForColors.Y, vForColors.Z));
+        }
     }
 }
