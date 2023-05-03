@@ -185,5 +185,24 @@ namespace BusinessLogicTest
 
             Assert.AreEqual(0, newScene.Models.Count);
         }
+
+        [TestMethod]
+        public void ModifyScene_GetLastModificationDate_OK_Test()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "NewScene",
+                LookFrom = (20, 10, 30),
+                LookAt = (0, 0, 15),
+                FoV = 50
+            };
+            PositionedModel positionedModel = newScene.AddPositionedModel(_newModel, (10, 10, 10));
+
+            _sceneLogic.Add(newScene);
+
+            newScene.DeletePositionedModel(positionedModel.Name, positionedModel.Coordinates);
+
+            Assert.AreEqual(DateTime.Today, newScene.LastModificationDate);
+        }
     }
 }
