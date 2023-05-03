@@ -113,7 +113,7 @@ namespace Domain
             get => _fov;
             set
             {
-                if (value < 1 || value > 160) throw new ArgumentOutOfRangeException("FoV must be between 1 and 160");
+                if (value < 1 || value > 160) ThrowFoVOutOfRange();
                 _fov = value;
             }
         }
@@ -149,6 +149,11 @@ namespace Domain
         public void ThrowHasTrailingSpaces()
         {
             throw new NameException("Scene name can't have trailing spaces");
+        }
+
+        public void ThrowFoVOutOfRange()
+        {
+            throw new ArgumentOutOfRangeException("FoV must be between 1 and 160");
         }
     }
 }
