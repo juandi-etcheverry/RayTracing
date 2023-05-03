@@ -63,5 +63,15 @@ namespace GraphicsEngine
                 Z = this.Z - vector.Z
             };
         }
+
+        public Vector Multiply(decimal scalar)
+        {
+            return new Vector()
+            {
+                X = 0,
+                Y = 0,
+                Z = 0
+            };
+        }
     }
 }
