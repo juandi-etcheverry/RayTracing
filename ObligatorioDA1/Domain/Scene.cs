@@ -71,8 +71,14 @@ namespace Domain
 
         public void DeletePositionedModel(string name)
         {
-            PositionedModel positionedModel = _models.FirstOrDefault(model => model.Name == name);
+            PositionedModel positionedModel = GetPositionedModel(name);
             _models.Remove(positionedModel);
+        }
+
+        public PositionedModel GetPositionedModel(string name)
+        {
+            PositionedModel positionedModel = _models.FirstOrDefault(model => model.Name == name);
+            return positionedModel;
         }
 
         public DateTime LastModificationDate
