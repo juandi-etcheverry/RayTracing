@@ -47,6 +47,8 @@ namespace BusinessLogic
 
         public Scene RenameScene(Scene scene, string newName)
         {
+            EnsureSceneExists(scene.Name);
+            EnsureSceneNameUniqueness(newName);
             scene.Name = newName;
             return scene;
         }
