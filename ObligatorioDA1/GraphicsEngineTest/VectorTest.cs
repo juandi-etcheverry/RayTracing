@@ -103,5 +103,12 @@ namespace GraphicsEngineTest
             Vector sum = vForColors.Add(nullVector);
             Assert.AreEqual((vForColors.X, vForColors.Y, vForColors.Z), (sum.X, sum.Y, sum.Z));
         }
+
+        [TestMethod]
+        public void AddVector_ValidVector_OK()
+        {
+            Vector sum = vForColors.Add(vForColors);
+            Assert.AreEqual((2 * vForColors.X, 2 * vForColors.Y, 2 * vForColors.Z), (sum.X, sum.Y, sum.Z));
+        }
     }
 }
