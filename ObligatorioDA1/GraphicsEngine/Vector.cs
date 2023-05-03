@@ -83,5 +83,10 @@ namespace GraphicsEngine
                 Z = this.Z / scalar
             };
         }
+
+        public decimal Length()
+        {
+            return 0;
+        }
     }
 }
