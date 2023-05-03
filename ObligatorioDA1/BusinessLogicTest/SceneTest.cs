@@ -343,6 +343,23 @@ namespace BusinessLogicTest
             _sceneLogic.Add(scene);
 
             Assert.ThrowsException<NotFoundException>(() => _sceneLogic.RenameScene(_sceneLogic.GetScene("newScene2"), "NewScene3"));
-        }   
+        }
+
+        [TestMethod]
+        public void RenameScene_NameAlreadyExists_FAIL_Test()
+        {
+            Scene scene1 = new Scene()
+            {
+                Name = "NewScene1",
+            };
+            _sceneLogic.Add(scene1);
+            Scene scene2 = new Scene()
+            {
+                Name = "NewScene2",
+            };
+            _sceneLogic.Add(scene2);
+
+            Assert.ThrowsException<NameException>(() => _sceneLogic.RenameScene(_sceneLogic.GetScene("NewScene1"), "NewScene2"));
+        }
     }
 }
