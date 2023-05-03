@@ -49,10 +49,11 @@ namespace Domain
             set => _models = value;
         }
 
-        public void AddPositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
+        public PositionedModel AddPositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
         {
             PositionedModel newPositionedModel = CreatePositionedModel(model, coordinates);
             _models.Add(newPositionedModel);
+            return newPositionedModel;
         }
 
         private PositionedModel CreatePositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
@@ -69,15 +70,15 @@ namespace Domain
             return positionedModel;
         }
 
-        public void DeletePositionedModel(string name)
+        public void DeletePositionedModel(string name, ValueTuple<decimal, decimal, decimal> coordinates)
         {
-            PositionedModel positionedModel = GetPositionedModel(name);
+            PositionedModel positionedModel = GetPositionedModel(name, coordinates);
             _models.Remove(positionedModel);
         }
 
-        public PositionedModel GetPositionedModel(string name)
+        public PositionedModel GetPositionedModel(string name, ValueTuple<decimal, decimal, decimal> coordinates)
         {
-            PositionedModel positionedModel = _models.FirstOrDefault(model => model.Name == name);
+            PositionedModel positionedModel = _models.FirstOrDefault(model => model.Name == name && model.Coordinates == coordinates);
             return positionedModel;
         }
 

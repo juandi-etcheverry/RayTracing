@@ -177,11 +177,11 @@ namespace BusinessLogicTest
                 LookAt = (0, 0, 15),
                 FoV = 50
             };
-            newScene.AddPositionedModel(_newModel, (10, 10, 10));
+            PositionedModel positionedModel = newScene.AddPositionedModel(_newModel, (10, 10, 10));
 
             _sceneLogic.Add(newScene);
 
-            newScene.DeletePositionedModel(_newModel.Name);
+            newScene.DeletePositionedModel(positionedModel.Name, positionedModel.Coordinates);
 
             Assert.AreEqual(0, newScene.Models.Count);
         }
