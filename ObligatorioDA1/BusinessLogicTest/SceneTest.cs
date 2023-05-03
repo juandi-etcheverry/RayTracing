@@ -166,5 +166,24 @@ namespace BusinessLogicTest
                 };
             });
         }
+
+        [TestMethod]
+        public void Delete_PositionedModel_OK_Test()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "NewScene",
+                LookFrom = (20, 10, 30),
+                LookAt = (0, 0, 15),
+                FoV = 50
+            };
+            newScene.AddPositionedModel(_newModel, (10, 10, 10));
+
+            _sceneLogic.Add(newScene);
+
+            newScene.DeletePositionedModel(_newModel);
+
+            Assert.AreEqual(0, newScene.Models.Count);
+        }
     }
 }
