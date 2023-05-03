@@ -242,5 +242,19 @@ namespace BusinessLogicTest
 
             Assert.AreEqual((uint)30, newScene.FoV);
         }
+
+        [TestMethod]
+        public void CreateScene_OutOfRangeFoV_Fail_Test()
+        {
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+            {
+                Scene newScene = new Scene()
+                {
+                    Name = "NewScene",
+                    LookFrom = (40, 34, 2),
+                    FoV = 180
+                };
+            });
+        }
     }
 }
