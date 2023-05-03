@@ -68,9 +68,9 @@ namespace GraphicsEngine
         {
             return new Vector()
             {
-                X = 0,
-                Y = 0,
-                Z = 0
+                X = this.X * scalar,
+                Y = this.Y * scalar,
+                Z = this.Z * scalar
             };
         }
     }
