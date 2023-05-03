@@ -306,5 +306,17 @@ namespace BusinessLogicTest
 
             Assert.ThrowsException<NotFoundException>(() => _sceneLogic.RemoveScene(scene));
         }
+
+        [TestMethod]
+        public void GetScene_NotExist_FAIL_Test()
+        {
+            Scene scene = new Scene()
+            {
+                Name = "NewScene1",
+            };
+            _sceneLogic.Add(scene);
+
+            Assert.ThrowsException<NotFoundException>(() => _sceneLogic.GetScene("NewScene2"));
+        }
     }
 }
