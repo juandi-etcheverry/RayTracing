@@ -53,6 +53,7 @@ namespace Domain
         {
             PositionedModel newPositionedModel = CreatePositionedModel(model, coordinates);
             _models.Add(newPositionedModel);
+            _lastModificationDate = DateTime.Today;
             return newPositionedModel;
         }
 
@@ -73,6 +74,7 @@ namespace Domain
         public void DeletePositionedModel(string name, ValueTuple<decimal, decimal, decimal> coordinates)
         {
             PositionedModel positionedModel = GetPositionedModel(name, coordinates);
+            _lastModificationDate = DateTime.Today;
             _models.Remove(positionedModel);
         }
 
