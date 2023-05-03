@@ -137,6 +137,11 @@ namespace Domain
             throw new NameException("Scene name can't be empty");
         }
 
+        public static void ThrowNotFound()
+        {
+            throw new NotFoundException("Scene not found");
+        }
+
         public bool AreNamesEqual(string otherName)
         {
             return _name.ToLower() == otherName.ToLower();

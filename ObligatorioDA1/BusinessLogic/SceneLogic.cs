@@ -41,7 +41,14 @@ namespace BusinessLogic
 
         public void RemoveScene(Scene scene)
         {
+            EnsureSceneExists(scene.Name);
             _repository.Remove(scene);
+        }
+
+        private void EnsureSceneExists(string name)
+        {
+            bool sceneExists = GetClientScenes().Any(scene => scene.Name.ToLower() == name.ToLower());
+            if(!sceneExists) Scene.ThrowNotFound();
         }
 
         public Scene GetScene(string name)
