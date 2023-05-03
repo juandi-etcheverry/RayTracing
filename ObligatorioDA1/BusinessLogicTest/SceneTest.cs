@@ -293,5 +293,18 @@ namespace BusinessLogicTest
             Assert.AreEqual(1, _shapeLogic.GetClientShapes().Count);
             Assert.AreEqual(1, _materialLogic.GetClientMaterials().Count);
         }
+
+        [TestMethod]
+        public void DeleteSceneNotInList_FAIL_Test()
+        {
+            Scene scene = new Scene()
+            {
+                Name = "NewScene1",
+            };
+            _sceneLogic.Add(scene);
+            _sceneLogic.RemoveScene(scene);
+
+            Assert.ThrowsException<NotFoundException>(() => _sceneLogic.RemoveScene(scene));
+        }
     }
 }
