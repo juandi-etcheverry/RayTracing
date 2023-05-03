@@ -53,6 +53,7 @@ namespace BusinessLogic
 
         public Scene GetScene(string name)
         {
+            EnsureSceneExists(name);
             return _repository.Get(name);
         }
 
