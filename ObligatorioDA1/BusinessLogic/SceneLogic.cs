@@ -39,6 +39,16 @@ namespace BusinessLogic
             if (Session.LoggedClient == null) Scene.ThrowClientNotLoggedIn();
         }
 
+        public void RemoveScene(Scene scene)
+        {
+            _repository.Remove(scene);
+        }
+
+        public Scene GetScene(string name)
+        {
+            return _repository.Get(name);
+        }
+
         public IList<Scene> GetAll()
         {
             return _repository.GetAll();
