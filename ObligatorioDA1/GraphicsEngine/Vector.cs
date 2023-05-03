@@ -73,5 +73,15 @@ namespace GraphicsEngine
                 Z = this.Z * scalar
             };
         }
+
+        public Vector Divide(decimal scalar)
+        {
+            return new Vector()
+            {
+                X = this.X / scalar,
+                Y = this.Y / scalar,
+                Z = this.Z / scalar
+            };
+        }
     }
 }

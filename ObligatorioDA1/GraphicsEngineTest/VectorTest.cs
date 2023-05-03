@@ -102,5 +102,13 @@ namespace GraphicsEngineTest
             Vector div = vForColors.Divide(3);
             Assert.AreEqual((0.1m, 0.2m, 0.3m), (div.X, div.Y, div.Z));
         }
+
+        [ExpectedException(typeof(System.DivideByZeroException))]
+        [TestMethod]
+        public void DivideVector_Zero_FAIL()
+        {
+            Vector div = vForColors.Divide(0);
+            Assert.AreEqual((0.1m, 0.2m, 0.3m), (div.X, div.Y, div.Z));
+        }
     }
 }
