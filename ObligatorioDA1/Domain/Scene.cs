@@ -117,6 +117,7 @@ namespace Domain
         public Scene()
         {
             _registrationDate = DateTime.Today;
+            _lookfrom = (0, 2, 0);
         }
 
         public static void ThrowClientNotLoggedIn()
