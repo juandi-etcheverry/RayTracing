@@ -8,15 +8,22 @@ namespace GraphicsEngineTest
     public class VectorTest
     {
         private Vector vForColors;
+        private Vector nullVector;
 
         [TestInitialize]
         public void CreateVectorForColors()
         {
             vForColors = new Vector()
             {
-                X = 0.3,
-                Y = 0.6,
-                Z = 0.9
+                X = 0.3m,
+                Y = 0.6m,
+                Z = 0.9m
+            };
+            nullVector = new Vector()
+            {
+                X = 0,
+                Y = 0,
+                Z = 0
             };
         }
 
@@ -25,12 +32,12 @@ namespace GraphicsEngineTest
         {
             Vector v = new Vector()
             {
-                X = 0.3,
-                Y = 1.0,
-                Z = 0.0
+                X = 0.3m,
+                Y = 1.0m,
+                Z = 0.0m
             };
 
-            Assert.AreEqual((0.3, 1.0, 0.0), (v.X, v.Y, v.Z));
+            Assert.AreEqual((0.3m, 1.0m, 0.0m), (v.X, v.Y, v.Z));
         }
 
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
@@ -39,9 +46,9 @@ namespace GraphicsEngineTest
         {
             Vector v = new Vector()
             {
-                X = 1.2,
-                Y = 1.0,
-                Z = 0.0
+                X = 1.2m,
+                Y = 1.0m,
+                Z = 0.0m
             };
         }
 
@@ -51,9 +58,9 @@ namespace GraphicsEngineTest
         {
             Vector v = new Vector()
             {
-                X = 0.1,
-                Y = -0.4,
-                Z = 0.0
+                X = 0.1m,
+                Y = -0.4m,
+                Z = 0.0m
             };
         }
 
@@ -63,9 +70,9 @@ namespace GraphicsEngineTest
         {
             Vector v = new Vector()
             {
-                X = 0.1,
-                Y = 0.4,
-                Z = 1.4
+                X = 0.1m,
+                Y = 0.4m,
+                Z = 1.4m
             };
         }
 
@@ -89,6 +96,7 @@ namespace GraphicsEngineTest
             int blueAmount = vForColors.Blue();
             Assert.AreEqual(230, blueAmount);
         }
+
 
     }
 }
