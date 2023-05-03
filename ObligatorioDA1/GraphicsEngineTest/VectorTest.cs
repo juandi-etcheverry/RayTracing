@@ -81,5 +81,12 @@ namespace GraphicsEngineTest
             Vector sub = vForColors.Substract(vForColors);
             Assert.AreEqual((0m, 0m, 0m), (sub.X, sub.Y, sub.Z));
         }
+
+        [TestMethod]
+        public void MultiplyVector_Zero_OK()
+        {
+            Vector mult = vForColors.Multiply(0);
+            Assert.AreEqual((0m, 0m, 0m), (mult.X, mult.Y, mult.Z));
+        }
     }
 }
