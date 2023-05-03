@@ -240,7 +240,7 @@ namespace BusinessLogicTest
                 LookFrom = (40, 34, 2),
             };
 
-            Assert.AreEqual(30, newScene.FoV);
+            Assert.AreEqual((uint)30, newScene.FoV);
         }
     }
 }
