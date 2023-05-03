@@ -88,5 +88,12 @@ namespace GraphicsEngineTest
             Vector mult = vForColors.Multiply(0);
             Assert.AreEqual((0m, 0m, 0m), (mult.X, mult.Y, mult.Z));
         }
+
+        [TestMethod]
+        public void MultiplyVector_Three_OK()
+        {
+            Vector mult = vForColors.Multiply(3);
+            Assert.AreEqual((0.9m, 1.8m, 2.7m), (mult.X, mult.Y, mult.Z));
+        }
     }
 }
