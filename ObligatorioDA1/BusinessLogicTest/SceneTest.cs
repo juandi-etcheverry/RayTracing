@@ -217,5 +217,18 @@ namespace BusinessLogicTest
 
             Assert.AreEqual((0, 2, 0), newScene.LookFrom);
         }
+
+        [TestMethod]
+        public void CreateScene_EmptyLookAt_DefaultValue_OK_Test()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "NewScene",
+                LookFrom = (40, 34, 2),
+                FoV = 50
+            };
+
+            Assert.AreEqual((0, 2, 5), newScene.LookAt);
+        }
     }
 }
