@@ -181,7 +181,7 @@ namespace BusinessLogicTest
 
             _sceneLogic.Add(newScene);
 
-            newScene.DeletePositionedModel(_newModel);
+            newScene.DeletePositionedModel(_newModel.Name);
 
             Assert.AreEqual(0, newScene.Models.Count);
         }
