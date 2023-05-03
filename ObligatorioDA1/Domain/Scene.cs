@@ -111,7 +111,11 @@ namespace Domain
         public uint FoV
         {
             get => _fov;
-            set => _fov = value;
+            set
+            {
+                if (value < 1 || value > 160) throw new ArgumentOutOfRangeException("FoV must be between 1 and 160");
+                _fov = value;
+            }
         }
 
         public Scene()
