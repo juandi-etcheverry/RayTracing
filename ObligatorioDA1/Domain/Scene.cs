@@ -51,24 +51,10 @@ namespace Domain
 
         public PositionedModel AddPositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
         {
-            PositionedModel newPositionedModel = CreatePositionedModel(model, coordinates);
+            PositionedModel newPositionedModel = new PositionedModel(model, coordinates);
             _models.Add(newPositionedModel);
             _lastModificationDate = DateTime.Today;
             return newPositionedModel;
-        }
-
-        private PositionedModel CreatePositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
-        {
-            PositionedModel positionedModel = new PositionedModel()
-            {
-                Name = model.Name,
-                OwnerName = model.OwnerName,
-                Shape = model.Shape,
-                Material = model.Material,
-                Coordinates = coordinates
-            };
-
-            return positionedModel;
         }
 
         public void DeletePositionedModel(string name, ValueTuple<decimal, decimal, decimal> coordinates)

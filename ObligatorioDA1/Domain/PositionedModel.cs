@@ -15,5 +15,14 @@ namespace Domain
             get => _coordinates;
             set => _coordinates = value;
         }
+
+        public PositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
+        {
+            Name = model.Name;
+            OwnerName = model.OwnerName;
+            Shape = model.Shape;
+            Material = model.Material;
+            Coordinates = coordinates;
+        }
     }
 }
