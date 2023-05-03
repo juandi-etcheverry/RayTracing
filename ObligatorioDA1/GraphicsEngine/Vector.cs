@@ -53,5 +53,15 @@ namespace GraphicsEngine
                 Z = this.Z + vector.Z
             };
         }
+
+        public Vector Substract(Vector vector)
+        {
+            return new Vector()
+            {
+                X = this.X - vector.X,
+                Y = this.Y - vector.Y,
+                Z = this.Z - vector.Z
+            };
+        }
     }
 }
