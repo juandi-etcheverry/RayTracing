@@ -48,9 +48,9 @@ namespace GraphicsEngine
         {
             return new Vector()
             {
-                X = this.X,
-                Y = this.Y,
-                Z = this.Z
+                X = this.X + vector.X,
+                Y = this.Y + vector.Y,
+                Z = this.Z + vector.Z
             };
         }
     }
