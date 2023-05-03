@@ -204,5 +204,18 @@ namespace BusinessLogicTest
 
             Assert.AreEqual(DateTime.Today, newScene.LastModificationDate);
         }
+
+        [TestMethod]
+        public void CreateScene_EmptyLookFrom_DefaultValue_OK_Test()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "NewScene",
+                LookAt = (0, 0, 15),
+                FoV = 50
+            };
+
+            Assert.AreEqual((0, 2, 0), newScene.LookFrom);
+        }
     }
 }
