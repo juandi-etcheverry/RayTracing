@@ -94,5 +94,12 @@ namespace GraphicsEngine
         {
             return Convert.ToDouble(X * X + Y * Y + Z * Z);
         }
+
+        public void AddTo(Vector vector)
+        {
+            X += vector.X;
+            Y += vector.Y;
+            Z += vector.Z;
+        }
     }
 }
