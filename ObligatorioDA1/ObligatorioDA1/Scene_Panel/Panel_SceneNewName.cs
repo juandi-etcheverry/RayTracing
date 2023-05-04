@@ -57,6 +57,7 @@ namespace ObligatorioDA1.Model_Panel
 
         private void txbSceneName_TextChanged(object sender, EventArgs e)
         {
+            lblSceneNameException.Visible = false;
             try
             {
                 _newScene.Name = txbSceneName.Text;

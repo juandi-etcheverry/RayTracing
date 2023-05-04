@@ -119,7 +119,7 @@ namespace ObligatorioDA1
         public void goToModelList()
         {
             switchPanel(userControlModelList);
-            userControlModelList.RefreshModelList(client);
+            userControlModelList.RefreshModelList();
         }
         public void goToAddNewModel()
         {
@@ -138,6 +138,7 @@ namespace ObligatorioDA1
         public void goToSceneList()
         {
             switchPanel(userControlSceneList);
+            userControlSceneList.RefreshSceneList();
         }
         public void goToSceneEditor()
         {

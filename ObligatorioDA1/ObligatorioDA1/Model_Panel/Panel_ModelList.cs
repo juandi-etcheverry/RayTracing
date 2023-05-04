@@ -15,7 +15,6 @@ namespace ObligatorioDA1.Model_Panel
 {
     public partial class Panel_ModelList : UserControl
     {
-        private Client _client;
         private ModelLogic _modelLogic = new ModelLogic();
         private Panel_General _panelGeneral;
         public Panel_ModelList(Panel_General userControl)
@@ -24,9 +23,8 @@ namespace ObligatorioDA1.Model_Panel
             InitializeComponent();
             InitializeModelList();
         }
-        public void RefreshModelList(Client client)
+        public void RefreshModelList()
         {
-            _client = client;
             dgvModelList.Rows.Clear();
             foreach (Model model in _modelLogic.GetClientModels().ToList())
             {
