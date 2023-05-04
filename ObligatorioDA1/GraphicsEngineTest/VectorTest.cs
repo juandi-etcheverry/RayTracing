@@ -199,5 +199,14 @@ namespace GraphicsEngineTest
         {
             Assert.AreEqual(1.26m, vForColors.Dot(vForColors));
         }
+
+        [TestMethod]
+        public void Cross_Product_ValidVectors_OK()
+        {
+            Vector v1 = new Vector() { X = 1, Y = 1, Z = 1 };
+            Vector v2 = new Vector() { X = 1, Y = 2, Z = 3 };
+            Vector cross = v1.Cross(v2);
+            Assert.AreEqual((1m, -2m, 1m), (cross.X, cross.Y, cross.Z));
+        }
     }
 }
