@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -71,6 +72,25 @@ namespace ObligatorioDA1.Scene_Panel
                     //Insert preview
                 }
                 
+            }
+        }
+
+        private void dgvSceneList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            String sceneName;
+            Scene scene;
+            if (this.dgvSceneList.Columns[e.ColumnIndex].Name == "Delete")
+            {
+                sceneName = dgvSceneList.CurrentRow.Cells[3].Value.ToString();
+                scene = _sceneLogic.GetScene(sceneName);
+                _sceneLogic.RemoveScene(scene);
+                dgvSceneList.Rows.Remove(dgvSceneList.CurrentRow);
+            }
+            if (this.dgvSceneList.Columns[e.ColumnIndex].Name == "Rename")
+            {
+                sceneName = dgvSceneList.CurrentRow.Cells[3].Value.ToString();
+                scene = _sceneLogic.GetScene(sceneName);
+                _panelGeneral.goToSceneRename(scene);
             }
         }
     }

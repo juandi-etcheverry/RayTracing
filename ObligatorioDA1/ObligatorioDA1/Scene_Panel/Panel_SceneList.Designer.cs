@@ -45,7 +45,7 @@
             this.btnAddNewScene.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNewScene.ForeColor = System.Drawing.Color.White;
             this.btnAddNewScene.Location = new System.Drawing.Point(124, 113);
-            this.btnAddNewScene.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddNewScene.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddNewScene.Name = "btnAddNewScene";
             this.btnAddNewScene.Size = new System.Drawing.Size(932, 71);
             this.btnAddNewScene.TabIndex = 2;
@@ -82,7 +82,7 @@
             this.Delete});
             this.dgvSceneList.EnableHeadersVisualStyles = false;
             this.dgvSceneList.Location = new System.Drawing.Point(124, 225);
-            this.dgvSceneList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvSceneList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSceneList.Name = "dgvSceneList";
             this.dgvSceneList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvSceneList.RowHeadersVisible = false;
@@ -97,6 +97,7 @@
             this.dgvSceneList.RowTemplate.Height = 33;
             this.dgvSceneList.Size = new System.Drawing.Size(932, 608);
             this.dgvSceneList.TabIndex = 3;
+            this.dgvSceneList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSceneList_CellContentClick);
             this.dgvSceneList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvSceneList_CellPainting);
             // 
             // Preview
@@ -137,7 +138,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.dgvSceneList);
             this.Controls.Add(this.btnAddNewScene);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1200, 1000);
             this.MinimumSize = new System.Drawing.Size(1200, 1000);
             this.Name = "Panel_SceneList";

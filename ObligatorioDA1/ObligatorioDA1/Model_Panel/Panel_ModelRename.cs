@@ -15,8 +15,8 @@ namespace ObligatorioDA1.Model_Panel
 {
     public partial class Panel_ModelRename : UserControl
     {
-        ModelLogic _modelLogic = new ModelLogic();
         private Model _model;
+        private ModelLogic _modelLogic = new ModelLogic();
         private Panel_General _panelGeneral;
         public Panel_ModelRename(Panel_General panelGeneral)
         {
@@ -33,8 +33,7 @@ namespace ObligatorioDA1.Model_Panel
         {
             try
             {
-                _model.Name = txbModelRename.Text;
-                RefreshPage();
+                _modelLogic.Rename(_model, txbModelRename.Text);
                 _panelGeneral.goToModelList();
             }
             catch (NameException nameEx)

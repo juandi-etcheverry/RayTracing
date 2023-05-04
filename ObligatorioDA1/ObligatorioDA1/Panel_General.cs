@@ -52,7 +52,7 @@ namespace ObligatorioDA1
             userControlModelRename = new Panel_ModelRename(this);
             userControlSceneList = new Panel_SceneList(this);
             userControlSceneEditor = new Panel_SceneEditor(this);
-            //userControlSceneRename = new Panel_SceneRename(this);
+            userControlSceneRename = new Panel_SceneRename(this);
             userControlSceneNewName = new Panel_SceneNewName(this);
             //userControlModelToScene = new Panel_AddModelToScene(this);
             flyGeneral.Controls.Clear();
@@ -148,6 +148,11 @@ namespace ObligatorioDA1
         {
             switchPanel(userControlSceneNewName);
             userControlSceneNewName.RefreshSceneNewName();
+        }
+        public void goToSceneRename(Scene scene)
+        {
+            switchPanel(userControlSceneRename);
+            userControlSceneRename.RefreshSceneRename(scene);
         }
         
 
