@@ -30,9 +30,9 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_SceneEditor));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_SceneEditor));
             this.lblNewSceneName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTimeLastModified = new System.Windows.Forms.Label();
@@ -66,16 +66,13 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnReturnNewScene = new System.Windows.Forms.Button();
             this.dgvAvailableModelsList = new System.Windows.Forms.DataGridView();
-            this.Img = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Add = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgvUsedModels = new System.Windows.Forms.DataGridView();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Coord = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Img = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Add = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAvailableModelsList)).BeginInit();
@@ -98,7 +95,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(341, 21);
+            this.label1.Location = new System.Drawing.Point(321, 19);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 20);
@@ -109,7 +106,7 @@
             // 
             this.lblTimeLastModified.AutoSize = true;
             this.lblTimeLastModified.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeLastModified.Location = new System.Drawing.Point(449, 21);
+            this.lblTimeLastModified.Location = new System.Drawing.Point(433, 21);
             this.lblTimeLastModified.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTimeLastModified.Name = "lblTimeLastModified";
             this.lblTimeLastModified.Size = new System.Drawing.Size(49, 20);
@@ -120,7 +117,7 @@
             // 
             this.lblDateLastModified.AutoSize = true;
             this.lblDateLastModified.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateLastModified.Location = new System.Drawing.Point(508, 21);
+            this.lblDateLastModified.Location = new System.Drawing.Point(487, 21);
             this.lblDateLastModified.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDateLastModified.Name = "lblDateLastModified";
             this.lblDateLastModified.Size = new System.Drawing.Size(89, 20);
@@ -131,7 +128,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(498, 21);
+            this.label2.Location = new System.Drawing.Point(479, 21);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(14, 20);
@@ -149,16 +146,16 @@
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Location = new System.Drawing.Point(13, 142);
+            this.panel1.Location = new System.Drawing.Point(13, 135);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(324, 363);
+            this.panel1.Size = new System.Drawing.Size(324, 343);
             this.panel1.TabIndex = 14;
             // 
             // btnRender
             // 
             this.btnRender.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnRender.ForeColor = System.Drawing.Color.White;
-            this.btnRender.Location = new System.Drawing.Point(194, 321);
+            this.btnRender.Location = new System.Drawing.Point(193, 295);
             this.btnRender.Margin = new System.Windows.Forms.Padding(2);
             this.btnRender.Name = "btnRender";
             this.btnRender.Size = new System.Drawing.Size(112, 37);
@@ -171,7 +168,7 @@
             this.lblOutdatedImage.AutoSize = true;
             this.lblOutdatedImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOutdatedImage.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblOutdatedImage.Location = new System.Drawing.Point(13, 319);
+            this.lblOutdatedImage.Location = new System.Drawing.Point(13, 286);
             this.lblOutdatedImage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOutdatedImage.Name = "lblOutdatedImage";
             this.lblOutdatedImage.Size = new System.Drawing.Size(123, 20);
@@ -182,7 +179,7 @@
             // 
             this.lblLastRenderedDate.AutoSize = true;
             this.lblLastRenderedDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastRenderedDate.Location = new System.Drawing.Point(217, 299);
+            this.lblLastRenderedDate.Location = new System.Drawing.Point(216, 269);
             this.lblLastRenderedDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLastRenderedDate.Name = "lblLastRenderedDate";
             this.lblLastRenderedDate.Size = new System.Drawing.Size(89, 20);
@@ -193,7 +190,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(204, 299);
+            this.label15.Location = new System.Drawing.Point(207, 268);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(14, 20);
@@ -204,7 +201,7 @@
             // 
             this.lblLastRenderedTime.AutoSize = true;
             this.lblLastRenderedTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastRenderedTime.Location = new System.Drawing.Point(156, 299);
+            this.lblLastRenderedTime.Location = new System.Drawing.Point(154, 268);
             this.lblLastRenderedTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLastRenderedTime.Name = "lblLastRenderedTime";
             this.lblLastRenderedTime.Size = new System.Drawing.Size(49, 20);
@@ -215,7 +212,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(13, 299);
+            this.label13.Location = new System.Drawing.Point(13, 266);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(112, 20);
@@ -227,7 +224,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label12.Location = new System.Drawing.Point(12, 20);
+            this.label12.Location = new System.Drawing.Point(12, 3);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(55, 20);
@@ -237,9 +234,9 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Location = new System.Drawing.Point(17, 43);
+            this.panel3.Location = new System.Drawing.Point(16, 26);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(289, 253);
+            this.panel3.Size = new System.Drawing.Size(289, 237);
             this.panel3.TabIndex = 0;
             // 
             // label3
@@ -431,7 +428,7 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(13, 62);
+            this.panel2.Location = new System.Drawing.Point(13, 55);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(324, 74);
             this.panel2.TabIndex = 15;
@@ -471,10 +468,9 @@
             this.dgvAvailableModelsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvAvailableModelsList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Img,
-            this.Name,
             this.Add});
             this.dgvAvailableModelsList.EnableHeadersVisualStyles = false;
-            this.dgvAvailableModelsList.Location = new System.Drawing.Point(342, 85);
+            this.dgvAvailableModelsList.Location = new System.Drawing.Point(342, 78);
             this.dgvAvailableModelsList.Margin = new System.Windows.Forms.Padding(2);
             this.dgvAvailableModelsList.Name = "dgvAvailableModelsList";
             this.dgvAvailableModelsList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -488,35 +484,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvAvailableModelsList.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAvailableModelsList.RowTemplate.Height = 33;
-            this.dgvAvailableModelsList.Size = new System.Drawing.Size(252, 198);
+            this.dgvAvailableModelsList.Size = new System.Drawing.Size(241, 176);
             this.dgvAvailableModelsList.TabIndex = 17;
-            // 
-            // Img
-            // 
-            this.Img.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Img.FillWeight = 187.1795F;
-            this.Img.HeaderText = "Img";
-            this.Img.Image = ((System.Drawing.Image)(resources.GetObject("Img.Image")));
-            this.Img.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Img.MinimumWidth = 10;
-            this.Img.Name = "Img";
-            this.Img.Width = 30;
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
-            // 
-            // Add
-            // 
-            this.Add.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Add.FillWeight = 12.82051F;
-            this.Add.HeaderText = "Add";
-            this.Add.Image = ((System.Drawing.Image)(resources.GetObject("Add.Image")));
-            this.Add.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Add.MinimumWidth = 10;
-            this.Add.Name = "Add";
-            this.Add.Width = 30;
             // 
             // dgvUsedModels
             // 
@@ -540,11 +509,9 @@
             this.dgvUsedModels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvUsedModels.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewImageColumn1,
-            this.dataGridViewTextBoxColumn1,
-            this.Coord,
             this.Delete});
             this.dgvUsedModels.EnableHeadersVisualStyles = false;
-            this.dgvUsedModels.Location = new System.Drawing.Point(342, 316);
+            this.dgvUsedModels.Location = new System.Drawing.Point(342, 294);
             this.dgvUsedModels.Margin = new System.Windows.Forms.Padding(2);
             this.dgvUsedModels.Name = "dgvUsedModels";
             this.dgvUsedModels.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -558,8 +525,32 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvUsedModels.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvUsedModels.RowTemplate.Height = 33;
-            this.dgvUsedModels.Size = new System.Drawing.Size(252, 189);
+            this.dgvUsedModels.Size = new System.Drawing.Size(241, 184);
             this.dgvUsedModels.TabIndex = 18;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label14.Location = new System.Drawing.Point(342, 55);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(127, 20);
+            this.label14.TabIndex = 21;
+            this.label14.Text = "Available models";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label16.Location = new System.Drawing.Point(338, 272);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(102, 20);
+            this.label16.TabIndex = 22;
+            this.label16.Text = "Used models";
             // 
             // dataGridViewImageColumn1
             // 
@@ -572,16 +563,6 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Width = 30;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // Coord
-            // 
-            this.Coord.HeaderText = "Coord";
-            this.Coord.Name = "Coord";
-            // 
             // Delete
             // 
             this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -593,29 +574,27 @@
             this.Delete.Name = "Delete";
             this.Delete.Width = 30;
             // 
-            // label14
+            // Img
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label14.Location = new System.Drawing.Point(342, 62);
-            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(127, 20);
-            this.label14.TabIndex = 21;
-            this.label14.Text = "Available models";
+            this.Img.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Img.FillWeight = 187.1795F;
+            this.Img.HeaderText = "Img";
+            this.Img.Image = ((System.Drawing.Image)(resources.GetObject("Img.Image")));
+            this.Img.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Img.MinimumWidth = 10;
+            this.Img.Name = "Img";
+            this.Img.Width = 30;
             // 
-            // label16
+            // Add
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label16.Location = new System.Drawing.Point(338, 294);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(102, 20);
-            this.label16.TabIndex = 22;
-            this.label16.Text = "Used models";
+            this.Add.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Add.FillWeight = 12.82051F;
+            this.Add.HeaderText = "Add";
+            this.Add.Image = ((System.Drawing.Image)(resources.GetObject("Add.Image")));
+            this.Add.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Add.MinimumWidth = 10;
+            this.Add.Name = "Add";
+            this.Add.Width = 30;
             // 
             // Panel_SceneEditor
             // 
@@ -636,7 +615,7 @@
             this.Controls.Add(this.lblNewSceneName);
             this.MaximumSize = new System.Drawing.Size(600, 520);
             this.MinimumSize = new System.Drawing.Size(600, 520);
-            //this.Name = "Panel_SceneEditor";
+            this.Name = "Panel_SceneEditor";
             this.Size = new System.Drawing.Size(600, 520);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -685,15 +664,12 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dgvAvailableModelsList;
-        private System.Windows.Forms.DataGridViewImageColumn Img;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
-        private System.Windows.Forms.DataGridViewImageColumn Add;
         private System.Windows.Forms.DataGridView dgvUsedModels;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Coord;
-        private System.Windows.Forms.DataGridViewImageColumn Delete;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.DataGridViewImageColumn Img;
+        private System.Windows.Forms.DataGridViewImageColumn Add;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn Delete;
     }
 }
