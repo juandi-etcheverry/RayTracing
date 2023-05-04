@@ -157,5 +157,12 @@ namespace GraphicsEngineTest
             vForColors.ScaleUpBy(3);
             Assert.AreEqual((0.9m, 1.8m, 2.7m), (vForColors.X, vForColors.Y, vForColors.Z));
         }
+
+        [TestMethod]
+        public void ScaleDownBy_Three_OK()
+        {
+            vForColors.ScaleDownBy(3);
+            Assert.AreEqual((0.1m, 0.2m, 0.3m), (vForColors.X, vForColors.Y, vForColors.Z));
+        }
     }
 }
