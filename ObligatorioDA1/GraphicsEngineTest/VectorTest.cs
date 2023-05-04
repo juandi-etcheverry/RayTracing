@@ -126,7 +126,7 @@ namespace GraphicsEngineTest
                 Y = 2,
                 Z = 2
             };
-            decimal length = vForColors.Length();
+            decimal length = validVector.Length();
             Assert.AreEqual(3, length);
         }
     }

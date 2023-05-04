@@ -86,7 +86,7 @@ namespace GraphicsEngine
 
         public decimal Length()
         {
-            return 0;
+            return Convert.ToDecimal(Math.Sqrt(Convert.ToDouble(X * X + Y * Y + Z * Z)));
         }
     }
 }
