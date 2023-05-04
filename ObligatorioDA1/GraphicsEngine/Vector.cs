@@ -118,6 +118,7 @@ namespace GraphicsEngine
 
         public void ScaleDownBy(decimal scalar)
         {
+            if (scalar == 0) return;
             X /= scalar;
             Y /= scalar;
             Z /= scalar;
