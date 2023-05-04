@@ -8,19 +8,12 @@ namespace GraphicsEngineTest
     public class VectorTest
     {
         private Vector basicVector;
-        private Color colorVector;
         private Vector nullVector;
 
         [TestInitialize]
-        public void CreateVectorForColors()
+        public void CreateVectorsForTesting()
         {
             basicVector = new Vector()
-            {
-                X = 0.3m,
-                Y = 0.6m,
-                Z = 0.9m
-            };
-            colorVector = new Color()
             {
                 X = 0.3m,
                 Y = 0.6m,
@@ -45,27 +38,6 @@ namespace GraphicsEngineTest
             };
 
             Assert.AreEqual((0.3m, 1.0m, 0.0m), (v.X, v.Y, v.Z));
-        }
-
-        [TestMethod]
-        public void GetColors_GetRed_OK()
-        {
-            int redAmount = colorVector.Red();
-            Assert.AreEqual(77, redAmount);
-        }
-
-        [TestMethod]
-        public void GetColors_GetGreen_OK()
-        {
-            int greenAmount = colorVector.Green();
-            Assert.AreEqual(153, greenAmount);
-        }
-
-        [TestMethod]
-        public void GetColors_GetBlue_OK()
-        {
-            int blueAmount = colorVector.Blue();
-            Assert.AreEqual(230, blueAmount);
         }
 
         [TestMethod]
