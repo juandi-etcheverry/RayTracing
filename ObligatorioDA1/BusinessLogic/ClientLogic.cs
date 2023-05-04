@@ -50,6 +50,7 @@ namespace BusinessLogic
         {
             EnsureNoClientIsLoggedIn();
             EnsureClientExists(client);
+            EnsurePasswordOk(client);
             Session.LoggedClient = client;
         }
 
@@ -61,6 +62,10 @@ namespace BusinessLogic
         private void EnsureNoClientIsLoggedIn()
         {
             if (Session.LoggedClient != null) Client.ThrowClientAlreadyLoggedIn();
+        }
+        private void EnsurePasswordOk(Client client)
+        {
+            if (!IsPasswordCorrect(client)) Client.ThrowIncorrectPassword();
         }
 
         public Client GetLoggedClient()
@@ -77,6 +82,10 @@ namespace BusinessLogic
         private void EnsureClientIsLoggedIn()
         {
             if(Session.LoggedClient == null) Client.ThrowClientNotLoggedIn();
+        }
+        private bool IsPasswordCorrect(Client client)
+        {
+            return client.Password == GetClient(client.Name).Password;
         }
     }
 }

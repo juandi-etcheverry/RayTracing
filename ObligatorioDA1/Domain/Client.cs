@@ -100,5 +100,10 @@ namespace Domain
         {
             throw new SessionException("Client not logged in");
         }
+        public static void ThrowIncorrectPassword()
+        {
+            throw new SessionException("Incorrect password");
+        }
+
     }
 }

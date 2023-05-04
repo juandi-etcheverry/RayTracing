@@ -52,8 +52,164 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Material_Panel\Panel_MaterialAddNew.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Material_Panel\Panel_MaterialAddNew.Designer.cs">
+      <DependentUpon>Panel_MaterialAddNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material_Panel\Panel_MaterialList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Material_Panel\Panel_MaterialList.Designer.cs">
+      <DependentUpon>Panel_MaterialList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Material_Panel\Panel_MaterialRename.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Material_Panel\Panel_MaterialRename.Designer.cs">
+      <DependentUpon>Panel_MaterialRename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model_Panel\Panel_ModelAddNew.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Model_Panel\Panel_ModelAddNew.Designer.cs">
+      <DependentUpon>Panel_ModelAddNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model_Panel\Panel_ModelList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Model_Panel\Panel_ModelList.Designer.cs">
+      <DependentUpon>Panel_ModelList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model_Panel\Panel_ModelRename.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Model_Panel\Panel_ModelRename.Designer.cs">
+      <DependentUpon>Panel_ModelRename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_AddModelToScene.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_AddModelToScene.Designer.cs">
+      <DependentUpon>Panel_AddModelToScene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_SceneNewName.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_SceneNewName.Designer.cs">
+      <DependentUpon>Panel_SceneNewName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panel_AddClient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_AddClient.Designer.cs">
+      <DependentUpon>Panel_AddClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panel_General.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_General.Designer.cs">
+      <DependentUpon>Panel_General.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_SceneEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_SceneEditor.Designer.cs">
+      <DependentUpon>Panel_SceneEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_SceneList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_SceneList.Designer.cs">
+      <DependentUpon>Panel_SceneList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_SceneRename.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_SceneRename.Designer.cs">
+      <DependentUpon>Panel_SceneRename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shape_Panel\Panel_ShapeAddNew.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shape_Panel\Panel_ShapeAddNew.Designer.cs">
+      <DependentUpon>Panel_ShapeAddNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shape_Panel\Panel_ShapeList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shape_Panel\Panel_ShapeList.Designer.cs">
+      <DependentUpon>Panel_ShapeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shape_Panel\Panel_ShapeRename.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shape_Panel\Panel_ShapeRename.Designer.cs">
+      <DependentUpon>Panel_ShapeRename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panel_Welcome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_Welcome.Designer.cs">
+      <DependentUpon>Panel_Welcome.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Material_Panel\Panel_MaterialAddNew.resx">
+      <DependentUpon>Panel_MaterialAddNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Material_Panel\Panel_MaterialList.resx">
+      <DependentUpon>Panel_MaterialList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Material_Panel\Panel_MaterialRename.resx">
+      <DependentUpon>Panel_MaterialRename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model_Panel\Panel_ModelAddNew.resx">
+      <DependentUpon>Panel_ModelAddNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model_Panel\Panel_ModelList.resx">
+      <DependentUpon>Panel_ModelList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model_Panel\Panel_ModelRename.resx">
+      <DependentUpon>Panel_ModelRename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel_AddClient.resx">
+      <DependentUpon>Panel_AddClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel_General.resx">
+      <DependentUpon>Panel_General.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scene_Panel\Panel_AddModelToScene.resx">
+      <DependentUpon>Panel_AddModelToScene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scene_Panel\Panel_SceneNewName.resx">
+      <DependentUpon>Panel_SceneNewName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scene_Panel\Panel_SceneEditor.resx">
+      <DependentUpon>Panel_SceneEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scene_Panel\Panel_SceneList.resx">
+      <DependentUpon>Panel_SceneList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scene_Panel\Panel_SceneRename.resx">
+      <DependentUpon>Panel_SceneRename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shape_Panel\Panel_ShapeAddNew.resx">
+      <DependentUpon>Panel_ShapeAddNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shape_Panel\Panel_ShapeList.resx">
+      <DependentUpon>Panel_ShapeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shape_Panel\Panel_ShapeRename.resx">
+      <DependentUpon>Panel_ShapeRename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel_Welcome.resx">
+      <DependentUpon>Panel_Welcome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +231,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogicExceptions\BusinessLogicExceptions.csproj">
+      <Project>{2DB3FBDC-1F9B-48D9-B75E-D349CA59AD32}</Project>
+      <Name>BusinessLogicExceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{42d14b1a-d217-41d2-9879-b603cbbd0e91}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{D68AA8F8-57F2-4044-98F4-11211E8BF654}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IRepository\IRepository.csproj">
+      <Project>{E9806FC1-AD64-4403-B098-E8B202C28478}</Project>
+      <Name>IRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RepositoryInMemory\RepositoryInMemory.csproj">
+      <Project>{ED16732A-5D62-4315-8571-BF41BA6B2852}</Project>
+      <Name>RepositoryInMemory</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

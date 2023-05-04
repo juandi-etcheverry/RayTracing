@@ -14,7 +14,7 @@ namespace Domain
         private Shape _shape;
         private Material _material;
         private string _ownerName;
-
+        public bool WantPreview;
         public string Name
         {
             get => _name;

@@ -11,14 +11,15 @@ namespace Domain
             get => _radius;
             set
             {
-                if (value <= 0) ThrowNegativeRadius();
+                if (value <= 0) ThrowNonPositiveRadius();
+                _radius = value;
             }
         }
 
 
-        public static void ThrowNegativeRadius()
+        public static void ThrowNonPositiveRadius()
         {
-            throw new NegativeRadiusException("Sphere's Radius can't be negative");
+            throw new NonPositiveRadiusException("Sphere's Radius must be greater than 0");
         }
     }
 }
