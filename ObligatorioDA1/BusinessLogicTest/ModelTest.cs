@@ -330,5 +330,29 @@ namespace BusinessLogicTest
 
             Assert.AreEqual(1, _modelLogic.GetClientModels().Count);
         }
+
+        [TestMethod]
+        public void GetModels_NotFromClient_FAIL_Test()
+        {
+            Model model = new Model()
+            {
+                Name = "ModelFromClient",
+                Shape = _shapeLogic.GetShape("New Sphere 2"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+            _modelLogic.Add(model);
+
+            _clientLogic.Logout();
+
+            Client newClient = new Client()
+            {
+                Name = "Harry",
+                Password = "ValidPassWord9"
+            };
+            _clientLogic.AddClient(newClient);
+            _clientLogic.InitializeSession(newClient);
+
+            Assert.ThrowsException<NotFoundException>(() => _modelLogic.Get("ModelFromClient"));
+        }
     }
 }
