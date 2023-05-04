@@ -150,5 +150,12 @@ namespace GraphicsEngineTest
             vForColors.ScaleUpBy(0);
             Assert.AreEqual((0m, 0m, 0m), (vForColors.X, vForColors.Y, vForColors.Z));
         }
+
+        [TestMethod]
+        public void ScaleUp_Three_OK()
+        {
+            vForColors.ScaleUpBy(3);
+            Assert.AreEqual((0.9m, 1.8m, 2.7m), (vForColors.X, vForColors.Y, vForColors.Z));
+        }
     }
 }
