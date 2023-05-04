@@ -23,7 +23,17 @@ namespace BusinessLogic
         }
         public Shape GetShape(string name)
         {
-            return _repository.Get(name);
+            EnsureClientIsLoggedIn();
+            Shape existanceValidationShape = new Shape() { Name = name };
+            AssignShapeToClient(existanceValidationShape);
+            EnsureShapeExists(name);
+            return GetShapeForOwner(existanceValidationShape);
+        }
+
+        private void EnsureShapeExists(string name)
+        {
+            bool sceneExists = GetClientShapes().Any(shape => shape.Name.ToLower() == name.ToLower());
+            if (!sceneExists) Shape.ThrowNotFound();
         }
 
         public Shape RemoveShape(Shape shape)
@@ -64,6 +74,11 @@ namespace BusinessLogic
             bool nameAlreadyExists = GetClientShapes().
                 Any(currentShape => currentShape.AreNamesEqual(name));
             if (nameAlreadyExists) Scene.ThrowNameExists();
+        }
+
+        private Shape GetShapeForOwner(Shape checkShape)
+        {
+            return GetClientShapes().FirstOrDefault(shape => shape.AreNamesEqual(checkShape.Name));
         }
     }
 }

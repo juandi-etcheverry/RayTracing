@@ -383,5 +383,34 @@ namespace BusinessLogicTest
 
             Assert.AreEqual(2, _shapeLogic.GetClientShapes().Count);
         }
+
+        [TestMethod]
+        public void GetShape_NotFromClient_FAIL_Test()
+        {
+            Client client = new Client()
+            {
+                Name = "FirstClient",
+                Password = "ValidPassword123"
+            };
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
+
+            Shape shape = new Shape()
+            {
+                Name = "Shape",
+            };
+            _shapeLogic.AddShape(shape);
+
+            _clientLogic.Logout();
+            Client newClient = new Client()
+            {
+                Name = "Harry",
+                Password = "ValidPass123"
+            };
+            _clientLogic.AddClient(newClient);
+            _clientLogic.InitializeSession(newClient);
+
+            Assert.ThrowsException<NotFoundException>(() => _shapeLogic.GetShape("Shape"));
+        }
     }
 }
