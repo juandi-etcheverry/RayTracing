@@ -124,7 +124,7 @@ namespace ObligatorioDA1
         public void goToAddNewModel()
         {
             switchPanel(userControlModelAddNew);
-            userControlModelAddNew.refreshModelAddNew(client);
+            userControlModelAddNew.refreshModelAddNew();
         }
         public void goToModelRename(Model model)
         {
@@ -146,6 +146,7 @@ namespace ObligatorioDA1
         public void goToNewSceneName()
         {
             switchPanel(userControlSceneNewName);
+            userControlSceneNewName.RefreshSceneNewName();
         }
         
 

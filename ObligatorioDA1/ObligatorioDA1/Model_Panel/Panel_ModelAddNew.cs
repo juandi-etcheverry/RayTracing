@@ -19,19 +19,16 @@ namespace ObligatorioDA1.Model_Panel
         private ModelLogic _modelLogic = new ModelLogic();
         private MaterialLogic _materialLogic = new MaterialLogic();
         private ShapeLogic _shapeLogic = new ShapeLogic();
-        private Client _client;
         private Panel_General _panelGeneral;
         public Panel_ModelAddNew(Panel_General panelGeneral)
         {
             _panelGeneral = panelGeneral;
             InitializeComponent();
-            //refreshModelAddNew(_client);
 
         }
-        public void refreshModelAddNew(Client client)
+        public void refreshModelAddNew()
         {
             _newModel = new Model();
-            _client = client;
             RefreshPage();
         }
 
