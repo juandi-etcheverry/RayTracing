@@ -193,5 +193,11 @@ namespace GraphicsEngineTest
             Vector unitVector = newVec.Unit();
             Assert.AreEqual((1m, 0m, 0m), (unitVector.X, unitVector.Y, unitVector.Z));
         }
+
+        [TestMethod]
+        public void Dot_Product_ValidVectors_OK()
+        {
+            Assert.AreEqual(1.26m, vForColors.Dot(vForColors));
+        }
     }
 }
