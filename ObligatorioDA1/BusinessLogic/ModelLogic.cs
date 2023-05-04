@@ -26,7 +26,7 @@ namespace BusinessLogic
             Model existanceValidationModel = new Model() { Name = name };
             AssignModelToClient(existanceValidationModel);
             ValidateModelExists(existanceValidationModel);
-            return _repository.Get(name);
+            return GetModelForOwner(existanceValidationModel);
         }
 
         public IList<Model> GetClientModels()
@@ -92,6 +92,11 @@ namespace BusinessLogic
         {
             List<Model> existingModels = _repository.FindMany(model.Name);
             return existingModels.Exists(existingModel => existingModel.OwnerName == model.OwnerName);
+        }
+
+        private Model GetModelForOwner(Model checkModel)
+        {
+            return GetClientModels().FirstOrDefault(model => model.Name.ToLower() == checkModel.Name.ToLower());
         }
 
         private void ThrowNameInUse(string name)
