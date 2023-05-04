@@ -61,8 +61,15 @@ namespace BusinessLogic
 
         public Scene GetScene(string name)
         {
+            Scene existanceValidationScene = new Scene() { Name = name };
+            AssignSceneToClient(existanceValidationScene);
             EnsureSceneExists(name);
-            return _repository.Get(name);
+            return GetSceneForOwner(existanceValidationScene);
+        }
+
+        private Scene GetSceneForOwner(Scene checkScene)
+        {
+            return GetClientScenes().FirstOrDefault(scene => scene.AreNamesEqual(checkScene.Name));
         }
 
         public IList<Scene> GetAll()
