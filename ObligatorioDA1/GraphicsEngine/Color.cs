@@ -17,6 +17,7 @@ namespace GraphicsEngine
             get => _x;
             set
             {
+                ValidateVectorIsBetweenZeroAndOne(value, "X");
                 _x = value;
             }
         }
@@ -26,6 +27,7 @@ namespace GraphicsEngine
             get => _y;
             set
             {
+                ValidateVectorIsBetweenZeroAndOne(value, "Y");
                 _y = value;
             }
         }
@@ -35,6 +37,7 @@ namespace GraphicsEngine
             get => _z;
             set
             {
+                ValidateVectorIsBetweenZeroAndOne(value, "Z");
                 _z = value;
             }
         }
@@ -73,6 +76,28 @@ namespace GraphicsEngine
         private int ConvertedColorToInt32(decimal coordinate)
         {
             return Convert.ToInt32(coordinate);
+        }
+
+        private void ValidateVectorIsBetweenZeroAndOne(decimal value, string coordinateName)
+        {
+            ValidateVectorIsZeroOrGreater(value, coordinateName);
+            ValidateVectorIsOneOrBelow(value, coordinateName);
+        }
+
+        private void ValidateVectorIsZeroOrGreater(decimal value, string coordinateName)
+        {
+            if (value < 0) ThrowVectorCoordinateIsOutOfRange(coordinateName);
+
+        }
+
+        private void ValidateVectorIsOneOrBelow(decimal value, string coordinateName)
+        {
+            if (value > 1) ThrowVectorCoordinateIsOutOfRange(coordinateName);
+        }
+
+        private void ThrowVectorCoordinateIsOutOfRange(string coordinateName)
+        {
+            throw new ArgumentOutOfRangeException("{0} coordinate must be between 0 and 1", coordinateName);
         }
     }
 }
