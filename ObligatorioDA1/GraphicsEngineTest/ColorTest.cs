@@ -25,6 +25,18 @@ namespace GraphicsEngineTest
         }
 
 
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [TestMethod]
+        public void CreateColor_InvalidColor_FAIL()
+        {
+            Color c = new Color()
+            {
+                X = 1.1m,
+                Y = -0.3m,
+                Z = 0.5m
+            };
+        }
+
         [TestMethod]
         public void GetColors_GetRed_OK()
         {
