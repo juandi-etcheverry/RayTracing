@@ -8,41 +8,7 @@ namespace GraphicsEngine
         public decimal Y { get; set; }
         public decimal Z { get; set; }
 
-        public int Red()
-        {
-            return CalculateCoordinateColor(X);
-        }
 
-        public int Green()
-        {
-            return CalculateCoordinateColor(Y);
-        }
-
-        public int Blue()
-        {
-            return CalculateCoordinateColor(Z);
-        }
-
-        private int CalculateCoordinateColor(decimal coordinate)
-        {
-            decimal roundedCoordinateColorValue = RoundedCoordinateColor(coordinate);
-            return ConvertedColorToInt32(roundedCoordinateColorValue);
-        }
-
-        private decimal RoundedCoordinateColor(decimal coordinate)
-        {
-            return Math.Round(CoordinateColorConversion(coordinate), MidpointRounding.AwayFromZero);
-        }
-
-        private decimal CoordinateColorConversion(decimal coordinate)
-        {
-            return coordinate * 255;
-        }
-
-        private int ConvertedColorToInt32(decimal coordinate)
-        {
-            return Convert.ToInt32(coordinate);
-        }
 
         public Vector Add(Vector vector)
         {
