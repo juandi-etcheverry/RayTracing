@@ -65,7 +65,7 @@ namespace BusinessLogic
             Material existanceValidationMaterial = new Material() { Name = name };
             AssignMaterialToClient(existanceValidationMaterial);
             ValidateMaterialExists(existanceValidationMaterial);
-            return _repository.Get(name);
+            return GetMaterialForOwner(existanceValidationMaterial);
         }
         private void ValidateRenaming(Material material, string newName)
         {
@@ -99,6 +99,12 @@ namespace BusinessLogic
         {
             List<Material> existingMaterials = _repository.FindMany(material.Name);
             return existingMaterials.Exists((existingMaterial) => existingMaterial.OwnerName == material.OwnerName);
+        }
+
+        private Material GetMaterialForOwner(Material checkMaterial)
+        {
+            return GetClientMaterials()
+                .FirstOrDefault(material => material.Name.ToLower() == checkMaterial.Name.ToLower());
         }
     }
 }
