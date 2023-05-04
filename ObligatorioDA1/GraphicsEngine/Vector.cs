@@ -132,5 +132,16 @@ namespace GraphicsEngine
             return (X * vector.X) + (Y * vector.Y) + (Z * vector.Z);
         }
 
+        public Vector Cross(Vector vector)
+        {
+            return new Vector()
+            {
+                X = Y * vector.Z - (Z * vector.Y),
+                Y = Z * vector.X - (X * vector.Z),
+                Z = X * vector.Y - (Y * vector.X),
+            };
+
+        }
+
     }
 }
