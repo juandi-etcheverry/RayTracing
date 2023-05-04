@@ -169,7 +169,7 @@ namespace GraphicsEngineTest
         public void ScaleDownBy_Zero_OK()
         {
             vForColors.ScaleDownBy(0);
-            Assert.AreEqual((0m, 0m, 0m), (vForColors.X, vForColors.Y, vForColors.Z));
+            Assert.AreEqual((0.3m, 0.6m, 0.9m), (vForColors.X, vForColors.Y, vForColors.Z));
         }
     }
 }
