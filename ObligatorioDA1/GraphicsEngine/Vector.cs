@@ -108,5 +108,12 @@ namespace GraphicsEngine
             Y -= vector.Y;
             Z -= vector.Z;
         }
+
+        public void ScaleUpBy(decimal scalar)
+        {
+            X *= scalar;
+            Y *= scalar;
+            Z *= scalar;
+        }
     }
 }
