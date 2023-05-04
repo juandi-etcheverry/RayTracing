@@ -23,6 +23,9 @@ namespace BusinessLogic
 
         public Model Get(string name)
         {
+            Model existanceValidationModel = new Model() { Name = name };
+            AssignModelToClient(existanceValidationModel);
+            ValidateModelExists(existanceValidationModel);
             return _repository.Get(name);
         }
 
