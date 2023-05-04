@@ -23,9 +23,14 @@ namespace BusinessLogic
         }
         public Shape GetShape(string name)
         {
+            EnsureShapeExists(name);
+            return _repository.Get(name);
+        }
+
+        private void EnsureShapeExists(string name)
+        {
             bool sceneExists = GetClientShapes().Any(shape => shape.Name.ToLower() == name.ToLower());
             if (!sceneExists) Shape.ThrowNotFound();
-            return _repository.Get(name);
         }
 
         public Shape RemoveShape(Shape shape)
