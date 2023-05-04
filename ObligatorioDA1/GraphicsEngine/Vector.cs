@@ -127,5 +127,10 @@ namespace GraphicsEngine
             return Divide(Length());
         }
 
+        public decimal Dot(Vector vector)
+        {
+            return (X * vector.X) + (Y * vector.Y) + (Z * vector.Z);
+        }
+
     }
 }
