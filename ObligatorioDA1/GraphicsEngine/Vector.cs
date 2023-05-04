@@ -54,7 +54,7 @@ namespace GraphicsEngine
             };
         }
 
-        public Vector Substract(Vector vector)
+        public Vector Subtract(Vector vector)
         {
             return new Vector()
             {
@@ -100,6 +100,13 @@ namespace GraphicsEngine
             X += vector.X;
             Y += vector.Y;
             Z += vector.Z;
+        }
+
+        public void SubtractFrom(Vector vector)
+        {
+            X -= vector.X;
+            Y -= vector.Y;
+            Z -= vector.Z;
         }
     }
 }
