@@ -387,6 +387,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetShape_NotFromClient_FAIL_Test()
         {
+            Client client = new Client()
+            {
+                Name = "FirstClient",
+                Password = "ValidPassword123"
+            };
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
+
             Shape shape = new Shape()
             {
                 Name = "Shape",
