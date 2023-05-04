@@ -48,9 +48,9 @@ namespace GraphicsEngine
         {
             return new Vector()
             {
-                X = this.X + vector.X,
-                Y = this.Y + vector.Y,
-                Z = this.Z + vector.Z
+                X = X + vector.X,
+                Y = Y + vector.Y,
+                Z = Z + vector.Z
             };
         }
 
@@ -58,9 +58,9 @@ namespace GraphicsEngine
         {
             return new Vector()
             {
-                X = this.X - vector.X,
-                Y = this.Y - vector.Y,
-                Z = this.Z - vector.Z
+                X = X - vector.X,
+                Y = Y - vector.Y,
+                Z = Z - vector.Z
             };
         }
 
@@ -68,9 +68,9 @@ namespace GraphicsEngine
         {
             return new Vector()
             {
-                X = this.X * scalar,
-                Y = this.Y * scalar,
-                Z = this.Z * scalar
+                X = X * scalar,
+                Y = Y * scalar,
+                Z = Z * scalar
             };
         }
 
@@ -78,9 +78,9 @@ namespace GraphicsEngine
         {
             return new Vector()
             {
-                X = this.X / scalar,
-                Y = this.Y / scalar,
-                Z = this.Z / scalar
+                X = X / scalar,
+                Y = Y / scalar,
+                Z = Z / scalar
             };
         }
 
@@ -97,31 +97,29 @@ namespace GraphicsEngine
 
         public void AddTo(Vector vector)
         {
-            X += vector.X;
-            Y += vector.Y;
-            Z += vector.Z;
+            ReplaceCoordinatesWithVector(Add(vector));
         }
 
         public void SubtractFrom(Vector vector)
         {
-            X -= vector.X;
-            Y -= vector.Y;
-            Z -= vector.Z;
+            ReplaceCoordinatesWithVector(Subtract(vector));
         }
 
         public void ScaleUpBy(decimal scalar)
         {
-            X *= scalar;
-            Y *= scalar;
-            Z *= scalar;
+            ReplaceCoordinatesWithVector(Multiply(scalar));
         }
 
         public void ScaleDownBy(decimal scalar)
         {
-            if (scalar == 0) return;
-            X /= scalar;
-            Y /= scalar;
-            Z /= scalar;
+            ReplaceCoordinatesWithVector(Divide(scalar));
+        }
+
+        private void ReplaceCoordinatesWithVector(Vector vector)
+        {
+            X = vector.X;
+            Y = vector.Y;
+            Z = vector.Z;
         }
     }
 }

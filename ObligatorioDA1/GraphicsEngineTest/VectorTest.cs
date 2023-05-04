@@ -165,8 +165,9 @@ namespace GraphicsEngineTest
             Assert.AreEqual((0.1m, 0.2m, 0.3m), (vForColors.X, vForColors.Y, vForColors.Z));
         }
 
+        [ExpectedException(typeof(System.DivideByZeroException))]
         [TestMethod]
-        public void ScaleDownBy_Zero_OK()
+        public void ScaleDownBy_Zero_FAIL()
         {
             vForColors.ScaleDownBy(0);
             Assert.AreEqual((0.3m, 0.6m, 0.9m), (vForColors.X, vForColors.Y, vForColors.Z));
