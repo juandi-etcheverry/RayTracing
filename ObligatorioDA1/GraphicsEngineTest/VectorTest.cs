@@ -76,9 +76,9 @@ namespace GraphicsEngineTest
         }
 
         [TestMethod]
-        public void SubstractVector_ValidVector_OK()
+        public void SubtractVector_ValidVector_OK()
         {
-            Vector sub = vForColors.Substract(vForColors);
+            Vector sub = vForColors.Subtract(vForColors);
             Assert.AreEqual((0m, 0m, 0m), (sub.X, sub.Y, sub.Z));
         }
 
@@ -135,6 +135,13 @@ namespace GraphicsEngineTest
         {
             vForColors.AddTo(vForColors);
             Assert.AreEqual((0.6m, 1.2m, 1.8m), (vForColors.X, vForColors.Y, vForColors.Z));
+        }
+
+        [TestMethod]
+        public void SubtractFrom_ValidVector_OK()
+        {
+            vForColors.SubtractFrom(vForColors);
+            Assert.AreEqual((0m, 0m, 0m), (vForColors.X, vForColors.Y, vForColors.Z));
         }
     }
 }
