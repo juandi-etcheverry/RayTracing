@@ -115,5 +115,12 @@ namespace GraphicsEngine
             Y *= scalar;
             Z *= scalar;
         }
+
+        public void ScaleDownBy(decimal scalar)
+        {
+            X /= scalar;
+            Y /= scalar;
+            Z /= scalar;
+        }
     }
 }
