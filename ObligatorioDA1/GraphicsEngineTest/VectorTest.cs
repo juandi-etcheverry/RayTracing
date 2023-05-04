@@ -7,13 +7,20 @@ namespace GraphicsEngineTest
     [TestClass]
     public class VectorTest
     {
-        private Vector vForColors;
+        private Vector basicVector;
+        private Color colorVector;
         private Vector nullVector;
 
         [TestInitialize]
         public void CreateVectorForColors()
         {
-            vForColors = new Vector()
+            basicVector = new Vector()
+            {
+                X = 0.3m,
+                Y = 0.6m,
+                Z = 0.9m
+            };
+            colorVector = new Color()
             {
                 X = 0.3m,
                 Y = 0.6m,
@@ -43,63 +50,63 @@ namespace GraphicsEngineTest
         [TestMethod]
         public void GetColors_GetRed_OK()
         {
-            int redAmount = vForColors.Red();
+            int redAmount = colorVector.Red();
             Assert.AreEqual(77, redAmount);
         }
 
         [TestMethod]
         public void GetColors_GetGreen_OK()
         {
-            int greenAmount = vForColors.Green();
+            int greenAmount = colorVector.Green();
             Assert.AreEqual(153, greenAmount);
         }
 
         [TestMethod]
         public void GetColors_GetBlue_OK()
         {
-            int blueAmount = vForColors.Blue();
+            int blueAmount = colorVector.Blue();
             Assert.AreEqual(230, blueAmount);
         }
 
         [TestMethod]
         public void AddVector_NullVector_OK()
         {
-            Vector sum = vForColors.Add(nullVector);
-            Assert.AreEqual((vForColors.X, vForColors.Y, vForColors.Z), (sum.X, sum.Y, sum.Z));
+            Vector sum = basicVector.Add(nullVector);
+            Assert.AreEqual((basicVector.X, basicVector.Y, basicVector.Z), (sum.X, sum.Y, sum.Z));
         }
 
         [TestMethod]
         public void AddVector_ValidVector_OK()
         {
-            Vector sum = vForColors.Add(vForColors);
-            Assert.AreEqual((2 * vForColors.X, 2 * vForColors.Y, 2 * vForColors.Z), (sum.X, sum.Y, sum.Z));
+            Vector sum = basicVector.Add(basicVector);
+            Assert.AreEqual((2 * basicVector.X, 2 * basicVector.Y, 2 * basicVector.Z), (sum.X, sum.Y, sum.Z));
         }
 
         [TestMethod]
         public void SubtractVector_ValidVector_OK()
         {
-            Vector sub = vForColors.Subtract(vForColors);
+            Vector sub = basicVector.Subtract(basicVector);
             Assert.AreEqual((0m, 0m, 0m), (sub.X, sub.Y, sub.Z));
         }
 
         [TestMethod]
         public void MultiplyVector_Zero_OK()
         {
-            Vector mult = vForColors.Multiply(0);
+            Vector mult = basicVector.Multiply(0);
             Assert.AreEqual((0m, 0m, 0m), (mult.X, mult.Y, mult.Z));
         }
 
         [TestMethod]
         public void MultiplyVector_Three_OK()
         {
-            Vector mult = vForColors.Multiply(3);
+            Vector mult = basicVector.Multiply(3);
             Assert.AreEqual((0.9m, 1.8m, 2.7m), (mult.X, mult.Y, mult.Z));
         }
 
         [TestMethod]
         public void DivideVector_Three_OK()
         {
-            Vector div = vForColors.Divide(3);
+            Vector div = basicVector.Divide(3);
             Assert.AreEqual((0.1m, 0.2m, 0.3m), (div.X, div.Y, div.Z));
         }
 
@@ -107,7 +114,7 @@ namespace GraphicsEngineTest
         [TestMethod]
         public void DivideVector_Zero_FAIL()
         {
-            Vector div = vForColors.Divide(0);
+            Vector div = basicVector.Divide(0);
         }
 
         [TestMethod]
@@ -133,44 +140,44 @@ namespace GraphicsEngineTest
         [TestMethod]
         public void AddTo_ValidVector_OK()
         {
-            vForColors.AddTo(vForColors);
-            Assert.AreEqual((0.6m, 1.2m, 1.8m), (vForColors.X, vForColors.Y, vForColors.Z));
+            basicVector.AddTo(basicVector);
+            Assert.AreEqual((0.6m, 1.2m, 1.8m), (basicVector.X, basicVector.Y, basicVector.Z));
         }
 
         [TestMethod]
         public void SubtractFrom_ValidVector_OK()
         {
-            vForColors.SubtractFrom(vForColors);
-            Assert.AreEqual((0m, 0m, 0m), (vForColors.X, vForColors.Y, vForColors.Z));
+            basicVector.SubtractFrom(basicVector);
+            Assert.AreEqual((0m, 0m, 0m), (basicVector.X, basicVector.Y, basicVector.Z));
         }
 
         [TestMethod]
         public void ScaleUp_Zero_OK()
         {
-            vForColors.ScaleUpBy(0);
-            Assert.AreEqual((0m, 0m, 0m), (vForColors.X, vForColors.Y, vForColors.Z));
+            basicVector.ScaleUpBy(0);
+            Assert.AreEqual((0m, 0m, 0m), (basicVector.X, basicVector.Y, basicVector.Z));
         }
 
         [TestMethod]
         public void ScaleUp_Three_OK()
         {
-            vForColors.ScaleUpBy(3);
-            Assert.AreEqual((0.9m, 1.8m, 2.7m), (vForColors.X, vForColors.Y, vForColors.Z));
+            basicVector.ScaleUpBy(3);
+            Assert.AreEqual((0.9m, 1.8m, 2.7m), (basicVector.X, basicVector.Y, basicVector.Z));
         }
 
         [TestMethod]
         public void ScaleDownBy_Three_OK()
         {
-            vForColors.ScaleDownBy(3);
-            Assert.AreEqual((0.1m, 0.2m, 0.3m), (vForColors.X, vForColors.Y, vForColors.Z));
+            basicVector.ScaleDownBy(3);
+            Assert.AreEqual((0.1m, 0.2m, 0.3m), (basicVector.X, basicVector.Y, basicVector.Z));
         }
 
         [ExpectedException(typeof(System.DivideByZeroException))]
         [TestMethod]
         public void ScaleDownBy_Zero_FAIL()
         {
-            vForColors.ScaleDownBy(0);
-            Assert.AreEqual((0.3m, 0.6m, 0.9m), (vForColors.X, vForColors.Y, vForColors.Z));
+            basicVector.ScaleDownBy(0);
+            Assert.AreEqual((0.3m, 0.6m, 0.9m), (basicVector.X, basicVector.Y, basicVector.Z));
         }
 
         [ExpectedException(typeof(System.DivideByZeroException))]
@@ -197,7 +204,7 @@ namespace GraphicsEngineTest
         [TestMethod]
         public void Dot_Product_ValidVectors_OK()
         {
-            Assert.AreEqual(1.26m, vForColors.Dot(vForColors));
+            Assert.AreEqual(1.26m, basicVector.Dot(basicVector));
         }
 
         [TestMethod]
