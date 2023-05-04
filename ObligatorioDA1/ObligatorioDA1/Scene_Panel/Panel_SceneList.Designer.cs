@@ -34,6 +34,7 @@
             this.btnAddNewScene = new System.Windows.Forms.Button();
             this.dgvSceneList = new System.Windows.Forms.DataGridView();
             this.Preview = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Rename = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSceneList)).BeginInit();
@@ -44,10 +45,10 @@
             this.btnAddNewScene.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnAddNewScene.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNewScene.ForeColor = System.Drawing.Color.White;
-            this.btnAddNewScene.Location = new System.Drawing.Point(124, 113);
+            this.btnAddNewScene.Location = new System.Drawing.Point(46, 116);
             this.btnAddNewScene.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddNewScene.Name = "btnAddNewScene";
-            this.btnAddNewScene.Size = new System.Drawing.Size(932, 71);
+            this.btnAddNewScene.Size = new System.Drawing.Size(1095, 71);
             this.btnAddNewScene.TabIndex = 2;
             this.btnAddNewScene.Text = "ADD NEW SCENE";
             this.btnAddNewScene.UseVisualStyleBackColor = false;
@@ -78,10 +79,11 @@
             this.dgvSceneList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvSceneList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Preview,
+            this.Edit,
             this.Rename,
             this.Delete});
             this.dgvSceneList.EnableHeadersVisualStyles = false;
-            this.dgvSceneList.Location = new System.Drawing.Point(124, 225);
+            this.dgvSceneList.Location = new System.Drawing.Point(46, 225);
             this.dgvSceneList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSceneList.Name = "dgvSceneList";
             this.dgvSceneList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -95,7 +97,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvSceneList.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSceneList.RowTemplate.Height = 33;
-            this.dgvSceneList.Size = new System.Drawing.Size(932, 608);
+            this.dgvSceneList.Size = new System.Drawing.Size(1095, 608);
             this.dgvSceneList.TabIndex = 3;
             this.dgvSceneList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSceneList_CellContentClick);
             this.dgvSceneList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvSceneList_CellPainting);
@@ -108,6 +110,16 @@
             this.Preview.Name = "Preview";
             this.Preview.ReadOnly = true;
             this.Preview.Width = 122;
+            // 
+            // Edit
+            // 
+            this.Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Edit.HeaderText = "Edit";
+            this.Edit.Image = ((System.Drawing.Image)(resources.GetObject("Edit.Image")));
+            this.Edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Edit.MinimumWidth = 10;
+            this.Edit.Name = "Edit";
+            this.Edit.Width = 69;
             // 
             // Rename
             // 
@@ -153,6 +165,7 @@
         private System.Windows.Forms.Button btnAddNewScene;
         private System.Windows.Forms.DataGridView dgvSceneList;
         private System.Windows.Forms.DataGridViewImageColumn Preview;
+        private System.Windows.Forms.DataGridViewImageColumn Edit;
         private System.Windows.Forms.DataGridViewImageColumn Rename;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
     }

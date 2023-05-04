@@ -140,9 +140,10 @@ namespace ObligatorioDA1
             switchPanel(userControlSceneList);
             userControlSceneList.RefreshSceneList();
         }
-        public void goToSceneEditor()
+        public void goToSceneEditor(Scene scene)
         {
             switchPanel(userControlSceneEditor);
+            userControlSceneEditor.RefreshSceneEditor(scene);
         }
         public void goToNewSceneName()
         {

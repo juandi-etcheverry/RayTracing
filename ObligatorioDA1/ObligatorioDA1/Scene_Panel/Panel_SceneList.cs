@@ -29,7 +29,7 @@ namespace ObligatorioDA1.Scene_Panel
             dgvSceneList.Rows.Clear();
             foreach (Scene scene in _sceneLogic.GetClientScenes().ToList())
             {
-                dgvSceneList.Rows.Add(null, null, null, scene.Name, scene.LastModificationDate);
+                dgvSceneList.Rows.Add(null, null, null, null, scene.Name, scene.LastModificationDate);
             }
         }
         private void InitializeSceneList()
@@ -48,8 +48,9 @@ namespace ObligatorioDA1.Scene_Panel
             dgvSceneList.Columns["Preview"].DisplayIndex = 0;
             dgvSceneList.Columns["Name"].DisplayIndex = 1;
             dgvSceneList.Columns["Last update"].DisplayIndex = 2;
-            dgvSceneList.Columns["Rename"].DisplayIndex = 3;
-            dgvSceneList.Columns["Delete"].DisplayIndex = 4;
+            dgvSceneList.Columns["Edit"].DisplayIndex = 3;
+            dgvSceneList.Columns["Rename"].DisplayIndex = 4;
+            dgvSceneList.Columns["Delete"].DisplayIndex = 5;
         }
         private void SetWidthColumns()
         {
@@ -66,7 +67,7 @@ namespace ObligatorioDA1.Scene_Panel
         {
             if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
             {
-                this.dgvSceneList.Rows[e.RowIndex].Height = 50;
+                this.dgvSceneList.Rows[e.RowIndex].Height = 40;
                 if(this.dgvSceneList.Columns[e.ColumnIndex].Name == "Preview")
                 {
                     //Insert preview
@@ -81,16 +82,22 @@ namespace ObligatorioDA1.Scene_Panel
             Scene scene;
             if (this.dgvSceneList.Columns[e.ColumnIndex].Name == "Delete")
             {
-                sceneName = dgvSceneList.CurrentRow.Cells[3].Value.ToString();
+                sceneName = dgvSceneList.CurrentRow.Cells[4].Value.ToString();
                 scene = _sceneLogic.GetScene(sceneName);
                 _sceneLogic.RemoveScene(scene);
                 dgvSceneList.Rows.Remove(dgvSceneList.CurrentRow);
             }
             if (this.dgvSceneList.Columns[e.ColumnIndex].Name == "Rename")
             {
-                sceneName = dgvSceneList.CurrentRow.Cells[3].Value.ToString();
+                sceneName = dgvSceneList.CurrentRow.Cells[4].Value.ToString();
                 scene = _sceneLogic.GetScene(sceneName);
                 _panelGeneral.goToSceneRename(scene);
+            }
+            if (this.dgvSceneList.Columns[e.ColumnIndex].Name == "Edit")
+            {
+                sceneName = dgvSceneList.CurrentRow.Cells[4].Value.ToString();
+                scene = _sceneLogic.GetScene(sceneName);
+                _panelGeneral.goToSceneEditor(scene);
             }
         }
     }

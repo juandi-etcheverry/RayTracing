@@ -46,7 +46,7 @@ namespace ObligatorioDA1.Model_Panel
             {
                 _newScene.Name = txbSceneName.Text;
                 _sceneLogic.Add(_newScene);
-                _panelGeneral.goToSceneEditor();
+                _panelGeneral.goToSceneEditor(_newScene);
             }
             catch (NameException nameEx)
             {
