@@ -143,5 +143,12 @@ namespace GraphicsEngineTest
             vForColors.SubtractFrom(vForColors);
             Assert.AreEqual((0m, 0m, 0m), (vForColors.X, vForColors.Y, vForColors.Z));
         }
+
+        [TestMethod]
+        public void ScaleUp_Zero_OK()
+        {
+            vForColors.ScaleUpBy(0);
+            Assert.AreEqual((0m, 0m, 0m), (vForColors.X, vForColors.Y, vForColors.Z));
+        }
     }
 }
