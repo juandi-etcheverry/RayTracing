@@ -116,5 +116,18 @@ namespace GraphicsEngineTest
             decimal length = nullVector.Length();
             Assert.AreEqual(0, length);
         }
+
+        [TestMethod]
+        public void VectorLength_ValidVector_OK()
+        {
+            Vector validVector = new Vector()
+            {
+                X = 1,
+                Y = 2,
+                Z = 2
+            };
+            decimal length = vForColors.Length();
+            Assert.AreEqual(3, length);
+        }
     }
 }
