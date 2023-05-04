@@ -172,5 +172,12 @@ namespace GraphicsEngineTest
             vForColors.ScaleDownBy(0);
             Assert.AreEqual((0.3m, 0.6m, 0.9m), (vForColors.X, vForColors.Y, vForColors.Z));
         }
+
+        [TestMethod]
+        public void UnitVector_NullVector_OK()
+        {
+            Vector unitVector = nullVector.Unit();
+            Assert.AreEqual((0m, 0m, 0m), (unitVector.X, unitVector.Y, unitVector.Z));
+        }
     }
 }
