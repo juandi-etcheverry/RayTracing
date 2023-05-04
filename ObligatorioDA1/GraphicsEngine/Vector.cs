@@ -10,17 +10,17 @@ namespace GraphicsEngine
 
         public int Red()
         {
-            return Convert.ToInt32(Math.Round(X * 255, MidpointRounding.AwayFromZero));
+            return CalculateCoordinateColor(X);
         }
 
         public int Green()
         {
-            return Convert.ToInt32(Math.Round(Y * 255, MidpointRounding.AwayFromZero));
+            return CalculateCoordinateColor(Y);
         }
 
         public int Blue()
         {
-            return Convert.ToInt32(Math.Round(Z * 255, MidpointRounding.AwayFromZero));
+            return CalculateCoordinateColor(Z);
         }
 
         private int CalculateCoordinateColor(decimal coordinate)
@@ -121,5 +121,11 @@ namespace GraphicsEngine
             Y = vector.Y;
             Z = vector.Z;
         }
+
+        public Vector Unit()
+        {
+            return Divide(Length());
+        }
+
     }
 }

@@ -173,11 +173,25 @@ namespace GraphicsEngineTest
             Assert.AreEqual((0.3m, 0.6m, 0.9m), (vForColors.X, vForColors.Y, vForColors.Z));
         }
 
+        [ExpectedException(typeof(System.DivideByZeroException))]
         [TestMethod]
-        public void UnitVector_NullVector_OK()
+        public void UnitVector_NullVector_FAIL()
         {
             Vector unitVector = nullVector.Unit();
             Assert.AreEqual((0m, 0m, 0m), (unitVector.X, unitVector.Y, unitVector.Z));
+        }
+
+        [TestMethod]
+        public void UnitVector_ValidVector_OK()
+        {
+            Vector newVec = new Vector()
+            {
+                X = 2,
+                Y = 0,
+                Z = 0
+            };
+            Vector unitVector = newVec.Unit();
+            Assert.AreEqual((1m, 0m, 0m), (unitVector.X, unitVector.Y, unitVector.Z));
         }
     }
 }
