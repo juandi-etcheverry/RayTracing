@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using BusinessLogicExceptions;
 using Domain;
 using IRepository;
@@ -48,8 +44,16 @@ namespace BusinessLogic
         public Material Remove(Material material)
         {
             ValidateMaterialExists(material);
+            ValidateMaterialReferencedByModel(material);
             _repository.Remove(material);
             return material;
+        }
+
+        private void ValidateMaterialReferencedByModel(Material material)
+        {
+            ModelLogic modelLogic = new ModelLogic();
+            bool isMaterialInUse = modelLogic.GetClientModels().Any(model => model.Material.Name == material.Name);
+            if (isMaterialInUse) Material.ThrowMaterialReferencedByModel();
         }
 
         public Material Rename(Material material, string newName)
@@ -65,7 +69,7 @@ namespace BusinessLogic
             Material existanceValidationMaterial = new Material() { Name = name };
             AssignMaterialToClient(existanceValidationMaterial);
             ValidateMaterialExists(existanceValidationMaterial);
-            return _repository.Get(name);
+            return GetMaterialForOwner(existanceValidationMaterial);
         }
         private void ValidateRenaming(Material material, string newName)
         {
@@ -99,6 +103,12 @@ namespace BusinessLogic
         {
             List<Material> existingMaterials = _repository.FindMany(material.Name);
             return existingMaterials.Exists((existingMaterial) => existingMaterial.OwnerName == material.OwnerName);
+        }
+
+        private Material GetMaterialForOwner(Material checkMaterial)
+        {
+            return GetClientMaterials()
+                .FirstOrDefault(material => material.Name.ToLower() == checkMaterial.Name.ToLower());
         }
     }
 }

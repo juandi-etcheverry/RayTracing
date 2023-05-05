@@ -10,6 +10,8 @@ namespace BusinessLogicTest
     {
         private readonly ShapeLogic _shapeLogic = new ShapeLogic();
         private readonly ClientLogic _clientLogic = new ClientLogic();
+        private readonly ModelLogic _modelLogic = new ModelLogic();
+        private readonly MaterialLogic _materialLogic = new MaterialLogic();
 
         [TestCleanup]
         public void RemoveAllShapesAndClients()
@@ -382,6 +384,71 @@ namespace BusinessLogicTest
             _shapeLogic.AddShape(newShape2);
 
             Assert.AreEqual(2, _shapeLogic.GetClientShapes().Count);
+        }
+
+        [TestMethod]
+        public void GetShape_NotFromClient_FAIL_Test()
+        {
+            Client client = new Client()
+            {
+                Name = "FirstClient",
+                Password = "ValidPassword123"
+            };
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
+
+            Shape shape = new Shape()
+            {
+                Name = "Shape",
+            };
+            _shapeLogic.AddShape(shape);
+
+            _clientLogic.Logout();
+            Client newClient = new Client()
+            {
+                Name = "Harry",
+                Password = "ValidPass123"
+            };
+            _clientLogic.AddClient(newClient);
+            _clientLogic.InitializeSession(newClient);
+
+            Assert.ThrowsException<NotFoundException>(() => _shapeLogic.GetShape("Shape"));
+        }
+
+        [TestMethod]
+        public void RemoveShape_ReferencedByModel_FAIL_Test()
+        {
+            Client client = new Client()
+            {
+                Name = "FirstClient",
+                Password = "ValidPassword123"
+            };
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
+
+            Shape shape = new Shape()
+            {
+                Name = "Shape",
+            };
+            _shapeLogic.AddShape(shape);
+
+            Material material = new Material()
+            {
+                Name = "Material",
+                Color = (10, 50, 11),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(material);
+
+            Model model = new Model()
+            {
+                Name = "Model",
+                Material = _materialLogic.Get("Material"),
+                Shape = _shapeLogic.GetShape("Shape")
+            };
+            _modelLogic.Add(model);
+
+            Assert.ThrowsException<AssociationException>(() => _shapeLogic.RemoveShape(shape));
         }
     }
 }

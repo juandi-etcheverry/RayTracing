@@ -23,7 +23,10 @@ namespace BusinessLogic
 
         public Model Get(string name)
         {
-            return _repository.Get(name);
+            Model existanceValidationModel = new Model() { Name = name };
+            AssignModelToClient(existanceValidationModel);
+            ValidateModelExists(existanceValidationModel);
+            return GetModelForOwner(existanceValidationModel);
         }
 
         public IList<Model> GetClientModels()
@@ -47,8 +50,19 @@ namespace BusinessLogic
         public Model Remove(Model model)
         {
             ValidateModelExists(model);
+            ValidateModelReferencedByScene(model);
             _repository.Remove(model);
             return model;
+        }
+
+        private void ValidateModelReferencedByScene(Model model)
+        {
+            SceneLogic sceneLogic = new SceneLogic();
+            bool isModelInUse = sceneLogic.GetClientScenes().
+                                           Any(scene => scene.Models.
+                                           Any(positionedModel => positionedModel.Name == model.Name));
+
+            if (isModelInUse) throw new AssociationException("Model is already being used by a Scene");
         }
 
         private void ValidateRenaming(Model model, string newName)
@@ -89,6 +103,11 @@ namespace BusinessLogic
         {
             List<Model> existingModels = _repository.FindMany(model.Name);
             return existingModels.Exists(existingModel => existingModel.OwnerName == model.OwnerName);
+        }
+
+        private Model GetModelForOwner(Model checkModel)
+        {
+            return GetClientModels().FirstOrDefault(model => model.Name.ToLower() == checkModel.Name.ToLower());
         }
 
         private void ThrowNameInUse(string name)

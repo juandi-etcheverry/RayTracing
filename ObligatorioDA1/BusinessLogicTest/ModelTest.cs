@@ -13,6 +13,7 @@ namespace BusinessLogicTest
         private readonly ShapeLogic _shapeLogic = new ShapeLogic();
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private readonly ModelLogic _modelLogic = new ModelLogic();
+        public readonly SceneLogic _sceneLogic = new SceneLogic();
 
         [TestInitialize]
         public void LoginClients_CreateShapes_Create_Materials()
@@ -62,6 +63,7 @@ namespace BusinessLogicTest
             _shapeLogic.GetShapes().Clear();
             _materialLogic.GetAll().Clear();
             _modelLogic.GetAll().Clear();
+            _sceneLogic.GetAll().Clear();
         }
 
 
@@ -329,6 +331,51 @@ namespace BusinessLogicTest
             _modelLogic.Add(newModel);
 
             Assert.AreEqual(1, _modelLogic.GetClientModels().Count);
+        }
+
+        [TestMethod]
+        public void GetModels_NotFromClient_FAIL_Test()
+        {
+            Model model = new Model()
+            {
+                Name = "ModelFromClient",
+                Shape = _shapeLogic.GetShape("New Sphere 2"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+            _modelLogic.Add(model);
+
+            _clientLogic.Logout();
+
+            Client newClient = new Client()
+            {
+                Name = "Harry",
+                Password = "ValidPassWord9"
+            };
+            _clientLogic.AddClient(newClient);
+            _clientLogic.InitializeSession(newClient);
+
+            Assert.ThrowsException<NotFoundException>(() => _modelLogic.Get("ModelFromClient"));
+        }
+
+        [TestMethod]
+        public void RemoveModel_ReferencedByScene_FAIL_Test()
+        {
+            Model model = new Model()
+            {
+                Name = "New Model",
+                Shape = _shapeLogic.GetShape("New Sphere 1"),
+                Material = _materialLogic.Get("New Material 1")
+            };
+            _modelLogic.Add(model);
+
+            Scene scene = new Scene()
+            {
+                Name = "Scene"
+            };
+            _sceneLogic.Add(scene);
+            scene.AddPositionedModel(model, (10, 13, 5));
+
+            Assert.ThrowsException<AssociationException>(() => _modelLogic.Remove(model));
         }
     }
 }

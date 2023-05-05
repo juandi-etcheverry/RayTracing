@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BusinessLogicExceptions;
 using Domain;
 using IRepository;
 using RepositoryInMemory;
@@ -23,14 +24,32 @@ namespace BusinessLogic
         }
         public Shape GetShape(string name)
         {
-            return _repository.Get(name);
+            EnsureClientIsLoggedIn();
+            Shape existanceValidationShape = new Shape() { Name = name };
+            AssignShapeToClient(existanceValidationShape);
+            EnsureShapeExists(name);
+            return GetShapeForOwner(existanceValidationShape);
+        }
+
+        private void EnsureShapeExists(string name)
+        {
+            bool sceneExists = GetClientShapes().Any(shape => shape.Name.ToLower() == name.ToLower());
+            if (!sceneExists) Shape.ThrowNotFound();
         }
 
         public Shape RemoveShape(Shape shape)
         {
+            ValidateShapeRefencedByModel(shape);
             Shape removedShape = _repository.Remove(shape);
             if (removedShape.Name is null) Shape.ThrowNotFound();
             return shape;
+        }
+
+        private void ValidateShapeRefencedByModel(Shape shape)
+        {
+            ModelLogic modelLogic = new ModelLogic();
+            bool isShapeInUse = modelLogic.GetClientModels().Any(model => model.Shape.Name == shape.Name);
+            if (isShapeInUse) Shape.ThrowShapeReferencedByModel();
         }
 
         public Shape AddShape(Shape shape)
@@ -64,6 +83,11 @@ namespace BusinessLogic
             bool nameAlreadyExists = GetClientShapes().
                 Any(currentShape => currentShape.AreNamesEqual(name));
             if (nameAlreadyExists) Scene.ThrowNameExists();
+        }
+
+        private Shape GetShapeForOwner(Shape checkShape)
+        {
+            return GetClientShapes().FirstOrDefault(shape => shape.AreNamesEqual(checkShape.Name));
         }
     }
 }
