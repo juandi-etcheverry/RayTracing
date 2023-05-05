@@ -12,6 +12,8 @@ namespace BusinessLogicTest
     {
         private MaterialLogic _materialLogic = new MaterialLogic();
         private readonly ClientLogic _clientLogic = new ClientLogic();
+        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
+        private readonly ModelLogic _modelLogic = new ModelLogic();
         private Client client;
 
         [TestInitialize]
@@ -322,6 +324,35 @@ namespace BusinessLogicTest
             };
             _materialLogic.Add(material3);
             Assert.AreEqual(1, _materialLogic.GetClientMaterials().Count);
+        }
+
+        [TestMethod]
+        public void RemoveMaterial_AssociatedToModel_FAIL_Test()
+        {
+            Material material = new Material()
+            {
+                Name = "VantaBlack",
+                Color = (0, 0, 0),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(material);
+
+            Shape sphere = new Sphere()
+            {
+                Name = "Sphere",
+                Radius = 3
+            };
+            _shapeLogic.AddShape(sphere);
+
+            Model model = new Model()
+            {
+                Name = "New Model",
+                Shape = _shapeLogic.GetShape("Sphere"),
+                Material = _materialLogic.Get("VantaBlack")
+            };
+            _modelLogic.Add(model);
+
+            Assert.ThrowsException<AssociationException>(() => _materialLogic.Remove(material));
         }
     }
 }

@@ -73,5 +73,10 @@ namespace Domain
         {
             throw new SessionException("Client needs to be logged in to create new Material");
         }
+
+        public static void ThrowMaterialRefencedByModel()
+        {
+            throw new AssociationException("Material is already being used by a Model.");
+        }
     }
 }

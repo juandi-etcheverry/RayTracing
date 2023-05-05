@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using BusinessLogicExceptions;
 using Domain;
 using IRepository;
@@ -48,8 +44,16 @@ namespace BusinessLogic
         public Material Remove(Material material)
         {
             ValidateMaterialExists(material);
+            ValidateMaterialReferencedByModel(material);
             _repository.Remove(material);
             return material;
+        }
+
+        private void ValidateMaterialReferencedByModel(Material material)
+        {
+            ModelLogic modelLogic = new ModelLogic();
+            bool isMaterialInUse = modelLogic.GetClientModels().Any(model => model.Material.Name == material.Name);
+            if (isMaterialInUse) Material.ThrowMaterialRefencedByModel();
         }
 
         public Material Rename(Material material, string newName)
