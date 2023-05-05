@@ -69,10 +69,10 @@
             this.Img = new System.Windows.Forms.DataGridViewImageColumn();
             this.Add = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgvUsedModels = new System.Windows.Forms.DataGridView();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.Preview = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAvailableModelsList)).BeginInit();
@@ -535,7 +535,7 @@
             this.dgvUsedModels.ColumnHeadersHeight = 30;
             this.dgvUsedModels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvUsedModels.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewImageColumn1,
+            this.Preview,
             this.Delete});
             this.dgvUsedModels.EnableHeadersVisualStyles = false;
             this.dgvUsedModels.Location = new System.Drawing.Point(684, 565);
@@ -554,28 +554,8 @@
             this.dgvUsedModels.RowTemplate.Height = 33;
             this.dgvUsedModels.Size = new System.Drawing.Size(482, 354);
             this.dgvUsedModels.TabIndex = 18;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewImageColumn1.FillWeight = 187.1795F;
-            this.dataGridViewImageColumn1.HeaderText = "Img";
-            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
-            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn1.MinimumWidth = 10;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Width = 30;
-            // 
-            // Delete
-            // 
-            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Delete.FillWeight = 12.82051F;
-            this.Delete.HeaderText = "Delete";
-            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
-            this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Delete.MinimumWidth = 10;
-            this.Delete.Name = "Delete";
-            this.Delete.Width = 30;
+            this.dgvUsedModels.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsedModels_CellClick);
+            this.dgvUsedModels.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvUsedModels_CellPainting);
             // 
             // label14
             // 
@@ -600,6 +580,28 @@
             this.label16.Size = new System.Drawing.Size(203, 37);
             this.label16.TabIndex = 22;
             this.label16.Text = "Used models";
+            // 
+            // Preview
+            // 
+            this.Preview.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Preview.FillWeight = 187.1795F;
+            this.Preview.HeaderText = "Img";
+            this.Preview.Image = ((System.Drawing.Image)(resources.GetObject("Preview.Image")));
+            this.Preview.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Preview.MinimumWidth = 10;
+            this.Preview.Name = "Preview";
+            this.Preview.Width = 66;
+            // 
+            // Delete
+            // 
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Delete.FillWeight = 12.82051F;
+            this.Delete.HeaderText = "Del";
+            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
+            this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Delete.MinimumWidth = 10;
+            this.Delete.Name = "Delete";
+            this.Delete.Width = 62;
             // 
             // Panel_SceneEditor
             // 
@@ -673,9 +675,9 @@
         private System.Windows.Forms.DataGridView dgvUsedModels;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        private System.Windows.Forms.DataGridViewImageColumn Delete;
         private System.Windows.Forms.DataGridViewImageColumn Img;
         private System.Windows.Forms.DataGridViewImageColumn Add;
+        private System.Windows.Forms.DataGridViewImageColumn Preview;
+        private System.Windows.Forms.DataGridViewImageColumn Delete;
     }
 }
