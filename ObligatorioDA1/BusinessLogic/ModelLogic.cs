@@ -50,6 +50,14 @@ namespace BusinessLogic
         public Model Remove(Model model)
         {
             ValidateModelExists(model);
+
+            SceneLogic sceneLogic = new SceneLogic();
+            bool isModelInUse = sceneLogic.GetClientScenes().
+                                            Any(scene => scene.Models.
+                                            Any(positionedModel => positionedModel.Name == model.Name));
+
+            if (isModelInUse) throw new AssociationException("Model is already being used by a Scene");
+
             _repository.Remove(model);
             return model;
         }
