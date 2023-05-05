@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using BusinessLogicExceptions;
 using Domain;
 using IRepository;
@@ -48,6 +44,11 @@ namespace BusinessLogic
         public Material Remove(Material material)
         {
             ValidateMaterialExists(material);
+            
+            ModelLogic modelLogic = new ModelLogic();
+            bool isMaterialInUse = modelLogic.GetClientModels().Any(model => model.Material.Name == material.Name);
+            if (isMaterialInUse) throw new AssociationException("Material is already being used by a Model.");
+
             _repository.Remove(material);
             return material;
         }

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssociationException.cs" />
     <Compile Include="PasswordException.cs" />
     <Compile Include="NameException.cs" />
     <Compile Include="NonPositiveRadiusException.cs" />
