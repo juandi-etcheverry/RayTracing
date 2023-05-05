@@ -30,9 +30,9 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_SceneEditor));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_SceneEditor));
             this.lblNewSceneName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTimeLastModified = new System.Windows.Forms.Label();
@@ -66,13 +66,13 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnReturnNewScene = new System.Windows.Forms.Button();
             this.dgvAvailableModelsList = new System.Windows.Forms.DataGridView();
+            this.Img = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Add = new System.Windows.Forms.DataGridViewImageColumn();
             this.dgvUsedModels = new System.Windows.Forms.DataGridView();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.Img = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Add = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAvailableModelsList)).BeginInit();
@@ -147,7 +147,7 @@
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Location = new System.Drawing.Point(26, 260);
-            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(648, 660);
             this.panel1.TabIndex = 14;
@@ -157,7 +157,7 @@
             this.btnRender.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnRender.ForeColor = System.Drawing.Color.White;
             this.btnRender.Location = new System.Drawing.Point(386, 567);
-            this.btnRender.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRender.Margin = new System.Windows.Forms.Padding(4);
             this.btnRender.Name = "btnRender";
             this.btnRender.Size = new System.Drawing.Size(224, 71);
             this.btnRender.TabIndex = 19;
@@ -236,7 +236,7 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Location = new System.Drawing.Point(32, 50);
-            this.panel3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel3.Margin = new System.Windows.Forms.Padding(6);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(578, 456);
             this.panel3.TabIndex = 0;
@@ -279,7 +279,7 @@
             this.txbXLookFrom.BackColor = System.Drawing.Color.Gainsboro;
             this.txbXLookFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbXLookFrom.Location = new System.Drawing.Point(14, 73);
-            this.txbXLookFrom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbXLookFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txbXLookFrom.Name = "txbXLookFrom";
             this.txbXLookFrom.Size = new System.Drawing.Size(44, 37);
             this.txbXLookFrom.TabIndex = 7;
@@ -289,7 +289,7 @@
             this.txbYLookFrom.BackColor = System.Drawing.Color.Gainsboro;
             this.txbYLookFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbYLookFrom.Location = new System.Drawing.Point(70, 73);
-            this.txbYLookFrom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbYLookFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txbYLookFrom.Name = "txbYLookFrom";
             this.txbYLookFrom.Size = new System.Drawing.Size(44, 37);
             this.txbYLookFrom.TabIndex = 8;
@@ -299,7 +299,7 @@
             this.txbZLookFrom.BackColor = System.Drawing.Color.Gainsboro;
             this.txbZLookFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbZLookFrom.Location = new System.Drawing.Point(126, 73);
-            this.txbZLookFrom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbZLookFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txbZLookFrom.Name = "txbZLookFrom";
             this.txbZLookFrom.Size = new System.Drawing.Size(44, 37);
             this.txbZLookFrom.TabIndex = 9;
@@ -320,7 +320,7 @@
             this.txbFoV.BackColor = System.Drawing.Color.Gainsboro;
             this.txbFoV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbFoV.Location = new System.Drawing.Point(540, 6);
-            this.txbFoV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbFoV.Margin = new System.Windows.Forms.Padding(4);
             this.txbFoV.Name = "txbFoV";
             this.txbFoV.Size = new System.Drawing.Size(92, 37);
             this.txbFoV.TabIndex = 16;
@@ -352,7 +352,7 @@
             this.txbXLookAt.BackColor = System.Drawing.Color.Gainsboro;
             this.txbXLookAt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbXLookAt.Location = new System.Drawing.Point(256, 73);
-            this.txbXLookAt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbXLookAt.Margin = new System.Windows.Forms.Padding(4);
             this.txbXLookAt.Name = "txbXLookAt";
             this.txbXLookAt.Size = new System.Drawing.Size(44, 37);
             this.txbXLookAt.TabIndex = 19;
@@ -362,7 +362,7 @@
             this.txbYLookAt.BackColor = System.Drawing.Color.Gainsboro;
             this.txbYLookAt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbYLookAt.Location = new System.Drawing.Point(314, 73);
-            this.txbYLookAt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbYLookAt.Margin = new System.Windows.Forms.Padding(4);
             this.txbYLookAt.Name = "txbYLookAt";
             this.txbYLookAt.Size = new System.Drawing.Size(44, 37);
             this.txbYLookAt.TabIndex = 20;
@@ -372,7 +372,7 @@
             this.txbZLookAt.BackColor = System.Drawing.Color.Gainsboro;
             this.txbZLookAt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbZLookAt.Location = new System.Drawing.Point(370, 73);
-            this.txbZLookAt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbZLookAt.Margin = new System.Windows.Forms.Padding(4);
             this.txbZLookAt.Name = "txbZLookAt";
             this.txbZLookAt.Size = new System.Drawing.Size(44, 37);
             this.txbZLookAt.TabIndex = 21;
@@ -431,7 +431,7 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(26, 106);
-            this.panel2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel2.Margin = new System.Windows.Forms.Padding(6);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(648, 142);
             this.panel2.TabIndex = 15;
@@ -441,7 +441,7 @@
             this.btnReturnNewScene.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnReturnNewScene.ForeColor = System.Drawing.Color.White;
             this.btnReturnNewScene.Location = new System.Drawing.Point(26, 23);
-            this.btnReturnNewScene.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReturnNewScene.Margin = new System.Windows.Forms.Padding(4);
             this.btnReturnNewScene.Name = "btnReturnNewScene";
             this.btnReturnNewScene.Size = new System.Drawing.Size(164, 71);
             this.btnReturnNewScene.TabIndex = 16;
@@ -474,7 +474,7 @@
             this.Add});
             this.dgvAvailableModelsList.EnableHeadersVisualStyles = false;
             this.dgvAvailableModelsList.Location = new System.Drawing.Point(684, 150);
-            this.dgvAvailableModelsList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvAvailableModelsList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvAvailableModelsList.Name = "dgvAvailableModelsList";
             this.dgvAvailableModelsList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvAvailableModelsList.RowHeadersVisible = false;
@@ -489,7 +489,30 @@
             this.dgvAvailableModelsList.RowTemplate.Height = 33;
             this.dgvAvailableModelsList.Size = new System.Drawing.Size(482, 338);
             this.dgvAvailableModelsList.TabIndex = 17;
+            this.dgvAvailableModelsList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAvailableModelsList_CellClick);
             this.dgvAvailableModelsList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvAvailableModelsList_CellPainting);
+            // 
+            // Img
+            // 
+            this.Img.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Img.FillWeight = 187.1795F;
+            this.Img.HeaderText = "Img";
+            this.Img.Image = ((System.Drawing.Image)(resources.GetObject("Img.Image")));
+            this.Img.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Img.MinimumWidth = 10;
+            this.Img.Name = "Img";
+            this.Img.Width = 66;
+            // 
+            // Add
+            // 
+            this.Add.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Add.FillWeight = 12.82051F;
+            this.Add.HeaderText = "Add";
+            this.Add.Image = ((System.Drawing.Image)(resources.GetObject("Add.Image")));
+            this.Add.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Add.MinimumWidth = 10;
+            this.Add.Name = "Add";
+            this.Add.Width = 69;
             // 
             // dgvUsedModels
             // 
@@ -516,7 +539,7 @@
             this.Delete});
             this.dgvUsedModels.EnableHeadersVisualStyles = false;
             this.dgvUsedModels.Location = new System.Drawing.Point(684, 565);
-            this.dgvUsedModels.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvUsedModels.Margin = new System.Windows.Forms.Padding(4);
             this.dgvUsedModels.Name = "dgvUsedModels";
             this.dgvUsedModels.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvUsedModels.RowHeadersVisible = false;
@@ -578,28 +601,6 @@
             this.label16.TabIndex = 22;
             this.label16.Text = "Used models";
             // 
-            // Img
-            // 
-            this.Img.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Img.FillWeight = 187.1795F;
-            this.Img.HeaderText = "Img";
-            this.Img.Image = ((System.Drawing.Image)(resources.GetObject("Img.Image")));
-            this.Img.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Img.MinimumWidth = 10;
-            this.Img.Name = "Img";
-            this.Img.Width = 66;
-            // 
-            // Add
-            // 
-            this.Add.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Add.FillWeight = 12.82051F;
-            this.Add.HeaderText = "Add";
-            this.Add.Image = ((System.Drawing.Image)(resources.GetObject("Add.Image")));
-            this.Add.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Add.MinimumWidth = 10;
-            this.Add.Name = "Add";
-            this.Add.Width = 69;
-            // 
             // Panel_SceneEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -617,7 +618,7 @@
             this.Controls.Add(this.lblTimeLastModified);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblNewSceneName);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1200, 1000);
             this.MinimumSize = new System.Drawing.Size(1200, 1000);
             this.Name = "Panel_SceneEditor";

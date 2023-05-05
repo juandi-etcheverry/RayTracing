@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -95,7 +96,16 @@ namespace ObligatorioDA1
                         // Insert preview on cell
                     }
                 }
+            }
+        }
 
+        private void dgvAvailableModelsList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.dgvAvailableModelsList.Columns[e.ColumnIndex].Name == "Add")
+            {
+                String modelName = dgvAvailableModelsList.CurrentRow.Cells[2].Value.ToString();
+                Model model = _modelLogic.Get(modelName);
+                _panelGeneral.goToSceneAddModel(model, _scene);
             }
         }
     }
