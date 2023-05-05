@@ -53,14 +53,14 @@ namespace Domain
         {
             PositionedModel newPositionedModel = new PositionedModel(model, coordinates);
             _models.Add(newPositionedModel);
-            _lastModificationDate = DateTime.Today;
+            _lastModificationDate = DateTime.Now;
             return newPositionedModel;
         }
 
         public void DeletePositionedModel(string name, ValueTuple<decimal, decimal, decimal> coordinates)
         {
             PositionedModel positionedModel = GetPositionedModel(name, coordinates);
-            _lastModificationDate = DateTime.Today;
+            _lastModificationDate = DateTime.Now;
             _models.Remove(positionedModel);
         }
 
@@ -106,8 +106,8 @@ namespace Domain
 
         public Scene()
         {
-            _lastModificationDate = DateTime.Today;
-            _registrationDate = DateTime.Today;
+            _lastModificationDate = DateTime.Now;
+            _registrationDate = DateTime.Now;
             _lookfrom = (0, 2, 0);
             _lookat = (0, 2, 5);
             _fov = 30;

@@ -92,7 +92,7 @@ namespace BusinessLogicTest
                 FoV = 50
             };
 
-            Assert.AreEqual(DateTime.Today, newScene.RegistrationDate);
+            Assert.AreEqual(DateTime.Now, newScene.RegistrationDate);
         }
 
         [TestMethod]
@@ -202,7 +202,7 @@ namespace BusinessLogicTest
 
             newScene.DeletePositionedModel(positionedModel.Name, positionedModel.Coordinates);
 
-            Assert.AreEqual(DateTime.Today, newScene.LastModificationDate);
+            Assert.AreEqual(DateTime.Now, newScene.LastModificationDate);
         }
 
         [TestMethod]
