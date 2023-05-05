@@ -106,6 +106,8 @@
             // 
             this.Preview.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Preview.HeaderText = "Preview";
+            this.Preview.Image = ((System.Drawing.Image)(resources.GetObject("Preview.Image")));
+            this.Preview.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Preview.MinimumWidth = 10;
             this.Preview.Name = "Preview";
             this.Preview.ReadOnly = true;

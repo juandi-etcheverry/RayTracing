@@ -26,7 +26,6 @@ namespace ObligatorioDA1
             InitializeComponent();
             InitializeAvailableList();
             InitializeUsedList();
-
         }
         public void RefreshSceneEditor(Scene scene)
         {
@@ -38,6 +37,7 @@ namespace ObligatorioDA1
             lblNewSceneName.Text = _scene.Name;
             RefreshAvailableList();
             RefreshUsedList();
+            RefreshLastModified();
         }
 
         private void btnReturnNewScene_Click(object sender, EventArgs e)
@@ -183,8 +183,11 @@ namespace ObligatorioDA1
                 _scene.DeletePositionedModel(modelName, tuple);
                 //dgvUsedModels.Rows.Remove(dgvUsedModels.CurrentRow);
                 RefreshPage();
-                
             }
+        }
+        private void RefreshLastModified()
+        {
+            lblDateLastModified.Text = _scene.LastModificationDate.ToString();
         }
     }
 }
