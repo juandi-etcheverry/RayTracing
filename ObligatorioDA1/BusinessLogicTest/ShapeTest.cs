@@ -418,6 +418,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RemoveShape_ReferencedByModel_FAIL_Test()
         {
+            Client client = new Client()
+            {
+                Name = "FirstClient",
+                Password = "ValidPassword123"
+            };
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
+
             Shape shape = new Shape()
             {
                 Name = "Shape",

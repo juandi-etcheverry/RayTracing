@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BusinessLogicExceptions;
 using Domain;
 using IRepository;
 using RepositoryInMemory;
@@ -38,6 +39,10 @@ namespace BusinessLogic
 
         public Shape RemoveShape(Shape shape)
         {
+            ModelLogic modelLogic = new ModelLogic();
+            bool isShapeInUse = modelLogic.GetClientModels().Any(model => model.Shape.Name == shape.Name);
+            if (isShapeInUse) throw new AssociationException("Shape is already being used by a Model.");
+
             Shape removedShape = _repository.Remove(shape);
             if (removedShape.Name is null) Shape.ThrowNotFound();
             return shape;
