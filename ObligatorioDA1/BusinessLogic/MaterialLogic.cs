@@ -44,13 +44,16 @@ namespace BusinessLogic
         public Material Remove(Material material)
         {
             ValidateMaterialExists(material);
-            
-            ModelLogic modelLogic = new ModelLogic();
-            bool isMaterialInUse = modelLogic.GetClientModels().Any(model => model.Material.Name == material.Name);
-            if (isMaterialInUse) throw new AssociationException("Material is already being used by a Model.");
-
+            ValidateMaterialReferencedByModel(material);
             _repository.Remove(material);
             return material;
+        }
+
+        private void ValidateMaterialReferencedByModel(Material material)
+        {
+            ModelLogic modelLogic = new ModelLogic();
+            bool isMaterialInUse = modelLogic.GetClientModels().Any(model => model.Material.Name == material.Name);
+            if (isMaterialInUse) Material.ThrowMaterialRefencedByModel();
         }
 
         public Material Rename(Material material, string newName)
