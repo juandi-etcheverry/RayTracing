@@ -56,5 +56,9 @@ namespace Domain
             throw new SessionException("Client not logged in");
         }
 
+        public static void ThrowShapeReferencedByModel()
+        {
+            throw new AssociationException("Shape is already being used by a Model.");
+        }
     }
 }

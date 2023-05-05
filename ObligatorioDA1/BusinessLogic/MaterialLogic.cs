@@ -53,7 +53,7 @@ namespace BusinessLogic
         {
             ModelLogic modelLogic = new ModelLogic();
             bool isMaterialInUse = modelLogic.GetClientModels().Any(model => model.Material.Name == material.Name);
-            if (isMaterialInUse) Material.ThrowMaterialRefencedByModel();
+            if (isMaterialInUse) Material.ThrowMaterialReferencedByModel();
         }
 
         public Material Rename(Material material, string newName)

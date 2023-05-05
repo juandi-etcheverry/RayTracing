@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BusinessLogicExceptions;
 using Domain;
 using IRepository;
 using RepositoryInMemory;
@@ -38,9 +39,17 @@ namespace BusinessLogic
 
         public Shape RemoveShape(Shape shape)
         {
+            ValidateShapeRefencedByModel(shape);
             Shape removedShape = _repository.Remove(shape);
             if (removedShape.Name is null) Shape.ThrowNotFound();
             return shape;
+        }
+
+        private void ValidateShapeRefencedByModel(Shape shape)
+        {
+            ModelLogic modelLogic = new ModelLogic();
+            bool isShapeInUse = modelLogic.GetClientModels().Any(model => model.Shape.Name == shape.Name);
+            if (isShapeInUse) Shape.ThrowShapeReferencedByModel();
         }
 
         public Shape AddShape(Shape shape)
