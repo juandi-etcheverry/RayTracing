@@ -35,9 +35,12 @@ namespace ObligatorioDA1
         private void RefreshPage()
         {
             lblNewSceneName.Text = _scene.Name;
+            lblLookExceptions.Visible = false;
+            lblFoVException.Visible = false;
             RefreshAvailableList();
             RefreshUsedList();
             RefreshLastModified();
+            OutDatedRender();
         }
 
         private void btnReturnNewScene_Click(object sender, EventArgs e)
@@ -188,6 +191,59 @@ namespace ObligatorioDA1
         private void RefreshLastModified()
         {
             lblDateLastModified.Text = _scene.LastModificationDate.ToString();
+        }
+
+        private void btnRender_Click(object sender, EventArgs e)
+        {
+            //Make render
+            SetLookfrom();
+            SetLookAt();
+            SetFov();
+            lblLastRenderedDate.Text = _scene.LastRenderDate.ToString();
+            lblOutdatedImage.Visible = false;
+            RefreshPage();
+        }
+        private void SetLookfrom()
+        {
+                decimal x, y, z;
+                bool validX = decimal.TryParse(txbXLookFrom.Text, out x);
+                bool validY = decimal.TryParse(txbYLookFrom.Text, out y);
+                bool validZ = decimal.TryParse(txbZLookFrom.Text, out z);
+                var tuple = ValueTuple.Create(x, y, z);
+                _scene.LookFrom = tuple;
+        }
+        private void SetLookAt()
+        {
+            decimal x, y, z;
+            bool validX = decimal.TryParse(txbXLookAt.Text, out x);
+            bool validY = decimal.TryParse(txbYLookAt.Text, out y);
+            bool validZ = decimal.TryParse(txbZLookAt.Text, out z);
+            var tuple = ValueTuple.Create(x, y, z);
+            _scene.LookAt = tuple;
+        }
+        private void SetFov()
+        {
+            try
+            {
+                uint x;
+                bool validX = uint.TryParse(txbFoV.Text, out x);
+                if (!validX) throw new ArgumentException("FoV must positive");
+                _scene.FoV = x;
+            }
+            catch (ArgumentOutOfRangeException outEx)
+            {
+                lblFoVException.Visible = true;
+                lblFoVException.Text = outEx.Message;
+            }
+            catch (ArgumentException argEx)
+            {
+                lblFoVException.Visible = true;
+                lblFoVException.Text = argEx.Message;
+            }
+        }
+        private void OutDatedRender()
+        {
+            lblOutdatedImage.Visible = (_scene.LastRenderDate < _scene.LastModificationDate);
         }
     }
 }

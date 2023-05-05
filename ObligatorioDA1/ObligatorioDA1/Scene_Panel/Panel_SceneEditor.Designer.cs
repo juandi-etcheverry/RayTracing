@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_SceneEditor));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblNewSceneName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblDateLastModified = new System.Windows.Forms.Label();
@@ -40,8 +40,6 @@
             this.btnRender = new System.Windows.Forms.Button();
             this.lblOutdatedImage = new System.Windows.Forms.Label();
             this.lblLastRenderedDate = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.lblLastRenderedTime = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -71,6 +69,8 @@
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.lblLookExceptions = new System.Windows.Forms.Label();
+            this.lblFoVException = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAvailableModelsList)).BeginInit();
@@ -93,7 +93,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(677, 30);
+            this.label1.Location = new System.Drawing.Point(663, 30);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(217, 37);
@@ -104,7 +104,7 @@
             // 
             this.lblDateLastModified.AutoSize = true;
             this.lblDateLastModified.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateLastModified.Location = new System.Drawing.Point(902, 30);
+            this.lblDateLastModified.Location = new System.Drawing.Point(882, 30);
             this.lblDateLastModified.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDateLastModified.Name = "lblDateLastModified";
             this.lblDateLastModified.Size = new System.Drawing.Size(179, 37);
@@ -117,8 +117,6 @@
             this.panel1.Controls.Add(this.btnRender);
             this.panel1.Controls.Add(this.lblOutdatedImage);
             this.panel1.Controls.Add(this.lblLastRenderedDate);
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.lblLastRenderedTime);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.panel3);
@@ -139,6 +137,7 @@
             this.btnRender.TabIndex = 19;
             this.btnRender.Text = "Render";
             this.btnRender.UseVisualStyleBackColor = false;
+            this.btnRender.Click += new System.EventHandler(this.btnRender_Click);
             // 
             // lblOutdatedImage
             // 
@@ -156,34 +155,12 @@
             // 
             this.lblLastRenderedDate.AutoSize = true;
             this.lblLastRenderedDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastRenderedDate.Location = new System.Drawing.Point(432, 517);
+            this.lblLastRenderedDate.Location = new System.Drawing.Point(266, 512);
             this.lblLastRenderedDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLastRenderedDate.Name = "lblLastRenderedDate";
             this.lblLastRenderedDate.Size = new System.Drawing.Size(179, 37);
             this.lblLastRenderedDate.TabIndex = 19;
             this.lblLastRenderedDate.Text = "20/04/2023";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(414, 515);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(27, 37);
-            this.label15.TabIndex = 19;
-            this.label15.Text = "-";
-            // 
-            // lblLastRenderedTime
-            // 
-            this.lblLastRenderedTime.AutoSize = true;
-            this.lblLastRenderedTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastRenderedTime.Location = new System.Drawing.Point(308, 515);
-            this.lblLastRenderedTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblLastRenderedTime.Name = "lblLastRenderedTime";
-            this.lblLastRenderedTime.Size = new System.Drawing.Size(96, 37);
-            this.lblLastRenderedTime.TabIndex = 19;
-            this.lblLastRenderedTime.Text = "15:32";
             // 
             // label13
             // 
@@ -390,6 +367,8 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel2.Controls.Add(this.lblFoVException);
+            this.panel2.Controls.Add(this.lblLookExceptions);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.label8);
@@ -435,14 +414,14 @@
             this.dgvAvailableModelsList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAvailableModelsList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvAvailableModelsList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAvailableModelsList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAvailableModelsList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvAvailableModelsList.ColumnHeadersHeight = 30;
             this.dgvAvailableModelsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvAvailableModelsList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -456,12 +435,12 @@
             this.dgvAvailableModelsList.RowHeadersVisible = false;
             this.dgvAvailableModelsList.RowHeadersWidth = 82;
             this.dgvAvailableModelsList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvAvailableModelsList.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvAvailableModelsList.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.dgvAvailableModelsList.RowTemplate.Height = 33;
             this.dgvAvailableModelsList.Size = new System.Drawing.Size(482, 338);
             this.dgvAvailableModelsList.TabIndex = 17;
@@ -500,14 +479,14 @@
             this.dgvUsedModels.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvUsedModels.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvUsedModels.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsedModels.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsedModels.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.dgvUsedModels.ColumnHeadersHeight = 30;
             this.dgvUsedModels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvUsedModels.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -521,12 +500,12 @@
             this.dgvUsedModels.RowHeadersVisible = false;
             this.dgvUsedModels.RowHeadersWidth = 82;
             this.dgvUsedModels.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvUsedModels.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvUsedModels.RowsDefaultCellStyle = dataGridViewCellStyle20;
             this.dgvUsedModels.RowTemplate.Height = 33;
             this.dgvUsedModels.Size = new System.Drawing.Size(482, 354);
             this.dgvUsedModels.TabIndex = 18;
@@ -578,6 +557,31 @@
             this.label16.Size = new System.Drawing.Size(203, 37);
             this.label16.TabIndex = 22;
             this.label16.Text = "Used models";
+            // 
+            // lblLookExceptions
+            // 
+            this.lblLookExceptions.AutoSize = true;
+            this.lblLookExceptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLookExceptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblLookExceptions.Location = new System.Drawing.Point(9, 114);
+            this.lblLookExceptions.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLookExceptions.Name = "lblLookExceptions";
+            this.lblLookExceptions.Size = new System.Drawing.Size(284, 25);
+            this.lblLookExceptions.TabIndex = 25;
+            this.lblLookExceptions.Text = "*New model name exception";
+            // 
+            // lblFoVException
+            // 
+            this.lblFoVException.AutoSize = true;
+            this.lblFoVException.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFoVException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblFoVException.Location = new System.Drawing.Point(434, 47);
+            this.lblFoVException.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFoVException.MaximumSize = new System.Drawing.Size(250, 25);
+            this.lblFoVException.Name = "lblFoVException";
+            this.lblFoVException.Size = new System.Drawing.Size(191, 25);
+            this.lblFoVException.TabIndex = 26;
+            this.lblFoVException.Text = "*New model name exception";
             // 
             // Panel_SceneEditor
             // 
@@ -638,8 +642,6 @@
         private System.Windows.Forms.Button btnRender;
         private System.Windows.Forms.Label lblOutdatedImage;
         private System.Windows.Forms.Label lblLastRenderedDate;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label lblLastRenderedTime;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel3;
@@ -651,5 +653,7 @@
         private System.Windows.Forms.DataGridViewImageColumn Add;
         private System.Windows.Forms.DataGridViewImageColumn Preview;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
+        private System.Windows.Forms.Label lblLookExceptions;
+        private System.Windows.Forms.Label lblFoVException;
     }
 }
