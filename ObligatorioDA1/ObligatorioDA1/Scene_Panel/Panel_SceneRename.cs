@@ -37,7 +37,7 @@ namespace ObligatorioDA1.Scene_Panel
 
         private void btnReturnRename_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToSceneList();
+            _panelGeneral.GoToSceneList();
         }
 
         private void btnRename_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace ObligatorioDA1.Scene_Panel
             try
             {
                 _sceneLogic.RenameScene(_scene, txbRenameScene.Text);
-                _panelGeneral.goToSceneList();
+                _panelGeneral.GoToSceneList();
             }
             catch (NameException nameEx)
             {

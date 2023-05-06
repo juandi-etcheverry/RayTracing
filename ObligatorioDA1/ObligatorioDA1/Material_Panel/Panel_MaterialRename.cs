@@ -33,7 +33,7 @@ namespace ObligatorioDA1.Material_Panel
 
         private void btnReturnRename_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToMaterialList();
+            _panelGeneral.GoToMaterialList();
         }
 
         private void btnConfirmRename_Click(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace ObligatorioDA1.Material_Panel
             try
             {
                 _materialLogic.Rename(_material, txbMaterialRename.Text);
-                _panelGeneral.goToMaterialList();
+                _panelGeneral.GoToMaterialList();
             }
             catch (NameException nameEx)
             {

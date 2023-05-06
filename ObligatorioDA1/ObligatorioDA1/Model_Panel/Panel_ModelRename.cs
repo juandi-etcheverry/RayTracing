@@ -34,7 +34,7 @@ namespace ObligatorioDA1.Model_Panel
             try
             {
                 _modelLogic.Rename(_model, txbModelRename.Text);
-                _panelGeneral.goToModelList();
+                _panelGeneral.GoToModelList();
             }
             catch (NameException nameEx)
             {
@@ -45,7 +45,7 @@ namespace ObligatorioDA1.Model_Panel
 
         private void btnReturnRename_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToModelList();
+            _panelGeneral.GoToModelList();
         }
         private void RefreshPage()
         {

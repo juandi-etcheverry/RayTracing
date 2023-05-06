@@ -37,7 +37,7 @@ namespace ObligatorioDA1.Model_Panel
 
         private void btnReturnSceneName_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToSceneList();
+            _panelGeneral.GoToSceneList();
         }
 
         private void btnConfirmSceneName_Click(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace ObligatorioDA1.Model_Panel
             {
                 _newScene.Name = txbSceneName.Text;
                 _sceneLogic.Add(_newScene);
-                _panelGeneral.goToSceneEditor(_newScene);
+                _panelGeneral.GoToSceneEditor(_newScene);
             }
             catch (NameException nameEx)
             {

@@ -35,7 +35,7 @@ namespace ObligatorioDA1.Material_Panel
 
         private void btnShowAllMaterials_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToMaterialList();
+            _panelGeneral.GoToMaterialList();
         }
 
         private void btnNewMaterial_Click(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace ObligatorioDA1.Material_Panel
                 newMaterial.Color = (r, g, b);
                 _materialLogic.Add(newMaterial);
                 RefreshPanel();
-                _panelGeneral.goToMaterialList();
+                _panelGeneral.GoToMaterialList();
             }
             catch (NameException nameEx)
             {

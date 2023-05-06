@@ -62,7 +62,7 @@ namespace ObligatorioDA1.Model_Panel
 
         private void btnAddModel_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToAddNewModel();
+            _panelGeneral.GoToAddNewModel();
         }
 
         private void dgvModelList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -115,7 +115,7 @@ namespace ObligatorioDA1.Model_Panel
             {
                  modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
                  model = _modelLogic.Get(modelName);
-                _panelGeneral.goToModelRename(model);
+                _panelGeneral.GoToModelRename(model);
             }
         }
     }

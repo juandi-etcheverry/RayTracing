@@ -35,7 +35,7 @@ namespace ObligatorioDA1
 
         private void btnShowAllShapes_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToShapeList();
+            _panelGeneral.GoToShapeList();
         }
 
         private void btnNewShape_Click(object sender, EventArgs e)
@@ -52,7 +52,7 @@ namespace ObligatorioDA1
                 newSphere.Radius = radius;
                 RefreshPanel();
                 _shapeLogic.AddShape(newSphere);
-                _panelGeneral.goToShapeList();
+                _panelGeneral.GoToShapeList();
             }
             catch (NameException nameEx)
             {

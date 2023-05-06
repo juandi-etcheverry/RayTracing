@@ -45,7 +45,7 @@ namespace ObligatorioDA1
         }
         private void btnAddShape_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToAddNewShape();
+            _panelGeneral.GoToAddNewShape();
         }
         private void dgvShapeList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -62,7 +62,7 @@ namespace ObligatorioDA1
             {
                 shapeName = dgvShapeList.CurrentRow.Cells[2].Value.ToString();
                 shape = _shapeLogic.GetShape(shapeName);
-                _panelGeneral.goToShapeRename(shape);
+                _panelGeneral.GoToShapeRename(shape);
             }
         }
         private void dgvShapeList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

@@ -45,7 +45,7 @@ namespace ObligatorioDA1
 
         private void btnReturnNewScene_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToSceneList();
+            _panelGeneral.GoToSceneList();
         }
         private void InitializeAvailableList()
         {
@@ -134,7 +134,7 @@ namespace ObligatorioDA1
             {
                 String modelName = dgvAvailableModelsList.CurrentRow.Cells[2].Value.ToString();
                 Model model = _modelLogic.Get(modelName);
-                _panelGeneral.goToSceneAddModel(model, _scene);
+                _panelGeneral.GoToSceneAddModel(model, _scene);
             }
         }
 

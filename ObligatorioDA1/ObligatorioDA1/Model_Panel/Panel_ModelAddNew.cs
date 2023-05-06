@@ -34,7 +34,7 @@ namespace ObligatorioDA1.Model_Panel
 
         private void btnShowAllModels_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToModelList();
+            _panelGeneral.GoToModelList();
         }
 
         private void btnNewModel_Click(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace ObligatorioDA1.Model_Panel
                 _newModel.WantPreview = ckbModelPreview.Checked;
                 _modelLogic.Add(_newModel);
                 RefreshPage();
-                _panelGeneral.goToModelList();
+                _panelGeneral.GoToModelList();
             }
             catch (NameException nameEx)
             {

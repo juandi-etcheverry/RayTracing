@@ -33,7 +33,7 @@ namespace ObligatorioDA1.Material_Panel
 
         private void btnAddMaterial_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToAddNewMaterial();
+            _panelGeneral.GoToAddNewMaterial();
         }
         public void refreshMaterialList(Client _client)
         {
@@ -62,7 +62,7 @@ namespace ObligatorioDA1.Material_Panel
             {
                 materialName = dgvMaterialList.CurrentRow.Cells[3].Value.ToString();
                 material = _materialLogic.Get(materialName);
-                _panelGeneral.goToMaterialRename(material);
+                _panelGeneral.GoToMaterialRename(material);
             } 
         }
 

@@ -36,7 +36,7 @@ namespace ObligatorioDA1
             try
             {
                 _shapeLogic.RenameShape(_shape, txbShapeRename.Text);
-                _panelGeneral.goToShapeList();
+                _panelGeneral.GoToShapeList();
             }
             catch (NameException nameEx)
             {
@@ -47,7 +47,7 @@ namespace ObligatorioDA1
 
         private void btnReturnRename_Click_1(object sender, EventArgs e)
         {
-            _panelGeneral.goToShapeList();
+            _panelGeneral.GoToShapeList();
         }
     }
 }

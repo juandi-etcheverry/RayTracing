@@ -60,7 +60,7 @@ namespace ObligatorioDA1.Scene_Panel
 
         private void btnAddNewScene_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToNewSceneName();
+            _panelGeneral.GoToNewSceneName();
         }
 
         private void dgvSceneList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -91,13 +91,13 @@ namespace ObligatorioDA1.Scene_Panel
             {
                 sceneName = dgvSceneList.CurrentRow.Cells[4].Value.ToString();
                 scene = _sceneLogic.GetScene(sceneName);
-                _panelGeneral.goToSceneRename(scene);
+                _panelGeneral.GoToSceneRename(scene);
             }
             if (this.dgvSceneList.Columns[e.ColumnIndex].Name == "Edit")
             {
                 sceneName = dgvSceneList.CurrentRow.Cells[4].Value.ToString();
                 scene = _sceneLogic.GetScene(sceneName);
-                _panelGeneral.goToSceneEditor(scene);
+                _panelGeneral.GoToSceneEditor(scene);
             }
         }
     }

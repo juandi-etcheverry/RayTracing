@@ -38,7 +38,7 @@ namespace ObligatorioDA1.Scene_Panel
         }
         private void btnReturnAddModel_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToSceneEditor(_scene);
+            _panelGeneral.GoToSceneEditor(_scene);
         }
 
         private void btnAddToScene_Click(object sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace ObligatorioDA1.Scene_Panel
                 bool validZ = decimal.TryParse(txbModelZCoordinates.Text, out z);
                 if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
                 _scene.AddPositionedModel(_model, (x, y, z));
-                _panelGeneral.goToSceneEditor(_scene);
+                _panelGeneral.GoToSceneEditor(_scene);
             }
             catch (ArgumentException argEx)
             {
