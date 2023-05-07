@@ -19,7 +19,7 @@ namespace ObligatorioDA1
         private SceneLogic _sceneLogic = new SceneLogic();
         private ModelLogic _modelLogic = new ModelLogic();
         private Scene _scene;
-        Panel_General _panelGeneral;
+        private Panel_General _panelGeneral;
         public Panel_SceneEditor(Panel_General panelGeneral)
         {
             _panelGeneral = panelGeneral;
@@ -42,7 +42,6 @@ namespace ObligatorioDA1
             RefreshLastModified();
             OutDatedRender();
         }
-
         private void btnReturnNewScene_Click(object sender, EventArgs e)
         {
             _panelGeneral.GoToSceneList();
@@ -93,7 +92,6 @@ namespace ObligatorioDA1
                 dgvUsedModels.Rows.Add(null, null, posModel.Name, null, posModel.Coordinates);
             }
         }
-
         private void dgvAvailableModelsList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
@@ -105,14 +103,8 @@ namespace ObligatorioDA1
                     Model model = _modelLogic.Get(modelName);
                     if (!model.WantPreview)
                     {
-                        int r = (int)model.Material.Color.Item1;
-                        int g = (int)model.Material.Color.Item2;
-                        int b = (int)model.Material.Color.Item3;
-                        Color newColor = Color.FromArgb(r, g, b);
-                        cell.Style.BackColor = newColor;
-                        cell.Style.SelectionBackColor = newColor;
-                        cell.Style.ForeColor = newColor;
-                        cell.ReadOnly = true;
+                        Color newColor = GetColour(model);
+                        PaintCell(cell, newColor);
                     }
                 }
                 if (this.dgvAvailableModelsList.Columns[e.ColumnIndex].Name == "Img")
@@ -127,7 +119,6 @@ namespace ObligatorioDA1
                 }
             }
         }
-
         private void dgvAvailableModelsList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (this.dgvAvailableModelsList.Columns[e.ColumnIndex].Name == "Add")
@@ -137,7 +128,6 @@ namespace ObligatorioDA1
                 _panelGeneral.GoToSceneAddModel(model, _scene);
             }
         }
-
         private void dgvUsedModels_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
@@ -149,14 +139,8 @@ namespace ObligatorioDA1
                     Model model = _modelLogic.Get(modelName);
                     if (!model.WantPreview)
                     {
-                        int r = (int)model.Material.Color.Item1;
-                        int g = (int)model.Material.Color.Item2;
-                        int b = (int)model.Material.Color.Item3;
-                        Color newColor = Color.FromArgb(r, g, b);
-                        cell.Style.BackColor = newColor;
-                        cell.Style.SelectionBackColor = newColor;
-                        cell.Style.ForeColor = newColor;
-                        cell.ReadOnly = true;
+                        Color newColor = GetColour(model);
+                        PaintCell(cell, newColor);
                     }
                 }
                 if (this.dgvUsedModels.Columns[e.ColumnIndex].Name == "Img")
@@ -176,7 +160,6 @@ namespace ObligatorioDA1
             if (this.dgvUsedModels.Columns[e.ColumnIndex].Name == "Delete")
             {
                 String modelName = dgvUsedModels.CurrentRow.Cells[2].Value.ToString();
-                Model model = _modelLogic.Get(modelName);
                 String pos = dgvUsedModels.CurrentRow.Cells[4].Value.ToString();
                 string[] values = pos.Trim('(', ')').Split(',');
                 decimal x = decimal.Parse(values[0]);
@@ -184,7 +167,6 @@ namespace ObligatorioDA1
                 decimal z = decimal.Parse(values[2]);
                 var tuple = ValueTuple.Create(x, y, z);
                 _scene.DeletePositionedModel(modelName, tuple);
-                //dgvUsedModels.Rows.Remove(dgvUsedModels.CurrentRow);
                 RefreshPage();
             }
         }
@@ -192,7 +174,6 @@ namespace ObligatorioDA1
         {
             lblDateLastModified.Text = _scene.LastModificationDate.ToString();
         }
-
         private void btnRender_Click(object sender, EventArgs e)
         {
             //Make render
@@ -244,6 +225,21 @@ namespace ObligatorioDA1
         private void OutDatedRender()
         {
             lblOutdatedImage.Visible = (_scene.LastRenderDate < _scene.LastModificationDate);
+        }
+        private Color GetColour(Model _model)
+        {
+            int r = (int)_model.Material.Color.Item1;
+            int g = (int)_model.Material.Color.Item2;
+            int b = (int)_model.Material.Color.Item3;
+            Color newColor = Color.FromArgb(r, g, b);
+            return newColor;
+        }
+        private void PaintCell(DataGridViewCell cell, Color color)
+        {
+            cell.Style.BackColor = color;
+            cell.Style.SelectionBackColor = color;
+            cell.Style.ForeColor = color;
+            cell.ReadOnly = true;
         }
     }
 }

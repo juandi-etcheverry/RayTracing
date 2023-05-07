@@ -15,22 +15,24 @@ namespace ObligatorioDA1
 {
     public partial class Panel_ShapeRename : UserControl
     {
-        ShapeLogic _shapeLogic = new ShapeLogic();
+        private ShapeLogic _shapeLogic = new ShapeLogic();
         private Panel_General _panelGeneral;
         private Shape _shape;
         public Panel_ShapeRename(Panel_General userControl)
         {
             _panelGeneral = userControl;
             InitializeComponent();
-            refreshShapeRename(_shape);
         }
-        public void refreshShapeRename(Shape shape)
+        public void RefreshShapeRename(Shape shape)
         {
             _shape = shape;
+            RefreshPage();
+        }
+        private void RefreshPage()
+        {
             lblRenameException.Visible = false;
             txbShapeRename.Clear();
         }
-
         private void btnConfirmRename_Click(object sender, EventArgs e)
         {
             try
@@ -44,7 +46,6 @@ namespace ObligatorioDA1
                 lblRenameException.Text = nameEx.Message;
             }
         }
-
         private void btnReturnRename_Click_1(object sender, EventArgs e)
         {
             _panelGeneral.GoToShapeList();

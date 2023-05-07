@@ -67,17 +67,17 @@ namespace ObligatorioDA1
         public void GoToShapeList()
         {
             SwitchPanel(userControlShapeList);
-            userControlShapeList.refreshShapeList(client);
+            userControlShapeList.RefreshShapeList();
         }
         public void GoToAddNewShape()
         {
             SwitchPanel(userControlShapeAddNew);
-            userControlShapeAddNew.refreshShapeAddNew(client);
+            userControlShapeAddNew.RefreshShapeAddNew();
         }
         public void GoToShapeRename(Shape shape)
         {
             SwitchPanel(userControlShapeRename);
-            userControlShapeRename.refreshShapeRename(shape);
+            userControlShapeRename.RefreshShapeRename(shape);
         }
         private void btnMaterials_Click(object sender, EventArgs e)
         {
@@ -86,17 +86,17 @@ namespace ObligatorioDA1
         public void GoToMaterialList()
         {
             SwitchPanel(userControlMaterialList);
-           userControlMaterialList.refreshMaterialList(client);
+           userControlMaterialList.RefreshMaterialList();
         }
         public void GoToAddNewMaterial()
         {
             SwitchPanel(userControlMaterialAddNew);
-            userControlMaterialAddNew.refreshMaterialAddNew(client);
+            userControlMaterialAddNew.RefreshMaterialAddNew();
         }
         public void GoToMaterialRename(Material material)
         {
             SwitchPanel(userControlMaterialRename);
-            userControlMaterialRename.refreshMaterialRename(material);
+            userControlMaterialRename.RefreshMaterialRename(material);
         }
 
         private void btnModels_Click(object sender, EventArgs e)
@@ -111,7 +111,7 @@ namespace ObligatorioDA1
         public void GoToAddNewModel()
         {
             SwitchPanel(userControlModelAddNew);
-            userControlModelAddNew.refreshModelAddNew();
+            userControlModelAddNew.RefreshModelAddNew();
         }
         public void GoToModelRename(Model model)
         {

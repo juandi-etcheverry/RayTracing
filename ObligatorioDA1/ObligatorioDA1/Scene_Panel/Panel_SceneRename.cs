@@ -22,7 +22,6 @@ namespace ObligatorioDA1.Scene_Panel
         {
             _panelGeneral = panelGeneral;
             InitializeComponent();
-            
         }
         public void RefreshSceneRename(Scene scene)
         {
@@ -34,12 +33,10 @@ namespace ObligatorioDA1.Scene_Panel
             lblSceneRenameException.Visible = false;
             txbRenameScene.Clear();
         }
-
         private void btnReturnRename_Click(object sender, EventArgs e)
         {
             _panelGeneral.GoToSceneList();
         }
-
         private void btnRename_Click(object sender, EventArgs e)
         {
             try

@@ -24,19 +24,16 @@ namespace ObligatorioDA1.Model_Panel
         {
             _panelGeneral = panelGeneral;
             InitializeComponent();
-
         }
-        public void refreshModelAddNew()
+        public void RefreshModelAddNew()
         {
             _newModel = new Model();
             RefreshPage();
         }
-
         private void btnShowAllModels_Click(object sender, EventArgs e)
         {
             _panelGeneral.GoToModelList();
         }
-
         private void btnNewModel_Click(object sender, EventArgs e)
         {
             lblModelSelectShape.Visible = false;
@@ -52,7 +49,6 @@ namespace ObligatorioDA1.Model_Panel
                 _newModel.Shape = _shapeLogic.GetShape(cmbNewModelShape.SelectedItem.ToString());
                 _newModel.WantPreview = ckbModelPreview.Checked;
                 _modelLogic.Add(_newModel);
-                RefreshPage();
                 _panelGeneral.GoToModelList();
             }
             catch (NameException nameEx)
@@ -74,27 +70,13 @@ namespace ObligatorioDA1.Model_Panel
                 }
             }
         }
-
-        private void txbNewModellName_TextChanged(object sender, EventArgs e)
-        {
-            lblNewModelNameException.Visible = false;
-            try
-            {
-                _newModel.Name = txbNewModelName.Text;
-            }
-            catch (NameException nameEx)
-            {
-                lblNewModelNameException.Visible = true;
-                lblNewModelNameException.Text = nameEx.Message;
-            }
-        }
-        private void refreshShapeCombo()
+        private void RefreshShapeCombo()
         {
             cmbNewModelShape.Items.Clear();
             foreach (Shape s in _shapeLogic.GetClientShapes())
                 cmbNewModelShape.Items.Add(s.Name);
         }
-        private void refreshMaterialCombo()
+        private void RefreshMaterialCombo()
         {
             cmbNewModelMaterial.Items.Clear();
             foreach (Material m in _materialLogic.GetClientMaterials())
@@ -107,8 +89,21 @@ namespace ObligatorioDA1.Model_Panel
             lblModelSelectMaterial.Visible = false;
             txbNewModelName.Clear();
             ckbModelPreview.Checked = false;
-            refreshShapeCombo();
-            refreshMaterialCombo();
+            RefreshShapeCombo();
+            RefreshMaterialCombo();
+        }
+        private void txbNewModelName_TextChanged(object sender, EventArgs e)
+        {
+            lblNewModelNameException.Visible = false;
+            try
+            {
+                _newModel.Name = txbNewModelName.Text;
+            }
+            catch (NameException nameEx)
+            {
+                lblNewModelNameException.Visible = true;
+                lblNewModelNameException.Text = nameEx.Message;
+            }
         }
     }
 }

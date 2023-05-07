@@ -40,7 +40,6 @@ namespace ObligatorioDA1.Scene_Panel
         {
             _panelGeneral.GoToSceneEditor(_scene);
         }
-
         private void btnAddToScene_Click(object sender, EventArgs e)
         {
             try

@@ -22,7 +22,6 @@ namespace ObligatorioDA1.Model_Panel
         {
             _panelGeneral = panelGeneral;
             InitializeComponent();
-
         }
         public void RefreshSceneNewName()
         {
@@ -34,12 +33,10 @@ namespace ObligatorioDA1.Model_Panel
             lblSceneNameException.Visible = false;
             txbSceneName.Clear();
         }
-
         private void btnReturnSceneName_Click(object sender, EventArgs e)
         {
             _panelGeneral.GoToSceneList();
         }
-
         private void btnConfirmSceneName_Click(object sender, EventArgs e)
         {
             try
@@ -54,7 +51,6 @@ namespace ObligatorioDA1.Model_Panel
                 lblSceneNameException.Text = nameEx.Message;
             }
         }
-
         private void txbSceneName_TextChanged(object sender, EventArgs e)
         {
             lblSceneNameException.Visible = false;

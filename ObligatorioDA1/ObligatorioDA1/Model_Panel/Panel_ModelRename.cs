@@ -29,6 +29,11 @@ namespace ObligatorioDA1.Model_Panel
             _model = model;
             RefreshPage();
         }
+        private void RefreshPage()
+        {
+            lblRenameException.Visible = false;
+            txbModelRename.Clear();
+        }
         private void btnConfirmRename_Click(object sender, EventArgs e)
         {
             try
@@ -42,15 +47,10 @@ namespace ObligatorioDA1.Model_Panel
                 lblRenameException.Text = nameEx.Message;
             }
         }
-
         private void btnReturnRename_Click(object sender, EventArgs e)
         {
             _panelGeneral.GoToModelList();
         }
-        private void RefreshPage()
-        {
-            lblRenameException.Visible = false;
-            txbModelRename.Clear();
-        }
+        
     }
 }

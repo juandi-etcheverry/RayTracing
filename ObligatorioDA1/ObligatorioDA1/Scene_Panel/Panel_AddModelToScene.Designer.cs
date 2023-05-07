@@ -30,6 +30,7 @@
         {
             this.btnReturnAddModel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCoordinatesExceptions = new System.Windows.Forms.Label();
             this.btnAddToScene = new System.Windows.Forms.Button();
             this.txbModelZCoordinates = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -40,7 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ModelPreview = new System.Windows.Forms.Panel();
             this.lblModelName = new System.Windows.Forms.Label();
-            this.lblCoordinatesExceptions = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             this.btnReturnAddModel.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnReturnAddModel.ForeColor = System.Drawing.Color.White;
             this.btnReturnAddModel.Location = new System.Drawing.Point(120, 112);
-            this.btnReturnAddModel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReturnAddModel.Margin = new System.Windows.Forms.Padding(4);
             this.btnReturnAddModel.Name = "btnReturnAddModel";
             this.btnReturnAddModel.Size = new System.Drawing.Size(164, 71);
             this.btnReturnAddModel.TabIndex = 7;
@@ -60,6 +61,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.lblCoordinatesExceptions);
             this.panel1.Controls.Add(this.btnAddToScene);
             this.panel1.Controls.Add(this.txbModelZCoordinates);
@@ -72,10 +74,21 @@
             this.panel1.Controls.Add(this.ModelPreview);
             this.panel1.Controls.Add(this.lblModelName);
             this.panel1.Location = new System.Drawing.Point(120, 213);
-            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(984, 579);
             this.panel1.TabIndex = 8;
+            // 
+            // lblCoordinatesExceptions
+            // 
+            this.lblCoordinatesExceptions.AutoSize = true;
+            this.lblCoordinatesExceptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCoordinatesExceptions.Location = new System.Drawing.Point(82, 332);
+            this.lblCoordinatesExceptions.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCoordinatesExceptions.Name = "lblCoordinatesExceptions";
+            this.lblCoordinatesExceptions.Size = new System.Drawing.Size(243, 25);
+            this.lblCoordinatesExceptions.TabIndex = 18;
+            this.lblCoordinatesExceptions.Text = "* Coordinates Exception";
             // 
             // btnAddToScene
             // 
@@ -83,7 +96,7 @@
             this.btnAddToScene.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddToScene.ForeColor = System.Drawing.Color.White;
             this.btnAddToScene.Location = new System.Drawing.Point(232, 415);
-            this.btnAddToScene.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddToScene.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddToScene.Name = "btnAddToScene";
             this.btnAddToScene.Size = new System.Drawing.Size(476, 60);
             this.btnAddToScene.TabIndex = 17;
@@ -95,7 +108,7 @@
             // 
             this.txbModelZCoordinates.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbModelZCoordinates.Location = new System.Drawing.Point(574, 269);
-            this.txbModelZCoordinates.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbModelZCoordinates.Margin = new System.Windows.Forms.Padding(4);
             this.txbModelZCoordinates.Name = "txbModelZCoordinates";
             this.txbModelZCoordinates.Size = new System.Drawing.Size(118, 44);
             this.txbModelZCoordinates.TabIndex = 16;
@@ -115,7 +128,7 @@
             // 
             this.txbModelYCoordinates.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbModelYCoordinates.Location = new System.Drawing.Point(344, 269);
-            this.txbModelYCoordinates.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbModelYCoordinates.Margin = new System.Windows.Forms.Padding(4);
             this.txbModelYCoordinates.Name = "txbModelYCoordinates";
             this.txbModelYCoordinates.Size = new System.Drawing.Size(118, 44);
             this.txbModelYCoordinates.TabIndex = 14;
@@ -135,7 +148,7 @@
             // 
             this.txbModelXCoordinates.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbModelXCoordinates.Location = new System.Drawing.Point(124, 269);
-            this.txbModelXCoordinates.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbModelXCoordinates.Margin = new System.Windows.Forms.Padding(4);
             this.txbModelXCoordinates.Name = "txbModelXCoordinates";
             this.txbModelXCoordinates.Size = new System.Drawing.Size(118, 44);
             this.txbModelXCoordinates.TabIndex = 12;
@@ -166,7 +179,7 @@
             // 
             this.ModelPreview.BackColor = System.Drawing.Color.White;
             this.ModelPreview.Location = new System.Drawing.Point(232, 75);
-            this.ModelPreview.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ModelPreview.Margin = new System.Windows.Forms.Padding(6);
             this.ModelPreview.Name = "ModelPreview";
             this.ModelPreview.Size = new System.Drawing.Size(84, 67);
             this.ModelPreview.TabIndex = 10;
@@ -176,23 +189,24 @@
             this.lblModelName.AutoSize = true;
             this.lblModelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblModelName.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblModelName.Location = new System.Drawing.Point(326, 85);
+            this.lblModelName.Location = new System.Drawing.Point(414, 90);
             this.lblModelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblModelName.Name = "lblModelName";
-            this.lblModelName.Size = new System.Drawing.Size(306, 42);
+            this.lblModelName.Size = new System.Drawing.Size(229, 42);
             this.lblModelName.TabIndex = 9;
-            this.lblModelName.Text = "Add Model Name";
+            this.lblModelName.Text = "Model Name";
             // 
-            // lblCoordinatesExceptions
+            // label5
             // 
-            this.lblCoordinatesExceptions.AutoSize = true;
-            this.lblCoordinatesExceptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCoordinatesExceptions.Location = new System.Drawing.Point(82, 332);
-            this.lblCoordinatesExceptions.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCoordinatesExceptions.Name = "lblCoordinatesExceptions";
-            this.lblCoordinatesExceptions.Size = new System.Drawing.Size(243, 25);
-            this.lblCoordinatesExceptions.TabIndex = 18;
-            this.lblCoordinatesExceptions.Text = "* Coordinates Exception";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label5.Location = new System.Drawing.Point(326, 90);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(95, 42);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Add ";
             // 
             // Panel_AddModelToScene
             // 
@@ -201,7 +215,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnReturnAddModel);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximumSize = new System.Drawing.Size(1200, 1000);
             this.MinimumSize = new System.Drawing.Size(1200, 1000);
             this.Name = "Panel_AddModelToScene";
@@ -227,5 +241,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnAddToScene;
         private System.Windows.Forms.Label lblCoordinatesExceptions;
+        private System.Windows.Forms.Label label5;
     }
 }

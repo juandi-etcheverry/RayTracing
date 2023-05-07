@@ -22,7 +22,6 @@ namespace ObligatorioDA1.Scene_Panel
             _panelGeneral = userControl;
             InitializeComponent();
             InitializeSceneList();
-
         }
         public void RefreshSceneList()
         {
@@ -36,7 +35,6 @@ namespace ObligatorioDA1.Scene_Panel
         {
             AddColumns();
             SetDisplayOrderColumns();
-            SetWidthColumns();
         }
         private void AddColumns()
         {
@@ -52,17 +50,10 @@ namespace ObligatorioDA1.Scene_Panel
             dgvSceneList.Columns["Rename"].DisplayIndex = 4;
             dgvSceneList.Columns["Delete"].DisplayIndex = 5;
         }
-        private void SetWidthColumns()
-        {
-
-        }
-
-
         private void btnAddNewScene_Click(object sender, EventArgs e)
         {
             _panelGeneral.GoToNewSceneName();
         }
-
         private void dgvSceneList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
@@ -72,10 +63,8 @@ namespace ObligatorioDA1.Scene_Panel
                 {
                     //Insert preview
                 }
-                
             }
         }
-
         private void dgvSceneList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             String sceneName;
