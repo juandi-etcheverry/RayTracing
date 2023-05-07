@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_SceneEditor));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblNewSceneName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblDateLastModified = new System.Windows.Forms.Label();
@@ -60,6 +60,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblFoVException = new System.Windows.Forms.Label();
+            this.lblLookExceptions = new System.Windows.Forms.Label();
             this.btnReturnNewScene = new System.Windows.Forms.Button();
             this.dgvAvailableModelsList = new System.Windows.Forms.DataGridView();
             this.Img = new System.Windows.Forms.DataGridViewImageColumn();
@@ -69,8 +71,6 @@
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.lblLookExceptions = new System.Windows.Forms.Label();
-            this.lblFoVException = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAvailableModelsList)).BeginInit();
@@ -134,7 +134,7 @@
             this.btnRender.Margin = new System.Windows.Forms.Padding(4);
             this.btnRender.Name = "btnRender";
             this.btnRender.Size = new System.Drawing.Size(224, 71);
-            this.btnRender.TabIndex = 19;
+            this.btnRender.TabIndex = 8;
             this.btnRender.Text = "Render";
             this.btnRender.UseVisualStyleBackColor = false;
             this.btnRender.Click += new System.EventHandler(this.btnRender_Click);
@@ -235,7 +235,7 @@
             this.txbXLookFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txbXLookFrom.Name = "txbXLookFrom";
             this.txbXLookFrom.Size = new System.Drawing.Size(44, 37);
-            this.txbXLookFrom.TabIndex = 7;
+            this.txbXLookFrom.TabIndex = 1;
             // 
             // txbYLookFrom
             // 
@@ -245,7 +245,7 @@
             this.txbYLookFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txbYLookFrom.Name = "txbYLookFrom";
             this.txbYLookFrom.Size = new System.Drawing.Size(44, 37);
-            this.txbYLookFrom.TabIndex = 8;
+            this.txbYLookFrom.TabIndex = 2;
             // 
             // txbZLookFrom
             // 
@@ -255,7 +255,7 @@
             this.txbZLookFrom.Margin = new System.Windows.Forms.Padding(4);
             this.txbZLookFrom.Name = "txbZLookFrom";
             this.txbZLookFrom.Size = new System.Drawing.Size(44, 37);
-            this.txbZLookFrom.TabIndex = 9;
+            this.txbZLookFrom.TabIndex = 3;
             // 
             // label9
             // 
@@ -276,7 +276,7 @@
             this.txbFoV.Margin = new System.Windows.Forms.Padding(4);
             this.txbFoV.Name = "txbFoV";
             this.txbFoV.Size = new System.Drawing.Size(92, 37);
-            this.txbFoV.TabIndex = 16;
+            this.txbFoV.TabIndex = 7;
             // 
             // label6
             // 
@@ -308,7 +308,7 @@
             this.txbXLookAt.Margin = new System.Windows.Forms.Padding(4);
             this.txbXLookAt.Name = "txbXLookAt";
             this.txbXLookAt.Size = new System.Drawing.Size(44, 37);
-            this.txbXLookAt.TabIndex = 19;
+            this.txbXLookAt.TabIndex = 4;
             // 
             // txbYLookAt
             // 
@@ -318,7 +318,7 @@
             this.txbYLookAt.Margin = new System.Windows.Forms.Padding(4);
             this.txbYLookAt.Name = "txbYLookAt";
             this.txbYLookAt.Size = new System.Drawing.Size(44, 37);
-            this.txbYLookAt.TabIndex = 20;
+            this.txbYLookAt.TabIndex = 5;
             // 
             // txbZLookAt
             // 
@@ -328,7 +328,7 @@
             this.txbZLookAt.Margin = new System.Windows.Forms.Padding(4);
             this.txbZLookAt.Name = "txbZLookAt";
             this.txbZLookAt.Size = new System.Drawing.Size(44, 37);
-            this.txbZLookAt.TabIndex = 21;
+            this.txbZLookAt.TabIndex = 6;
             // 
             // label8
             // 
@@ -391,6 +391,31 @@
             this.panel2.Size = new System.Drawing.Size(648, 142);
             this.panel2.TabIndex = 15;
             // 
+            // lblFoVException
+            // 
+            this.lblFoVException.AutoSize = true;
+            this.lblFoVException.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFoVException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblFoVException.Location = new System.Drawing.Point(434, 47);
+            this.lblFoVException.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFoVException.MaximumSize = new System.Drawing.Size(250, 25);
+            this.lblFoVException.Name = "lblFoVException";
+            this.lblFoVException.Size = new System.Drawing.Size(191, 25);
+            this.lblFoVException.TabIndex = 26;
+            this.lblFoVException.Text = "*New model name exception";
+            // 
+            // lblLookExceptions
+            // 
+            this.lblLookExceptions.AutoSize = true;
+            this.lblLookExceptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLookExceptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblLookExceptions.Location = new System.Drawing.Point(9, 114);
+            this.lblLookExceptions.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLookExceptions.Name = "lblLookExceptions";
+            this.lblLookExceptions.Size = new System.Drawing.Size(284, 25);
+            this.lblLookExceptions.TabIndex = 25;
+            this.lblLookExceptions.Text = "*New model name exception";
+            // 
             // btnReturnNewScene
             // 
             this.btnReturnNewScene.BackColor = System.Drawing.Color.DodgerBlue;
@@ -414,14 +439,14 @@
             this.dgvAvailableModelsList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAvailableModelsList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvAvailableModelsList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAvailableModelsList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAvailableModelsList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAvailableModelsList.ColumnHeadersHeight = 30;
             this.dgvAvailableModelsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvAvailableModelsList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -435,12 +460,12 @@
             this.dgvAvailableModelsList.RowHeadersVisible = false;
             this.dgvAvailableModelsList.RowHeadersWidth = 82;
             this.dgvAvailableModelsList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvAvailableModelsList.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvAvailableModelsList.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAvailableModelsList.RowTemplate.Height = 33;
             this.dgvAvailableModelsList.Size = new System.Drawing.Size(482, 338);
             this.dgvAvailableModelsList.TabIndex = 17;
@@ -479,14 +504,14 @@
             this.dgvUsedModels.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvUsedModels.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvUsedModels.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsedModels.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsedModels.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvUsedModels.ColumnHeadersHeight = 30;
             this.dgvUsedModels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvUsedModels.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -500,12 +525,12 @@
             this.dgvUsedModels.RowHeadersVisible = false;
             this.dgvUsedModels.RowHeadersWidth = 82;
             this.dgvUsedModels.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvUsedModels.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvUsedModels.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvUsedModels.RowTemplate.Height = 33;
             this.dgvUsedModels.Size = new System.Drawing.Size(482, 354);
             this.dgvUsedModels.TabIndex = 18;
@@ -557,31 +582,6 @@
             this.label16.Size = new System.Drawing.Size(203, 37);
             this.label16.TabIndex = 22;
             this.label16.Text = "Used models";
-            // 
-            // lblLookExceptions
-            // 
-            this.lblLookExceptions.AutoSize = true;
-            this.lblLookExceptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLookExceptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblLookExceptions.Location = new System.Drawing.Point(9, 114);
-            this.lblLookExceptions.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblLookExceptions.Name = "lblLookExceptions";
-            this.lblLookExceptions.Size = new System.Drawing.Size(284, 25);
-            this.lblLookExceptions.TabIndex = 25;
-            this.lblLookExceptions.Text = "*New model name exception";
-            // 
-            // lblFoVException
-            // 
-            this.lblFoVException.AutoSize = true;
-            this.lblFoVException.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFoVException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblFoVException.Location = new System.Drawing.Point(434, 47);
-            this.lblFoVException.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFoVException.MaximumSize = new System.Drawing.Size(250, 25);
-            this.lblFoVException.Name = "lblFoVException";
-            this.lblFoVException.Size = new System.Drawing.Size(191, 25);
-            this.lblFoVException.TabIndex = 26;
-            this.lblFoVException.Text = "*New model name exception";
             // 
             // Panel_SceneEditor
             // 

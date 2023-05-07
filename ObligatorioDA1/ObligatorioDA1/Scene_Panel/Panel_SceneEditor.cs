@@ -16,7 +16,6 @@ namespace ObligatorioDA1
 {
     public partial class Panel_SceneEditor : UserControl
     {
-        private SceneLogic _sceneLogic = new SceneLogic();
         private ModelLogic _modelLogic = new ModelLogic();
         private Scene _scene;
         private Panel_General _panelGeneral;
@@ -176,40 +175,13 @@ namespace ObligatorioDA1
         }
         private void btnRender_Click(object sender, EventArgs e)
         {
-            //Make render
-            SetLookfrom();
-            SetLookAt();
-            SetFov();
-            lblLastRenderedDate.Text = _scene.LastRenderDate.ToString();
-            lblOutdatedImage.Visible = false;
-            RefreshPage();
-        }
-        private void SetLookfrom()
-        {
-                decimal x, y, z;
-                bool validX = decimal.TryParse(txbXLookFrom.Text, out x);
-                bool validY = decimal.TryParse(txbYLookFrom.Text, out y);
-                bool validZ = decimal.TryParse(txbZLookFrom.Text, out z);
-                var tuple = ValueTuple.Create(x, y, z);
-                _scene.LookFrom = tuple;
-        }
-        private void SetLookAt()
-        {
-            decimal x, y, z;
-            bool validX = decimal.TryParse(txbXLookAt.Text, out x);
-            bool validY = decimal.TryParse(txbYLookAt.Text, out y);
-            bool validZ = decimal.TryParse(txbZLookAt.Text, out z);
-            var tuple = ValueTuple.Create(x, y, z);
-            _scene.LookAt = tuple;
-        }
-        private void SetFov()
-        {
             try
             {
-                uint x;
-                bool validX = uint.TryParse(txbFoV.Text, out x);
-                if (!validX) throw new ArgumentException("FoV must positive");
-                _scene.FoV = x;
+                SetLookfrom();
+                SetLookAt();
+                SetFov();
+                RefreshPage();
+                //Insert render
             }
             catch (ArgumentOutOfRangeException outEx)
             {
@@ -218,12 +190,40 @@ namespace ObligatorioDA1
             }
             catch (ArgumentException argEx)
             {
-                lblFoVException.Visible = true;
-                lblFoVException.Text = argEx.Message;
+                lblLookExceptions.Visible = true;
+                lblLookExceptions.Text = argEx.Message;
             }
+        }
+        private void SetLookfrom()
+        {
+            decimal x, y, z;
+            bool validX = decimal.TryParse(txbXLookFrom.Text, out x);
+            bool validY = decimal.TryParse(txbYLookFrom.Text, out y);
+            bool validZ = decimal.TryParse(txbZLookFrom.Text, out z);
+            if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
+            var tuple = ValueTuple.Create(x, y, z);
+            _scene.LookFrom = tuple;
+        }
+        private void SetLookAt()
+        {
+            decimal x, y, z;
+            bool validX = decimal.TryParse(txbXLookAt.Text, out x);
+            bool validY = decimal.TryParse(txbYLookAt.Text, out y);
+            bool validZ = decimal.TryParse(txbZLookAt.Text, out z);
+            if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
+            var tuple = ValueTuple.Create(x, y, z);
+            _scene.LookAt = tuple;
+        }
+        private void SetFov()
+        {
+            uint x;
+            bool validX = uint.TryParse(txbFoV.Text, out x);
+            _scene.FoV = x;
         }
         private void OutDatedRender()
         {
+            //lblLastRenderedDate.Text = _scene.LastRenderDate.ToString();
+            lblLastRenderedDate.Text = DateTime.Now.ToString();
             lblOutdatedImage.Visible = (_scene.LastRenderDate < _scene.LastModificationDate);
         }
         private Color GetColour(Model _model)
