@@ -12,7 +12,7 @@ namespace GraphicsEngine
         private decimal _x { get; set; }
         private decimal _y { get; set; }
         private decimal _z { get; set; }
-        public decimal X
+        public new decimal X
         {
             get => _x;
             set
@@ -22,7 +22,7 @@ namespace GraphicsEngine
             }
         }
 
-        public decimal Y
+        public new decimal Y
         {
             get => _y;
             set
@@ -32,7 +32,7 @@ namespace GraphicsEngine
             }
         }
 
-        public decimal Z
+        public new decimal Z
         {
             get => _z;
             set
