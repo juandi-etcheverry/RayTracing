@@ -30,7 +30,7 @@ namespace GraphicsEngine
                 .Subtract(verticalUnit.Multiply(halfOfHeight)).Subtract(depthUnit);
         }
 
-        public Ray RayFromCoordinates(int horizontalDistanceFromLeft, int verticalDistanceFromBottom)
+        internal Ray RayFromCoordinates(int horizontalDistanceFromLeft, int verticalDistanceFromBottom)
         {
             Vector horizontalPosition = HorizontalUnitOfDistance.Multiply(horizontalDistanceFromLeft);
             Vector verticalPosition = VerticalUnitOfDistance.Multiply(verticalDistanceFromBottom);
