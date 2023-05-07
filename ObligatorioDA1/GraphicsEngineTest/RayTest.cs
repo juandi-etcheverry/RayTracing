@@ -31,8 +31,8 @@ namespace GraphicsEngineTest
             };
             _globalRay = new Ray()
             {
-                origin = _globalOrigin,
-                direction = _globalDirection
+                Origin = _globalOrigin,
+                Direction = _globalDirection
             };
         }
 

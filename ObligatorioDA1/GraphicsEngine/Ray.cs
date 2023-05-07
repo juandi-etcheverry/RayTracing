@@ -8,12 +8,12 @@ namespace GraphicsEngine
 {
     public class Ray
     {
-        public Vector origin { get; set; }
-        public Vector direction { get; set; }
+        public Vector Origin { get; set; }
+        public Vector Direction { get; set; }
 
         public Vector PointAt(decimal directionScalar)
         {
-            return origin.Add(direction.Multiply(directionScalar));
+            return Origin.Add(Direction.Multiply(directionScalar));
         }
     }
 }
