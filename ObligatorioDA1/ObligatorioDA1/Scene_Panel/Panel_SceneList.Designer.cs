@@ -33,7 +33,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_SceneList));
             this.btnAddNewScene = new System.Windows.Forms.Button();
             this.dgvSceneList = new System.Windows.Forms.DataGridView();
-            this.Img = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Preview = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.Rename = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSceneList)).BeginInit();
@@ -44,10 +45,10 @@
             this.btnAddNewScene.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnAddNewScene.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNewScene.ForeColor = System.Drawing.Color.White;
-            this.btnAddNewScene.Location = new System.Drawing.Point(62, 59);
-            this.btnAddNewScene.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddNewScene.Location = new System.Drawing.Point(46, 116);
+            this.btnAddNewScene.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddNewScene.Name = "btnAddNewScene";
-            this.btnAddNewScene.Size = new System.Drawing.Size(466, 37);
+            this.btnAddNewScene.Size = new System.Drawing.Size(1095, 71);
             this.btnAddNewScene.TabIndex = 2;
             this.btnAddNewScene.Text = "ADD NEW SCENE";
             this.btnAddNewScene.UseVisualStyleBackColor = false;
@@ -77,12 +78,13 @@
             this.dgvSceneList.ColumnHeadersHeight = 30;
             this.dgvSceneList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvSceneList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Img,
+            this.Preview,
+            this.Edit,
             this.Rename,
             this.Delete});
             this.dgvSceneList.EnableHeadersVisualStyles = false;
-            this.dgvSceneList.Location = new System.Drawing.Point(62, 117);
-            this.dgvSceneList.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvSceneList.Location = new System.Drawing.Point(46, 225);
+            this.dgvSceneList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSceneList.Name = "dgvSceneList";
             this.dgvSceneList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvSceneList.RowHeadersVisible = false;
@@ -95,16 +97,31 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvSceneList.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSceneList.RowTemplate.Height = 33;
-            this.dgvSceneList.Size = new System.Drawing.Size(466, 316);
+            this.dgvSceneList.Size = new System.Drawing.Size(1095, 608);
             this.dgvSceneList.TabIndex = 3;
+            this.dgvSceneList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSceneList_CellContentClick);
+            this.dgvSceneList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvSceneList_CellPainting);
             // 
-            // Img
+            // Preview
             // 
-            this.Img.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Img.HeaderText = "Img";
-            this.Img.Name = "Img";
-            this.Img.ReadOnly = true;
-            this.Img.Width = 30;
+            this.Preview.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Preview.HeaderText = "Preview";
+            this.Preview.Image = ((System.Drawing.Image)(resources.GetObject("Preview.Image")));
+            this.Preview.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Preview.MinimumWidth = 10;
+            this.Preview.Name = "Preview";
+            this.Preview.ReadOnly = true;
+            this.Preview.Width = 122;
+            // 
+            // Edit
+            // 
+            this.Edit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Edit.HeaderText = "Edit";
+            this.Edit.Image = ((System.Drawing.Image)(resources.GetObject("Edit.Image")));
+            this.Edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Edit.MinimumWidth = 10;
+            this.Edit.Name = "Edit";
+            this.Edit.Width = 69;
             // 
             // Rename
             // 
@@ -115,7 +132,7 @@
             this.Rename.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Rename.MinimumWidth = 10;
             this.Rename.Name = "Rename";
-            this.Rename.Width = 71;
+            this.Rename.Width = 126;
             // 
             // Delete
             // 
@@ -126,19 +143,20 @@
             this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Delete.MinimumWidth = 10;
             this.Delete.Name = "Delete";
-            this.Delete.Width = 59;
+            this.Delete.Width = 103;
             // 
             // Panel_SceneList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.dgvSceneList);
             this.Controls.Add(this.btnAddNewScene);
-            this.MaximumSize = new System.Drawing.Size(600, 520);
-            this.MinimumSize = new System.Drawing.Size(600, 520);
+            this.Margin = new System.Windows.Forms.Padding(6);
+            this.MaximumSize = new System.Drawing.Size(1200, 1000);
+            this.MinimumSize = new System.Drawing.Size(1200, 1000);
             this.Name = "Panel_SceneList";
-            this.Size = new System.Drawing.Size(600, 520);
+            this.Size = new System.Drawing.Size(1200, 1000);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSceneList)).EndInit();
             this.ResumeLayout(false);
 
@@ -148,7 +166,8 @@
 
         private System.Windows.Forms.Button btnAddNewScene;
         private System.Windows.Forms.DataGridView dgvSceneList;
-        private System.Windows.Forms.DataGridViewImageColumn Img;
+        private System.Windows.Forms.DataGridViewImageColumn Preview;
+        private System.Windows.Forms.DataGridViewImageColumn Edit;
         private System.Windows.Forms.DataGridViewImageColumn Rename;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
     }

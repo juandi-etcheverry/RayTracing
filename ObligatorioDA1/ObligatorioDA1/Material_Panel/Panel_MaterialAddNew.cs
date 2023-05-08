@@ -16,28 +16,32 @@ namespace ObligatorioDA1.Material_Panel
 {
     public partial class Panel_MaterialAddNew : UserControl
     {
-        Material newMaterial;
-        MaterialLogic _materialLogic = new MaterialLogic();
+        private Material newMaterial;
+        private MaterialLogic _materialLogic = new MaterialLogic();
         private Panel_General _panelGeneral;
-        private Client _client;
         public Panel_MaterialAddNew(Panel_General userControl)
         {
             _panelGeneral = userControl;
             InitializeComponent();
-            refreshMaterialAddNew(_client);
         }
-        public void refreshMaterialAddNew(Client client)
+        public void RefreshMaterialAddNew()
         {
             newMaterial = new Material();
-            _client = client;
             RefreshPanel();
         }
-
+        private void RefreshPanel()
+        {
+            lblNewMaterialNameException.Visible = false;
+            lblNewRGBException.Visible = false;
+            txbNewMaterialName.Clear();
+            txbNewRMaterial.Clear();
+            txbNewGMaterial.Clear();
+            txbNewBMaterial.Clear();
+        }
         private void btnShowAllMaterials_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToMaterialList();
+            _panelGeneral.GoToMaterialList();
         }
-
         private void btnNewMaterial_Click(object sender, EventArgs e)
         {
             lblNewMaterialNameException.Visible = false;
@@ -52,8 +56,7 @@ namespace ObligatorioDA1.Material_Panel
                 newMaterial.Name = txbNewMaterialName.Text;
                 newMaterial.Color = (r, g, b);
                 _materialLogic.Add(newMaterial);
-                RefreshPanel();
-                _panelGeneral.goToMaterialList();
+                _panelGeneral.GoToMaterialList();
             }
             catch (NameException nameEx)
             {
@@ -65,7 +68,6 @@ namespace ObligatorioDA1.Material_Panel
                 lblNewRGBException.Visible = true;
                 lblNewRGBException.Text = arEex.Message;
             }
-            
         }
         private void txbNewMaterialName_TextChanged(object sender, EventArgs e)
         {
@@ -112,7 +114,6 @@ namespace ObligatorioDA1.Material_Panel
                 lblNewRGBException.Text = argEx.Message;
             }
         }
-
         private void txbNewBMaterial_TextChanged(object sender, EventArgs e)
         {
             lblNewRGBException.Visible = false;
@@ -128,14 +129,6 @@ namespace ObligatorioDA1.Material_Panel
                 lblNewRGBException.Text = argEx.Message;
             }
         }
-        private void RefreshPanel()
-        {
-            lblNewMaterialNameException.Visible = false;
-            lblNewRGBException.Visible = false;
-            txbNewMaterialName.Clear();
-            txbNewRMaterial.Clear();
-            txbNewGMaterial.Clear();
-            txbNewBMaterial.Clear();
-        }
+        
     }
 }

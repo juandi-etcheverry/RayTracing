@@ -41,6 +41,114 @@ namespace ObligatorioDA1
         {
             _formPrincipal = form1;
             InitializeComponent();
+            InitiallizePanels();
+            flyGeneral.Controls.Clear();
+            RefreshGeneralPanel(client);
+        }
+        public void RefreshGeneralPanel(Client _client)
+        {
+            this.client = _client;
+            lblUsername.Text = _client.Name;
+        }
+        private void SwitchPanel(UserControl userControl)
+        {
+            flyGeneral.Controls.Clear();
+            flyGeneral.Controls.Add(userControl);
+        }
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            flyGeneral.Controls.Clear();
+            _formPrincipal.SignOut();
+        }
+        private void btnShapes_Click(object sender, EventArgs e)
+        {
+            GoToShapeList();
+        }
+        public void GoToShapeList()
+        {
+            SwitchPanel(userControlShapeList);
+            userControlShapeList.RefreshShapeList();
+        }
+        public void GoToAddNewShape()
+        {
+            SwitchPanel(userControlShapeAddNew);
+            userControlShapeAddNew.RefreshShapeAddNew();
+        }
+        public void GoToShapeRename(Shape shape)
+        {
+            SwitchPanel(userControlShapeRename);
+            userControlShapeRename.RefreshShapeRename(shape);
+        }
+        private void btnMaterials_Click(object sender, EventArgs e)
+        {
+            GoToMaterialList();
+        }
+        public void GoToMaterialList()
+        {
+            SwitchPanel(userControlMaterialList);
+           userControlMaterialList.RefreshMaterialList();
+        }
+        public void GoToAddNewMaterial()
+        {
+            SwitchPanel(userControlMaterialAddNew);
+            userControlMaterialAddNew.RefreshMaterialAddNew();
+        }
+        public void GoToMaterialRename(Material material)
+        {
+            SwitchPanel(userControlMaterialRename);
+            userControlMaterialRename.RefreshMaterialRename(material);
+        }
+
+        private void btnModels_Click(object sender, EventArgs e)
+        {
+            GoToModelList();
+        }
+        public void GoToModelList()
+        {
+            SwitchPanel(userControlModelList);
+            userControlModelList.RefreshModelList();
+        }
+        public void GoToAddNewModel()
+        {
+            SwitchPanel(userControlModelAddNew);
+            userControlModelAddNew.RefreshModelAddNew();
+        }
+        public void GoToModelRename(Model model)
+        {
+           SwitchPanel(userControlModelRename);
+           userControlModelRename.RefreshModelRename(model);
+        }
+        private void btnScenes_Click(object sender, EventArgs e)
+        {
+            GoToSceneList();
+        }
+        public void GoToSceneList()
+        {
+            SwitchPanel(userControlSceneList);
+            userControlSceneList.RefreshSceneList();
+        }
+        public void GoToSceneEditor(Scene scene)
+        {
+            SwitchPanel(userControlSceneEditor);
+            userControlSceneEditor.RefreshSceneEditor(scene);
+        }
+        public void GoToNewSceneName()
+        {
+            SwitchPanel(userControlSceneNewName);
+            userControlSceneNewName.RefreshSceneNewName();
+        }
+        public void GoToSceneRename(Scene scene)
+        {
+            SwitchPanel(userControlSceneRename);
+            userControlSceneRename.RefreshSceneRename(scene);
+        }
+        public void GoToSceneAddModel(Model model, Scene scene)
+        {
+            SwitchPanel(userControlModelToScene);
+            userControlModelToScene.RefreshModelToScene(model, scene);
+        }
+        private void InitiallizePanels()
+        {
             userControlShapeList = new Panel_ShapeList(this);
             userControlShapeAddNew = new Panel_ShapeAddNew(this);
             userControlShapeRename = new Panel_ShapeRename(this);
@@ -52,102 +160,9 @@ namespace ObligatorioDA1
             userControlModelRename = new Panel_ModelRename(this);
             userControlSceneList = new Panel_SceneList(this);
             userControlSceneEditor = new Panel_SceneEditor(this);
-            //userControlSceneRename = new Panel_SceneRename(this);
+            userControlSceneRename = new Panel_SceneRename(this);
             userControlSceneNewName = new Panel_SceneNewName(this);
-            //userControlModelToScene = new Panel_AddModelToScene(this);
-            flyGeneral.Controls.Clear();
-            refreshGeneralPanel(client);
+            userControlModelToScene = new Panel_AddModelToScene(this);
         }
-        public void refreshGeneralPanel(Client _client)
-        {
-            this.client = _client;
-            lblUsername.Text = _client.Name;
-        }
-        private void btnLogOut_Click(object sender, EventArgs e)
-        {
-            flyGeneral.Controls.Clear();
-            _formPrincipal.SignOut();
-        }
-        private void switchPanel(UserControl userControl)
-        {
-            flyGeneral.Controls.Clear();
-            flyGeneral.Controls.Add(userControl);
-        }
-        private void btnShapes_Click(object sender, EventArgs e)
-        {
-            goToShapeList();
-        }
-        public void goToShapeList()
-        {
-            switchPanel(userControlShapeList);
-            userControlShapeList.refreshShapeList(client);
-        }
-        public void goToAddNewShape()
-        {
-            switchPanel(userControlShapeAddNew);
-            userControlShapeAddNew.refreshShapeAddNew(client);
-        }
-        public void goToShapeRename(Shape shape)
-        {
-            switchPanel(userControlShapeRename);
-            userControlShapeRename.refreshShapeRename(shape);
-        }
-        private void btnMaterials_Click(object sender, EventArgs e)
-        {
-            goToMaterialList();
-        }
-        public void goToMaterialList()
-        {
-            switchPanel(userControlMaterialList);
-           userControlMaterialList.refreshMaterialList(client);
-        }
-        public void goToAddNewMaterial()
-        {
-            switchPanel(userControlMaterialAddNew);
-            userControlMaterialAddNew.refreshMaterialAddNew(client);
-        }
-        public void goToMaterialRename(Material material)
-        {
-            switchPanel(userControlMaterialRename);
-            userControlMaterialRename.refreshMaterialRename(material);
-        }
-
-        private void btnModels_Click(object sender, EventArgs e)
-        {
-            goToModelList();
-        }
-        public void goToModelList()
-        {
-            switchPanel(userControlModelList);
-            userControlModelList.RefreshModelList(client);
-        }
-        public void goToAddNewModel()
-        {
-            switchPanel(userControlModelAddNew);
-            userControlModelAddNew.refreshModelAddNew(client);
-        }
-        public void goToModelRename(Model model)
-        {
-           switchPanel(userControlModelRename);
-           userControlModelRename.RefreshModelRename(model);
-        }
-        private void btnScenes_Click(object sender, EventArgs e)
-        {
-            goToSceneList();
-        }
-        public void goToSceneList()
-        {
-            switchPanel(userControlSceneList);
-        }
-        public void goToSceneEditor()
-        {
-            switchPanel(userControlSceneEditor);
-        }
-        public void goToNewSceneName()
-        {
-            switchPanel(userControlSceneNewName);
-        }
-        
-
     }
 }
