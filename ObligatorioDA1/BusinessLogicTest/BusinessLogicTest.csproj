@@ -58,6 +58,7 @@
     <Compile Include="MaterialTest.cs" />
     <Compile Include="ModelTest.cs" />
     <Compile Include="SceneTest.cs" />
+    <Compile Include="SceneSettingsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
