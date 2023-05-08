@@ -40,6 +40,7 @@ namespace ObligatorioDA1
             RefreshUsedList();
             RefreshLastModified();
             OutDatedRender();
+            RefreshLooks();
         }
         private void btnReturnNewScene_Click(object sender, EventArgs e)
         {
@@ -240,6 +241,25 @@ namespace ObligatorioDA1
             cell.Style.SelectionBackColor = color;
             cell.Style.ForeColor = color;
             cell.ReadOnly = true;
+        }
+        private void RefreshLooks()
+        {
+            ClearLooks();
+            SetLooks();
+        }
+        private void ClearLooks()
+        {
+            txbXLookFrom.Clear();
+            txbYLookFrom.Clear();
+            txbZLookFrom.Clear();
+            txbXLookAt.Clear();
+            txbYLookAt.Clear();
+            txbZLookAt.Clear();
+            txbFoV.Clear();
+        }
+        private void SetLooks()
+        {
+            //Set looks
         }
     }
 }

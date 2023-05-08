@@ -35,6 +35,7 @@ namespace ObligatorioDA1
         private Panel_SceneRename userControlSceneRename;
         private Panel_SceneNewName userControlSceneNewName;
         private Panel_AddModelToScene userControlModelToScene;
+        private Panel_SceneSetDefaultCamera userControlSceneSetDefaultCamera;
         
         
         public Panel_General(Form1 form1)
@@ -147,6 +148,11 @@ namespace ObligatorioDA1
             SwitchPanel(userControlModelToScene);
             userControlModelToScene.RefreshModelToScene(model, scene);
         }
+        public void GoToSetCameraDefault()
+        {
+            SwitchPanel(userControlSceneSetDefaultCamera);
+            userControlSceneSetDefaultCamera.RefreshSetDefaultCamera();
+        }
         private void InitiallizePanels()
         {
             userControlShapeList = new Panel_ShapeList(this);
@@ -163,6 +169,7 @@ namespace ObligatorioDA1
             userControlSceneRename = new Panel_SceneRename(this);
             userControlSceneNewName = new Panel_SceneNewName(this);
             userControlModelToScene = new Panel_AddModelToScene(this);
+            userControlSceneSetDefaultCamera = new Panel_SceneSetDefaultCamera(this);
         }
     }
 }
