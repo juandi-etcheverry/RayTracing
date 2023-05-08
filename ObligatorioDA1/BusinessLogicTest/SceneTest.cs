@@ -366,5 +366,19 @@ namespace BusinessLogicTest
             Assert.AreEqual((1, 1, 1), scene.LookAt);
             Assert.AreEqual((uint)1, scene.FoV);
         }
+
+        [TestMethod]
+        public void DefaultValues_OK_Test()
+        {
+            Scene scene = new Scene()
+            {
+                Name = "Scene"
+            };
+            _sceneLogic.Add(scene);
+
+            Assert.AreEqual((0, 2, 0), scene.LookFrom);
+            Assert.AreEqual((0, 2, 5), scene.LookAt);
+            Assert.AreEqual((uint)30, scene.FoV);
+        }
     }
 }
