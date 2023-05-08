@@ -380,5 +380,19 @@ namespace BusinessLogicTest
             Assert.AreEqual((0, 2, 5), scene.LookAt);
             Assert.AreEqual((uint)30, scene.FoV);
         }
+
+        [TestMethod]
+        public void Change_Scene_Default_And_FoV_Value_OK_Test()
+        {
+            client.FoVDefault = 10;
+            Scene scene = new Scene()
+            {
+                Name = "Scene",
+            };
+            _sceneLogic.Add(scene);
+            scene.FoV = 90;
+
+            Assert.AreEqual((uint)90, scene.FoV);
+        }
     }
 }
