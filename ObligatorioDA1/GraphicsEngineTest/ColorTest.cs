@@ -18,9 +18,9 @@ namespace GraphicsEngineTest
         {
             colorVector = new Color()
             {
-                X = 0.3m,
-                Y = 0.6m,
-                Z = 0.9m
+                R = 0.3m,
+                G = 0.6m,
+                B = 0.9m
             };
         }
 
@@ -31,9 +31,9 @@ namespace GraphicsEngineTest
         {
             Color c = new Color()
             {
-                X = 1.1m,
-                Y = -0.3m,
-                Z = 0.5m
+                R = 1.1m,
+                G = -0.3m,
+                B = 0.5m
             };
         }
 

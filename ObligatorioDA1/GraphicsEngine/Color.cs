@@ -7,54 +7,54 @@ using System.Threading.Tasks;
 
 namespace GraphicsEngine
 {
-    public class Color : Vector
+    public class Color
     {
-        private decimal _x { get; set; }
-        private decimal _y { get; set; }
-        private decimal _z { get; set; }
-        public new decimal X
+        private decimal _r { get; set; }
+        private decimal _g { get; set; }
+        private decimal _b { get; set; }
+        public decimal R
         {
-            get => _x;
+            get => _r;
             set
             {
-                ValidateVectorIsBetweenZeroAndOne(value, "X");
-                _x = value;
+                ValidateColorIsBetweenZeroAndOne(value, "R");
+                _r = value;
             }
         }
 
-        public new decimal Y
+        public decimal G
         {
-            get => _y;
+            get => _g;
             set
             {
-                ValidateVectorIsBetweenZeroAndOne(value, "Y");
-                _y = value;
+                ValidateColorIsBetweenZeroAndOne(value, "G");
+                _g = value;
             }
         }
 
-        public new decimal Z
+        public decimal B
         {
-            get => _z;
+            get => _b;
             set
             {
-                ValidateVectorIsBetweenZeroAndOne(value, "Z");
-                _z = value;
+                ValidateColorIsBetweenZeroAndOne(value, "B");
+                _b = value;
             }
         }
 
         public int Red()
         {
-            return CalculateCoordinateColor(X);
+            return CalculateCoordinateColor(R);
         }
 
         public int Green()
         {
-            return CalculateCoordinateColor(Y);
+            return CalculateCoordinateColor(G);
         }
 
         public int Blue()
         {
-            return CalculateCoordinateColor(Z);
+            return CalculateCoordinateColor(B);
         }
 
         private int CalculateCoordinateColor(decimal coordinate)
@@ -78,26 +78,26 @@ namespace GraphicsEngine
             return Convert.ToInt32(coordinate);
         }
 
-        private void ValidateVectorIsBetweenZeroAndOne(decimal value, string coordinateName)
+        private void ValidateColorIsBetweenZeroAndOne(decimal value, string coordinateName)
         {
-            ValidateVectorIsZeroOrGreater(value, coordinateName);
-            ValidateVectorIsOneOrBelow(value, coordinateName);
+            ValidateColorIsZeroOrGreater(value, coordinateName);
+            ValidateColorIsOneOrBelow(value, coordinateName);
         }
 
-        private void ValidateVectorIsZeroOrGreater(decimal value, string coordinateName)
+        private void ValidateColorIsZeroOrGreater(decimal value, string coordinateName)
         {
-            if (value < 0) ThrowVectorCoordinateIsOutOfRange(coordinateName);
+            if (value < 0) ThrowColorCoordinateIsOutOfRange(coordinateName);
 
         }
 
-        private void ValidateVectorIsOneOrBelow(decimal value, string coordinateName)
+        private void ValidateColorIsOneOrBelow(decimal value, string coordinateName)
         {
-            if (value > 1) ThrowVectorCoordinateIsOutOfRange(coordinateName);
+            if (value > 1) ThrowColorCoordinateIsOutOfRange(coordinateName);
         }
 
-        private void ThrowVectorCoordinateIsOutOfRange(string coordinateName)
+        private void ThrowColorCoordinateIsOutOfRange(string coordinateName)
         {
-            throw new ArgumentOutOfRangeException("{0} coordinate must be between 0 and 1", coordinateName);
+            throw new ArgumentOutOfRangeException("{0} color value must be between 0 and 1", coordinateName);
         }
     }
 }
