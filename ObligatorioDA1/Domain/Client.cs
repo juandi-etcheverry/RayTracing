@@ -9,6 +9,9 @@ namespace Domain
         private string _name;
         private string _password;
         private DateTime _registrationDate { get; set; }
+        private ValueTuple<decimal, decimal, decimal> _lookfromdefault;
+        private ValueTuple<decimal, decimal, decimal> _lookatdefault;
+        private uint _fovdefault;
 
         private static uint MIN_NAME_LENGTH = 3;
         private static uint MAX_NAME_LENGTH = 20;
@@ -38,9 +41,30 @@ namespace Domain
             }
         }
 
+        public ValueTuple<decimal, decimal, decimal> LookFromDefault
+        {
+            get => _lookfromdefault;
+            set => _lookfromdefault = value;
+        }
+
+        public ValueTuple<decimal, decimal, decimal> LookAtDefault
+        {
+            get => _lookatdefault;
+            set => _lookatdefault = value;
+        }
+
+        public uint FoVDefault
+        {
+            get => _fovdefault;
+            set => _fovdefault = value;
+        }
+
         public Client()
         {
             _registrationDate = DateTime.Now;
+            _lookfromdefault = (0, 2, 0);
+            _lookatdefault = (0, 2, 5);
+            _fovdefault = 30;
         }
 
         public bool AreNamesEqual(string otherName)

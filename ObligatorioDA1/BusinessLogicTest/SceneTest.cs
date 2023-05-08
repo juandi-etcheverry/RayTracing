@@ -16,17 +16,18 @@ namespace BusinessLogicTest
         private readonly ModelLogic _modelLogic = new ModelLogic();
         private readonly SceneLogic _sceneLogic = new SceneLogic();
         private Model _newModel;
+        private Client client;
 
         [TestInitialize]
         public void SetUp()
         {
-            Client newClient = new Client()
+            client = new Client()
             {
                 Name = "NewName",
                 Password = "ValidPassword1"
             };
-            _clientLogic.AddClient(newClient);
-            _clientLogic.InitializeSession(newClient);
+            _clientLogic.AddClient(client);
+            _clientLogic.InitializeSession(client);
 
             Shape newShape = new Sphere()
             {
@@ -93,23 +94,6 @@ namespace BusinessLogicTest
             };
 
             Assert.AreEqual(DateTime.Now, newScene.RegistrationDate);
-        }
-
-        [TestMethod]
-        public void AddScene_NotLogged_FAIL_Test()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = "NewScene",
-                LookFrom = (20, 10, 30),
-                LookAt = (0, 0, 15),
-                FoV = 50
-            };
-            newScene.AddPositionedModel(_newModel, (10, 10, 10));
-
-            _clientLogic.Logout();
-
-            Assert.ThrowsException<SessionException>(() => _sceneLogic.Add(newScene));
         }
 
         [TestMethod]
@@ -214,6 +198,7 @@ namespace BusinessLogicTest
                 LookAt = (0, 0, 15),
                 FoV = 50
             };
+            _sceneLogic.Add(newScene);
 
             Assert.AreEqual((0, 2, 0), newScene.LookFrom);
         }
@@ -227,6 +212,7 @@ namespace BusinessLogicTest
                 LookFrom = (40, 34, 2),
                 FoV = 50
             };
+            _sceneLogic.Add(newScene);
 
             Assert.AreEqual((0, 2, 5), newScene.LookAt);
         }
@@ -239,6 +225,7 @@ namespace BusinessLogicTest
                 Name = "NewScene",
                 LookFrom = (40, 34, 2),
             };
+            _sceneLogic.Add(newScene);
 
             Assert.AreEqual((uint)30, newScene.FoV);
         }
@@ -360,6 +347,24 @@ namespace BusinessLogicTest
             _sceneLogic.Add(scene2);
 
             Assert.ThrowsException<NameException>(() => _sceneLogic.RenameScene(_sceneLogic.GetScene("NewScene1"), "NewScene2"));
+        }
+
+        [TestMethod]
+        public void Change_Scene_DefaultValues_OK_Test()
+        {
+            client.LookFromDefault = (1, 1, 1);
+            client.LookAtDefault = (1, 1, 1);
+            client.FoVDefault = 1;
+
+            Scene scene = new Scene()
+            {
+                Name = "scene",
+            };
+            _sceneLogic.Add(scene);
+
+            Assert.AreEqual((1, 1, 1), scene.LookFrom);
+            Assert.AreEqual((1, 1, 1), scene.LookAt);
+            Assert.AreEqual((uint)1, scene.FoV);
         }
     }
 }

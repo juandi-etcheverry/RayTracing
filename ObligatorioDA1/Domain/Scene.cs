@@ -108,9 +108,6 @@ namespace Domain
         {
             _lastModificationDate = DateTime.Now;
             _registrationDate = DateTime.Now;
-            _lookfrom = (0, 2, 0);
-            _lookat = (0, 2, 5);
-            _fov = 30;
         }
 
         public static void ThrowClientNotLoggedIn()
