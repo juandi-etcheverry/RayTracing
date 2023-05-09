@@ -32,7 +32,7 @@ namespace GraphicsEngine
         {
             int xCoordinate = column;
             int yCoordinate = Height - row - 1;
-            if (yCoordinate > Height)
+            if (yCoordinate >= Height)
             {
                 throw new OverflowException("Pixel Overflow Error");
             }
