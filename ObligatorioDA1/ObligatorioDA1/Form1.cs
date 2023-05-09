@@ -58,19 +58,15 @@ namespace ObligatorioDA1
             flyPanelPrincipal.Controls.Add(userControlAddClient);
             userControlAddClient.RefreshAddClient();
         }
-
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             lblNameException.Visible = false;
             lblPasswordException.Visible = false;
             try
             {
-                Client newClient = new Client()
-                {
-                    Name = txbUserName.Text,
-                    Password = txbPassword.Text
-                };
-                _clientLogic.InitializeSession(newClient);
+                Client client = _clientLogic.GetClient(txbUserName.Text);
+                if (client.Password != txbPassword.Text) Client.ThrowIncorrectPassword();
+                _clientLogic.InitializeSession(client);
                 GoToGeneral(_clientLogic.GetLoggedClient());
             } 
             catch (NotFoundException notEx)

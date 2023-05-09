@@ -50,7 +50,7 @@ namespace ObligatorioDA1.Scene_Panel
         }
         private void btnReturnDefaultCamera_Click(object sender, EventArgs e)
         {
-            _panelGeneral.GoToShapeList();
+            _panelGeneral.GoToSceneList();
         }
         private void btnSaveDefaultCamera_Click(object sender, EventArgs e)
         {
