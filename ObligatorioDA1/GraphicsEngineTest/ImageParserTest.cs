@@ -35,7 +35,7 @@ namespace GraphicsEngineTest
                 VerticalResolution = 2,
             };
             string result = parser.Parse(data);
-            Assert.AreEqual("P3\n2 2\n255 0 0\n0 255 0\n0 0 255\n0 0 0\n", result);
+            Assert.AreEqual("P3\n2 2\n255\n255 0 0\n0 255 0\n0 0 255\n0 0 0\n", result);
         }
 
     }

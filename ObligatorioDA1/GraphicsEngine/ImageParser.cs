@@ -27,12 +27,13 @@ namespace GraphicsEngine
         {
             string newLine = "\n";
             string resolutionData = GenerateResolutionData();
-            return PpmVersion + newLine + resolutionData;
+            return PpmVersion + newLine + resolutionData + "255" + newLine;
         }
 
         private string GenerateResolutionData()
         {
-            return HorizontalResolution.ToString() + " " + VerticalResolution.ToString() + "\n";
+            string newLine = "\n";
+            return HorizontalResolution.ToString() + " " + VerticalResolution.ToString() + newLine;
         }
 
         private string ParsePixel(Color pixel)
