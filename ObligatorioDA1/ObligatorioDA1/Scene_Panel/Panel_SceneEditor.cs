@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -178,10 +179,11 @@ namespace ObligatorioDA1
         {
             try
             {
-                SetLookfrom();
-                SetLookAt();
-                SetFov();
-                RefreshPage();
+                var tupleLookFrom = SetLookfrom();
+                var tupleLookAt = SetLookAt();
+                uint fov = SetFov();
+                SetNewLooksOnRender(tupleLookFrom, tupleLookAt, fov);
+                OutDatedRender();
                 //Insert render
             }
             catch (ArgumentOutOfRangeException outEx)
@@ -195,7 +197,7 @@ namespace ObligatorioDA1
                 lblLookExceptions.Text = argEx.Message;
             }
         }
-        private void SetLookfrom()
+        private ValueTuple<decimal, decimal, decimal> SetLookfrom()
         {
             decimal x, y, z;
             bool validX = decimal.TryParse(txbXLookFrom.Text, out x);
@@ -203,9 +205,9 @@ namespace ObligatorioDA1
             bool validZ = decimal.TryParse(txbZLookFrom.Text, out z);
             if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
             var tuple = ValueTuple.Create(x, y, z);
-            //_scene.LookFrom = tuple;
+            return tuple;
         }
-        private void SetLookAt()
+        private ValueTuple<decimal, decimal, decimal> SetLookAt()
         {
             decimal x, y, z;
             bool validX = decimal.TryParse(txbXLookAt.Text, out x);
@@ -213,18 +215,17 @@ namespace ObligatorioDA1
             bool validZ = decimal.TryParse(txbZLookAt.Text, out z);
             if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
             var tuple = ValueTuple.Create(x, y, z);
-            //_scene.LookAt = tuple;
+            return tuple;
         }
-        private void SetFov()
+        private uint SetFov()
         {
             uint x;
             bool validX = uint.TryParse(txbFoV.Text, out x);
-            //_scene.FoV = x;
+            return x;
         }
         private void OutDatedRender()
         {
-            //lblLastRenderedDate.Text = _scene.LastRenderDate.ToString();
-            lblLastRenderedDate.Text = DateTime.Now.ToString();
+            lblLastRenderedDate.Text = _scene.LastRenderDate.ToString();
             lblOutdatedImage.Visible = (_scene.LastRenderDate < _scene.LastModificationDate);
         }
         private Color GetColour(Model _model)
@@ -259,7 +260,19 @@ namespace ObligatorioDA1
         }
         private void SetLooks()
         {
-            //Set looks
+            txbXLookFrom.Text = _scene.ClientScenePreferences.LookFromDefault.Item1.ToString();
+            txbYLookFrom.Text = _scene.ClientScenePreferences.LookFromDefault.Item2.ToString();
+            txbZLookFrom.Text = _scene.ClientScenePreferences.LookFromDefault.Item3.ToString();
+            txbXLookAt.Text = _scene.ClientScenePreferences.LookAtDefault.Item1.ToString();
+            txbYLookAt.Text = _scene.ClientScenePreferences.LookAtDefault.Item2.ToString();
+            txbZLookAt.Text = _scene.ClientScenePreferences.LookAtDefault.Item3.ToString();
+            txbFoV.Text = _scene.ClientScenePreferences.FoVDefault.ToString();
+        }
+        private void SetNewLooksOnRender(ValueTuple<decimal, decimal, decimal> tuple1, ValueTuple<decimal, decimal, decimal> tuple2, uint fov)
+        {
+            _scene.ClientScenePreferences.LookFromDefault = tuple1;
+            _scene.ClientScenePreferences.LookAtDefault = tuple2;
+            _scene.ClientScenePreferences.FoVDefault = fov;
         }
     }
 }
