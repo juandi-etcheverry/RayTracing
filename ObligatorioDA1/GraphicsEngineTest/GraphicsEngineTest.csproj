@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorTest.cs" />
+    <Compile Include="GraphicsEngineTest.cs" />
     <Compile Include="ImageParserTest.cs" />
     <Compile Include="PPMImageTest.cs" />
     <Compile Include="RayTest.cs" />
@@ -60,6 +61,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{D68AA8F8-57F2-4044-98F4-11211E8BF654}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GraphicsEngine\GraphicsEngine.csproj">
       <Project>{36671E0B-FB23-4332-A72F-8F86B29BADE4}</Project>
       <Name>GraphicsEngine</Name>

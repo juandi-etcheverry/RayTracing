@@ -44,12 +44,19 @@
     <Compile Include="Camera.cs" />
     <Compile Include="CameraDetails.cs" />
     <Compile Include="Color.cs" />
+    <Compile Include="GraphicsEngine.cs" />
     <Compile Include="HitRecord.cs" />
     <Compile Include="ImageParser.cs" />
     <Compile Include="PPMImage.cs" />
     <Compile Include="Ray.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{D68AA8F8-57F2-4044-98F4-11211E8BF654}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
