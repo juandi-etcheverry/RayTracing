@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="ColorTest.cs" />
     <Compile Include="ImageParserTest.cs" />
+    <Compile Include="PPMImageTest.cs" />
     <Compile Include="RayTest.cs" />
     <Compile Include="VectorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
