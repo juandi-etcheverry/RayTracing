@@ -75,19 +75,21 @@ namespace ObligatorioDA1.Model_Panel
             cmbNewModelShape.Items.Clear();
             foreach (Shape s in _shapeLogic.GetClientShapes())
                 cmbNewModelShape.Items.Add(s.Name);
+            cmbNewModelShape.Text = "";
         }
         private void RefreshMaterialCombo()
         {
             cmbNewModelMaterial.Items.Clear();
             foreach (Material m in _materialLogic.GetClientMaterials())
                 cmbNewModelMaterial.Items.Add(m.Name);
+            cmbNewModelMaterial.Text = "";
         }
         private void RefreshPage()
         {
+            txbNewModelName.Clear();
             lblNewModelNameException.Visible = false;
             lblModelSelectShape.Visible = false;
             lblModelSelectMaterial.Visible = false;
-            txbNewModelName.Clear();
             ckbModelPreview.Checked = false;
             RefreshShapeCombo();
             RefreshMaterialCombo();

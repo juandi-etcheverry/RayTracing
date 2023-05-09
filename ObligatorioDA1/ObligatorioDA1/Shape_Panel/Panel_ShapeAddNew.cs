@@ -31,10 +31,10 @@ namespace ObligatorioDA1
         }
         private void RefreshPanel()
         {
-            lblNewShapeNameException.Visible = false;
-            lblNewShapeRadiusException.Visible = false;
             txbNewShapeName.Clear();
             txbNewShapeRadius.Clear();
+            lblNewShapeNameException.Visible = false;
+            lblNewShapeRadiusException.Visible = false;
         }
         private void btnShowAllShapes_Click(object sender, EventArgs e)
         {

@@ -30,8 +30,9 @@ namespace ObligatorioDA1.Model_Panel
         }
         public void RefreshPage()
         {
-            lblSceneNameException.Visible = false;
             txbSceneName.Clear();
+            lblSceneNameException.Visible = false;
+            
         }
         private void btnReturnSceneName_Click(object sender, EventArgs e)
         {
