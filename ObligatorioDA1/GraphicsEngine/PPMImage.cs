@@ -9,12 +9,13 @@ namespace GraphicsEngine
     internal class PPMImage
     {
         private uint _width { get; set; }
+        private double _ASPECT_RATIO = 2 / 3;
         public uint Width
         {
             get => _width;
             set
             {
-                Height = Convert.ToInt32(Math.Round(Convert.ToDouble(value * 2 / 3)));
+                Height = CalculateHeightBasedOnWidthAndAspectRatio(value);
                 _width = value;
             }
         }
@@ -32,11 +33,23 @@ namespace GraphicsEngine
         {
             int xCoordinate = column;
             int yCoordinate = Height - row - 1;
-            if (yCoordinate >= Height)
-            {
-                throw new OverflowException("Pixel Overflow Error");
-            }
+            EnsureYCoordinateDoesNotOverflow(yCoordinate);
             PixelData[yCoordinate, xCoordinate] = rgbColor;
+        }
+
+        private int CalculateHeightBasedOnWidthAndAspectRatio(uint width)
+        {
+            return Convert.ToInt32(Math.Round(width * _ASPECT_RATIO, MidpointRounding.AwayFromZero));
+        }
+
+        private void EnsureYCoordinateDoesNotOverflow(int yCoordinate)
+        {
+            if (yCoordinate >= Height) ThrowPixelOverflow();
+        }
+
+        private void ThrowPixelOverflow()
+        {
+            throw new OverflowException("Pixel Overflow Error");
         }
     }
 }
