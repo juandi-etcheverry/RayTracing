@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class PositionedModel: Model
+    public class PositionedModel : Model
     {
         private ValueTuple<decimal, decimal, decimal> _coordinates;
 

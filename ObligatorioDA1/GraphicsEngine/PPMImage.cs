@@ -10,6 +10,7 @@ namespace GraphicsEngine
     {
         private uint _width { get; set; }
         private double _ASPECT_RATIO = 2 / 3;
+        private ImageParser parser;
         public uint Width
         {
             get => _width;
@@ -27,7 +28,14 @@ namespace GraphicsEngine
         {
             Width = width;
             PixelData = new Color[Height, Width];
+            parser = new ImageParser()
+            {
+                HorizontalResolution = width,
+                VerticalResolution = Height,
+            };
         }
+
+
 
         internal void SavePixel(int row, int column, Color rgbColor)
         {

@@ -8,7 +8,7 @@ namespace GraphicsEngine
 {
     internal class ImageParser
     {
-        internal int HorizontalResolution;
+        internal uint HorizontalResolution;
         internal int VerticalResolution;
 
         private const string PpmVersion = "P3";
