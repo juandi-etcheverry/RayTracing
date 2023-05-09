@@ -54,23 +54,6 @@ namespace BusinessLogicTest
 
         }
 
-        [TestMethod]
-        public void AddScene_NotLogged_FAIL_Test()
-        {
-            Scene newScene = new Scene()
-            {
-                Name = "NewScene",
-                LookFrom = (20, 10, 30),
-                LookAt = (0, 0, 15),
-                FoV = 50
-            };
-            newScene.AddPositionedModel(_newModel, (10, 10, 10));
-
-            _clientLogic.Logout();
-
-            Assert.ThrowsException<SessionException>(() => _sceneLogic.Add(newScene));
-        }
-
         [TestCleanup]
         public void CleanUpTests()
         {
@@ -83,15 +66,32 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
+        public void AddScene_NotLogged_FAIL_Test()
+        {
+            Scene newScene = new Scene()
+            {
+                Name = "NewScene",
+            };
+            newScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
+            newScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
+            newScene.ClientScenePreferences.FoVDefault = 50;
+            newScene.AddPositionedModel(_newModel, (10, 10, 10));
+
+            _clientLogic.Logout();
+
+            Assert.ThrowsException<SessionException>(() => _sceneLogic.Add(newScene));
+        }
+
+        [TestMethod]
         public void Create_Scene_OK_Test()
         {
             Scene newScene = new Scene()
             {
                 Name = "NewScene",
-                LookFrom = (20, 10, 30),
-                LookAt = (0, 0, 15),
-                FoV = 50
             };
+            newScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
+            newScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
+            newScene.ClientScenePreferences.FoVDefault = 50;
             newScene.AddPositionedModel(_newModel, (10, 10, 10));
 
             _sceneLogic.Add(newScene);
@@ -105,11 +105,10 @@ namespace BusinessLogicTest
             Scene newScene = new Scene()
             {
                 Name = "NewScene",
-                LookFrom = (20, 10, 30),
-                LookAt = (0, 0, 15),
-                FoV = 50
             };
-
+            newScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
+            newScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
+            newScene.ClientScenePreferences.FoVDefault = 50;
             Assert.AreEqual(DateTime.Now, newScene.RegistrationDate);
         }
 
@@ -121,9 +120,6 @@ namespace BusinessLogicTest
                 Scene newScene = new Scene()
                 {
                     Name = "",
-                    LookFrom = (20, 10, 30),
-                    LookAt = (0, 0, 15),
-                    FoV = 50
                 };
             });
         }
@@ -134,20 +130,20 @@ namespace BusinessLogicTest
             Scene oneScene = new Scene()
             {
                 Name = "SameName",
-                LookFrom = (20, 10, 30),
-                LookAt = (0, 0, 15),
-                FoV = 50
             };
+            oneScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
+            oneScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
+            oneScene.ClientScenePreferences.FoVDefault = 50;
             oneScene.AddPositionedModel(_newModel, (10, 10, 30));
             _sceneLogic.Add(oneScene);
 
             Scene anotherScene = new Scene()
             {
                 Name = "SameName",
-                LookFrom = (20, 10, 30),
-                LookAt = (0, 0, 15),
-                FoV = 50
             };
+            anotherScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
+            anotherScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
+            anotherScene.ClientScenePreferences.FoVDefault = 50;
             oneScene.AddPositionedModel(_newModel, (40, 0, 30));
 
             Assert.ThrowsException<NameException>(() => _sceneLogic.Add(anotherScene));
@@ -161,9 +157,6 @@ namespace BusinessLogicTest
                 Scene anotherScene = new Scene()
                 {
                     Name = "  Invalid Name",
-                    LookFrom = (20, 10, 30),
-                    LookAt = (0, 0, 15),
-                    FoV = 50
                 };
             });
         }
@@ -174,9 +167,6 @@ namespace BusinessLogicTest
             Scene newScene = new Scene()
             {
                 Name = "NewScene",
-                LookFrom = (20, 10, 30),
-                LookAt = (0, 0, 15),
-                FoV = 50
             };
             PositionedModel positionedModel = newScene.AddPositionedModel(_newModel, (10, 10, 10));
 
@@ -193,9 +183,6 @@ namespace BusinessLogicTest
             Scene newScene = new Scene()
             {
                 Name = "NewScene",
-                LookFrom = (20, 10, 30),
-                LookAt = (0, 0, 15),
-                FoV = 50
             };
             PositionedModel positionedModel = newScene.AddPositionedModel(_newModel, (10, 10, 10));
 
@@ -212,12 +199,10 @@ namespace BusinessLogicTest
             Scene newScene = new Scene()
             {
                 Name = "NewScene",
-                LookAt = (0, 0, 15),
-                FoV = 50
             };
             _sceneLogic.Add(newScene);
 
-            Assert.AreEqual((0, 2, 0), newScene.LookFrom);
+            Assert.AreEqual((0, 2, 0), newScene.ClientScenePreferences.LookFromDefault);
         }
 
         [TestMethod]
@@ -226,12 +211,10 @@ namespace BusinessLogicTest
             Scene newScene = new Scene()
             {
                 Name = "NewScene",
-                LookFrom = (40, 34, 2),
-                FoV = 50
             };
             _sceneLogic.Add(newScene);
 
-            Assert.AreEqual((0, 2, 5), newScene.LookAt);
+            Assert.AreEqual((0, 2, 5), newScene.ClientScenePreferences.LookAtDefault);
         }
 
         [TestMethod]
@@ -240,11 +223,10 @@ namespace BusinessLogicTest
             Scene newScene = new Scene()
             {
                 Name = "NewScene",
-                LookFrom = (40, 34, 2),
             };
             _sceneLogic.Add(newScene);
 
-            Assert.AreEqual((uint)30, newScene.FoV);
+            Assert.AreEqual((uint)30, newScene.ClientScenePreferences.FoVDefault);
         }
 
         [TestMethod]
@@ -255,9 +237,8 @@ namespace BusinessLogicTest
                 Scene newScene = new Scene()
                 {
                     Name = "NewScene",
-                    LookFrom = (40, 34, 2),
-                    FoV = 180
                 };
+                newScene.ClientScenePreferences.FoVDefault = 200;
             });
         }
 
@@ -369,9 +350,9 @@ namespace BusinessLogicTest
         [TestMethod]
         public void Change_Scene_DefaultValues_OK_Test()
         {
-            client.LookFromDefault = (1, 1, 1);
-            client.LookAtDefault = (1, 1, 1);
-            client.FoVDefault = 1;
+            client.ClientScenePreferences.LookFromDefault = (1, 1, 1);
+            client.ClientScenePreferences.LookAtDefault = (1, 1, 1);
+            client.ClientScenePreferences.FoVDefault = 1;
 
             Scene scene = new Scene()
             {
@@ -379,9 +360,9 @@ namespace BusinessLogicTest
             };
             _sceneLogic.Add(scene);
 
-            Assert.AreEqual((1, 1, 1), scene.LookFrom);
-            Assert.AreEqual((1, 1, 1), scene.LookAt);
-            Assert.AreEqual((uint)1, scene.FoV);
+            Assert.AreEqual((1, 1, 1), scene.ClientScenePreferences.LookFromDefault);
+            Assert.AreEqual((1, 1, 1), scene.ClientScenePreferences.LookFromDefault);
+            Assert.AreEqual((uint)1, scene.ClientScenePreferences.LookFromDefault);
         }
 
         [TestMethod]
@@ -393,23 +374,23 @@ namespace BusinessLogicTest
             };
             _sceneLogic.Add(scene);
 
-            Assert.AreEqual((0, 2, 0), scene.LookFrom);
-            Assert.AreEqual((0, 2, 5), scene.LookAt);
-            Assert.AreEqual((uint)30, scene.FoV);
+            Assert.AreEqual((0, 2, 0), scene.ClientScenePreferences.LookFromDefault);
+            Assert.AreEqual((0, 2, 5), scene.ClientScenePreferences.LookFromDefault);
+            Assert.AreEqual((uint)30, scene.ClientScenePreferences.LookFromDefault);
         }
 
         [TestMethod]
         public void Change_Scene_Default_And_FoV_Value_OK_Test()
         {
-            client.FoVDefault = 10;
+            client.ClientScenePreferences.FoVDefault = 10;
             Scene scene = new Scene()
             {
                 Name = "Scene",
             };
             _sceneLogic.Add(scene);
-            scene.FoV = 90;
+            scene.ClientScenePreferences.FoVDefault = 90;
 
-            Assert.AreEqual((uint)90, scene.FoV);
+            Assert.AreEqual((uint)90, scene.ClientScenePreferences.LookFromDefault);
         }
     }
 }

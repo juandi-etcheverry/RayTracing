@@ -25,9 +25,9 @@ namespace BusinessLogic
         private void SetSceneDefaultValues(Scene scene)
         {
             Client client = Session.LoggedClient;
-            scene.LookFrom = client.LookFromDefault;
-            scene.LookAt = client.LookAtDefault;
-            scene.FoV = client.FoVDefault;
+            scene.ClientScenePreferences.LookFromDefault = client.ClientScenePreferences.LookFromDefault;
+            scene.ClientScenePreferences.LookAtDefault = client.ClientScenePreferences.LookAtDefault;
+            scene.ClientScenePreferences.FoVDefault = client.ClientScenePreferences.FoVDefault;
         }
 
         private void EnsureSceneNameUniqueness(string name)
