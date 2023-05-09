@@ -17,8 +17,17 @@ namespace BusinessLogic
         {
             EnsureSceneNameUniqueness(scene.Name);
             AssignSceneToClient(scene);
+            SetSceneDefaultValues(scene);
             _repository.Add(scene);
             return scene;
+        }
+
+        private void SetSceneDefaultValues(Scene scene)
+        {
+            Client client = Session.LoggedClient;
+            scene.ClientScenePreferences.LookFromDefault = client.ClientScenePreferences.LookFromDefault;
+            scene.ClientScenePreferences.LookAtDefault = client.ClientScenePreferences.LookAtDefault;
+            scene.ClientScenePreferences.FoVDefault = client.ClientScenePreferences.FoVDefault;
         }
 
         private void EnsureSceneNameUniqueness(string name)

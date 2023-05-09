@@ -9,7 +9,7 @@ namespace Domain
         private string _name;
         private string _password;
         private DateTime _registrationDate { get; set; }
-
+        private ClientScenePreferences _clientScenePreferences;
         private static uint MIN_NAME_LENGTH = 3;
         private static uint MAX_NAME_LENGTH = 20;
         private static uint MIN_PASSWORD_LENGTH = 5;
@@ -38,9 +38,21 @@ namespace Domain
             }
         }
 
+        public ClientScenePreferences ClientScenePreferences
+        {
+            get => _clientScenePreferences;
+            set => _clientScenePreferences = value;
+        }
+
         public Client()
         {
             _registrationDate = DateTime.Now;
+            _clientScenePreferences = new ClientScenePreferences()
+            {
+                LookFromDefault = (0, 2, 0),
+                LookAtDefault = (0, 2, 5),
+                FoVDefault = 30
+            };
         }
 
         public bool AreNamesEqual(string otherName)
