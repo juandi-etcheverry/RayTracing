@@ -69,8 +69,16 @@ namespace ObligatorioDA1.Scene_Panel
             }
             catch (ArgumentException argEx)
             {
-                lblLookExceptions.Visible = true;
-                lblLookExceptions.Text = argEx.Message;
+                if(argEx.Message == "X, Y, Z must be numbers")
+                {
+                    lblLookExceptions.Visible = true;
+                    lblLookExceptions.Text = argEx.Message;
+                }
+                else
+                {
+                    lblFoVException.Visible = true;
+                    lblFoVException.Text = argEx.Message;
+                }
             }
         }
         private ValueTuple<decimal, decimal, decimal> SetLookfrom()
@@ -97,9 +105,10 @@ namespace ObligatorioDA1.Scene_Panel
         }
         private uint SetFov()
         {
-            uint x;
-            bool validX = uint.TryParse(txbFoV.Text, out x);
-            return x;
+                uint x;
+                bool validX = uint.TryParse(txbFoV.Text, out x);
+                if (!validX) throw new ArgumentException("FoV must be a positive number");
+                return x;   
         }
         private void SetNewDefaults(ValueTuple<decimal, decimal, decimal> tuple1, ValueTuple<decimal, decimal, decimal> tuple2, uint fov)
         {

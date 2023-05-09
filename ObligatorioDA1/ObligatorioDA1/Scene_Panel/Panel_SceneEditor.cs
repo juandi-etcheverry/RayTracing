@@ -193,8 +193,16 @@ namespace ObligatorioDA1
             }
             catch (ArgumentException argEx)
             {
-                lblLookExceptions.Visible = true;
-                lblLookExceptions.Text = argEx.Message;
+                if(argEx.Message == "X, Y, Z must be numbers")
+                {
+                    lblLookExceptions.Visible = true;
+                    lblLookExceptions.Text = argEx.Message;
+                }
+                else
+                {
+                    lblFoVException.Visible = true;
+                    lblFoVException.Text = argEx.Message;
+                }
             }
         }
         private ValueTuple<decimal, decimal, decimal> SetLookfrom()
@@ -221,6 +229,7 @@ namespace ObligatorioDA1
         {
             uint x;
             bool validX = uint.TryParse(txbFoV.Text, out x);
+            if (!validX) throw new ArgumentException("FoV must be a positive number");
             return x;
         }
         private void OutDatedRender()
