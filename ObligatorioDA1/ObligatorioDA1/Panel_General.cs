@@ -151,7 +151,7 @@ namespace ObligatorioDA1
         public void GoToSetCameraDefault()
         {
             SwitchPanel(userControlSceneSetDefaultCamera);
-            userControlSceneSetDefaultCamera.RefreshSetDefaultCamera();
+            userControlSceneSetDefaultCamera.RefreshSetDefaultCamera(client);
         }
         private void InitiallizePanels()
         {

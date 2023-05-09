@@ -203,7 +203,7 @@ namespace ObligatorioDA1
             bool validZ = decimal.TryParse(txbZLookFrom.Text, out z);
             if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
             var tuple = ValueTuple.Create(x, y, z);
-            _scene.LookFrom = tuple;
+            //_scene.LookFrom = tuple;
         }
         private void SetLookAt()
         {
@@ -213,13 +213,13 @@ namespace ObligatorioDA1
             bool validZ = decimal.TryParse(txbZLookAt.Text, out z);
             if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
             var tuple = ValueTuple.Create(x, y, z);
-            _scene.LookAt = tuple;
+            //_scene.LookAt = tuple;
         }
         private void SetFov()
         {
             uint x;
             bool validX = uint.TryParse(txbFoV.Text, out x);
-            _scene.FoV = x;
+            //_scene.FoV = x;
         }
         private void OutDatedRender()
         {

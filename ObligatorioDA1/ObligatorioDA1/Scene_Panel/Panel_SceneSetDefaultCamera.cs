@@ -13,14 +13,16 @@ namespace ObligatorioDA1.Scene_Panel
 {
     public partial class Panel_SceneSetDefaultCamera : UserControl
     {
+        private Client _client;
         private Panel_General _panelGeneral;
         public Panel_SceneSetDefaultCamera(Panel_General panelGeneral)
         {
             _panelGeneral = panelGeneral;
             InitializeComponent();
         }
-        public void RefreshSetDefaultCamera()
+        public void RefreshSetDefaultCamera(Client client)
         {
+            _client = client;
             ClearPage();
             SetDefaultValues();
         }
@@ -38,7 +40,13 @@ namespace ObligatorioDA1.Scene_Panel
         }
         private void SetDefaultValues()
         {
-            // Set default values
+            txbLookFromX.Text = _client.ClientScenePreferences.LookFromDefault.Item1.ToString();
+            txbLookFromY.Text = _client.ClientScenePreferences.LookFromDefault.Item2.ToString();
+            txbLookFromZ.Text = _client.ClientScenePreferences.LookFromDefault.Item3.ToString();
+            txbLookAtX.Text = _client.ClientScenePreferences.LookAtDefault.Item1.ToString();
+            txbLookAtY.Text = _client.ClientScenePreferences.LookAtDefault.Item2.ToString();
+            txbLookAtZ.Text = _client.ClientScenePreferences.LookAtDefault.Item3.ToString();
+            txbFoV.Text = _client.ClientScenePreferences.FoVDefault.ToString();
         }
         private void btnReturnDefaultCamera_Click(object sender, EventArgs e)
         {
@@ -48,9 +56,10 @@ namespace ObligatorioDA1.Scene_Panel
         {
             try
             {
-                SetLookfrom();
-                SetLookAt();
-                SetFov();
+                var tupleLookFrom = SetLookfrom();
+                var tupleLookAt = SetLookAt();
+                var newFoV = SetFov();
+                SetNewDefaults(tupleLookFrom, tupleLookAt, newFoV);
                 _panelGeneral.GoToSceneList();
             }
             catch (ArgumentOutOfRangeException outEx)
@@ -64,7 +73,7 @@ namespace ObligatorioDA1.Scene_Panel
                 lblLookExceptions.Text = argEx.Message;
             }
         }
-        private void SetLookfrom()
+        private ValueTuple<decimal, decimal, decimal> SetLookfrom()
         {
             decimal x, y, z;
             bool validX = decimal.TryParse(txbLookFromX.Text, out x);
@@ -72,9 +81,10 @@ namespace ObligatorioDA1.Scene_Panel
             bool validZ = decimal.TryParse(txbLookFromZ.Text, out z);
             if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
             var tuple = ValueTuple.Create(x, y, z);
-            //_scene.LookFrom = tuple;
+            return tuple;
+            
         }
-        private void SetLookAt()
+        private ValueTuple<decimal, decimal, decimal> SetLookAt()
         {
             decimal x, y, z;
             bool validX = decimal.TryParse(txbLookAtX.Text, out x);
@@ -82,13 +92,20 @@ namespace ObligatorioDA1.Scene_Panel
             bool validZ = decimal.TryParse(txbLookAtZ.Text, out z);
             if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
             var tuple = ValueTuple.Create(x, y, z);
-            //_scene.LookAt = tuple;
+            return tuple;
+            
         }
-        private void SetFov()
+        private uint SetFov()
         {
             uint x;
             bool validX = uint.TryParse(txbFoV.Text, out x);
-            //_scene.FoV = x;
+            return x;
+        }
+        private void SetNewDefaults(ValueTuple<decimal, decimal, decimal> tuple1, ValueTuple<decimal, decimal, decimal> tuple2, uint fov)
+        {
+            _client.ClientScenePreferences.LookFromDefault = tuple1;
+            _client.ClientScenePreferences.LookAtDefault = tuple2;
+            _client.ClientScenePreferences.FoVDefault = fov;
         }
     }
 }
