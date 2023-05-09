@@ -16,17 +16,18 @@ namespace ObligatorioDA1
     public partial class Panel_AddClient : UserControl
     {
         private Form1 _formPrincipal;
-        ClientLogic _clientLogic = new ClientLogic();
-        Client newClient;
+        private ClientLogic _clientLogic = new ClientLogic();
+        private Client newClient;
         public Panel_AddClient(Form1 form1)
         {
             _formPrincipal = form1;
             InitializeComponent();
-            lblNewNameException.Visible = false;
-            lblNewPasswordException.Visible = false;
-            lblNewConfirmPasswordException.Visible = false;
         }
-
+        public void RefreshAddClient()
+        {
+            newClient = new Client();
+            RefreshPage();
+        }
         private void btnAddNewClient_Click(object sender, EventArgs e)
         {
             lblNewNameException.Visible = false;
@@ -61,21 +62,9 @@ namespace ObligatorioDA1
             
         private void btnGoBack_Click(object sender, EventArgs e)
         {
-            //delete newClient
             _formPrincipal.GoBackToWelcome();
 
         }
-        public void refreshAddClient()
-        {
-            newClient = new Client();
-            txbNewClientName.Clear();
-            txbNewClientPassword.Clear();
-            txbNewClientRepeatPassword.Clear();
-            lblNewNameException.Visible = false;
-            lblNewPasswordException.Visible = false;
-            lblNewConfirmPasswordException.Visible = false;
-        }
-
         private void txbNewClientName_TextChanged(object sender, EventArgs e)
         {
             lblNewNameException.Visible = false;
@@ -102,6 +91,15 @@ namespace ObligatorioDA1
                 lblNewPasswordException.Visible = true;
                 lblNewPasswordException.Text = passEx.Message;
             }
+        }
+        private void RefreshPage()
+        {
+            lblNewNameException.Visible = false;
+            lblNewPasswordException.Visible = false;
+            lblNewConfirmPasswordException.Visible = false;
+            txbNewClientName.Clear();
+            txbNewClientPassword.Clear();
+            txbNewClientRepeatPassword.Clear();
         }
     }
 }

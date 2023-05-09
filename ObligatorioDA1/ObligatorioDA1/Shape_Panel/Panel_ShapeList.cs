@@ -17,35 +17,29 @@ namespace ObligatorioDA1
     public partial class Panel_ShapeList : UserControl
     {
         private Panel_General _panelGeneral;
-        private Client _client;
-        ShapeLogic _shapeLogic = new ShapeLogic(); 
+        private ShapeLogic _shapeLogic = new ShapeLogic(); 
         public Panel_ShapeList(Panel_General userControl)
         {
             _panelGeneral = userControl;
             InitializeComponent();
-            inititializeList();
-            
+            InititializeList();
         }
-        public void refreshShapeList(Client _client)
+        public void RefreshShapeList()
         {
             dgvShapeList.Rows.Clear();
             foreach (Sphere shape in _shapeLogic.GetClientShapes().ToList())
             {
-                if (shape.OwnerName == _client.Name)
-                {
-                    dgvShapeList.Rows.Add(null, null, shape.Name, shape.Radius);
-                }
+                dgvShapeList.Rows.Add(null, null, shape.Name, shape.Radius);
             }
         }
-        private void inititializeList()
+        private void InititializeList()
         {
-            addColumns();
-            setDisplayColumns();
-            //refreshShapeList(_client);
+            AddColumns();
+            SetDisplayColumns();
         }
         private void btnAddShape_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToAddNewShape();
+            _panelGeneral.GoToAddNewShape();
         }
         private void dgvShapeList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -62,7 +56,7 @@ namespace ObligatorioDA1
             {
                 shapeName = dgvShapeList.CurrentRow.Cells[2].Value.ToString();
                 shape = _shapeLogic.GetShape(shapeName);
-                _panelGeneral.goToShapeRename(shape);
+                _panelGeneral.GoToShapeRename(shape);
             }
         }
         private void dgvShapeList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -70,12 +64,12 @@ namespace ObligatorioDA1
             if (e.ColumnIndex>=0 && e.RowIndex>=0) 
                 this.dgvShapeList.Rows[e.RowIndex].Height = 50;
         }
-       private void addColumns()
+       private void AddColumns()
         {
             dgvShapeList.Columns.Add("name", "Name");
             dgvShapeList.Columns.Add("radius", "Radius");
         }
-        private void setDisplayColumns()
+        private void SetDisplayColumns()
         {
             dgvShapeList.Columns["name"].DisplayIndex = 0;
             dgvShapeList.Columns["radius"].DisplayIndex = 1;

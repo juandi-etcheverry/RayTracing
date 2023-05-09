@@ -16,28 +16,30 @@ namespace ObligatorioDA1
 {
     public partial class Panel_ShapeAddNew : UserControl
     {
-        Sphere newSphere;
-        ShapeLogic _shapeLogic = new ShapeLogic();
+        private Sphere newSphere;
+        private ShapeLogic _shapeLogic = new ShapeLogic();
         private Panel_General _panelGeneral;
-        private Client _client;
         public Panel_ShapeAddNew(Panel_General userControl)
         {
             _panelGeneral = userControl;
             InitializeComponent();
-            refreshShapeAddNew(_client);
         }
-        public void refreshShapeAddNew(Client client)
+        public void RefreshShapeAddNew()
         {
-            _client = client;
             newSphere = new Sphere();
             RefreshPanel();
         }
-
+        private void RefreshPanel()
+        {
+            lblNewShapeNameException.Visible = false;
+            lblNewShapeRadiusException.Visible = false;
+            txbNewShapeName.Clear();
+            txbNewShapeRadius.Clear();
+        }
         private void btnShowAllShapes_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToShapeList();
+            _panelGeneral.GoToShapeList();
         }
-
         private void btnNewShape_Click(object sender, EventArgs e)
         {
             lblNewShapeNameException.Visible = false;
@@ -48,11 +50,9 @@ namespace ObligatorioDA1
                 bool validRadius = Double.TryParse(txbNewShapeRadius.Text, out radius);
                 if (!validRadius) throw new ArgumentException("Radius must be a decimal number");
                 newSphere.Name = txbNewShapeName.Text;
-                newSphere.OwnerName = _client.Name;
                 newSphere.Radius = radius;
-                RefreshPanel();
                 _shapeLogic.AddShape(newSphere);
-                _panelGeneral.goToShapeList();
+                _panelGeneral.GoToShapeList();
             }
             catch (NameException nameEx)
             {
@@ -103,13 +103,6 @@ namespace ObligatorioDA1
                 lblNewShapeRadiusException.Visible = true;
                 lblNewShapeRadiusException.Text = negRadEx.Message;
             }
-        }
-        private void RefreshPanel()
-        {
-            lblNewShapeNameException.Visible = false;
-            lblNewShapeRadiusException.Visible = false;
-            txbNewShapeName.Clear();
-            txbNewShapeRadius.Clear();
         }
     }
 }

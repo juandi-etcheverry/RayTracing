@@ -15,8 +15,8 @@ namespace ObligatorioDA1.Model_Panel
 {
     public partial class Panel_ModelRename : UserControl
     {
-        ModelLogic _modelLogic = new ModelLogic();
         private Model _model;
+        private ModelLogic _modelLogic = new ModelLogic();
         private Panel_General _panelGeneral;
         public Panel_ModelRename(Panel_General panelGeneral)
         {
@@ -29,13 +29,17 @@ namespace ObligatorioDA1.Model_Panel
             _model = model;
             RefreshPage();
         }
+        private void RefreshPage()
+        {
+            lblRenameException.Visible = false;
+            txbModelRename.Clear();
+        }
         private void btnConfirmRename_Click(object sender, EventArgs e)
         {
             try
             {
-                _model.Name = txbModelRename.Text;
-                RefreshPage();
-                _panelGeneral.goToModelList();
+                _modelLogic.Rename(_model, txbModelRename.Text);
+                _panelGeneral.GoToModelList();
             }
             catch (NameException nameEx)
             {
@@ -43,15 +47,10 @@ namespace ObligatorioDA1.Model_Panel
                 lblRenameException.Text = nameEx.Message;
             }
         }
-
         private void btnReturnRename_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToModelList();
+            _panelGeneral.GoToModelList();
         }
-        private void RefreshPage()
-        {
-            lblRenameException.Visible = false;
-            txbModelRename.Clear();
-        }
+        
     }
 }

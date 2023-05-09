@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,7 +16,6 @@ namespace ObligatorioDA1.Model_Panel
 {
     public partial class Panel_ModelList : UserControl
     {
-        private Client _client;
         private ModelLogic _modelLogic = new ModelLogic();
         private Panel_General _panelGeneral;
         public Panel_ModelList(Panel_General userControl)
@@ -24,9 +24,8 @@ namespace ObligatorioDA1.Model_Panel
             InitializeComponent();
             InitializeModelList();
         }
-        public void RefreshModelList(Client client)
+        public void RefreshModelList()
         {
-            _client = client;
             dgvModelList.Rows.Clear();
             foreach (Model model in _modelLogic.GetClientModels().ToList())
             {
@@ -61,12 +60,10 @@ namespace ObligatorioDA1.Model_Panel
             dgvModelList.Columns["Name"].Width = 100;
             dgvModelList.Columns["Colour"].Width = 5;
         }
-
         private void btnAddModel_Click(object sender, EventArgs e)
         {
-            _panelGeneral.goToAddNewModel();
+            _panelGeneral.GoToAddNewModel();
         }
-
         private void dgvModelList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
@@ -79,14 +76,8 @@ namespace ObligatorioDA1.Model_Panel
                     Model model = _modelLogic.Get(modelName);
                     if (!model.WantPreview)
                     {
-                        int r = (int)model.Material.Color.Item1;
-                        int g = (int)model.Material.Color.Item2;
-                        int b = (int)model.Material.Color.Item3;
-                        Color newColor = Color.FromArgb(r, g, b);
-                        cell.Style.BackColor = newColor;
-                        cell.Style.SelectionBackColor = newColor;
-                        cell.Style.ForeColor = newColor;
-                        cell.ReadOnly = true;
+                        Color newColor = GetColour(model);
+                        PaintCell(cell, newColor);
                     }
                 }
                 if(this.dgvModelList.Columns[e.ColumnIndex].Name == "Preview")
@@ -101,7 +92,6 @@ namespace ObligatorioDA1.Model_Panel
                 }
             }
         }
-
         private void dgvModelList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             String modelName;
@@ -117,8 +107,23 @@ namespace ObligatorioDA1.Model_Panel
             {
                  modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
                  model = _modelLogic.Get(modelName);
-                _panelGeneral.goToModelRename(model);
+                _panelGeneral.GoToModelRename(model);
             }
+        }
+        private Color GetColour(Model _model)
+        {
+            int r = (int)_model.Material.Color.Item1;
+            int g = (int)_model.Material.Color.Item2;
+            int b = (int)_model.Material.Color.Item3;
+            Color newColor = Color.FromArgb(r, g, b);
+            return newColor;
+        }
+        private void PaintCell (DataGridViewCell cell, Color color)
+        {
+            cell.Style.BackColor = color;
+            cell.Style.SelectionBackColor = color;
+            cell.Style.ForeColor = color;
+            cell.ReadOnly = true;
         }
     }
 }

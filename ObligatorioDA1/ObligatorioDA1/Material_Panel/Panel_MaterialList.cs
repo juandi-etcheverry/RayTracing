@@ -15,38 +15,31 @@ namespace ObligatorioDA1.Material_Panel
     public partial class Panel_MaterialList : UserControl
     {
         private Panel_General _panelGeneral;
-        private Client _client;
-        MaterialLogic _materialLogic = new MaterialLogic();
+        private MaterialLogic _materialLogic = new MaterialLogic();
         public Panel_MaterialList(Panel_General userControl)
         {
             _panelGeneral = userControl;
             InitializeComponent();
-            initializeList();
+            InitializeList();
         }
-        private void initializeList()
-        {
-            addColumns();
-            setDisplayOrderColumns();
-            setWidthColumns();
-            //refreshMaterialList(_client);
-        }
-
-        private void btnAddMaterial_Click(object sender, EventArgs e)
-        {
-            _panelGeneral.goToAddNewMaterial();
-        }
-        public void refreshMaterialList(Client _client)
+        public void RefreshMaterialList()
         {
             dgvMaterialList.Rows.Clear();
             foreach (Material material in _materialLogic.GetClientMaterials().ToList())
             {
-                if (material.OwnerName == _client.Name)
-                {
-                    dgvMaterialList.Rows.Add(null, null, null, material.Name, material.Color.Item1, material.Color.Item2, material.Color.Item3);
-                }
+                dgvMaterialList.Rows.Add(null, null, null, material.Name, material.Color.Item1, material.Color.Item2, material.Color.Item3);
             }
         }
-
+        private void InitializeList()
+        {
+            AddColumns();
+            SetDisplayOrderColumns();
+            SetWidthColumns();
+        }
+        private void btnAddMaterial_Click(object sender, EventArgs e)
+        {
+            _panelGeneral.GoToAddNewMaterial();
+        }
         private void dgvMaterialList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             String materialName;
@@ -62,10 +55,9 @@ namespace ObligatorioDA1.Material_Panel
             {
                 materialName = dgvMaterialList.CurrentRow.Cells[3].Value.ToString();
                 material = _materialLogic.Get(materialName);
-                _panelGeneral.goToMaterialRename(material);
+                _panelGeneral.GoToMaterialRename(material);
             } 
         }
-
         private void dgvMaterialList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
@@ -76,21 +68,12 @@ namespace ObligatorioDA1.Material_Panel
                     DataGridViewCell cell = this.dgvMaterialList.Rows[e.RowIndex].Cells[e.ColumnIndex];
                     String materialName = dgvMaterialList.Rows[e.RowIndex].Cells[3].Value.ToString();
                     Material material = _materialLogic.Get(materialName);
-                    int r = (int) material.Color.Item1;
-                    int g = (int) material.Color.Item2;
-                    int b = (int) material.Color.Item3;
-                    Color newColor = Color.FromArgb(r, g, b);
-
-                    cell.Style.SelectionBackColor = newColor;
-                    cell.Style.BackColor = newColor;
-                    cell.Style.ForeColor = newColor;
-                    cell.ReadOnly = true;
+                    Color newColor = GetColour(material);
+                    PaintCell(cell, newColor);
                 }
             }
-                
-
         }
-        private void addColumns()
+        private void AddColumns()
         {
             dgvMaterialList.Columns.Add("Colour1", "");
             dgvMaterialList.Columns.Add("Name", "Name");
@@ -98,7 +81,7 @@ namespace ObligatorioDA1.Material_Panel
             dgvMaterialList.Columns.Add("G", "G");
             dgvMaterialList.Columns.Add("B", "B");
         }
-        private void setDisplayOrderColumns()
+        private void SetDisplayOrderColumns()
         {
             dgvMaterialList.Columns["Colour1"].DisplayIndex = 0;
             dgvMaterialList.Columns["Name"].DisplayIndex = 1;
@@ -108,12 +91,27 @@ namespace ObligatorioDA1.Material_Panel
             dgvMaterialList.Columns["Rename"].DisplayIndex = 5;
             dgvMaterialList.Columns["Delete"].DisplayIndex = 6;
         }
-        private void setWidthColumns()
+        private void SetWidthColumns()
         {
             dgvMaterialList.Columns["Colour1"].Width = 30;
             dgvMaterialList.Columns["R"].Width = 20;
             dgvMaterialList.Columns["G"].Width = 20;
             dgvMaterialList.Columns["B"].Width = 20;
+        }
+        private Color GetColour(Material _material)
+        {
+            int r = (int)_material.Color.Item1;
+            int g = (int)_material.Color.Item2;
+            int b = (int)_material.Color.Item3;
+            Color newColor = Color.FromArgb(r, g, b);
+            return newColor;
+        }
+        private void PaintCell(DataGridViewCell cell, Color color)
+        {
+            cell.Style.SelectionBackColor = color;
+            cell.Style.BackColor = color;
+            cell.Style.ForeColor = color;
+            cell.ReadOnly = true;
         }
     }
 }

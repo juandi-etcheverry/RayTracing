@@ -16,9 +16,7 @@ namespace Domain
         private IList<PositionedModel> _models = new List<PositionedModel>();
         private DateTime _lastModificationDate;
         private DateTime _lastRenderDate;
-        private ValueTuple<decimal, decimal, decimal> _lookfrom;
-        private ValueTuple<decimal, decimal, decimal> _lookat;
-        private uint _fov;
+        private ClientScenePreferences _clientScenePreferences = new ClientScenePreferences();
 
         public string Name
         {
@@ -82,35 +80,17 @@ namespace Domain
             set => _lastRenderDate = value;
         }
 
-        public ValueTuple<decimal, decimal, decimal> LookFrom
+        public ClientScenePreferences ClientScenePreferences
         {
-            get => _lookfrom;
-            set => _lookfrom = value;
-        }
-
-        public ValueTuple<decimal, decimal, decimal> LookAt
-        {
-            get => _lookat;
-            set => _lookat = value;
-        }
-
-        public uint FoV
-        {
-            get => _fov;
-            set
-            {
-                if (value < 1 || value > 160) ThrowFoVOutOfRange();
-                _fov = value;
-            }
+            get => _clientScenePreferences;
+            set => _clientScenePreferences = value;
         }
 
         public Scene()
         {
             _lastModificationDate = DateTime.Now;
             _registrationDate = DateTime.Now;
-            _lookfrom = (0, 2, 0);
-            _lookat = (0, 2, 5);
-            _fov = 30;
+            _clientScenePreferences = new ClientScenePreferences();
         }
 
         public static void ThrowClientNotLoggedIn()
