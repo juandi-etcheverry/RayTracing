@@ -9,7 +9,7 @@ namespace GraphicsEngine
     internal class PPMImage
     {
         private uint _width { get; set; }
-        private double _ASPECT_RATIO = 2 / 3;
+        private decimal _ASPECT_RATIO = 2m / 3m;
         private ImageParser parser;
         public uint Width
         {
@@ -35,7 +35,12 @@ namespace GraphicsEngine
             };
         }
 
-
+        public void SaveFile(string fileName)
+        {
+            string parsedData = parser.Parse(PixelData);
+            System.IO.File.WriteAllText(fileName, parsedData);
+            Console.WriteLine("SAVED");
+        }
 
         internal void SavePixel(int row, int column, Color rgbColor)
         {
