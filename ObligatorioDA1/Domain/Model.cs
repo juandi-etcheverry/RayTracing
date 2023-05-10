@@ -1,4 +1,6 @@
-﻿using BusinessLogicExceptions;
+﻿using System;
+using System.Drawing;
+using BusinessLogicExceptions;
 using ValidationService;
 
 namespace Domain
@@ -7,6 +9,8 @@ namespace Domain
     {
         private string _name;
         public bool WantPreview;
+        public Bitmap preview = null;
+        public DateTime CreatedAt = DateTime.Now;
 
         public string Name
         {

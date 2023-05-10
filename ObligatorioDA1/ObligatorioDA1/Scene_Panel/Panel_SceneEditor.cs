@@ -204,7 +204,7 @@ namespace ObligatorioDA1
                 Cursor.Current = Cursors.WaitCursor;
                 PPMImage renderedImage = engine.Render(_scene);
                 _scene.LastRenderDate = DateTime.Now;
-                string sceneFileName = $"{_scene.OwnerName}_{_scene.Name}_{_scene.LastRenderDate.Millisecond}.ppm";
+                string sceneFileName = $"{_scene.OwnerName}_{_scene.LastRenderDate.Millisecond}.ppm";
                 renderedImage.SaveFile(sceneFileName);
                 RecoverSceneRender();
                 Cursor.Current = Cursors.Arrow;

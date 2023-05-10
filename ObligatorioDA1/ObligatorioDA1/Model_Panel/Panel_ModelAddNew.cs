@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
+using GraphicsEngine;
 
 namespace ObligatorioDA1.Model_Panel
 {
@@ -45,6 +48,10 @@ namespace ObligatorioDA1.Model_Panel
                 _newModel.Material = _materialLogic.Get(cmbNewModelMaterial.SelectedItem.ToString());
                 _newModel.Shape = _shapeLogic.GetShape(cmbNewModelShape.SelectedItem.ToString());
                 _newModel.WantPreview = ckbModelPreview.Checked;
+                if (_newModel.WantPreview)
+                {
+                    SetPreviewForNewModel(_newModel);
+                }
                 _modelLogic.Add(_newModel);
                 _panelGeneral.GoToModelList();
             }
@@ -66,6 +73,29 @@ namespace ObligatorioDA1.Model_Panel
                     lblModelSelectShape.Text = argEx.Message;
                 }
             }
+        }
+
+        private void SetPreviewForNewModel(Model model)
+        {
+            ClientLogic clientLogic = new ClientLogic();
+            Client loggedInClient = clientLogic.GetLoggedClient();
+            Scene previewScene = new Scene()
+            {
+                Name = $"{model.CreatedAt.Millisecond}_preview"
+            };
+            previewScene.ClientScenePreferences = loggedInClient.ClientScenePreferences;
+            previewScene.AddPositionedModel(model, (0, 2, 10));
+            string modelFileName = $"{model.OwnerName}_{previewScene.Name}.ppm";
+            GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine()
+            {
+                Width = 30
+            };
+            Cursor.Current = Cursors.WaitCursor;
+            PPMImage renderedPreview = engine.Render(previewScene);
+            renderedPreview.SaveFile(modelFileName);
+            Bitmap preview = ImageParser.ConvertPpmToBitmap(modelFileName);
+            model.preview = preview;
+            Cursor.Current = Cursors.Arrow;
         }
 
         private void RefreshShapeCombo()

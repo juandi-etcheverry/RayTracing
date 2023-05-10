@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 using BusinessLogic;
 using Domain;
+using GraphicsEngine;
+using Color = System.Drawing.Color;
 
 namespace ObligatorioDA1.Model_Panel
 {
@@ -23,7 +25,7 @@ namespace ObligatorioDA1.Model_Panel
         {
             dgvModelList.Rows.Clear();
             foreach (var model in _modelLogic.GetClientModels().ToList())
-                dgvModelList.Rows.Add(null, null, null, null, model.Name, model.Shape.Name, model.Material.Name);
+                dgvModelList.Rows.Add(model.preview, null, null, null, model.Name, model.Shape.Name, model.Material.Name);
         }
 
         private void InitializeModelList()
@@ -80,16 +82,16 @@ namespace ObligatorioDA1.Model_Panel
                     }
                 }
 
-                if (dgvModelList.Columns[e.ColumnIndex].Name == "Preview")
-                {
-                    var cell = dgvModelList.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                    var modelName = dgvModelList.Rows[e.RowIndex].Cells[4].Value.ToString();
-                    var model = _modelLogic.Get(modelName);
-                    if (model.WantPreview)
-                    {
-                        // Insert preview on cell
-                    }
-                }
+                //if (dgvModelList.Columns[e.ColumnIndex].Name == "Preview")
+                //{
+                //    var cell = dgvModelList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                //    var modelName = dgvModelList.Rows[e.RowIndex].Cells[4].Value.ToString();
+                //    var model = _modelLogic.Get(modelName);
+                //    if (model.WantPreview)
+                //    {
+
+                //    }
+                //}
             }
         }
 
