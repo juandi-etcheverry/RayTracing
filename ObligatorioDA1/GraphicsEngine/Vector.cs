@@ -56,7 +56,7 @@ namespace GraphicsEngine
             return Convert.ToDecimal(Math.Sqrt(squaredLength));
         }
 
-        private double SquaredLength()
+        public double SquaredLength()
         {
             return Convert.ToDouble(X * X + Y * Y + Z * Z);
         }

@@ -30,12 +30,12 @@ namespace GraphicsEngine
                 .Subtract(verticalUnit.Multiply(halfOfHeight)).Subtract(depthUnit);
         }
 
-        internal Ray RayFromCoordinates(int horizontalDistanceFromLeft, int verticalDistanceFromBottom)
+        internal Ray RayFromCoordinates(decimal horizontalDistanceFromLeft, decimal verticalDistanceFromBottom)
         {
             Vector horizontalPosition = HorizontalUnitOfDistance.Multiply(horizontalDistanceFromLeft);
             Vector verticalPosition = VerticalUnitOfDistance.Multiply(verticalDistanceFromBottom);
-            Vector rayDirectionIgnoringOrigin = LowerLeftCornerOfCameraView.Add(horizontalPosition)
-                .Add(verticalPosition).Subtract(Origin);
+            Vector rayDirectionIgnoringOrigin = LowerLeftCornerOfCameraView.Add(horizontalPosition
+                .Add(verticalPosition)).Subtract(Origin);
             Ray emittedRay = new Ray()
             {
                 Origin = Origin,
