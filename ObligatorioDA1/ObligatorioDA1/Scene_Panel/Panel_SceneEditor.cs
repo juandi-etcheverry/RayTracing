@@ -71,7 +71,7 @@ namespace ObligatorioDA1
         }
         private void SetDisplayOrderColumnsUsed()
         {
-            dgvUsedModels.Columns["Colour"].DisplayIndex=0;
+            dgvUsedModels.Columns["Colour"].DisplayIndex = 0;
             dgvUsedModels.Columns["Preview"].DisplayIndex = 1;
             dgvUsedModels.Columns["Name"].DisplayIndex = 2;
             dgvUsedModels.Columns["Pos"].DisplayIndex = 3;
