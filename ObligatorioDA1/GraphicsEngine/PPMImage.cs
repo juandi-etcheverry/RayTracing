@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GraphicsEngine
 {
-    internal class PPMImage
+    public class PPMImage
     {
         private uint _width { get; set; }
         private decimal _ASPECT_RATIO = 2m / 3m;
-        private ImageParser parser;
+        public ImageParser parser;
         public uint Width
         {
             get => _width;
@@ -28,7 +28,7 @@ namespace GraphicsEngine
         {
             Width = width;
             PixelData = new Color[Height, Width];
-            parser = new ImageParser()
+            parser = new ImageParser(PixelData)
             {
                 HorizontalResolution = width,
                 VerticalResolution = Height,
@@ -37,7 +37,7 @@ namespace GraphicsEngine
 
         public void SaveFile(string fileName)
         {
-            string parsedData = parser.Parse(PixelData);
+            string parsedData = parser.Parse();
             System.IO.File.WriteAllText(fileName, parsedData);
             Console.WriteLine("SAVED");
         }

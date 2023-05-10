@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace GraphicsEngine
 {
-    internal class ImageParser
+    public class ImageParser
     {
         internal uint HorizontalResolution;
         internal int VerticalResolution;
+        private Color[,] pixelData;
 
         private const string PpmVersion = "P3";
 
-        internal string Parse(Color[,] pixelData)
+        internal string Parse()
         {
             string parsedImage = GenerateInitialParsedPPMString();
             foreach (Color pixel in pixelData)
@@ -21,6 +22,11 @@ namespace GraphicsEngine
                 parsedImage += ParsePixel(pixel);
             }
             return parsedImage;
+        }
+
+        public ImageParser(Color[,] data)
+        {
+            pixelData = data;
         }
 
         private string GenerateInitialParsedPPMString()

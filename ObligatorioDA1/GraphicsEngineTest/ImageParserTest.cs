@@ -29,12 +29,12 @@ namespace GraphicsEngineTest
         public void ParseTest_2by2Image_OK()
         {
             Color[,] data = { { red, green }, { blue, black } };
-            var parser = new ImageParser()
+            var parser = new ImageParser(data)
             {
                 HorizontalResolution = 2,
                 VerticalResolution = 2,
             };
-            string result = parser.Parse(data);
+            string result = parser.Parse();
             Assert.AreEqual("P3\n2 2\n255\n255 0 0\n0 255 0\n0 0 255\n0 0 0\n", result);
         }
 
