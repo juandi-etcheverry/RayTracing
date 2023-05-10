@@ -8,7 +8,6 @@ namespace Domain
 {
     public class ClientScenePreferences
     {
-        private Scene _scene = new Scene();
         private ValueTuple<decimal, decimal, decimal> _lookFromDefault;
         private ValueTuple<decimal, decimal, decimal> _lookAtDefault;
         private uint _fovDefault;

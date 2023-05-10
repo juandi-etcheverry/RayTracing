@@ -361,8 +361,8 @@ namespace BusinessLogicTest
             _sceneLogic.Add(scene);
 
             Assert.AreEqual((1, 1, 1), scene.ClientScenePreferences.LookFromDefault);
-            Assert.AreEqual((1, 1, 1), scene.ClientScenePreferences.LookFromDefault);
-            Assert.AreEqual((uint)1, scene.ClientScenePreferences.LookFromDefault);
+            Assert.AreEqual((1, 1, 1), scene.ClientScenePreferences.LookAtDefault);
+            Assert.AreEqual((uint)1, scene.ClientScenePreferences.FoVDefault);
         }
 
         [TestMethod]
@@ -375,8 +375,8 @@ namespace BusinessLogicTest
             _sceneLogic.Add(scene);
 
             Assert.AreEqual((0, 2, 0), scene.ClientScenePreferences.LookFromDefault);
-            Assert.AreEqual((0, 2, 5), scene.ClientScenePreferences.LookFromDefault);
-            Assert.AreEqual((uint)30, scene.ClientScenePreferences.LookFromDefault);
+            Assert.AreEqual((0, 2, 5), scene.ClientScenePreferences.LookAtDefault);
+            Assert.AreEqual((uint)30, scene.ClientScenePreferences.FoVDefault);
         }
 
         [TestMethod]
@@ -390,7 +390,18 @@ namespace BusinessLogicTest
             _sceneLogic.Add(scene);
             scene.ClientScenePreferences.FoVDefault = 90;
 
-            Assert.AreEqual((uint)90, scene.ClientScenePreferences.LookFromDefault);
+            Assert.AreEqual((uint)90, scene.ClientScenePreferences.FoVDefault);
+        }
+
+        [TestMethod]
+        public void Change_Scene_Default_LogOut_LogIN_OK_Test()
+        {
+            client.ClientScenePreferences.FoVDefault = 10;
+            _clientLogic.Logout();
+            _clientLogic.InitializeSession(client);
+
+            Assert.AreEqual((uint)10, client.ClientScenePreferences.FoVDefault);
+
         }
     }
 }

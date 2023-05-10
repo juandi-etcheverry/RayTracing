@@ -31,12 +31,12 @@ namespace ObligatorioDA1.Material_Panel
         }
         private void RefreshPanel()
         {
-            lblNewMaterialNameException.Visible = false;
-            lblNewRGBException.Visible = false;
             txbNewMaterialName.Clear();
             txbNewRMaterial.Clear();
             txbNewGMaterial.Clear();
             txbNewBMaterial.Clear();
+            lblNewMaterialNameException.Visible = false;
+            lblNewRGBException.Visible = false;
         }
         private void btnShowAllMaterials_Click(object sender, EventArgs e)
         {
