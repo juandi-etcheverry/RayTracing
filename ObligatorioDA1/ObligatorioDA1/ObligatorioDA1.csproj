@@ -130,6 +130,12 @@
     <Compile Include="Scene_Panel\Panel_SceneRename.Designer.cs">
       <DependentUpon>Panel_SceneRename.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scene_Panel\Panel_SceneSetDefaultCamera.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_SceneSetDefaultCamera.Designer.cs">
+      <DependentUpon>Panel_SceneSetDefaultCamera.cs</DependentUpon>
+    </Compile>
     <Compile Include="Shape_Panel\Panel_ShapeAddNew.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -191,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Scene_Panel\Panel_SceneRename.resx">
       <DependentUpon>Panel_SceneRename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scene_Panel\Panel_SceneSetDefaultCamera.resx">
+      <DependentUpon>Panel_SceneSetDefaultCamera.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shape_Panel\Panel_ShapeAddNew.resx">
       <DependentUpon>Panel_ShapeAddNew.cs</DependentUpon>

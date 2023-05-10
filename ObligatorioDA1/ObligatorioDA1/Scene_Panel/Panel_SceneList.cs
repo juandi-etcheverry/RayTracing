@@ -89,5 +89,9 @@ namespace ObligatorioDA1.Scene_Panel
                 _panelGeneral.GoToSceneEditor(scene);
             }
         }
+        private void btnSetings_Click(object sender, EventArgs e)
+        {
+            _panelGeneral.GoToSetCameraDefault();
+        }
     }
 }

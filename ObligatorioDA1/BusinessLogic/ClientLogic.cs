@@ -18,7 +18,9 @@ namespace BusinessLogic
 
         public Client GetClient(string name)
         {
-            return _repository.Get(name);
+            Client c = _repository.Get(name);
+            if(c == null) Client.ThrowNoClientFound();
+            return c;
         }
 
         public Client RemoveClient(Client c)
