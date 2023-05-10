@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using BusinessLogic;
 using Domain;
+using GraphicsEngine;
+using Color = System.Drawing.Color;
 
 namespace ObligatorioDA1
 {
@@ -32,9 +35,11 @@ namespace ObligatorioDA1
             lblNewSceneName.Text = _scene.Name;
             lblLookExceptions.Visible = false;
             lblFoVException.Visible = false;
+            lblFoVException.Visible = false;
             RefreshAvailableList();
             RefreshUsedList();
             RefreshLastModified();
+            RecoverSceneRender();
             OutDatedRender();
             RefreshLooks();
         }
@@ -190,7 +195,19 @@ namespace ObligatorioDA1
                 var fov = SetFov();
                 SetNewLooksOnRender(tupleLookFrom, tupleLookAt, fov);
                 OutDatedRender();
-                //Insert render
+
+
+                GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine()
+                {
+                    Width = 300
+                };
+                Cursor.Current = Cursors.WaitCursor;
+                PPMImage renderedImage = engine.Render(_scene);
+                _scene.LastRenderDate = DateTime.Now;
+                string sceneFileName = $"{_scene.OwnerName}_{_scene.Name}_{_scene.LastRenderDate.Millisecond}.ppm";
+                renderedImage.SaveFile(sceneFileName);
+                RecoverSceneRender();
+                Cursor.Current = Cursors.Arrow;
             }
             catch (ArgumentOutOfRangeException outEx)
             {
@@ -209,6 +226,22 @@ namespace ObligatorioDA1
                     lblFoVException.Visible = true;
                     lblFoVException.Text = argEx.Message;
                 }
+            }
+        }
+
+        private void RecoverSceneRender()
+        {
+            try
+            {
+                string sceneFileName = $"{_scene.OwnerName}_{_scene.Name}_{_scene.LastRenderDate.Millisecond}.ppm";
+                Bitmap renderedImage = ImageParser.ConvertPpmToBitmap(sceneFileName);
+                pboxRenderedScene.Image = renderedImage;
+                lblNoFileFound.Visible = false;
+            }
+            catch (FileNotFoundException noFle)
+            {
+                lblNoFileFound.Text = "No scene render exists";
+                lblNoFileFound.Visible = true;
             }
         }
 
