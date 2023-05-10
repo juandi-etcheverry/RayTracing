@@ -5,17 +5,55 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using GraphicsEngine;
 
 namespace GraphicsEngineTest
 {
     [TestClass]
-    internal class GraphicsEngineTest
+    public class GraphicsEngineTest
     {
-        private Scene BaseScene;
 
-        [TestInitialize]
-        public void ArrangeGraphicsEngineData()
+        [TestCleanup]
+        public void ResetRandom()
         {
+            RandomGenerator.ShowDefaultValue = false;
+        }
+
+        [TestMethod]
+        public void Render_EarthWithBall_OK()
+        {
+
+            Shape newShape = new Sphere()
+            {
+                Name = "NewSphere",
+                Radius = 1,
+            };
+
+            Material newMaterial = new Material()
+            {
+                Name = "NewMaterial",
+                Color = (230, 15, 160),
+                Type = MaterialType.Lambertian
+            };
+
+            Model newModel = new Model()
+            {
+                Name = "NewModel",
+                Shape = newShape,
+                Material = newMaterial,
+            };
+
+            Scene newScene = new Scene()
+            {
+                Name = "new scene"
+            };
+
+            newScene.ClientScenePreferences.LookAtDefault = (0, 2, 5);
+            newScene.ClientScenePreferences.LookFromDefault = (0, 2, 0);
+            newScene.ClientScenePreferences.FoVDefault = 30;
+
+            newScene.AddPositionedModel(newModel, (0, 2, 8));
+
             Material grass = new Material()
             {
                 Name = "Grass",
@@ -26,7 +64,7 @@ namespace GraphicsEngineTest
             {
                 Name = "Earth",
                 OwnerName = "Juandi",
-                Radius = 5
+                Radius = 2000
             };
             Model globeModel = new Model()
             {
@@ -36,12 +74,17 @@ namespace GraphicsEngineTest
                 OwnerName = "Juandi",
                 WantPreview = false
             };
-            BaseScene = new Scene()
+            newScene.AddPositionedModel(globeModel, (0, -1999, 8));
+
+            RandomGenerator.ShowDefaultValue = true;
+            RandomGenerator.DefaultValue = 0.5;
+            GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine()
             {
-                Name = "Base Scene",
-                OwnerName = "Juandi"
+                Width = 12
             };
-            BaseScene.AddPositionedModel(globeModel, (0, -5, -1));
+            PPMImage result = engine.Render(newScene);
+            string TrueImage = "P3\n12 8\n255\n178 209 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n178 209 255\n181 211 255\n181 211 255\n181 211 255\n181 211 255\n181 210 255\n181 210 255\n181 210 255\n181 210 255\n181 211 255\n181 211 255\n181 211 255\n181 211 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n130 11 160\n130 11 160\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n189 216 255\n189 216 255\n189 216 255\n189 215 255\n158 12 160\n159 12 160\n159 12 160\n158 12 160\n189 215 255\n189 216 255\n189 216 255\n189 216 255\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n6 11 0\n6 11 0\n6 11 0\n6 11 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n0 1 0\n0 1 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n";
+            Assert.AreEqual(TrueImage, result.parser.Parse());
         }
     }
 }
