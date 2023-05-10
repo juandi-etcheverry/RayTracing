@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BusinessLogicExceptions;
 using Domain;
 using IRepository;
 using RepositoryInMemory;
@@ -18,8 +17,8 @@ namespace BusinessLogic
 
         public Client GetClient(string name)
         {
-            Client c = _repository.Get(name);
-            if(c == null) Client.ThrowNoClientFound();
+            var c = _repository.Get(name);
+            if (c == null) Client.ThrowNoClientFound();
             return c;
         }
 
@@ -44,7 +43,7 @@ namespace BusinessLogic
 
         private void EnsureClientNameUniqueness(string name)
         {
-            bool nameAlreadyExist = _repository.GetAll().Any(currentClient => name == currentClient.Name);
+            var nameAlreadyExist = _repository.GetAll().Any(currentClient => name == currentClient.Name);
             if (nameAlreadyExist) Client.ThrowNameExists();
         }
 
@@ -65,6 +64,7 @@ namespace BusinessLogic
         {
             if (Session.LoggedClient != null) Client.ThrowClientAlreadyLoggedIn();
         }
+
         private void EnsurePasswordOk(Client client)
         {
             if (!IsPasswordCorrect(client)) Client.ThrowIncorrectPassword();
@@ -83,8 +83,9 @@ namespace BusinessLogic
 
         private void EnsureClientIsLoggedIn()
         {
-            if(Session.LoggedClient == null) Client.ThrowClientNotLoggedIn();
+            if (Session.LoggedClient == null) Client.ThrowClientNotLoggedIn();
         }
+
         private bool IsPasswordCorrect(Client client)
         {
             return client.Password == GetClient(client.Name).Password;

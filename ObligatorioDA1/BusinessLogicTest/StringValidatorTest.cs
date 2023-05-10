@@ -9,227 +9,226 @@ namespace BusinessLogicTest
         [TestMethod]
         public void HasSpaces_EmptyString_False_OK_Test()
         {
-            bool hasSpaces = "".HasSpaces();
+            var hasSpaces = "".HasSpaces();
             Assert.IsFalse(hasSpaces);
         }
 
         [TestMethod]
         public void HasSpaces_SingleSpace_True_OK_Test()
         {
-            bool hasSpaces = " ".HasSpaces();
+            var hasSpaces = " ".HasSpaces();
             Assert.IsTrue(hasSpaces);
         }
 
         [TestMethod]
         public void HasSpaces_SingleLetter_False_OK_Test()
         {
-            bool hasSpaces = "T".HasSpaces();
+            var hasSpaces = "T".HasSpaces();
             Assert.IsFalse(hasSpaces);
         }
 
         [TestMethod]
         public void HasSpaces_Letter_Space_True_OK_Test()
         {
-            bool hasSpaces = "T ".HasSpaces();
+            var hasSpaces = "T ".HasSpaces();
             Assert.IsTrue(hasSpaces);
         }
 
         [TestMethod]
         public void HasSpaces_WordWithSpaces_True_OK_Test()
         {
-            bool hasSpaces = "Word With Spaces".HasSpaces();
+            var hasSpaces = "Word With Spaces".HasSpaces();
             Assert.IsTrue(hasSpaces);
         }
 
         [TestMethod]
         public void HasSpaces_WordWithTrailingSpaces_True_OK_Test()
         {
-            bool hasSpaces = "  WordWithTrailingSpaces    ".HasSpaces();
+            var hasSpaces = "  WordWithTrailingSpaces    ".HasSpaces();
             Assert.IsTrue(hasSpaces);
         }
 
         [TestMethod]
         public void HasTrailingSpaces_EmptyString_False_OK_Test()
         {
-            bool hasTrailingSpaces = "".HasTrailingSpaces();
+            var hasTrailingSpaces = "".HasTrailingSpaces();
             Assert.IsFalse(hasTrailingSpaces);
         }
 
         [TestMethod]
         public void HasTrailingSpaces_SingleLetter_False_OK_Test()
         {
-            bool hasTrailingSpaces = "T".HasTrailingSpaces();
+            var hasTrailingSpaces = "T".HasTrailingSpaces();
             Assert.IsFalse(hasTrailingSpaces);
         }
 
         [TestMethod]
         public void HasTrailingSpaces_SpaceLetter_True_OK_Test()
         {
-            bool hasTrailingSpaces = " T".HasTrailingSpaces();
+            var hasTrailingSpaces = " T".HasTrailingSpaces();
             Assert.IsTrue(hasTrailingSpaces);
         }
 
         [TestMethod]
         public void HasTrailingSpaces_LetterSpace_True_OK_Test()
         {
-            bool hasTrailingSpaces = "T ".HasTrailingSpaces();
+            var hasTrailingSpaces = "T ".HasTrailingSpaces();
             Assert.IsTrue(hasTrailingSpaces);
         }
 
         [TestMethod]
         public void HasTrailingSpaces_WordWithSpaces_False_OK_Test()
         {
-            bool hasTrailingSpaces = "Test Word".HasTrailingSpaces();
+            var hasTrailingSpaces = "Test Word".HasTrailingSpaces();
             Assert.IsFalse(hasTrailingSpaces);
         }
 
         [TestMethod]
         public void HasTrailingSpaces_UnevenTrailingSpaces_True_OK_Test()
         {
-            bool hasTrailingSpaces = "  WordWithTrailingSpaces     ".HasTrailingSpaces();
+            var hasTrailingSpaces = "  WordWithTrailingSpaces     ".HasTrailingSpaces();
             Assert.IsTrue(hasTrailingSpaces);
         }
 
         [TestMethod]
         public void HasTrailingSpaces_WordWithMultipleSpaces_False_OK_Test()
         {
-            bool hasTrailingSpaces = "_   String with multiple    spaces   ->".HasTrailingSpaces();
+            var hasTrailingSpaces = "_   String with multiple    spaces   ->".HasTrailingSpaces();
             Assert.IsFalse(hasTrailingSpaces);
         }
 
         [TestMethod]
         public void IsEmpty_EmptyString_True_OK_Test()
         {
-            bool isEmpty = "".IsEmpty();
+            var isEmpty = "".IsEmpty();
             Assert.IsTrue(isEmpty);
         }
 
         [TestMethod]
         public void IsEmpty_Letter_False_OK_Test()
         {
-            bool isEmpty = "T".IsEmpty();
+            var isEmpty = "T".IsEmpty();
             Assert.IsFalse(isEmpty);
         }
 
         [TestMethod]
         public void IsBetween_EmptyString_0And5_True_OK_Test()
         {
-            bool isBetween = "".IsBetween(0, 5);
+            var isBetween = "".IsBetween(0, 5);
             Assert.IsTrue(isBetween);
         }
 
         [TestMethod]
         public void IsBetween_Juandi_0And5_False_OK_Test()
         {
-            bool isBetween = "Juandi".IsBetween(0, 5);
+            var isBetween = "Juandi".IsBetween(0, 5);
             Assert.IsFalse(isBetween);
         }
 
         [TestMethod]
         public void IsBetween_Mateo_0And5_True_OK_Test()
         {
-            bool isBetween = "Mateo".IsBetween(0, 5);
+            var isBetween = "Mateo".IsBetween(0, 5);
             Assert.IsTrue(isBetween);
         }
 
         [TestMethod]
         public void IsBetween_Nico_5And10_False_OK_Test()
         {
-            bool isBetween = "Nico".IsBetween(5, 10);
+            var isBetween = "Nico".IsBetween(5, 10);
             Assert.IsFalse(isBetween);
         }
 
         [TestMethod]
         public void IsAlphaNumeric_Juandi_True_OK_Test()
         {
-            bool isAlphaNumeric = "Juandi".IsAlphaNumeric();
+            var isAlphaNumeric = "Juandi".IsAlphaNumeric();
             Assert.IsTrue(isAlphaNumeric);
         }
 
         [TestMethod]
         public void IsAlphaNumeric_Scribble_False_OK_Test()
         {
-            string scribble = "~./-=>";
-            bool isAlphaNumeric = scribble.IsAlphaNumeric();
+            var scribble = "~./-=>";
+            var isAlphaNumeric = scribble.IsAlphaNumeric();
             Assert.IsFalse(isAlphaNumeric);
         }
 
         [TestMethod]
         public void IsAlphaNumeric_Juandi0402_True_OK_Test()
         {
-            bool isAlphaNumeric = "Juandi0402".IsAlphaNumeric();
+            var isAlphaNumeric = "Juandi0402".IsAlphaNumeric();
             Assert.IsTrue(isAlphaNumeric);
         }
 
         [TestMethod]
         public void IsAlphaNumeric_EmptyString_False_OK_Test()
         {
-            bool isAlphaNumeric = "".IsAlphaNumeric();
+            var isAlphaNumeric = "".IsAlphaNumeric();
             Assert.IsFalse(isAlphaNumeric);
         }
 
         [TestMethod]
         public void HasUpper_EmptyString_False_OK_Test()
         {
-            bool hasUpper = "".HasUpper();
+            var hasUpper = "".HasUpper();
             Assert.IsFalse(hasUpper);
         }
 
         [TestMethod]
         public void HasUpper_UppercaseLetter_True_OK_Test()
         {
-            bool hasUpper = "T".HasUpper();
+            var hasUpper = "T".HasUpper();
             Assert.IsTrue(hasUpper);
         }
 
         [TestMethod]
         public void HasUpper_LowercaseLetter_False_OK_Test()
         {
-            bool hasUpper = "t".HasUpper();
+            var hasUpper = "t".HasUpper();
             Assert.IsFalse(hasUpper);
         }
 
         [TestMethod]
         public void HasUpper_3Upper_Word_False_OK_Test()
         {
-            bool hasUpper = "Word".HasUpper(3);
+            var hasUpper = "Word".HasUpper(3);
             Assert.IsFalse(hasUpper);
         }
 
         [TestMethod]
         public void HasUpper_0Upper_Word_False_OK_Test()
         {
-            bool hasUpper = "Word".HasUpper(0);
+            var hasUpper = "Word".HasUpper(0);
             Assert.IsFalse(hasUpper);
         }
 
         [TestMethod]
         public void HasUpper_5Upper_WORD_False_OK_Test()
         {
-            bool hasUpper = "WORD".HasUpper(5);
+            var hasUpper = "WORD".HasUpper(5);
             Assert.IsFalse(hasUpper);
         }
 
         [TestMethod]
         public void HasUpper_0Upper_word_True_OK_Test()
         {
-            bool hasUpper = "word".HasUpper(0);
+            var hasUpper = "word".HasUpper(0);
             Assert.IsTrue(hasUpper);
         }
 
         [TestMethod]
         public void HasNumber_EmptyString_False_OK_Test()
         {
-            bool hasNumber = "".HasNumber();
+            var hasNumber = "".HasNumber();
             Assert.IsFalse(hasNumber);
         }
 
         [TestMethod]
         public void HasNumber_StringWithNumber_True_OK_Test()
         {
-            bool hasNumber = "Mkjenrgngr4kjgnr".HasNumber();
+            var hasNumber = "Mkjenrgngr4kjgnr".HasNumber();
             Assert.IsTrue(hasNumber);
         }
-
     }
 }

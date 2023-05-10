@@ -6,14 +6,26 @@ namespace Domain
 {
     public class Client
     {
+        private static readonly uint MIN_NAME_LENGTH = 3;
+        private static readonly uint MAX_NAME_LENGTH = 20;
+        private static readonly uint MIN_PASSWORD_LENGTH = 5;
+        private static readonly uint MAX_PASSWORD_LENGTH = 25;
         private string _name;
         private string _password;
-        private DateTime _registrationDate { get; set; }
-        private ClientScenePreferences _clientScenePreferences;
-        private static uint MIN_NAME_LENGTH = 3;
-        private static uint MAX_NAME_LENGTH = 20;
-        private static uint MIN_PASSWORD_LENGTH = 5;
-        private static uint MAX_PASSWORD_LENGTH = 25;
+
+        public Client()
+        {
+            _registrationDate = DateTime.Now;
+            ClientScenePreferences = new ClientScenePreferences
+            {
+                LookFromDefault = (0, 2, 0),
+                LookAtDefault = (0, 2, 5),
+                FoVDefault = 30
+            };
+        }
+
+        private DateTime _registrationDate { get; }
+
         public string Name
         {
             get => _name;
@@ -38,22 +50,7 @@ namespace Domain
             }
         }
 
-        public ClientScenePreferences ClientScenePreferences
-        {
-            get => _clientScenePreferences;
-            set => _clientScenePreferences = value;
-        }
-
-        public Client()
-        {
-            _registrationDate = DateTime.Now;
-            _clientScenePreferences = new ClientScenePreferences()
-            {
-                LookFromDefault = (0, 2, 0),
-                LookAtDefault = (0, 2, 5),
-                FoVDefault = 30
-            };
-        }
+        public ClientScenePreferences ClientScenePreferences { get; set; }
 
         public bool AreNamesEqual(string otherName)
         {
@@ -69,10 +66,12 @@ namespace Domain
         {
             throw new NameException("Client name already exists");
         }
+
         public static void ThrowNotAlphanumeric()
         {
             throw new NameException("Client name can't have non-alphanumeric characters");
         }
+
         public static void ThrowHasSpaces()
         {
             throw new NameException("Client name can't have spaces");
@@ -112,10 +111,10 @@ namespace Domain
         {
             throw new SessionException("Client not logged in");
         }
+
         public static void ThrowIncorrectPassword()
         {
             throw new SessionException("Incorrect password");
         }
-
     }
 }

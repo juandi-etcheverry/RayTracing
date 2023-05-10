@@ -1,31 +1,27 @@
-﻿using Domain;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
+using Domain;
 
 namespace ObligatorioDA1.Scene_Panel
 {
     public partial class Panel_SceneSetDefaultCamera : UserControl
     {
         private Client _client;
-        private Panel_General _panelGeneral;
+        private readonly Panel_General _panelGeneral;
+
         public Panel_SceneSetDefaultCamera(Panel_General panelGeneral)
         {
             _panelGeneral = panelGeneral;
             InitializeComponent();
         }
+
         public void RefreshSetDefaultCamera(Client client)
         {
             _client = client;
             ClearPage();
             SetDefaultValues();
         }
+
         private void ClearPage()
         {
             lblFoVException.Visible = false;
@@ -38,6 +34,7 @@ namespace ObligatorioDA1.Scene_Panel
             txbLookAtZ.Clear();
             txbFoV.Clear();
         }
+
         private void SetDefaultValues()
         {
             txbLookFromX.Text = _client.ClientScenePreferences.LookFromDefault.Item1.ToString();
@@ -48,10 +45,12 @@ namespace ObligatorioDA1.Scene_Panel
             txbLookAtZ.Text = _client.ClientScenePreferences.LookAtDefault.Item3.ToString();
             txbFoV.Text = _client.ClientScenePreferences.FoVDefault.ToString();
         }
+
         private void btnReturnDefaultCamera_Click(object sender, EventArgs e)
         {
             _panelGeneral.GoToSceneList();
         }
+
         private void btnSaveDefaultCamera_Click(object sender, EventArgs e)
         {
             try
@@ -69,7 +68,7 @@ namespace ObligatorioDA1.Scene_Panel
             }
             catch (ArgumentException argEx)
             {
-                if(argEx.Message == "X, Y, Z must be numbers")
+                if (argEx.Message == "X, Y, Z must be numbers")
                 {
                     lblLookExceptions.Visible = true;
                     lblLookExceptions.Text = argEx.Message;
@@ -81,36 +80,39 @@ namespace ObligatorioDA1.Scene_Panel
                 }
             }
         }
+
         private ValueTuple<decimal, decimal, decimal> SetLookfrom()
         {
             decimal x, y, z;
-            bool validX = decimal.TryParse(txbLookFromX.Text, out x);
-            bool validY = decimal.TryParse(txbLookFromY.Text, out y);
-            bool validZ = decimal.TryParse(txbLookFromZ.Text, out z);
+            var validX = decimal.TryParse(txbLookFromX.Text, out x);
+            var validY = decimal.TryParse(txbLookFromY.Text, out y);
+            var validZ = decimal.TryParse(txbLookFromZ.Text, out z);
             if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
             var tuple = ValueTuple.Create(x, y, z);
             return tuple;
-            
         }
+
         private ValueTuple<decimal, decimal, decimal> SetLookAt()
         {
             decimal x, y, z;
-            bool validX = decimal.TryParse(txbLookAtX.Text, out x);
-            bool validY = decimal.TryParse(txbLookAtY.Text, out y);
-            bool validZ = decimal.TryParse(txbLookAtZ.Text, out z);
+            var validX = decimal.TryParse(txbLookAtX.Text, out x);
+            var validY = decimal.TryParse(txbLookAtY.Text, out y);
+            var validZ = decimal.TryParse(txbLookAtZ.Text, out z);
             if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
             var tuple = ValueTuple.Create(x, y, z);
             return tuple;
-            
         }
+
         private uint SetFov()
         {
-                uint x;
-                bool validX = uint.TryParse(txbFoV.Text, out x);
-                if (!validX) throw new ArgumentException("FoV must be a positive number");
-                return x;   
+            uint x;
+            var validX = uint.TryParse(txbFoV.Text, out x);
+            if (!validX) throw new ArgumentException("FoV must be a positive number");
+            return x;
         }
-        private void SetNewDefaults(ValueTuple<decimal, decimal, decimal> tuple1, ValueTuple<decimal, decimal, decimal> tuple2, uint fov)
+
+        private void SetNewDefaults(ValueTuple<decimal, decimal, decimal> tuple1,
+            ValueTuple<decimal, decimal, decimal> tuple2, uint fov)
         {
             _client.ClientScenePreferences.LookFromDefault = tuple1;
             _client.ClientScenePreferences.LookAtDefault = tuple2;

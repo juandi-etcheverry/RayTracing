@@ -1,43 +1,40 @@
-﻿using BusinessLogic;
+﻿using System;
+using System.Windows.Forms;
+using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ObligatorioDA1.Model_Panel
 {
     public partial class Panel_SceneNewName : UserControl
     {
         private Scene _newScene;
-        private SceneLogic _sceneLogic = new SceneLogic();
-        private Panel_General _panelGeneral;
+        private readonly Panel_General _panelGeneral;
+        private readonly SceneLogic _sceneLogic = new SceneLogic();
+
         public Panel_SceneNewName(Panel_General panelGeneral)
         {
             _panelGeneral = panelGeneral;
             InitializeComponent();
         }
+
         public void RefreshSceneNewName()
         {
             _newScene = new Scene();
             RefreshPage();
         }
+
         public void RefreshPage()
         {
             txbSceneName.Clear();
             lblSceneNameException.Visible = false;
-            
         }
+
         private void btnReturnSceneName_Click(object sender, EventArgs e)
         {
             _panelGeneral.GoToSceneList();
         }
+
         private void btnConfirmSceneName_Click(object sender, EventArgs e)
         {
             try
@@ -52,6 +49,7 @@ namespace ObligatorioDA1.Model_Panel
                 lblSceneNameException.Text = nameEx.Message;
             }
         }
+
         private void txbSceneName_TextChanged(object sender, EventArgs e)
         {
             lblSceneNameException.Visible = false;

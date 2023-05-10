@@ -1,9 +1,4 @@
 ﻿using BusinessLogicExceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ValidationService;
 
 namespace Domain
@@ -11,10 +6,8 @@ namespace Domain
     public class Model
     {
         private string _name;
-        private Shape _shape;
-        private Material _material;
-        private string _ownerName;
         public bool WantPreview;
+
         public string Name
         {
             get => _name;
@@ -26,23 +19,11 @@ namespace Domain
             }
         }
 
-        public Shape Shape
-        {
-            get => _shape;
-            set => _shape = value;
-        }
+        public Shape Shape { get; set; }
 
-        public Material Material
-        {
-            get => _material;
-            set => _material = value;
-        }
+        public Material Material { get; set; }
 
-        public string OwnerName
-        {
-            get => _ownerName;
-            set => _ownerName = value;
-        }
+        public string OwnerName { get; set; }
 
         public static void ThrowClientNotLoggedIn()
         {

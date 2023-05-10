@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Domain;
 using IRepository;
 using RepositoryInMemory;
@@ -24,7 +21,7 @@ namespace BusinessLogic
 
         private void SetSceneDefaultValues(Scene scene)
         {
-            Client client = Session.LoggedClient;
+            var client = Session.LoggedClient;
             scene.ClientScenePreferences.LookFromDefault = client.ClientScenePreferences.LookFromDefault;
             scene.ClientScenePreferences.LookAtDefault = client.ClientScenePreferences.LookAtDefault;
             scene.ClientScenePreferences.FoVDefault = client.ClientScenePreferences.FoVDefault;
@@ -32,8 +29,7 @@ namespace BusinessLogic
 
         private void EnsureSceneNameUniqueness(string name)
         {
-            bool nameAlreadyExists = GetClientScenes().
-                Any(currentScene => currentScene.AreNamesEqual(name));
+            var nameAlreadyExists = GetClientScenes().Any(currentScene => currentScene.AreNamesEqual(name));
             if (nameAlreadyExists) Scene.ThrowNameExists();
         }
 
@@ -64,13 +60,13 @@ namespace BusinessLogic
 
         private void EnsureSceneExists(string name)
         {
-            bool sceneExists = GetClientScenes().Any(scene => scene.Name.ToLower() == name.ToLower());
-            if(!sceneExists) Scene.ThrowNotFound();
+            var sceneExists = GetClientScenes().Any(scene => scene.Name.ToLower() == name.ToLower());
+            if (!sceneExists) Scene.ThrowNotFound();
         }
 
         public Scene GetScene(string name)
         {
-            Scene existanceValidationScene = new Scene() { Name = name };
+            var existanceValidationScene = new Scene { Name = name };
             AssignSceneToClient(existanceValidationScene);
             EnsureSceneExists(name);
             return GetSceneForOwner(existanceValidationScene);
@@ -88,8 +84,8 @@ namespace BusinessLogic
 
         public IList<Scene> GetClientScenes()
         {
-            return _repository.GetAll().Where(scene => scene.OwnerName == Session.LoggedClient.Name).
-                                        OrderByDescending(scene => scene.LastModificationDate).ToList();
+            return _repository.GetAll().Where(scene => scene.OwnerName == Session.LoggedClient.Name)
+                .OrderByDescending(scene => scene.LastModificationDate).ToList();
         }
     }
 }

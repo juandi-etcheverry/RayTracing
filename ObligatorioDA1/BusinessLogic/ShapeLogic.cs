@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using BusinessLogicExceptions;
 using Domain;
 using IRepository;
 using RepositoryInMemory;
@@ -22,10 +20,11 @@ namespace BusinessLogic
             EnsureClientIsLoggedIn();
             return _repository.GetAll().Where(shape => shape.OwnerName == Session.LoggedClient.Name).ToList();
         }
+
         public Shape GetShape(string name)
         {
             EnsureClientIsLoggedIn();
-            Shape existanceValidationShape = new Shape() { Name = name };
+            var existanceValidationShape = new Shape { Name = name };
             AssignShapeToClient(existanceValidationShape);
             EnsureShapeExists(name);
             return GetShapeForOwner(existanceValidationShape);
@@ -33,22 +32,22 @@ namespace BusinessLogic
 
         private void EnsureShapeExists(string name)
         {
-            bool sceneExists = GetClientShapes().Any(shape => shape.Name.ToLower() == name.ToLower());
+            var sceneExists = GetClientShapes().Any(shape => shape.Name.ToLower() == name.ToLower());
             if (!sceneExists) Shape.ThrowNotFound();
         }
 
         public Shape RemoveShape(Shape shape)
         {
             ValidateShapeRefencedByModel(shape);
-            Shape removedShape = _repository.Remove(shape);
+            var removedShape = _repository.Remove(shape);
             if (removedShape.Name is null) Shape.ThrowNotFound();
             return shape;
         }
 
         private void ValidateShapeRefencedByModel(Shape shape)
         {
-            ModelLogic modelLogic = new ModelLogic();
-            bool isShapeInUse = modelLogic.GetClientModels().Any(model => model.Shape.Name == shape.Name);
+            var modelLogic = new ModelLogic();
+            var isShapeInUse = modelLogic.GetClientModels().Any(model => model.Shape.Name == shape.Name);
             if (isShapeInUse) Shape.ThrowShapeReferencedByModel();
         }
 
@@ -80,8 +79,7 @@ namespace BusinessLogic
 
         private void EnsureShapeNameUniqueness(string name)
         {
-            bool nameAlreadyExists = GetClientShapes().
-                Any(currentShape => currentShape.AreNamesEqual(name));
+            var nameAlreadyExists = GetClientShapes().Any(currentShape => currentShape.AreNamesEqual(name));
             if (nameAlreadyExists) Scene.ThrowNameExists();
         }
 

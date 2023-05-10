@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Domain;
 using IRepository;
@@ -8,7 +7,6 @@ namespace RepositoryInMemory
 {
     public class ModelRepository : IRepositoryModel
     {
-
         private static readonly IList<Model> _models = new List<Model>();
 
         public Model Add(Model model)

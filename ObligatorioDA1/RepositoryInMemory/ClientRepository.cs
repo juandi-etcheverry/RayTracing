@@ -1,7 +1,7 @@
-﻿using Domain;
-using IRepository;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Domain;
+using IRepository;
 
 namespace RepositoryInMemory
 {
@@ -13,6 +13,7 @@ namespace RepositoryInMemory
         {
             return _clients;
         }
+
         public Client Get(string name)
         {
             return _clients.FirstOrDefault(c => c.Name == name);
@@ -23,6 +24,7 @@ namespace RepositoryInMemory
             _clients.Add(client);
             return client;
         }
+
         public Client Remove(Client client)
         {
             _clients.Remove(client);

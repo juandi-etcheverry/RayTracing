@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Domain;
 using IRepository;
 
@@ -11,6 +8,7 @@ namespace RepositoryInMemory
     public class MaterialRepository : IRepositoryMaterial
     {
         private static readonly IList<Material> _materials = new List<Material>();
+
         public IList<Material> GetAll()
         {
             return _materials;

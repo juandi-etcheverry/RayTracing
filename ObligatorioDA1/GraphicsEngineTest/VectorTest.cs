@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using GraphicsEngine;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GraphicsEngineTest
 {
@@ -13,13 +13,13 @@ namespace GraphicsEngineTest
         [TestInitialize]
         public void CreateVectorsForTesting()
         {
-            basicVector = new Vector()
+            basicVector = new Vector
             {
                 X = 0.3m,
                 Y = 0.6m,
                 Z = 0.9m
             };
-            nullVector = new Vector()
+            nullVector = new Vector
             {
                 X = 0,
                 Y = 0,
@@ -30,7 +30,7 @@ namespace GraphicsEngineTest
         [TestMethod]
         public void CreateVector_ValidXYZ_OK()
         {
-            Vector v = new Vector()
+            var v = new Vector
             {
                 X = 0.3m,
                 Y = 1.0m,
@@ -43,69 +43,69 @@ namespace GraphicsEngineTest
         [TestMethod]
         public void AddVector_NullVector_OK()
         {
-            Vector sum = basicVector.Add(nullVector);
+            var sum = basicVector.Add(nullVector);
             Assert.AreEqual((basicVector.X, basicVector.Y, basicVector.Z), (sum.X, sum.Y, sum.Z));
         }
 
         [TestMethod]
         public void AddVector_ValidVector_OK()
         {
-            Vector sum = basicVector.Add(basicVector);
+            var sum = basicVector.Add(basicVector);
             Assert.AreEqual((2 * basicVector.X, 2 * basicVector.Y, 2 * basicVector.Z), (sum.X, sum.Y, sum.Z));
         }
 
         [TestMethod]
         public void SubtractVector_ValidVector_OK()
         {
-            Vector sub = basicVector.Subtract(basicVector);
+            var sub = basicVector.Subtract(basicVector);
             Assert.AreEqual((0m, 0m, 0m), (sub.X, sub.Y, sub.Z));
         }
 
         [TestMethod]
         public void MultiplyVector_Zero_OK()
         {
-            Vector mult = basicVector.Multiply(0);
+            var mult = basicVector.Multiply(0);
             Assert.AreEqual((0m, 0m, 0m), (mult.X, mult.Y, mult.Z));
         }
 
         [TestMethod]
         public void MultiplyVector_Three_OK()
         {
-            Vector mult = basicVector.Multiply(3);
+            var mult = basicVector.Multiply(3);
             Assert.AreEqual((0.9m, 1.8m, 2.7m), (mult.X, mult.Y, mult.Z));
         }
 
         [TestMethod]
         public void DivideVector_Three_OK()
         {
-            Vector div = basicVector.Divide(3);
+            var div = basicVector.Divide(3);
             Assert.AreEqual((0.1m, 0.2m, 0.3m), (div.X, div.Y, div.Z));
         }
 
-        [ExpectedException(typeof(System.DivideByZeroException))]
+        [ExpectedException(typeof(DivideByZeroException))]
         [TestMethod]
         public void DivideVector_Zero_FAIL()
         {
-            Vector div = basicVector.Divide(0);
+            var div = basicVector.Divide(0);
         }
 
         [TestMethod]
         public void VectorLength_NullVector_OK()
         {
-            decimal length = nullVector.Length();
+            var length = nullVector.Length();
             Assert.AreEqual(0, length);
         }
 
         [TestMethod]
         public void VectorLength_ValidVector_OK()
         {
-            Vector validVector = new Vector()
+            var validVector = new Vector
             {
                 X = 1,
                 Y = 2,
                 Z = 2
             };
-            decimal length = validVector.Length();
+            var length = validVector.Length();
             Assert.AreEqual(3, length);
         }
 
@@ -144,7 +144,7 @@ namespace GraphicsEngineTest
             Assert.AreEqual((0.1m, 0.2m, 0.3m), (basicVector.X, basicVector.Y, basicVector.Z));
         }
 
-        [ExpectedException(typeof(System.DivideByZeroException))]
+        [ExpectedException(typeof(DivideByZeroException))]
         [TestMethod]
         public void ScaleDownBy_Zero_FAIL()
         {
@@ -152,24 +152,24 @@ namespace GraphicsEngineTest
             Assert.AreEqual((0.3m, 0.6m, 0.9m), (basicVector.X, basicVector.Y, basicVector.Z));
         }
 
-        [ExpectedException(typeof(System.DivideByZeroException))]
+        [ExpectedException(typeof(DivideByZeroException))]
         [TestMethod]
         public void UnitVector_NullVector_FAIL()
         {
-            Vector unitVector = nullVector.Unit();
+            var unitVector = nullVector.Unit();
             Assert.AreEqual((0m, 0m, 0m), (unitVector.X, unitVector.Y, unitVector.Z));
         }
 
         [TestMethod]
         public void UnitVector_ValidVector_OK()
         {
-            Vector newVec = new Vector()
+            var newVec = new Vector
             {
                 X = 2,
                 Y = 0,
                 Z = 0
             };
-            Vector unitVector = newVec.Unit();
+            var unitVector = newVec.Unit();
             Assert.AreEqual((1m, 0m, 0m), (unitVector.X, unitVector.Y, unitVector.Z));
         }
 
@@ -182,9 +182,9 @@ namespace GraphicsEngineTest
         [TestMethod]
         public void Cross_Product_ValidVectors_OK()
         {
-            Vector v1 = new Vector() { X = 1, Y = 1, Z = 1 };
-            Vector v2 = new Vector() { X = 1, Y = 2, Z = 3 };
-            Vector cross = v1.Cross(v2);
+            var v1 = new Vector { X = 1, Y = 1, Z = 1 };
+            var v2 = new Vector { X = 1, Y = 2, Z = 3 };
+            var cross = v1.Cross(v2);
             Assert.AreEqual((1m, -2m, 1m), (cross.X, cross.Y, cross.Z));
         }
     }

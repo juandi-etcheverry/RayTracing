@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphicsEngine
 {
@@ -12,6 +7,7 @@ namespace GraphicsEngine
         private decimal _r { get; set; }
         private decimal _g { get; set; }
         private decimal _b { get; set; }
+
         public decimal R
         {
             get => _r;
@@ -59,7 +55,7 @@ namespace GraphicsEngine
 
         private int CalculateCoordinateColor(decimal coordinate)
         {
-            decimal roundedCoordinateColorValue = RoundedCoordinateColor(coordinate);
+            var roundedCoordinateColorValue = RoundedCoordinateColor(coordinate);
             return ConvertedColorToInt32(roundedCoordinateColorValue);
         }
 
@@ -87,7 +83,6 @@ namespace GraphicsEngine
         private void ValidateColorIsZeroOrGreater(decimal value, string coordinateName)
         {
             if (value < 0) ThrowColorCoordinateIsOutOfRange(coordinateName);
-
         }
 
         private void ValidateColorIsOneOrBelow(decimal value, string coordinateName)

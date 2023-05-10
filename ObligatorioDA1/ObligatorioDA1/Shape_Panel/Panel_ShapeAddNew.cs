@@ -1,34 +1,29 @@
-﻿using BusinessLogic;
+﻿using System;
+using System.Windows.Forms;
+using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ObligatorioDA1
 {
     public partial class Panel_ShapeAddNew : UserControl
     {
+        private readonly Panel_General _panelGeneral;
+        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
         private Sphere newSphere;
-        private ShapeLogic _shapeLogic = new ShapeLogic();
-        private Panel_General _panelGeneral;
+
         public Panel_ShapeAddNew(Panel_General userControl)
         {
             _panelGeneral = userControl;
             InitializeComponent();
         }
+
         public void RefreshShapeAddNew()
         {
             newSphere = new Sphere();
             RefreshPanel();
         }
+
         private void RefreshPanel()
         {
             txbNewShapeName.Clear();
@@ -36,10 +31,12 @@ namespace ObligatorioDA1
             lblNewShapeNameException.Visible = false;
             lblNewShapeRadiusException.Visible = false;
         }
+
         private void btnShowAllShapes_Click(object sender, EventArgs e)
         {
             _panelGeneral.GoToShapeList();
         }
+
         private void btnNewShape_Click(object sender, EventArgs e)
         {
             lblNewShapeNameException.Visible = false;
@@ -47,7 +44,7 @@ namespace ObligatorioDA1
             try
             {
                 double radius;
-                bool validRadius = Double.TryParse(txbNewShapeRadius.Text, out radius);
+                var validRadius = double.TryParse(txbNewShapeRadius.Text, out radius);
                 if (!validRadius) throw new ArgumentException("Radius must be a decimal number");
                 newSphere.Name = txbNewShapeName.Text;
                 newSphere.Radius = radius;
@@ -70,6 +67,7 @@ namespace ObligatorioDA1
                 lblNewShapeRadiusException.Text = negRadEx.Message;
             }
         }
+
         private void txbNewShapeName_TextChanged(object sender, EventArgs e)
         {
             lblNewShapeNameException.Visible = false;
@@ -83,13 +81,14 @@ namespace ObligatorioDA1
                 lblNewShapeNameException.Text = nameEx.Message;
             }
         }
+
         private void txbNewShapeRadius_TextChanged(object sender, EventArgs e)
         {
             lblNewShapeRadiusException.Visible = false;
             try
             {
                 double radius;
-                bool validRadius = Double.TryParse(txbNewShapeRadius.Text, out radius);
+                var validRadius = double.TryParse(txbNewShapeRadius.Text, out radius);
                 if (!validRadius) throw new ArgumentException("Radius must be a decimal number");
                 newSphere.Radius = radius;
             }

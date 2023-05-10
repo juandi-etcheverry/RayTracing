@@ -5,37 +5,37 @@ namespace GraphicsEngine
 {
     public class GraphicsEngine
     {
+        private readonly decimal _MINIMUM_DIRECTION_SCALING_FACTOR = 0.00001m;
         public uint Width { get; set; }
-        private decimal _MINIMUM_DIRECTION_SCALING_FACTOR = 0.00001m;
 
         public PPMImage Render(Scene scene)
         {
-            int SAMPLES_PER_PIXEL = 50;
-            int MAX_DEPTH = 20;
+            var SAMPLES_PER_PIXEL = 50;
+            var MAX_DEPTH = 20;
 
 
-            Vector LookAt = new Vector()
+            var LookAt = new Vector
             {
                 X = scene.ClientScenePreferences.LookAtDefault.Item1,
                 Y = scene.ClientScenePreferences.LookAtDefault.Item2,
-                Z = scene.ClientScenePreferences.LookAtDefault.Item3,
+                Z = scene.ClientScenePreferences.LookAtDefault.Item3
             };
 
-            Vector LookFrom = new Vector()
+            var LookFrom = new Vector
             {
                 X = scene.ClientScenePreferences.LookFromDefault.Item1,
                 Y = scene.ClientScenePreferences.LookFromDefault.Item2,
-                Z = scene.ClientScenePreferences.LookFromDefault.Item3,
+                Z = scene.ClientScenePreferences.LookFromDefault.Item3
             };
 
-            Vector Up = new Vector()
+            var Up = new Vector
             {
                 X = 0,
                 Y = 1,
                 Z = 0
             };
 
-            CameraDetails cameraDetails = new CameraDetails()
+            var cameraDetails = new CameraDetails
             {
                 LookAt = LookAt,
                 LookFrom = LookFrom,
@@ -44,44 +44,44 @@ namespace GraphicsEngine
                 Up = Up
             };
 
-            PPMImage renderedImage = new PPMImage(Width);
+            var renderedImage = new PPMImage(Width);
 
-            Camera camera = new Camera(cameraDetails);
+            var camera = new Camera(cameraDetails);
 
-            for (int row = renderedImage.Height - 1; row >= 0; row--)
-            {
-                for (int column = 0; column < renderedImage.Width; column++)
+            for (var row = renderedImage.Height - 1; row >= 0; row--)
+                for (var column = 0; column < renderedImage.Width; column++)
                 {
-                    Vector colorVector = new Vector()
+                    var colorVector = new Vector
                     {
                         X = 0,
                         Y = 0,
                         Z = 0
                     };
 
-                    for (int sample = 0; sample < SAMPLES_PER_PIXEL; sample++)
+                    for (var sample = 0; sample < SAMPLES_PER_PIXEL; sample++)
                     {
-                        decimal xCoordinate = (column + Convert.ToDecimal(RandomGenerator.NextDouble())) /
-                                              renderedImage.Width;
-                        decimal yCoordinate = (row + Convert.ToDecimal(RandomGenerator.NextDouble())) / renderedImage.Height;
-                        Ray coloringRay = camera.RayFromCoordinates(xCoordinate, yCoordinate);
+                        var xCoordinate = (column + Convert.ToDecimal(RandomGenerator.NextDouble())) /
+                                          renderedImage.Width;
+                        var yCoordinate = (row + Convert.ToDecimal(RandomGenerator.NextDouble())) / renderedImage.Height;
+                        var coloringRay = camera.RayFromCoordinates(xCoordinate, yCoordinate);
                         colorVector.AddTo(ShootRay(coloringRay, MAX_DEPTH, scene));
                     }
+
                     colorVector = colorVector.Divide(SAMPLES_PER_PIXEL);
-                    Color color = new Color() { R = colorVector.X, G = colorVector.Y, B = colorVector.Z };
+                    var color = new Color { R = colorVector.X, G = colorVector.Y, B = colorVector.Z };
                     renderedImage.SavePixel(row, column, color);
                 }
-            }
+
             return renderedImage;
         }
 
         private Vector ShootRay(Ray ray, decimal depth, Scene scene)
         {
             HitRecord intersectionWithShape = null;
-            decimal maxDirectionScalingFactor = Decimal.MaxValue;
-            foreach (PositionedModel model in scene.Models)
+            var maxDirectionScalingFactor = decimal.MaxValue;
+            foreach (var model in scene.Models)
             {
-                HitRecord modelIntersection = PossibleRayIntersectionWithModel(model, ray, maxDirectionScalingFactor);
+                var modelIntersection = PossibleRayIntersectionWithModel(model, ray, maxDirectionScalingFactor);
                 if (modelIntersection != null)
                 {
                     intersectionWithShape = modelIntersection;
@@ -91,75 +91,71 @@ namespace GraphicsEngine
 
             if (intersectionWithShape != null)
             {
-                if (depth <= 0)
-                {
-                    return new Vector() { X = 0, Y = 0, Z = 0 };
-                }
-                Vector newPoint = intersectionWithShape.IntersectionPoint.Add(intersectionWithShape.Normal)
+                if (depth <= 0) return new Vector { X = 0, Y = 0, Z = 0 };
+                var newPoint = intersectionWithShape.IntersectionPoint.Add(intersectionWithShape.Normal)
                     .Add(GetRandomInUnitSphere());
-                Vector newVector = newPoint.Subtract(intersectionWithShape.IntersectionPoint);
-                Ray newRay = new Ray()
+                var newVector = newPoint.Subtract(intersectionWithShape.IntersectionPoint);
+                var newRay = new Ray
                 {
                     Origin = intersectionWithShape.IntersectionPoint,
                     Direction = newVector
                 };
-                Vector nextColor = ShootRay(newRay, depth - 1, scene);
-                return new Vector()
+                var nextColor = ShootRay(newRay, depth - 1, scene);
+                return new Vector
                 {
                     X = nextColor.X * intersectionWithShape.Attenuation.R,
                     Y = nextColor.Y * intersectionWithShape.Attenuation.G,
-                    Z = nextColor.Z * intersectionWithShape.Attenuation.B,
+                    Z = nextColor.Z * intersectionWithShape.Attenuation.B
                 };
             }
-            Vector rayDirectionUnit = ray.Direction.Unit();
-            decimal gradientYPosition = 0.5m * (rayDirectionUnit.Y + 1);
-            Vector gradientStart = new Vector() { X = 1, Y = 1, Z = 1 };
-            Vector gradientEnd = new Vector() { X = 0.5m, Y = 0.7m, Z = 1 };
-            Vector colorVector = gradientStart.Multiply(1 - gradientYPosition)
+
+            var rayDirectionUnit = ray.Direction.Unit();
+            var gradientYPosition = 0.5m * (rayDirectionUnit.Y + 1);
+            var gradientStart = new Vector { X = 1, Y = 1, Z = 1 };
+            var gradientEnd = new Vector { X = 0.5m, Y = 0.7m, Z = 1 };
+            var colorVector = gradientStart.Multiply(1 - gradientYPosition)
                 .Add(gradientEnd.Multiply(gradientYPosition));
             return colorVector;
         }
-        private HitRecord PossibleRayIntersectionWithModel(PositionedModel model, Ray ray, decimal maxDirectionScalingFactor)
+
+        private HitRecord PossibleRayIntersectionWithModel(PositionedModel model, Ray ray,
+            decimal maxDirectionScalingFactor)
         {
-            Sphere modelSphere = (Sphere)model.Shape;
-            Vector modelCoordinates = new Vector()
+            var modelSphere = (Sphere)model.Shape;
+            var modelCoordinates = new Vector
             {
                 X = model.Coordinates.Item1,
                 Y = model.Coordinates.Item2,
                 Z = model.Coordinates.Item3
             };
-            Color attenuation = new Color()
+            var attenuation = new Color
             {
                 R = model.Material.Color.Item1 / 255m,
                 G = model.Material.Color.Item2 / 255m,
                 B = model.Material.Color.Item3 / 255m
             };
-            Vector centerToRayOrigin = ray.Origin.Subtract(modelCoordinates);
-            decimal a = ray.Direction.Dot(ray.Direction);
-            decimal b = centerToRayOrigin.Dot(ray.Direction) * 2m;
-            decimal c = centerToRayOrigin.Dot(centerToRayOrigin) - (Convert.ToDecimal(modelSphere.Radius * modelSphere.Radius));
-            decimal discriminant = (b * b) - (4m * a * c);
-            if (discriminant < 0)
-            {
-                return null;
-            }
+            var centerToRayOrigin = ray.Origin.Subtract(modelCoordinates);
+            var a = ray.Direction.Dot(ray.Direction);
+            var b = centerToRayOrigin.Dot(ray.Direction) * 2m;
+            var c = centerToRayOrigin.Dot(centerToRayOrigin) -
+                    Convert.ToDecimal(modelSphere.Radius * modelSphere.Radius);
+            var discriminant = b * b - 4m * a * c;
+            if (discriminant < 0) return null;
 
-            decimal scalingFactorForIntersection =
-                ((-1 * b) - Convert.ToDecimal(Math.Sqrt(Convert.ToDouble(discriminant)))) / (2m * a);
+            var scalingFactorForIntersection =
+                (-1 * b - Convert.ToDecimal(Math.Sqrt(Convert.ToDouble(discriminant)))) / (2m * a);
             //(-1m * b) - Convert.ToDecimal(Math.Sqrt(Convert.ToDouble(discriminant))) / (2m * a));
-            Vector intersecitionPoint = ray.PointAt(scalingFactorForIntersection);
-            Vector normal = intersecitionPoint.Subtract(modelCoordinates).Divide(Convert.ToDecimal(modelSphere.Radius));
+            var intersecitionPoint = ray.PointAt(scalingFactorForIntersection);
+            var normal = intersecitionPoint.Subtract(modelCoordinates).Divide(Convert.ToDecimal(modelSphere.Radius));
             if (scalingFactorForIntersection < maxDirectionScalingFactor &&
                 scalingFactorForIntersection > _MINIMUM_DIRECTION_SCALING_FACTOR)
-            {
-                return new HitRecord()
+                return new HitRecord
                 {
                     ScalingFactor = scalingFactorForIntersection,
                     IntersectionPoint = intersecitionPoint,
                     Normal = normal,
                     Attenuation = attenuation
                 };
-            }
 
             return null;
         }
@@ -167,10 +163,10 @@ namespace GraphicsEngine
         private Vector GetRandomInUnitSphere()
         {
             Vector finalVector;
-            Vector onesVector = new Vector() { X = 1, Y = 1, Z = 1 };
+            var onesVector = new Vector { X = 1, Y = 1, Z = 1 };
             do
             {
-                Vector randomVector = new Vector()
+                var randomVector = new Vector
                 {
                     X = Convert.ToDecimal(RandomGenerator.NextDouble()),
                     Y = Convert.ToDecimal(RandomGenerator.NextDouble()),
@@ -178,6 +174,7 @@ namespace GraphicsEngine
                 };
                 finalVector = randomVector.Multiply(2).Subtract(onesVector);
             } while (finalVector.SquaredLength() >= 1);
+
             return finalVector;
         }
     }

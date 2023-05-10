@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GraphicsEngine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -16,7 +12,7 @@ namespace GraphicsEngineTest
         [TestInitialize]
         public void CreateVectorForColors()
         {
-            colorVector = new Color()
+            colorVector = new Color
             {
                 R = 0.3m,
                 G = 0.6m,
@@ -29,7 +25,7 @@ namespace GraphicsEngineTest
         [TestMethod]
         public void CreateColor_InvalidColor_FAIL()
         {
-            Color c = new Color()
+            var c = new Color
             {
                 R = 1.1m,
                 G = -0.3m,
@@ -40,21 +36,21 @@ namespace GraphicsEngineTest
         [TestMethod]
         public void GetColors_GetRed_OK()
         {
-            int redAmount = colorVector.Red();
+            var redAmount = colorVector.Red();
             Assert.AreEqual(77, redAmount);
         }
 
         [TestMethod]
         public void GetColors_GetGreen_OK()
         {
-            int greenAmount = colorVector.Green();
+            var greenAmount = colorVector.Green();
             Assert.AreEqual(153, greenAmount);
         }
 
         [TestMethod]
         public void GetColors_GetBlue_OK()
         {
-            int blueAmount = colorVector.Blue();
+            var blueAmount = colorVector.Blue();
             Assert.AreEqual(230, blueAmount);
         }
     }

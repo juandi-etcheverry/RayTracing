@@ -1,25 +1,24 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
-using System.Net;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BusinessLogicTest
 {
     [TestClass]
     public class MaterialTest
     {
-        private MaterialLogic _materialLogic = new MaterialLogic();
         private readonly ClientLogic _clientLogic = new ClientLogic();
-        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
         private readonly ModelLogic _modelLogic = new ModelLogic();
+        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
+        private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private Client client;
 
         [TestInitialize]
         public void CreateAndInitializeClient()
         {
-            client = new Client()
+            client = new Client
             {
                 Name = "NewClient",
                 Password = "ValidPassword123"
@@ -39,7 +38,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void Material_ValidMaterial_OK_Test()
         {
-            Material material = new Material()
+            var material = new Material
             {
                 Name = "VantaBlack",
                 Color = (0, 0, 0),
@@ -53,7 +52,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<NameException>(() =>
             {
-                Material material = new Material()
+                var material = new Material
                 {
                     Name = "",
                     Color = (0, 0, 0),
@@ -67,7 +66,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<NameException>(() =>
             {
-                Material material = new Material()
+                var material = new Material
                 {
                     Name = "Light Gray ",
                     Color = (40, 40, 40),
@@ -81,7 +80,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
             {
-                Material material = new Material()
+                var material = new Material
                 {
                     Name = "Vibranium Violet",
                     Color = (256, 80, 130),
@@ -95,7 +94,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
             {
-                Material material = new Material()
+                var material = new Material
                 {
                     Name = "Geologic Green",
                     Color = (80, 300, 130),
@@ -110,7 +109,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
             {
-                Material material = new Material()
+                var material = new Material
                 {
                     Name = "Beautiful Blue",
                     Color = (20, 0, 256),
@@ -122,7 +121,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddMaterial_ValidMaterial_OK_Test()
         {
-            Material material = new Material()
+            var material = new Material
             {
                 Name = "Organic Orange",
                 Color = (180, 60, 60),
@@ -135,29 +134,26 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddMaterial_RepeatedMaterials_FAIL_Test()
         {
-            Material m1 = new Material()
+            var m1 = new Material
             {
                 Name = "Double Dummy",
                 Color = (110, 221, 123),
                 Type = MaterialType.Lambertian
             };
-            Material m2 = new Material()
+            var m2 = new Material
             {
                 Name = "double dummY",
                 Color = (30, 60, 90),
                 Type = MaterialType.Lambertian
             };
             _materialLogic.Add(m1);
-            Assert.ThrowsException<NameException>(() =>
-            {
-                _materialLogic.Add(m2);
-            });
+            Assert.ThrowsException<NameException>(() => { _materialLogic.Add(m2); });
         }
 
         [TestMethod]
         public void RemoveMaterial_ValidMaterial_OK_Test()
         {
-            Material material = new Material()
+            var material = new Material
             {
                 Name = "Tan Tangerine",
                 Color = (180, 60, 60),
@@ -171,7 +167,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RemoveMaterial_NonExistantMaterial_FAIL_Test()
         {
-            Material material = new Material()
+            var material = new Material
             {
                 Name = "Nonexistant Neon",
                 Color = (245, 60, 60),
@@ -183,7 +179,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RenameMaterial_ValidMaterial_OK_Test()
         {
-            Material material = new Material()
+            var material = new Material
             {
                 Name = "Valid Vlue",
                 Color = (180, 20, 170),
@@ -197,28 +193,25 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RenameMaterial_InvalidMaterial_FAIL_Test()
         {
-            Material material = new Material()
+            var material = new Material
             {
                 Name = "Valid Vlue",
                 Color = (180, 20, 170),
                 Type = MaterialType.Lambertian
             };
-            Assert.ThrowsException<NotFoundException>(() =>
-            {
-                _materialLogic.Rename(material, "Balid Blue");
-            });
+            Assert.ThrowsException<NotFoundException>(() => { _materialLogic.Rename(material, "Balid Blue"); });
         }
 
         [TestMethod]
         public void RenameMaterial_NameInUse_FAIL_Test()
         {
-            Material presentMaterial = new Material()
+            var presentMaterial = new Material
             {
                 Name = "Present Purple",
                 Color = (180, 20, 170),
                 Type = MaterialType.Lambertian
             };
-            Material newMaterial = new Material()
+            var newMaterial = new Material
             {
                 Name = "Unique Unicorn",
                 Color = (10, 45, 11),
@@ -232,7 +225,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddMaterial_Valid_Owner_Test_OK()
         {
-            Material newMaterial = new Material()
+            var newMaterial = new Material
             {
                 Name = "Unicorn",
                 Color = (10, 45, 11),
@@ -247,7 +240,7 @@ namespace BusinessLogicTest
         public void AddMaterial_NotLogged_Test_FAIL()
         {
             _clientLogic.Logout();
-            Material newMaterial = new Material()
+            var newMaterial = new Material
             {
                 Name = "Unicorn",
                 Color = (10, 50, 11),
@@ -260,7 +253,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddMaterial_SameName_DifferentOwner_Test_OK()
         {
-            Material material1 = new Material()
+            var material1 = new Material
             {
                 Name = "Same Name",
                 Color = (10, 50, 11),
@@ -269,7 +262,7 @@ namespace BusinessLogicTest
             _materialLogic.Add(material1);
             _clientLogic.Logout();
 
-            Client anotherClient = new Client()
+            var anotherClient = new Client
             {
                 Name = "Andrew",
                 Password = "ValidPassword123"
@@ -277,7 +270,7 @@ namespace BusinessLogicTest
             _clientLogic.AddClient(anotherClient);
             _clientLogic.InitializeSession(anotherClient);
 
-            Material material2 = new Material()
+            var material2 = new Material
             {
                 Name = "Same Name",
                 Color = (10, 50, 11),
@@ -287,19 +280,18 @@ namespace BusinessLogicTest
 
 
             Assert.AreEqual(2, _materialLogic.GetAll().Count);
-
         }
 
         [TestMethod]
         public void GetClientMaterials_OK_Test()
         {
-            Material material1 = new Material()
+            var material1 = new Material
             {
                 Name = "Material 1",
                 Color = (10, 50, 11),
                 Type = MaterialType.Lambertian
             };
-            Material material2 = new Material()
+            var material2 = new Material
             {
                 Name = "Material 2",
                 Color = (107, 50, 15),
@@ -309,14 +301,14 @@ namespace BusinessLogicTest
             _materialLogic.Add(material2);
             _clientLogic.Logout();
 
-            Client anotherClient = new Client()
+            var anotherClient = new Client
             {
                 Name = "anotherClient",
                 Password = "ValidPassword123"
             };
             _clientLogic.AddClient(anotherClient);
             _clientLogic.InitializeSession(anotherClient);
-            Material material3 = new Material()
+            var material3 = new Material
             {
                 Name = "Material 3",
                 Color = (1, 29, 114),
@@ -329,7 +321,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RemoveMaterial_AssociatedToModel_FAIL_Test()
         {
-            Material material = new Material()
+            var material = new Material
             {
                 Name = "VantaBlack",
                 Color = (0, 0, 0),
@@ -337,14 +329,14 @@ namespace BusinessLogicTest
             };
             _materialLogic.Add(material);
 
-            Shape sphere = new Sphere()
+            Shape sphere = new Sphere
             {
                 Name = "Sphere",
                 Radius = 3
             };
             _shapeLogic.AddShape(sphere);
 
-            Model model = new Model()
+            var model = new Model
             {
                 Name = "New Model",
                 Shape = _shapeLogic.GetShape("Sphere"),

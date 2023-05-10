@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BusinessLogicExceptions;
 using ValidationService;
 
@@ -16,6 +12,7 @@ namespace Domain
     public class Material
     {
         private string _name;
+
         public string Name
         {
             get => _name;
@@ -41,13 +38,7 @@ namespace Domain
 
         public MaterialType Type { get; set; }
 
-        private string _ownerName;
-
-        public string OwnerName
-        {
-            get => _ownerName;
-            set => _ownerName = value;
-        }
+        public string OwnerName { get; set; }
 
         private static void ThrowEmptyName()
         {

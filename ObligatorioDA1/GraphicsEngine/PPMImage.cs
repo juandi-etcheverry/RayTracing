@@ -1,26 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace GraphicsEngine
 {
     public class PPMImage
     {
-        private uint _width { get; set; }
-        private decimal _ASPECT_RATIO = 2m / 3m;
+        private readonly decimal _ASPECT_RATIO = 2m / 3m;
         public ImageParser parser;
-        public uint Width
-        {
-            get => _width;
-            set
-            {
-                Height = CalculateHeightBasedOnWidthAndAspectRatio(value);
-                _width = value;
-            }
-        }
-        public int Height { get; private set; }
 
         public Color[,] PixelData;
 
@@ -31,21 +17,35 @@ namespace GraphicsEngine
             parser = new ImageParser(PixelData)
             {
                 HorizontalResolution = width,
-                VerticalResolution = Height,
+                VerticalResolution = Height
             };
         }
 
+        private uint _width { get; set; }
+
+        public uint Width
+        {
+            get => _width;
+            set
+            {
+                Height = CalculateHeightBasedOnWidthAndAspectRatio(value);
+                _width = value;
+            }
+        }
+
+        public int Height { get; private set; }
+
         public void SaveFile(string fileName)
         {
-            string parsedData = parser.Parse();
-            System.IO.File.WriteAllText(fileName, parsedData);
+            var parsedData = parser.Parse();
+            File.WriteAllText(fileName, parsedData);
             Console.WriteLine("SAVED");
         }
 
         internal void SavePixel(int row, int column, Color rgbColor)
         {
-            int xCoordinate = column;
-            int yCoordinate = Height - row - 1;
+            var xCoordinate = column;
+            var yCoordinate = Height - row - 1;
             EnsureYCoordinateDoesNotOverflow(yCoordinate);
             PixelData[yCoordinate, xCoordinate] = rgbColor;
         }
