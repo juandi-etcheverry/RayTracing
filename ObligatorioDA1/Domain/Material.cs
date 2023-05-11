@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BusinessLogicExceptions;
 using ValidationService;
 
@@ -16,6 +12,7 @@ namespace Domain
     public class Material
     {
         private string _name;
+
         public string Name
         {
             get => _name;
@@ -41,25 +38,19 @@ namespace Domain
 
         public MaterialType Type { get; set; }
 
-        private string _ownerName;
+        public string OwnerName { get; set; }
 
-        public string OwnerName
-        {
-            get => _ownerName;
-            set => _ownerName = value;
-        }
-
-        private static void ThrowEmptyName()
+        private void ThrowEmptyName()
         {
             throw new NameException("Material name can't be empty");
         }
 
-        private static void ThrowHasTrailingSpaces()
+        private void ThrowHasTrailingSpaces()
         {
             throw new NameException("Material name can't have trailing spaces");
         }
 
-        private static void ThrowColorsOutOfRange()
+        private void ThrowColorsOutOfRange()
         {
             throw new ArgumentOutOfRangeException("RGB must be numbers between 0 and 255");
         }
@@ -69,14 +60,5 @@ namespace Domain
             return color.Item1 > 255 || color.Item2 > 255 || color.Item3 > 255;
         }
 
-        public static void ThrowClientNotLoggedIn()
-        {
-            throw new SessionException("Client needs to be logged in to create new Material");
-        }
-
-        public static void ThrowMaterialReferencedByModel()
-        {
-            throw new AssociationException("Material is already being used by a Model.");
-        }
     }
 }

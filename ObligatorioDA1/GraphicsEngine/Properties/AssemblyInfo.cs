@@ -18,6 +18,7 @@ using System.Runtime.InteropServices;
 // to COM components.  If you need to access a type in this assembly from
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
+[assembly: InternalsVisibleTo("GraphicsEngineTest")]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("36671e0b-fb23-4332-a72f-8f86b29bade4")]

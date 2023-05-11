@@ -9,7 +9,7 @@ namespace BusinessLogic
 {
     public class MaterialLogic
     {
-        private IRepositoryMaterial _repository = new MaterialRepository();
+        private readonly IRepositoryMaterial _repository = new MaterialRepository();
 
         public IList<Material> GetAll()
         {
@@ -38,7 +38,7 @@ namespace BusinessLogic
 
         private void EnsureClientIsLoggedIn()
         {
-            if (Session.LoggedClient == null) Material.ThrowClientNotLoggedIn();
+            if (Session.LoggedClient == null) ThrowClientNotLoggedIn();
         }
 
         public Material Remove(Material material)
@@ -51,9 +51,9 @@ namespace BusinessLogic
 
         private void ValidateMaterialReferencedByModel(Material material)
         {
-            ModelLogic modelLogic = new ModelLogic();
-            bool isMaterialInUse = modelLogic.GetClientModels().Any(model => model.Material.Name == material.Name);
-            if (isMaterialInUse) Material.ThrowMaterialReferencedByModel();
+            var modelLogic = new ModelLogic();
+            var isMaterialInUse = modelLogic.GetClientModels().Any(model => model.Material.Name == material.Name);
+            if (isMaterialInUse) ThrowMaterialReferencedByModel();
         }
 
         public Material Rename(Material material, string newName)
@@ -66,22 +66,23 @@ namespace BusinessLogic
 
         public Material Get(string name)
         {
-            Material existanceValidationMaterial = new Material() { Name = name };
+            var existanceValidationMaterial = new Material { Name = name };
             AssignMaterialToClient(existanceValidationMaterial);
             ValidateMaterialExists(existanceValidationMaterial);
             return GetMaterialForOwner(existanceValidationMaterial);
         }
+
         private void ValidateRenaming(Material material, string newName)
         {
             ValidateMaterialExists(material);
-            Material nameUniquenessValidationMaterial = new Material() { Name = newName };
+            var nameUniquenessValidationMaterial = new Material { Name = newName };
             AssignMaterialToClient(nameUniquenessValidationMaterial);
             ValidateMaterialNameUniqueness(nameUniquenessValidationMaterial);
         }
 
         private void ValidateMaterialNameUniqueness(Material material)
         {
-            if(IsMaterialNameInUse(material)) ThrowNameInUse(material.Name);
+            if (IsMaterialNameInUse(material)) ThrowNameInUse(material.Name);
         }
 
         private void ValidateMaterialExists(Material material)
@@ -98,11 +99,20 @@ namespace BusinessLogic
         {
             throw new NotFoundException($"No material with the name {name} was found");
         }
+        public void ThrowClientNotLoggedIn()
+        {
+            throw new SessionException("Client needs to be logged in to create new Material");
+        }
+
+        public void ThrowMaterialReferencedByModel()
+        {
+            throw new AssociationException("Material is already being used by a Model.");
+        }
 
         private bool IsMaterialNameInUse(Material material)
         {
-            List<Material> existingMaterials = _repository.FindMany(material.Name);
-            return existingMaterials.Exists((existingMaterial) => existingMaterial.OwnerName == material.OwnerName);
+            var existingMaterials = _repository.FindMany(material.Name);
+            return existingMaterials.Exists(existingMaterial => existingMaterial.OwnerName == material.OwnerName);
         }
 
         private Material GetMaterialForOwner(Material checkMaterial)

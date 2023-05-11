@@ -1,24 +1,24 @@
 ﻿using BusinessLogic;
 using BusinessLogicExceptions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BusinessLogicTest
 {
     [TestClass]
     public class ModelTest
     {
-        private Client _client;
         private readonly ClientLogic _clientLogic = new ClientLogic();
-        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private readonly ModelLogic _modelLogic = new ModelLogic();
         public readonly SceneLogic _sceneLogic = new SceneLogic();
+        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
+        private Client _client;
 
         [TestInitialize]
         public void LoginClients_CreateShapes_Create_Materials()
         {
-            _client = new Client()
+            _client = new Client
             {
                 Name = "NewClient",
                 Password = "NewPassword1"
@@ -26,12 +26,12 @@ namespace BusinessLogicTest
             _clientLogic.AddClient(_client);
             _clientLogic.InitializeSession(_client);
 
-            Shape sphere1 = new Sphere()
+            Shape sphere1 = new Sphere
             {
                 Name = "New Sphere 1",
                 Radius = 3
             };
-            Shape sphere2 = new Sphere()
+            Shape sphere2 = new Sphere
             {
                 Name = "New Sphere 2",
                 Radius = 3
@@ -39,13 +39,13 @@ namespace BusinessLogicTest
             _shapeLogic.AddShape(sphere1);
             _shapeLogic.AddShape(sphere2);
 
-            Material material1 = new Material()
+            var material1 = new Material
             {
                 Name = "New Material 1",
                 Color = (0, 0, 0),
                 Type = MaterialType.Lambertian
             };
-            Material material2 = new Material()
+            var material2 = new Material
             {
                 Name = "New Material 2",
                 Color = (190, 2, 42),
@@ -70,7 +70,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void Model_ValidMaterial_OK_Test()
         {
-            Model model = new Model()
+            var model = new Model
             {
                 Name = "New Model",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
@@ -83,7 +83,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddModel_Valid_Owner_Test_OK()
         {
-            Model model = new Model()
+            var model = new Model
             {
                 Name = "Modelius",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
@@ -97,7 +97,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddModel_NotLogged_Test_FAIL()
         {
-            Model model = new Model()
+            var model = new Model
             {
                 Name = "Modelius",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
@@ -113,7 +113,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<NameException>(() =>
             {
-                Model model = new Model()
+                var model = new Model
                 {
                     Name = "",
                     Shape = _shapeLogic.GetShape("New Sphere 1"),
@@ -127,7 +127,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<NameException>(() =>
             {
-                Model model = new Model()
+                var model = new Model
                 {
                     Name = " Incorrect Model",
                     Shape = _shapeLogic.GetShape("New Sphere 1"),
@@ -139,13 +139,13 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddModel_RepeatedModels_FAIL_Test()
         {
-            Model model1 = new Model()
+            var model1 = new Model
             {
                 Name = "ModEl 1",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
-            Model model2 = new Model()
+            var model2 = new Model
             {
                 Name = "model 1",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
@@ -159,7 +159,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RenameModel_OK_Test()
         {
-            Model model = new Model()
+            var model = new Model
             {
                 Name = "model 1",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
@@ -173,29 +173,26 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RenameModel_InvalidMaterial_FAIL_Test()
         {
-            Model model = new Model()
+            var model = new Model
             {
                 Name = "model 1",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
 
-            Assert.ThrowsException<NotFoundException>(() =>
-            {
-                _modelLogic.Rename(model, "Balid Blue");
-            });
+            Assert.ThrowsException<NotFoundException>(() => { _modelLogic.Rename(model, "Balid Blue"); });
         }
 
         [TestMethod]
         public void RenameModel_NameInUse_FAIL_Test()
         {
-            Model model1 = new Model()
+            var model1 = new Model
             {
                 Name = "model 1",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
-            Model model2 = new Model()
+            var model2 = new Model
             {
                 Name = "model 2",
                 Shape = _shapeLogic.GetShape("New Sphere 2"),
@@ -211,7 +208,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddModel_SameName_DifferentOwner_Test_OK()
         {
-            Model model1 = new Model()
+            var model1 = new Model
             {
                 Name = "SameNameModel",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
@@ -220,7 +217,7 @@ namespace BusinessLogicTest
             _modelLogic.Add(model1);
 
             _clientLogic.Logout();
-            Client anotherClient = new Client()
+            var anotherClient = new Client
             {
                 Name = "HarryPotter",
                 Password = "ValidPassWord1233"
@@ -228,14 +225,14 @@ namespace BusinessLogicTest
             _clientLogic.AddClient(anotherClient);
             _clientLogic.InitializeSession(anotherClient);
 
-            Shape sphere2 = new Sphere()
+            Shape sphere2 = new Sphere
             {
                 Name = "Sphere2",
                 Radius = 3
             };
             _shapeLogic.AddShape(sphere2);
 
-            Material material2 = new Material()
+            var material2 = new Material
             {
                 Name = "Material2",
                 Color = (190, 2, 42),
@@ -243,7 +240,7 @@ namespace BusinessLogicTest
             };
             _materialLogic.Add(material2);
 
-            Model model2 = new Model()
+            var model2 = new Model
             {
                 Name = "SameNameModel",
                 Shape = _shapeLogic.GetShape("Sphere2"),
@@ -258,7 +255,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RemoveModel_OK_Test()
         {
-            Model model = new Model()
+            var model = new Model
             {
                 Name = "SameNameModel",
                 Shape = _shapeLogic.GetShape("New Sphere 2"),
@@ -272,7 +269,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RemoveModel_NonExistant_FAIL_Test()
         {
-            Model model = new Model()
+            var model = new Model
             {
                 Name = "ModelName",
                 Shape = _shapeLogic.GetShape("New Sphere 2"),
@@ -284,13 +281,13 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetClientModels_OK_Test()
         {
-            Model model1 = new Model()
+            var model1 = new Model
             {
                 Name = "ModelName1",
                 Shape = _shapeLogic.GetShape("New Sphere 2"),
                 Material = _materialLogic.Get("New Material 1")
             };
-            Model model2 = new Model()
+            var model2 = new Model
             {
                 Name = "ModelName2",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
@@ -300,7 +297,7 @@ namespace BusinessLogicTest
             _modelLogic.Add(model2);
 
             _clientLogic.Logout();
-            Client newClient = new Client()
+            var newClient = new Client
             {
                 Name = "Spiderman",
                 Password = "ValidPassWord1233"
@@ -308,13 +305,13 @@ namespace BusinessLogicTest
             _clientLogic.AddClient(newClient);
             _clientLogic.InitializeSession(newClient);
 
-            Shape newShape = new Sphere()
+            Shape newShape = new Sphere
             {
                 Name = "newShape",
                 Radius = 3
             };
             _shapeLogic.AddShape(newShape);
-            Material newMaterial = new Material()
+            var newMaterial = new Material
             {
                 Name = "newMaterial",
                 Color = (10, 2, 154),
@@ -322,7 +319,7 @@ namespace BusinessLogicTest
             };
             _materialLogic.Add(newMaterial);
 
-            Model newModel = new Model()
+            var newModel = new Model
             {
                 Name = "newModel",
                 Shape = _shapeLogic.GetShape("newShape"),
@@ -336,7 +333,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetModels_NotFromClient_FAIL_Test()
         {
-            Model model = new Model()
+            var model = new Model
             {
                 Name = "ModelFromClient",
                 Shape = _shapeLogic.GetShape("New Sphere 2"),
@@ -346,7 +343,7 @@ namespace BusinessLogicTest
 
             _clientLogic.Logout();
 
-            Client newClient = new Client()
+            var newClient = new Client
             {
                 Name = "Harry",
                 Password = "ValidPassWord9"
@@ -360,7 +357,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RemoveModel_ReferencedByScene_FAIL_Test()
         {
-            Model model = new Model()
+            var model = new Model
             {
                 Name = "New Model",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
@@ -368,7 +365,7 @@ namespace BusinessLogicTest
             };
             _modelLogic.Add(model);
 
-            Scene scene = new Scene()
+            var scene = new Scene
             {
                 Name = "Scene"
             };

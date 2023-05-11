@@ -19,7 +19,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void SignUp_Client_Name_OK_Password_OK_Test()
         {
-            Client newClient = new Client()
+            var newClient = new Client
             {
                 Name = "Nicolas",
                 Password = "passworD123"
@@ -31,13 +31,13 @@ namespace BusinessLogicTest
         [TestMethod]
         public void SignUp_Client_Name_NotUnique_FAIL_Test()
         {
-            Client client1 = new Client()
+            var client1 = new Client
             {
                 Name = "Nicolas",
                 Password = "passworD123"
             };
             clientLogic.AddClient(client1);
-            Client client2 = new Client()
+            var client2 = new Client
             {
                 Name = "Nicolas",
                 Password = "noimportA123"
@@ -50,7 +50,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<NameException>(() =>
             {
-                Client client = new Client()
+                var client = new Client
                 {
                     Name = "Mateo!",
                     Password = "passworD123"
@@ -63,7 +63,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<NameException>(() =>
             {
-                Client client = new Client()
+                var client = new Client
                 {
                     Name = "Nicolas ",
                     Password = "passWord123"
@@ -76,7 +76,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<NameException>(() =>
             {
-                Client client = new Client()
+                var client = new Client
                 {
                     Name = "Ni",
                     Password = "passWord123"
@@ -89,7 +89,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<NameException>(() =>
             {
-                Client client = new Client()
+                var client = new Client
                 {
                     Name = "Ninkgrjkrgnegglknregklre",
                     Password = "Pgnjergrjk43533"
@@ -102,7 +102,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<PasswordException>(() =>
             {
-                Client client = new Client()
+                var client = new Client
                 {
                     Name = "Mateo",
                     Password = "P"
@@ -115,7 +115,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<PasswordException>(() =>
             {
-                Client client = new Client()
+                var client = new Client
                 {
                     Name = "Mateo",
                     Password = "Pgnjergrjk43533ojoirgoirgigreeriunuinmkki"
@@ -128,7 +128,7 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<PasswordException>(() =>
             {
-                Client client = new Client()
+                var client = new Client
                 {
                     Name = "Mateo",
                     Password = "nocapitalletter123"
@@ -141,12 +141,13 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<PasswordException>(() =>
             {
-                Client client = new Client()
+                var client = new Client
                 {
                     Name = "Mateo",
                     Password = "NoNumberPassword"
                 };
             });
         }
+
     }
 }

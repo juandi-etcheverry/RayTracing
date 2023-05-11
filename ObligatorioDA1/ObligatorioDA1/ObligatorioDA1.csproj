@@ -245,6 +245,10 @@
       <Project>{D68AA8F8-57F2-4044-98F4-11211E8BF654}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GraphicsEngine\GraphicsEngine.csproj">
+      <Project>{36671E0B-FB23-4332-A72F-8F86B29BADE4}</Project>
+      <Name>GraphicsEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRepository\IRepository.csproj">
       <Project>{E9806FC1-AD64-4403-B098-E8B202C28478}</Project>
       <Name>IRepository</Name>

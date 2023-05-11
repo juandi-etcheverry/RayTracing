@@ -1,34 +1,29 @@
-﻿using BusinessLogic;
+﻿using System;
+using System.Windows.Forms;
+using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ObligatorioDA1.Material_Panel
 {
     public partial class Panel_MaterialAddNew : UserControl
     {
+        private readonly MaterialLogic _materialLogic = new MaterialLogic();
+        private readonly Panel_General _panelGeneral;
         private Material newMaterial;
-        private MaterialLogic _materialLogic = new MaterialLogic();
-        private Panel_General _panelGeneral;
+
         public Panel_MaterialAddNew(Panel_General userControl)
         {
             _panelGeneral = userControl;
             InitializeComponent();
         }
+
         public void RefreshMaterialAddNew()
         {
             newMaterial = new Material();
             RefreshPanel();
         }
+
         private void RefreshPanel()
         {
             txbNewMaterialName.Clear();
@@ -38,10 +33,12 @@ namespace ObligatorioDA1.Material_Panel
             lblNewMaterialNameException.Visible = false;
             lblNewRGBException.Visible = false;
         }
+
         private void btnShowAllMaterials_Click(object sender, EventArgs e)
         {
             _panelGeneral.GoToMaterialList();
         }
+
         private void btnNewMaterial_Click(object sender, EventArgs e)
         {
             lblNewMaterialNameException.Visible = false;
@@ -49,9 +46,9 @@ namespace ObligatorioDA1.Material_Panel
             try
             {
                 uint r, g, b;
-                bool validR = uint.TryParse(txbNewRMaterial.Text, out r);
-                bool validG = uint.TryParse(txbNewGMaterial.Text, out g);
-                bool validB = uint.TryParse(txbNewBMaterial.Text, out b);
+                var validR = uint.TryParse(txbNewRMaterial.Text, out r);
+                var validG = uint.TryParse(txbNewGMaterial.Text, out g);
+                var validB = uint.TryParse(txbNewBMaterial.Text, out b);
                 if (!validR || !validG || !validB) throw new ArgumentException("RGB must be numbers between 0 and 255");
                 newMaterial.Name = txbNewMaterialName.Text;
                 newMaterial.Color = (r, g, b);
@@ -69,6 +66,7 @@ namespace ObligatorioDA1.Material_Panel
                 lblNewRGBException.Text = arEex.Message;
             }
         }
+
         private void txbNewMaterialName_TextChanged(object sender, EventArgs e)
         {
             lblNewMaterialNameException.Visible = false;
@@ -89,7 +87,7 @@ namespace ObligatorioDA1.Material_Panel
             try
             {
                 uint r;
-                bool validR = uint.TryParse(txbNewRMaterial.Text, out r) && r<=255 && r>=0;
+                var validR = uint.TryParse(txbNewRMaterial.Text, out r) && r <= 255 && r >= 0;
                 if (!validR) throw new ArgumentException("RGB must be numbers between 0 and 255");
             }
             catch (ArgumentException argEx)
@@ -105,7 +103,7 @@ namespace ObligatorioDA1.Material_Panel
             try
             {
                 uint g;
-                bool validG = uint.TryParse(txbNewGMaterial.Text, out g) && g <= 255 && g>=0;
+                var validG = uint.TryParse(txbNewGMaterial.Text, out g) && g <= 255 && g >= 0;
                 if (!validG) throw new ArgumentException("RGB must be numbers between 0 and 255");
             }
             catch (ArgumentException argEx)
@@ -114,13 +112,14 @@ namespace ObligatorioDA1.Material_Panel
                 lblNewRGBException.Text = argEx.Message;
             }
         }
+
         private void txbNewBMaterial_TextChanged(object sender, EventArgs e)
         {
             lblNewRGBException.Visible = false;
             try
             {
                 uint b;
-                bool validB = uint.TryParse(txbNewBMaterial.Text, out b) && b <= 255 && b >= 0;
+                var validB = uint.TryParse(txbNewBMaterial.Text, out b) && b <= 255 && b >= 0;
                 if (!validB) throw new ArgumentException("RGB must be numbers between 0 and 255");
             }
             catch (ArgumentException argEx)
@@ -129,6 +128,5 @@ namespace ObligatorioDA1.Material_Panel
                 lblNewRGBException.Text = argEx.Message;
             }
         }
-        
     }
 }

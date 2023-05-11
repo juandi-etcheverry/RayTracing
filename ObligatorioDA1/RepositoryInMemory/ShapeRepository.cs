@@ -1,21 +1,17 @@
-﻿using Domain;
-using IRepository;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Domain;
+using IRepository;
 
 namespace RepositoryInMemory
 {
     public class ShapeRepository : IRepositoryShape
     {
         private static readonly IList<Shape> Shapes = new List<Shape>();
+
         public IList<Shape> GetAll()
         {
             return Shapes;
-        }
-
-        public Shape Get(string name)
-        {
-            return Shapes.FirstOrDefault(s => s.AreNamesEqual(name));
         }
 
         public Shape Add(Shape shape)

@@ -1,12 +1,9 @@
-﻿using IRepository;
-using RepositoryInMemory;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain;
 using BusinessLogicExceptions;
+using Domain;
+using IRepository;
+using RepositoryInMemory;
 
 namespace BusinessLogic
 {
@@ -23,7 +20,7 @@ namespace BusinessLogic
 
         public Model Get(string name)
         {
-            Model existanceValidationModel = new Model() { Name = name };
+            var existanceValidationModel = new Model { Name = name };
             AssignModelToClient(existanceValidationModel);
             ValidateModelExists(existanceValidationModel);
             return GetModelForOwner(existanceValidationModel);
@@ -57,10 +54,9 @@ namespace BusinessLogic
 
         private void ValidateModelReferencedByScene(Model model)
         {
-            SceneLogic sceneLogic = new SceneLogic();
-            bool isModelInUse = sceneLogic.GetClientScenes().
-                                           Any(scene => scene.Models.
-                                           Any(positionedModel => positionedModel.Name == model.Name));
+            var sceneLogic = new SceneLogic();
+            var isModelInUse = sceneLogic.GetClientScenes().Any(scene =>
+                scene.Models.Any(positionedModel => positionedModel.Name == model.Name));
 
             if (isModelInUse) throw new AssociationException("Model is already being used by a Scene");
         }
@@ -68,14 +64,14 @@ namespace BusinessLogic
         private void ValidateRenaming(Model model, string newName)
         {
             ValidateModelExists(model);
-            Model nameUniquenessValidationModel = new Model() { Name = newName };
+            var nameUniquenessValidationModel = new Model { Name = newName };
             AssignModelToClient(nameUniquenessValidationModel);
             ValidateModelNameUniqueness(nameUniquenessValidationModel);
         }
 
         private void ValidateModelNameUniqueness(Model model)
         {
-            if(IsModelNameInUse(model)) ThrowNameInUse(model.Name);
+            if (IsModelNameInUse(model)) ThrowNameInUse(model.Name);
         }
 
         private void ValidateModelExists(Model model)
@@ -91,17 +87,17 @@ namespace BusinessLogic
 
         private void EnsureClientIsLoggedIn()
         {
-            if (Session.LoggedClient == null) Model.ThrowClientNotLoggedIn();
+            if (Session.LoggedClient == null) ThrowClientNotLoggedIn();
         }
 
         private void ValidateMaterialNameUniqueness(Model model)
         {
-            if(IsModelNameInUse(model)) ThrowNameInUse(model.Name);
+            if (IsModelNameInUse(model)) ThrowNameInUse(model.Name);
         }
 
         private bool IsModelNameInUse(Model model)
         {
-            List<Model> existingModels = _repository.FindMany(model.Name);
+            var existingModels = _repository.FindMany(model.Name);
             return existingModels.Exists(existingModel => existingModel.OwnerName == model.OwnerName);
         }
 
@@ -118,6 +114,10 @@ namespace BusinessLogic
         private void ThrowNotFound(string name)
         {
             throw new NotFoundException($"No material with the name {name} was found");
+        }
+        public void ThrowClientNotLoggedIn()
+        {
+            throw new SessionException("Client needs to be logged in to create new model");
         }
     }
 }

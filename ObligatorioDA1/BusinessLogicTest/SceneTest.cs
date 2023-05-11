@@ -1,27 +1,26 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Runtime.CompilerServices;
-using Domain;
+﻿using System;
 using BusinessLogic;
 using BusinessLogicExceptions;
+using Domain;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BusinessLogicTest
 {
     [TestClass]
     public class SceneTest
     {
-        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
         private readonly ClientLogic _clientLogic = new ClientLogic();
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private readonly ModelLogic _modelLogic = new ModelLogic();
         private readonly SceneLogic _sceneLogic = new SceneLogic();
+        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
         private Model _newModel;
         private Client client;
 
         [TestInitialize]
         public void SetUp()
         {
-            client = new Client()
+            client = new Client
             {
                 Name = "NewName",
                 Password = "ValidPassword1"
@@ -29,14 +28,14 @@ namespace BusinessLogicTest
             _clientLogic.AddClient(client);
             _clientLogic.InitializeSession(client);
 
-            Shape newShape = new Sphere()
+            Shape newShape = new Sphere
             {
                 Name = "NewSphere",
-                Radius = 5,
+                Radius = 5
             };
             _shapeLogic.AddShape(newShape);
 
-            Material newMaterial = new Material()
+            var newMaterial = new Material
             {
                 Name = "NewMaterial",
                 Color = (100, 54, 6),
@@ -44,14 +43,13 @@ namespace BusinessLogicTest
             };
             _materialLogic.Add(newMaterial);
 
-            _newModel = new Model()
+            _newModel = new Model
             {
                 Name = "NewModel",
                 Shape = newShape,
-                Material = newMaterial,
+                Material = newMaterial
             };
             _modelLogic.Add(_newModel);
-
         }
 
         [TestCleanup]
@@ -68,9 +66,9 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddScene_NotLogged_FAIL_Test()
         {
-            Scene newScene = new Scene()
+            var newScene = new Scene
             {
-                Name = "NewScene",
+                Name = "NewScene"
             };
             newScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
             newScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
@@ -85,9 +83,9 @@ namespace BusinessLogicTest
         [TestMethod]
         public void Create_Scene_OK_Test()
         {
-            Scene newScene = new Scene()
+            var newScene = new Scene
             {
-                Name = "NewScene",
+                Name = "NewScene"
             };
             newScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
             newScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
@@ -102,9 +100,9 @@ namespace BusinessLogicTest
         [TestMethod]
         public void Create_Scene_RegistrationDate_OK_Test()
         {
-            Scene newScene = new Scene()
+            var newScene = new Scene
             {
-                Name = "NewScene",
+                Name = "NewScene"
             };
             newScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
             newScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
@@ -117,9 +115,9 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<NameException>(() =>
             {
-                Scene newScene = new Scene()
+                var newScene = new Scene
                 {
-                    Name = "",
+                    Name = ""
                 };
             });
         }
@@ -127,9 +125,9 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddScene_RepeatedScenes_FAIL_Test()
         {
-            Scene oneScene = new Scene()
+            var oneScene = new Scene
             {
-                Name = "SameName",
+                Name = "SameName"
             };
             oneScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
             oneScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
@@ -137,9 +135,9 @@ namespace BusinessLogicTest
             oneScene.AddPositionedModel(_newModel, (10, 10, 30));
             _sceneLogic.Add(oneScene);
 
-            Scene anotherScene = new Scene()
+            var anotherScene = new Scene
             {
-                Name = "SameName",
+                Name = "SameName"
             };
             anotherScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
             anotherScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
@@ -154,9 +152,9 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<NameException>(() =>
             {
-                Scene anotherScene = new Scene()
+                var anotherScene = new Scene
                 {
-                    Name = "  Invalid Name",
+                    Name = "  Invalid Name"
                 };
             });
         }
@@ -164,11 +162,11 @@ namespace BusinessLogicTest
         [TestMethod]
         public void Delete_PositionedModel_OK_Test()
         {
-            Scene newScene = new Scene()
+            var newScene = new Scene
             {
-                Name = "NewScene",
+                Name = "NewScene"
             };
-            PositionedModel positionedModel = newScene.AddPositionedModel(_newModel, (10, 10, 10));
+            var positionedModel = newScene.AddPositionedModel(_newModel, (10, 10, 10));
 
             _sceneLogic.Add(newScene);
 
@@ -180,11 +178,11 @@ namespace BusinessLogicTest
         [TestMethod]
         public void ModifyScene_GetLastModificationDate_OK_Test()
         {
-            Scene newScene = new Scene()
+            var newScene = new Scene
             {
-                Name = "NewScene",
+                Name = "NewScene"
             };
-            PositionedModel positionedModel = newScene.AddPositionedModel(_newModel, (10, 10, 10));
+            var positionedModel = newScene.AddPositionedModel(_newModel, (10, 10, 10));
 
             _sceneLogic.Add(newScene);
 
@@ -196,9 +194,9 @@ namespace BusinessLogicTest
         [TestMethod]
         public void CreateScene_EmptyLookFrom_DefaultValue_OK_Test()
         {
-            Scene newScene = new Scene()
+            var newScene = new Scene
             {
-                Name = "NewScene",
+                Name = "NewScene"
             };
             _sceneLogic.Add(newScene);
 
@@ -208,9 +206,9 @@ namespace BusinessLogicTest
         [TestMethod]
         public void CreateScene_EmptyLookAt_DefaultValue_OK_Test()
         {
-            Scene newScene = new Scene()
+            var newScene = new Scene
             {
-                Name = "NewScene",
+                Name = "NewScene"
             };
             _sceneLogic.Add(newScene);
 
@@ -220,9 +218,9 @@ namespace BusinessLogicTest
         [TestMethod]
         public void CreateScene_EmptyFoV_DefaultValue_OK_Test()
         {
-            Scene newScene = new Scene()
+            var newScene = new Scene
             {
-                Name = "NewScene",
+                Name = "NewScene"
             };
             _sceneLogic.Add(newScene);
 
@@ -234,9 +232,9 @@ namespace BusinessLogicTest
         {
             Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
             {
-                Scene newScene = new Scene()
+                var newScene = new Scene
                 {
-                    Name = "NewScene",
+                    Name = "NewScene"
                 };
                 newScene.ClientScenePreferences.FoVDefault = 200;
             });
@@ -245,15 +243,15 @@ namespace BusinessLogicTest
         [TestMethod]
         public void Scenes_OrderByModificationDateDescending_OK_Test()
         {
-            Scene firstScene = new Scene()
+            var firstScene = new Scene
             {
-                Name = "NewScene1",
+                Name = "NewScene1"
             };
             _sceneLogic.Add(firstScene);
 
-            Scene secondScene = new Scene()
+            var secondScene = new Scene
             {
-                Name = "NewScene2",
+                Name = "NewScene2"
             };
             _sceneLogic.Add(secondScene);
 
@@ -265,9 +263,9 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DeleteScene_OK_Test()
         {
-            Scene scene = new Scene()
+            var scene = new Scene
             {
-                Name = "NewScene1",
+                Name = "NewScene1"
             };
             _sceneLogic.Add(scene);
 
@@ -282,9 +280,9 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DeleteSceneNotInList_FAIL_Test()
         {
-            Scene scene = new Scene()
+            var scene = new Scene
             {
-                Name = "NewScene1",
+                Name = "NewScene1"
             };
             _sceneLogic.Add(scene);
             _sceneLogic.RemoveScene(scene);
@@ -295,9 +293,9 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetScene_NotExist_FAIL_Test()
         {
-            Scene scene = new Scene()
+            var scene = new Scene
             {
-                Name = "NewScene1",
+                Name = "NewScene1"
             };
             _sceneLogic.Add(scene);
 
@@ -307,9 +305,9 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RenameScene_OK_Test()
         {
-            Scene scene = new Scene()
+            var scene = new Scene
             {
-                Name = "NewScene1",
+                Name = "NewScene1"
             };
             _sceneLogic.Add(scene);
 
@@ -321,30 +319,32 @@ namespace BusinessLogicTest
         [TestMethod]
         public void RenameScene_NotExist_FAIL_Test()
         {
-            Scene scene = new Scene()
+            var scene = new Scene
             {
-                Name = "NewScene1",
+                Name = "NewScene1"
             };
             _sceneLogic.Add(scene);
 
-            Assert.ThrowsException<NotFoundException>(() => _sceneLogic.RenameScene(_sceneLogic.GetScene("newScene2"), "NewScene3"));
+            Assert.ThrowsException<NotFoundException>(() =>
+                _sceneLogic.RenameScene(_sceneLogic.GetScene("newScene2"), "NewScene3"));
         }
 
         [TestMethod]
         public void RenameScene_NameAlreadyExists_FAIL_Test()
         {
-            Scene scene1 = new Scene()
+            var scene1 = new Scene
             {
-                Name = "NewScene1",
+                Name = "NewScene1"
             };
             _sceneLogic.Add(scene1);
-            Scene scene2 = new Scene()
+            var scene2 = new Scene
             {
-                Name = "NewScene2",
+                Name = "NewScene2"
             };
             _sceneLogic.Add(scene2);
 
-            Assert.ThrowsException<NameException>(() => _sceneLogic.RenameScene(_sceneLogic.GetScene("NewScene1"), "NewScene2"));
+            Assert.ThrowsException<NameException>(() =>
+                _sceneLogic.RenameScene(_sceneLogic.GetScene("NewScene1"), "NewScene2"));
         }
 
         [TestMethod]
@@ -354,9 +354,9 @@ namespace BusinessLogicTest
             client.ClientScenePreferences.LookAtDefault = (1, 1, 1);
             client.ClientScenePreferences.FoVDefault = 1;
 
-            Scene scene = new Scene()
+            var scene = new Scene
             {
-                Name = "scene",
+                Name = "scene"
             };
             _sceneLogic.Add(scene);
 
@@ -368,7 +368,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void DefaultValues_OK_Test()
         {
-            Scene scene = new Scene()
+            var scene = new Scene
             {
                 Name = "Scene"
             };
@@ -383,9 +383,9 @@ namespace BusinessLogicTest
         public void Change_Scene_Default_And_FoV_Value_OK_Test()
         {
             client.ClientScenePreferences.FoVDefault = 10;
-            Scene scene = new Scene()
+            var scene = new Scene
             {
-                Name = "Scene",
+                Name = "Scene"
             };
             _sceneLogic.Add(scene);
             scene.ClientScenePreferences.FoVDefault = 90;
@@ -401,7 +401,32 @@ namespace BusinessLogicTest
             _clientLogic.InitializeSession(client);
 
             Assert.AreEqual((uint)10, client.ClientScenePreferences.FoVDefault);
+        }
 
+        [TestMethod]
+        public void GetLastRenderDate_NewScene_OK_Test()
+        {
+            var scene = new Scene()
+            {
+                Name = "Scene"
+            };
+            _sceneLogic.Add(scene);
+
+            Assert.AreEqual(DateTime.MinValue, scene.LastRenderDate);
+        }
+
+        [TestMethod]
+        public void GetPositionedModel_Scene_OK_Test()
+        {
+            var scene = new Scene()
+            {
+                Name = "Scene"
+            };
+            _sceneLogic.Add(scene);
+
+            var positionedModel = scene.AddPositionedModel(_newModel, (1, 1, 2));
+
+            Assert.AreEqual(positionedModel, scene.GetPositionedModel(_newModel.Name, (1, 1, 2)));
         }
     }
 }

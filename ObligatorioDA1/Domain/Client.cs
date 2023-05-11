@@ -6,16 +6,27 @@ namespace Domain
 {
     public class Client
     {
+        private static readonly uint MIN_NAME_LENGTH = 3;
+        private static readonly uint MAX_NAME_LENGTH = 20;
+        private static readonly uint MIN_PASSWORD_LENGTH = 5;
+        private static readonly uint MAX_PASSWORD_LENGTH = 25;
         private string _name;
         private string _password;
-        private DateTime _registrationDate { get; set; }
-        private ClientScenePreferences _clientScenePreferences;
-        private static uint MIN_NAME_LENGTH = 3;
-        private static uint MAX_NAME_LENGTH = 20;
-        private static uint MIN_PASSWORD_LENGTH = 5;
-        private static uint MAX_PASSWORD_LENGTH = 25;
-        public string Name
+        private DateTime _registrationDate;
+
+        public Client()
         {
+            _registrationDate = DateTime.Now;
+            ClientScenePreferences = new ClientScenePreferences
+            {
+                LookFromDefault = (0, 2, 0),
+                LookAtDefault = (0, 2, 5),
+                FoVDefault = 30
+            };
+        }
+
+        public string Name
+        {   
             get => _name;
             set
             {
@@ -38,83 +49,36 @@ namespace Domain
             }
         }
 
-        public ClientScenePreferences ClientScenePreferences
-        {
-            get => _clientScenePreferences;
-            set => _clientScenePreferences = value;
-        }
+        public ClientScenePreferences ClientScenePreferences { get; set; }
 
-        public Client()
-        {
-            _registrationDate = DateTime.Now;
-            _clientScenePreferences = new ClientScenePreferences()
-            {
-                LookFromDefault = (0, 2, 0),
-                LookAtDefault = (0, 2, 5),
-                FoVDefault = 30
-            };
-        }
-
-        public bool AreNamesEqual(string otherName)
-        {
-            return _name.Equals(otherName);
-        }
-
-        public bool AreNamesEqual(Client otherClient)
-        {
-            return AreNamesEqual(otherClient.Name);
-        }
-
-        public static void ThrowNameExists()
-        {
-            throw new NameException("Client name already exists");
-        }
-        public static void ThrowNotAlphanumeric()
+        private void ThrowNotAlphanumeric()
         {
             throw new NameException("Client name can't have non-alphanumeric characters");
         }
-        public static void ThrowHasSpaces()
+
+        private void ThrowHasSpaces()
         {
             throw new NameException("Client name can't have spaces");
         }
 
-        public static void ThrowNameNotInRange()
+        private void ThrowNameNotInRange()
         {
             throw new NameException("Client name must be between 3 and 20 characters");
         }
 
-        public static void ThrowPasswordNotInRange()
+        private void ThrowPasswordNotInRange()
         {
             throw new PasswordException("Client password must be between 5 and 25 characters");
         }
 
-        public static void ThrowPasswordNoCapitalLetter()
+        private void ThrowPasswordNoCapitalLetter()
         {
             throw new PasswordException("Client password must have at least one capital letter");
         }
 
-        public static void ThrowNoNumberPassword()
+        private void ThrowNoNumberPassword()
         {
             throw new PasswordException("Client password must have at least one number");
-        }
-
-        public static void ThrowNoClientFound()
-        {
-            throw new NotFoundException("No client found");
-        }
-
-        public static void ThrowClientAlreadyLoggedIn()
-        {
-            throw new SessionException("Client already logged in");
-        }
-
-        public static void ThrowClientNotLoggedIn()
-        {
-            throw new SessionException("Client not logged in");
-        }
-        public static void ThrowIncorrectPassword()
-        {
-            throw new SessionException("Incorrect password");
         }
 
     }

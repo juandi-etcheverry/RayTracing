@@ -1,9 +1,8 @@
-﻿using BusinessLogicExceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BusinessLogicExceptions;
 using ValidationService;
 
 namespace Domain
@@ -11,12 +10,14 @@ namespace Domain
     public class Scene
     {
         private string _name;
-        private string _ownerName;
-        private DateTime _registrationDate;
-        private IList<PositionedModel> _models = new List<PositionedModel>();
-        private DateTime _lastModificationDate;
-        private DateTime _lastRenderDate;
-        private ClientScenePreferences _clientScenePreferences = new ClientScenePreferences();
+
+
+        public Scene()
+        {
+            LastModificationDate = DateTime.Now;
+            RegistrationDate = DateTime.Now;
+            ClientScenePreferences = new ClientScenePreferences();
+        }
 
         public string Name
         {
@@ -29,83 +30,44 @@ namespace Domain
             }
         }
 
-        public string OwnerName
-        {
-            get => _ownerName;
-            set => _ownerName = value;
-        }
+        public string OwnerName { get; set; }
 
-        public DateTime RegistrationDate
-        {
-            get => _registrationDate;
-            set => _registrationDate = value;
-        }
+        public DateTime RegistrationDate { get; set; }
 
-        public IList<PositionedModel> Models
-        {
-            get => _models;
-            set => _models = value;
-        }
+        public IList<PositionedModel> Models { get; } = new List<PositionedModel>();
+
+        public DateTime LastModificationDate { get; set; }
+
+        public DateTime LastRenderDate { get; set; }
+
+        public ClientScenePreferences ClientScenePreferences { get; set; }
+        public Bitmap Preview = null;
 
         public PositionedModel AddPositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
         {
-            PositionedModel newPositionedModel = new PositionedModel(model, coordinates);
-            _models.Add(newPositionedModel);
-            _lastModificationDate = DateTime.Now;
+            var newPositionedModel = new PositionedModel(model, coordinates);
+            Models.Add(newPositionedModel);
+            LastModificationDate = DateTime.Now;
             return newPositionedModel;
         }
 
         public void DeletePositionedModel(string name, ValueTuple<decimal, decimal, decimal> coordinates)
         {
-            PositionedModel positionedModel = GetPositionedModel(name, coordinates);
-            _lastModificationDate = DateTime.Now;
-            _models.Remove(positionedModel);
+            var positionedModel = GetPositionedModel(name, coordinates);
+            LastModificationDate = DateTime.Now;
+            Models.Remove(positionedModel);
         }
 
         public PositionedModel GetPositionedModel(string name, ValueTuple<decimal, decimal, decimal> coordinates)
         {
-            PositionedModel positionedModel = _models.FirstOrDefault(model => model.Name == name && model.Coordinates == coordinates);
+            var positionedModel =
+                Models.FirstOrDefault(model => model.Name == name && model.Coordinates == coordinates);
             return positionedModel;
         }
 
-        public DateTime LastModificationDate
-        {
-            get => _lastModificationDate;
-            set => _lastModificationDate = value;
-        }
-
-        public DateTime LastRenderDate
-        {
-            get => _lastRenderDate;
-            set => _lastRenderDate = value;
-        }
-
-        public ClientScenePreferences ClientScenePreferences
-        {
-            get => _clientScenePreferences;
-            set => _clientScenePreferences = value;
-        }
-
-        public Scene()
-        {
-            _lastModificationDate = DateTime.Now;
-            _registrationDate = DateTime.Now;
-            _clientScenePreferences = new ClientScenePreferences();
-        }
-
-        public static void ThrowClientNotLoggedIn()
-        {
-            throw new SessionException("Client not logged in");
-        }
-
-        private static void ThrowEmptyName()
+        private void ThrowEmptyName()
         {
             throw new NameException("Scene name can't be empty");
-        }
-
-        public static void ThrowNotFound()
-        {
-            throw new NotFoundException("Scene not found");
         }
 
         public bool AreNamesEqual(string otherName)
@@ -113,19 +75,9 @@ namespace Domain
             return _name.ToLower() == otherName.ToLower();
         }
 
-        public static void ThrowNameExists()
-        {
-            throw new NameException("Scene name already exists");
-        }
-
-        public void ThrowHasTrailingSpaces()
+        private void ThrowHasTrailingSpaces()
         {
             throw new NameException("Scene name can't have trailing spaces");
-        }
-
-        public void ThrowFoVOutOfRange()
-        {
-            throw new ArgumentOutOfRangeException("FoV must be between 1 and 160");
         }
     }
 }

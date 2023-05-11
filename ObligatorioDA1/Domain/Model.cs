@@ -1,9 +1,6 @@
-﻿using BusinessLogicExceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.Drawing;
+using BusinessLogicExceptions;
 using ValidationService;
 
 namespace Domain
@@ -11,10 +8,10 @@ namespace Domain
     public class Model
     {
         private string _name;
-        private Shape _shape;
-        private Material _material;
-        private string _ownerName;
         public bool WantPreview;
+        public Bitmap Preview = null;
+        public DateTime CreatedAt = DateTime.Now;
+
         public string Name
         {
             get => _name;
@@ -26,35 +23,18 @@ namespace Domain
             }
         }
 
-        public Shape Shape
-        {
-            get => _shape;
-            set => _shape = value;
-        }
+        public Shape Shape { get; set; }
 
-        public Material Material
-        {
-            get => _material;
-            set => _material = value;
-        }
+        public Material Material { get; set; }
 
-        public string OwnerName
-        {
-            get => _ownerName;
-            set => _ownerName = value;
-        }
+        public string OwnerName { get; set; }
 
-        public static void ThrowClientNotLoggedIn()
-        {
-            throw new SessionException("Client needs to be logged in to create new model");
-        }
-
-        private static void ThrowEmptyName()
+        private void ThrowEmptyName()
         {
             throw new NameException("Model name can't be empty");
         }
 
-        private static void ThrowHasTrailingSpaces()
+        private void ThrowHasTrailingSpaces()
         {
             throw new NameException("Model name can't have trailing spaces");
         }

@@ -9,10 +9,9 @@ namespace GraphicsEngine
         public decimal Z { get; set; }
 
 
-
         public Vector Add(Vector vector)
         {
-            return new Vector()
+            return new Vector
             {
                 X = X + vector.X,
                 Y = Y + vector.Y,
@@ -22,7 +21,7 @@ namespace GraphicsEngine
 
         public Vector Subtract(Vector vector)
         {
-            return new Vector()
+            return new Vector
             {
                 X = X - vector.X,
                 Y = Y - vector.Y,
@@ -32,7 +31,7 @@ namespace GraphicsEngine
 
         public Vector Multiply(decimal scalar)
         {
-            return new Vector()
+            return new Vector
             {
                 X = X * scalar,
                 Y = Y * scalar,
@@ -42,7 +41,7 @@ namespace GraphicsEngine
 
         public Vector Divide(decimal scalar)
         {
-            return new Vector()
+            return new Vector
             {
                 X = X / scalar,
                 Y = Y / scalar,
@@ -52,11 +51,11 @@ namespace GraphicsEngine
 
         public decimal Length()
         {
-            double squaredLength = SquaredLength();
+            var squaredLength = SquaredLength();
             return Convert.ToDecimal(Math.Sqrt(squaredLength));
         }
 
-        private double SquaredLength()
+        public double SquaredLength()
         {
             return Convert.ToDouble(X * X + Y * Y + Z * Z);
         }
@@ -95,19 +94,17 @@ namespace GraphicsEngine
 
         public decimal Dot(Vector vector)
         {
-            return (X * vector.X) + (Y * vector.Y) + (Z * vector.Z);
+            return X * vector.X + Y * vector.Y + Z * vector.Z;
         }
 
         public Vector Cross(Vector vector)
         {
-            return new Vector()
+            return new Vector
             {
-                X = Y * vector.Z - (Z * vector.Y),
-                Y = Z * vector.X - (X * vector.Z),
-                Z = X * vector.Y - (Y * vector.X),
+                X = Y * vector.Z - Z * vector.Y,
+                Y = Z * vector.X - X * vector.Z,
+                Z = X * vector.Y - Y * vector.X
             };
-
         }
-
     }
 }

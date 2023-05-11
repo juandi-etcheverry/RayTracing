@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BusinessLogicExceptions;
 using Domain;
 using IRepository;
 using RepositoryInMemory;
@@ -24,7 +22,7 @@ namespace BusinessLogic
 
         private void SetSceneDefaultValues(Scene scene)
         {
-            Client client = Session.LoggedClient;
+            var client = Session.LoggedClient;
             scene.ClientScenePreferences.LookFromDefault = client.ClientScenePreferences.LookFromDefault;
             scene.ClientScenePreferences.LookAtDefault = client.ClientScenePreferences.LookAtDefault;
             scene.ClientScenePreferences.FoVDefault = client.ClientScenePreferences.FoVDefault;
@@ -32,9 +30,8 @@ namespace BusinessLogic
 
         private void EnsureSceneNameUniqueness(string name)
         {
-            bool nameAlreadyExists = GetClientScenes().
-                Any(currentScene => currentScene.AreNamesEqual(name));
-            if (nameAlreadyExists) Scene.ThrowNameExists();
+            var nameAlreadyExists = GetClientScenes().Any(currentScene => currentScene.AreNamesEqual(name));
+            if (nameAlreadyExists) ThrowNameExists();
         }
 
         private void AssignSceneToClient(Scene scene)
@@ -45,7 +42,7 @@ namespace BusinessLogic
 
         private void EnsureClientIsLoggedIn()
         {
-            if (Session.LoggedClient == null) Scene.ThrowClientNotLoggedIn();
+            if (Session.LoggedClient == null) ThrowClientNotLoggedIn();
         }
 
         public void RemoveScene(Scene scene)
@@ -64,13 +61,13 @@ namespace BusinessLogic
 
         private void EnsureSceneExists(string name)
         {
-            bool sceneExists = GetClientScenes().Any(scene => scene.Name.ToLower() == name.ToLower());
-            if(!sceneExists) Scene.ThrowNotFound();
+            var sceneExists = GetClientScenes().Any(scene => scene.Name.ToLower() == name.ToLower());
+            if (!sceneExists) ThrowNotFound();
         }
 
         public Scene GetScene(string name)
         {
-            Scene existanceValidationScene = new Scene() { Name = name };
+            var existanceValidationScene = new Scene { Name = name };
             AssignSceneToClient(existanceValidationScene);
             EnsureSceneExists(name);
             return GetSceneForOwner(existanceValidationScene);
@@ -88,8 +85,22 @@ namespace BusinessLogic
 
         public IList<Scene> GetClientScenes()
         {
-            return _repository.GetAll().Where(scene => scene.OwnerName == Session.LoggedClient.Name).
-                                        OrderByDescending(scene => scene.LastModificationDate).ToList();
+            return _repository.GetAll().Where(scene => scene.OwnerName == Session.LoggedClient.Name)
+                .OrderByDescending(scene => scene.LastModificationDate).ToList();
         }
+
+        private void ThrowNotFound()
+        {
+            throw new NotFoundException("Scene not found");
+        }
+        private void ThrowNameExists()
+        {
+            throw new NameException("Scene name already exists");
+        }
+        private void ThrowClientNotLoggedIn()
+        {
+            throw new SessionException("Client not logged in");
+        }
+
     }
 }

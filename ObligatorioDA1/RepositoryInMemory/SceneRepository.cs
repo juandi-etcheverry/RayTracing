@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Domain;
 using IRepository;
 
@@ -16,11 +13,6 @@ namespace RepositoryInMemory
         {
             _scenes.Add(scene);
             return scene;
-        }
-
-        public Scene Get(string name)
-        {
-            return _scenes.FirstOrDefault(s => s.Name.ToLower() == name.ToLower());
         }
 
         public IList<Scene> GetAll()
