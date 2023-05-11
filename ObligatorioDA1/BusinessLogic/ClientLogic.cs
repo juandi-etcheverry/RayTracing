@@ -92,9 +92,9 @@ namespace BusinessLogic
             return client.Password == GetClient(client.Name).Password;
         }
 
-        public void ThrowIfIncorrectPassword(string password)
+        public void ThrowIfIncorrectPassword(Client client, string password)
         {
-            if (Session.LoggedClient.Password != password) ThrowIncorrectPassword();
+            if (client.Password != password) ThrowIncorrectPassword();
         }
 
         private void ThrowNameExists()

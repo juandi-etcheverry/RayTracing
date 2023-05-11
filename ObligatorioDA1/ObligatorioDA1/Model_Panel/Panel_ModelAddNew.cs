@@ -81,11 +81,14 @@ namespace ObligatorioDA1.Model_Panel
             Client loggedInClient = clientLogic.GetLoggedClient();
             Scene previewScene = new Scene()
             {
-                Name = $"{model.CreatedAt.Millisecond}_preview"
+                LastRenderDate = DateTime.Now,
+                Name = "Preview scene"
             };
             previewScene.ClientScenePreferences = loggedInClient.ClientScenePreferences;
             previewScene.AddPositionedModel(model, (0, 2, 10));
-            string modelFileName = $"{model.OwnerName}_{previewScene.Name}.ppm";
+            previewScene.LastRenderDate = DateTime.Now;
+            int hashedScene = ImageParser.HashDate(previewScene.LastRenderDate);
+            string modelFileName = $"{model.OwnerName}_{hashedScene}_p.ppm";
             GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine()
             {
                 Width = 30

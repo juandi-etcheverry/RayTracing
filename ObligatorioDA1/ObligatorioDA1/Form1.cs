@@ -57,7 +57,7 @@ namespace ObligatorioDA1
             try
             {
                 var client = _clientLogic.GetClient(txbUserName.Text);
-                _clientLogic.ThrowIfIncorrectPassword(txbPassword.Text);
+                _clientLogic.ThrowIfIncorrectPassword(client, txbPassword.Text);
                 _clientLogic.InitializeSession(client);
                 GoToGeneral(_clientLogic.GetLoggedClient());
             }

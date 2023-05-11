@@ -183,15 +183,11 @@ namespace ObligatorioDA1
 
                 Cursor.Current = Cursors.WaitCursor;
                 PPMImage renderedImage = engine.Render(_scene);
-                engine.Width = 30;
-                PPMImage previewImage = engine.Render(_scene);
                 _scene.LastRenderDate = DateTime.Now;
-                string sceneFileName = $"{_scene.OwnerName}_{_scene.LastRenderDate.Millisecond}.ppm";
-                string previewFileName = $"{_scene.OwnerName}_{_scene.LastRenderDate.Millisecond}_preview.ppm";
+                int sceneDateTime = ImageParser.HashDate(_scene.LastRenderDate);
+                string sceneFileName = $"{_scene.OwnerName}_{sceneDateTime}.ppm";
                 renderedImage.SaveFile(sceneFileName);
-                previewImage.SaveFile(previewFileName);
                 RecoverSceneRender();
-                RecoverScenePreview();
                 Cursor.Current = Cursors.Arrow;
             }
             catch (ArgumentOutOfRangeException outEx)
@@ -214,19 +210,13 @@ namespace ObligatorioDA1
             }
         }
 
-        private void RecoverScenePreview()
-        {
-            string sceneFileName = $"{_scene.OwnerName}_{_scene.LastRenderDate.Millisecond}_preview.ppm";
-            Bitmap renderedImage = RecoverSceneImage(sceneFileName);
-            _scene.Preview = renderedImage;
-        }
-
         private void RecoverSceneRender()
         {
-            string sceneFileName = $"{_scene.OwnerName}_{_scene.LastRenderDate.Millisecond}.ppm";
+            int sceneDateTime = ImageParser.HashDate(_scene.LastRenderDate);
+            string sceneFileName = $"{_scene.OwnerName}_{sceneDateTime}.ppm";
             Bitmap renderedImage = RecoverSceneImage(sceneFileName);
             pboxRenderedScene.Image = renderedImage;
-
+            _scene.Preview = renderedImage;
         }
 
         private Bitmap RecoverSceneImage(string filename)

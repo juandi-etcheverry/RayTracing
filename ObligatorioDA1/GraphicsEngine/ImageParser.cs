@@ -42,6 +42,18 @@ namespace GraphicsEngine
             return pixel.Red() + " " + pixel.Green() + " " + pixel.Blue() + newLine;
         }
 
+        public static int HashDate(DateTime t)
+        {
+            int year = t.Year;
+            int month = t.Month;
+            int day = t.Day;
+            int hour = t.Hour;
+            int min = t.Minute;
+            int sec = t.Second;
+            int mili = t.Millisecond;
+            return year + month + day + hour + min + sec + mili;
+        }
+
         public static Bitmap ConvertPpmToBitmap(string filePath)
         {
             Console.WriteLine("Attempting read...");
