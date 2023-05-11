@@ -11,7 +11,7 @@ namespace GraphicsEngine
         private Scene _scene;
         public PPMImage Render(Scene scene)
         {
-
+            _scene = scene;
             CreateCameraForRendering(scene);
 
             var renderedImage = new PPMImage(Width);
@@ -46,7 +46,7 @@ namespace GraphicsEngine
                                   renderedImage.Width;
                 var yCoordinate = (row + Convert.ToDecimal(RandomGenerator.NextDouble())) / renderedImage.Height;
                 var coloringRay = _camera.RayFromCoordinates(xCoordinate, yCoordinate);
-                colorVector.AddTo(ShootRay(coloringRay, MAX_DEPTH, _scene));
+                colorVector.AddTo(ShootRay(coloringRay, MAX_DEPTH));
             }
 
             colorVector = colorVector.Divide(SAMPLES_PER_PIXEL);
@@ -90,11 +90,11 @@ namespace GraphicsEngine
             _camera = camera;
         }
 
-        private Vector ShootRay(Ray ray, decimal depth, Scene scene)
+        private Vector ShootRay(Ray ray, decimal depth)
         {
             HitRecord intersectionWithShape = null;
             var maxDirectionScalingFactor = decimal.MaxValue;
-            foreach (var model in scene.Models)
+            foreach (var model in _scene.Models)
             {
                 var modelIntersection = PossibleRayIntersectionWithModel(model, ray, maxDirectionScalingFactor);
                 if (modelIntersection != null)
@@ -115,7 +115,7 @@ namespace GraphicsEngine
                     Origin = intersectionWithShape.IntersectionPoint,
                     Direction = newVector
                 };
-                var nextColor = ShootRay(newRay, depth - 1, scene);
+                var nextColor = ShootRay(newRay, depth - 1);
                 return new Vector
                 {
                     X = nextColor.X * intersectionWithShape.Attenuation.R,
@@ -159,7 +159,6 @@ namespace GraphicsEngine
 
             var scalingFactorForIntersection =
                 (-1 * b - Convert.ToDecimal(Math.Sqrt(Convert.ToDouble(discriminant)))) / (2m * a);
-            //(-1m * b) - Convert.ToDecimal(Math.Sqrt(Convert.ToDouble(discriminant))) / (2m * a));
             var intersecitionPoint = ray.PointAt(scalingFactorForIntersection);
             var normal = intersecitionPoint.Subtract(modelCoordinates).Divide(Convert.ToDecimal(modelSphere.Radius));
             if (scalingFactorForIntersection < maxDirectionScalingFactor &&
