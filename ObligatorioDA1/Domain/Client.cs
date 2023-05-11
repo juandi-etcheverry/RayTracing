@@ -62,59 +62,35 @@ namespace Domain
             return AreNamesEqual(otherClient.Name);
         }
 
-        public static void ThrowNameExists()
-        {
-            throw new NameException("Client name already exists");
-        }
-
-        public static void ThrowNotAlphanumeric()
+        private void ThrowNotAlphanumeric()
         {
             throw new NameException("Client name can't have non-alphanumeric characters");
         }
 
-        public static void ThrowHasSpaces()
+        private void ThrowHasSpaces()
         {
             throw new NameException("Client name can't have spaces");
         }
 
-        public static void ThrowNameNotInRange()
+        private void ThrowNameNotInRange()
         {
             throw new NameException("Client name must be between 3 and 20 characters");
         }
 
-        public static void ThrowPasswordNotInRange()
+        private void ThrowPasswordNotInRange()
         {
             throw new PasswordException("Client password must be between 5 and 25 characters");
         }
 
-        public static void ThrowPasswordNoCapitalLetter()
+        private void ThrowPasswordNoCapitalLetter()
         {
             throw new PasswordException("Client password must have at least one capital letter");
         }
 
-        public static void ThrowNoNumberPassword()
+        private void ThrowNoNumberPassword()
         {
             throw new PasswordException("Client password must have at least one number");
         }
 
-        public static void ThrowNoClientFound()
-        {
-            throw new NotFoundException("No client found");
-        }
-
-        public static void ThrowClientAlreadyLoggedIn()
-        {
-            throw new SessionException("Client already logged in");
-        }
-
-        public static void ThrowClientNotLoggedIn()
-        {
-            throw new SessionException("Client not logged in");
-        }
-
-        public static void ThrowIncorrectPassword()
-        {
-            throw new SessionException("Incorrect password");
-        }
     }
 }

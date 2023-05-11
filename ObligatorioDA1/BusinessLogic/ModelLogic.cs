@@ -87,7 +87,7 @@ namespace BusinessLogic
 
         private void EnsureClientIsLoggedIn()
         {
-            if (Session.LoggedClient == null) Model.ThrowClientNotLoggedIn();
+            if (Session.LoggedClient == null) ThrowClientNotLoggedIn();
         }
 
         private void ValidateMaterialNameUniqueness(Model model)
@@ -114,6 +114,10 @@ namespace BusinessLogic
         private void ThrowNotFound(string name)
         {
             throw new NotFoundException($"No material with the name {name} was found");
+        }
+        public void ThrowClientNotLoggedIn()
+        {
+            throw new SessionException("Client needs to be logged in to create new model");
         }
     }
 }

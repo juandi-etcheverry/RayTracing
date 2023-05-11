@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using BusinessLogicExceptions;
 using Domain;
 using IRepository;
 using RepositoryInMemory;
@@ -30,7 +31,7 @@ namespace BusinessLogic
         private void EnsureSceneNameUniqueness(string name)
         {
             var nameAlreadyExists = GetClientScenes().Any(currentScene => currentScene.AreNamesEqual(name));
-            if (nameAlreadyExists) Scene.ThrowNameExists();
+            if (nameAlreadyExists) ThrowNameExists();
         }
 
         private void AssignSceneToClient(Scene scene)
@@ -41,7 +42,7 @@ namespace BusinessLogic
 
         private void EnsureClientIsLoggedIn()
         {
-            if (Session.LoggedClient == null) Scene.ThrowClientNotLoggedIn();
+            if (Session.LoggedClient == null) ThrowClientNotLoggedIn();
         }
 
         public void RemoveScene(Scene scene)
@@ -61,7 +62,7 @@ namespace BusinessLogic
         private void EnsureSceneExists(string name)
         {
             var sceneExists = GetClientScenes().Any(scene => scene.Name.ToLower() == name.ToLower());
-            if (!sceneExists) Scene.ThrowNotFound();
+            if (!sceneExists) ThrowNotFound();
         }
 
         public Scene GetScene(string name)
@@ -87,5 +88,19 @@ namespace BusinessLogic
             return _repository.GetAll().Where(scene => scene.OwnerName == Session.LoggedClient.Name)
                 .OrderByDescending(scene => scene.LastModificationDate).ToList();
         }
+
+        private void ThrowNotFound()
+        {
+            throw new NotFoundException("Scene not found");
+        }
+        private void ThrowNameExists()
+        {
+            throw new NameException("Scene name already exists");
+        }
+        private void ThrowClientNotLoggedIn()
+        {
+            throw new SessionException("Client not logged in");
+        }
+
     }
 }

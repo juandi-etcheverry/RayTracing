@@ -38,7 +38,7 @@ namespace BusinessLogic
 
         private void EnsureClientIsLoggedIn()
         {
-            if (Session.LoggedClient == null) Material.ThrowClientNotLoggedIn();
+            if (Session.LoggedClient == null) ThrowClientNotLoggedIn();
         }
 
         public Material Remove(Material material)
@@ -53,7 +53,7 @@ namespace BusinessLogic
         {
             var modelLogic = new ModelLogic();
             var isMaterialInUse = modelLogic.GetClientModels().Any(model => model.Material.Name == material.Name);
-            if (isMaterialInUse) Material.ThrowMaterialReferencedByModel();
+            if (isMaterialInUse) ThrowMaterialReferencedByModel();
         }
 
         public Material Rename(Material material, string newName)
@@ -98,6 +98,15 @@ namespace BusinessLogic
         private void ThrowNotFound(string name)
         {
             throw new NotFoundException($"No material with the name {name} was found");
+        }
+        public void ThrowClientNotLoggedIn()
+        {
+            throw new SessionException("Client needs to be logged in to create new Material");
+        }
+
+        public void ThrowMaterialReferencedByModel()
+        {
+            throw new AssociationException("Material is already being used by a Model.");
         }
 
         private bool IsMaterialNameInUse(Material material)

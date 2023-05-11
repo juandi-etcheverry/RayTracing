@@ -17,7 +17,7 @@ namespace Domain
         }
 
 
-        public static void ThrowNonPositiveRadius()
+        private void ThrowNonPositiveRadius()
         {
             throw new NonPositiveRadiusException("Sphere's Radius must be greater than 0");
         }

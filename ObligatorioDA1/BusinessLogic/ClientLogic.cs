@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using BusinessLogicExceptions;
 using Domain;
 using IRepository;
 using RepositoryInMemory;
@@ -18,7 +19,7 @@ namespace BusinessLogic
         public Client GetClient(string name)
         {
             var c = _repository.Get(name);
-            if (c == null) Client.ThrowNoClientFound();
+            if (c == null) ThrowNoClientFound();
             return c;
         }
 
@@ -44,7 +45,7 @@ namespace BusinessLogic
         private void EnsureClientNameUniqueness(string name)
         {
             var nameAlreadyExist = _repository.GetAll().Any(currentClient => name == currentClient.Name);
-            if (nameAlreadyExist) Client.ThrowNameExists();
+            if (nameAlreadyExist) ThrowNameExists();
         }
 
         public void InitializeSession(Client client)
@@ -57,17 +58,17 @@ namespace BusinessLogic
 
         private void EnsureClientExists(Client client)
         {
-            if (GetClient(client.Name) == null) Client.ThrowNoClientFound();
+            if (GetClient(client.Name) == null) ThrowNoClientFound();
         }
 
         private void EnsureNoClientIsLoggedIn()
         {
-            if (Session.LoggedClient != null) Client.ThrowClientAlreadyLoggedIn();
+            if (Session.LoggedClient != null) ThrowClientAlreadyLoggedIn();
         }
 
         private void EnsurePasswordOk(Client client)
         {
-            if (!IsPasswordCorrect(client)) Client.ThrowIncorrectPassword();
+            if (!IsPasswordCorrect(client)) ThrowIncorrectPassword();
         }
 
         public Client GetLoggedClient()
@@ -83,12 +84,42 @@ namespace BusinessLogic
 
         private void EnsureClientIsLoggedIn()
         {
-            if (Session.LoggedClient == null) Client.ThrowClientNotLoggedIn();
+            if (Session.LoggedClient == null) ThrowClientNotLoggedIn();
         }
 
         private bool IsPasswordCorrect(Client client)
         {
             return client.Password == GetClient(client.Name).Password;
+        }
+
+        public void ThrowIfIncorrectPassword(string password)
+        {
+            if (Session.LoggedClient.Password != password) ThrowIncorrectPassword();
+        }
+
+        private void ThrowNameExists()
+        {
+            throw new NameException("Client name already exists");
+        }
+
+        private void ThrowNoClientFound()
+        {
+            throw new NotFoundException("No client found");
+        }
+
+        private void ThrowClientAlreadyLoggedIn()
+        {
+            throw new SessionException("Client already logged in");
+        }
+
+        private void ThrowClientNotLoggedIn()
+        {
+            throw new SessionException("Client not logged in");
+        }
+
+        private void ThrowIncorrectPassword()
+        {
+            throw new SessionException("Incorrect password");
         }
     }
 }

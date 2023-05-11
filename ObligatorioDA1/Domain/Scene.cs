@@ -40,7 +40,7 @@ namespace Domain
 
         public DateTime LastRenderDate { get; set; }
 
-        public ClientScenePreferences ClientScenePreferences { get; set; } = new ClientScenePreferences();
+        public ClientScenePreferences ClientScenePreferences { get; set; }
         public Bitmap Preview = null;
 
         public PositionedModel AddPositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
@@ -65,19 +65,9 @@ namespace Domain
             return positionedModel;
         }
 
-        public static void ThrowClientNotLoggedIn()
-        {
-            throw new SessionException("Client not logged in");
-        }
-
-        private static void ThrowEmptyName()
+        private void ThrowEmptyName()
         {
             throw new NameException("Scene name can't be empty");
-        }
-
-        public static void ThrowNotFound()
-        {
-            throw new NotFoundException("Scene not found");
         }
 
         public bool AreNamesEqual(string otherName)
@@ -85,12 +75,7 @@ namespace Domain
             return _name.ToLower() == otherName.ToLower();
         }
 
-        public static void ThrowNameExists()
-        {
-            throw new NameException("Scene name already exists");
-        }
-
-        public void ThrowHasTrailingSpaces()
+        private void ThrowHasTrailingSpaces()
         {
             throw new NameException("Scene name can't have trailing spaces");
         }

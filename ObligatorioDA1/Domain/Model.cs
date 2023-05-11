@@ -29,17 +29,12 @@ namespace Domain
 
         public string OwnerName { get; set; }
 
-        public static void ThrowClientNotLoggedIn()
-        {
-            throw new SessionException("Client needs to be logged in to create new model");
-        }
-
-        private static void ThrowEmptyName()
+        private void ThrowEmptyName()
         {
             throw new NameException("Model name can't be empty");
         }
 
-        private static void ThrowHasTrailingSpaces()
+        private void ThrowHasTrailingSpaces()
         {
             throw new NameException("Model name can't have trailing spaces");
         }
