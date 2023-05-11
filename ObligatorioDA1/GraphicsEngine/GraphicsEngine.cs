@@ -7,13 +7,55 @@ namespace GraphicsEngine
     {
         private readonly decimal _MINIMUM_DIRECTION_SCALING_FACTOR = 0.00001m;
         public uint Width { get; set; }
-
+        private Camera _camera;
+        private Scene _scene;
         public PPMImage Render(Scene scene)
         {
+
+            CreateCameraForRendering(scene);
+
+            var renderedImage = new PPMImage(Width);
+
+            for (var row = renderedImage.Height - 1; row >= 0; row--)
+                for (var column = 0; column < renderedImage.Width; column++)
+                {
+                    var color = CalculatePixelColor(column, row, renderedImage);
+                    renderedImage.SavePixel(row, column, color);
+                }
+
+            return renderedImage;
+        }
+
+        private Color CalculatePixelColor(int column, int row,
+            PPMImage renderedImage)
+        {
+
             var SAMPLES_PER_PIXEL = 50;
             var MAX_DEPTH = 20;
 
+            var colorVector = new Vector
+            {
+                X = 0,
+                Y = 0,
+                Z = 0
+            };
 
+            for (var sample = 0; sample < SAMPLES_PER_PIXEL; sample++)
+            {
+                var xCoordinate = (column + Convert.ToDecimal(RandomGenerator.NextDouble())) /
+                                  renderedImage.Width;
+                var yCoordinate = (row + Convert.ToDecimal(RandomGenerator.NextDouble())) / renderedImage.Height;
+                var coloringRay = _camera.RayFromCoordinates(xCoordinate, yCoordinate);
+                colorVector.AddTo(ShootRay(coloringRay, MAX_DEPTH, _scene));
+            }
+
+            colorVector = colorVector.Divide(SAMPLES_PER_PIXEL);
+            var color = new Color { R = colorVector.X, G = colorVector.Y, B = colorVector.Z };
+            return color;
+        }
+
+        private void CreateCameraForRendering(Scene scene)
+        {
             var LookAt = new Vector
             {
                 X = scene.ClientScenePreferences.LookAtDefault.Item1,
@@ -44,35 +86,8 @@ namespace GraphicsEngine
                 Up = Up
             };
 
-            var renderedImage = new PPMImage(Width);
-
             var camera = new Camera(cameraDetails);
-
-            for (var row = renderedImage.Height - 1; row >= 0; row--)
-                for (var column = 0; column < renderedImage.Width; column++)
-                {
-                    var colorVector = new Vector
-                    {
-                        X = 0,
-                        Y = 0,
-                        Z = 0
-                    };
-
-                    for (var sample = 0; sample < SAMPLES_PER_PIXEL; sample++)
-                    {
-                        var xCoordinate = (column + Convert.ToDecimal(RandomGenerator.NextDouble())) /
-                                          renderedImage.Width;
-                        var yCoordinate = (row + Convert.ToDecimal(RandomGenerator.NextDouble())) / renderedImage.Height;
-                        var coloringRay = camera.RayFromCoordinates(xCoordinate, yCoordinate);
-                        colorVector.AddTo(ShootRay(coloringRay, MAX_DEPTH, scene));
-                    }
-
-                    colorVector = colorVector.Divide(SAMPLES_PER_PIXEL);
-                    var color = new Color { R = colorVector.X, G = colorVector.Y, B = colorVector.Z };
-                    renderedImage.SavePixel(row, column, color);
-                }
-
-            return renderedImage;
+            _camera = camera;
         }
 
         private Vector ShootRay(Ray ray, decimal depth, Scene scene)
