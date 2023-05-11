@@ -88,7 +88,7 @@ namespace ObligatorioDA1.Model_Panel
             previewScene.AddPositionedModel(model, (0, 2, 10));
             previewScene.LastRenderDate = DateTime.Now;
             int hashedScene = ImageParser.HashDate(previewScene.LastRenderDate);
-            string modelFileName = $"{model.OwnerName}_{hashedScene}_p.ppm";
+            string modelFileName = $"{loggedInClient.Name}_{hashedScene}_p.ppm";
             GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine()
             {
                 Width = 30
