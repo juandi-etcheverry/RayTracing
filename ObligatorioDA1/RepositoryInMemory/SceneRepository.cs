@@ -15,11 +15,6 @@ namespace RepositoryInMemory
             return scene;
         }
 
-        public Scene Get(string name)
-        {
-            return _scenes.FirstOrDefault(s => s.Name.ToLower() == name.ToLower());
-        }
-
         public IList<Scene> GetAll()
         {
             return _scenes;

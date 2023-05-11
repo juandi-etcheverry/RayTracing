@@ -20,12 +20,12 @@ namespace Domain
             }
         }
 
-        public void FovAcceptedRange(uint fov)
+        private void FovAcceptedRange(uint fov)
         {
             if (fov < 1 || fov > 160) ThrowFoVOutOfRange();
         }
 
-        public void ThrowFoVOutOfRange()
+        private void ThrowFoVOutOfRange()
         {
             throw new ArgumentOutOfRangeException("FoV must be between 1 and 160");
         }

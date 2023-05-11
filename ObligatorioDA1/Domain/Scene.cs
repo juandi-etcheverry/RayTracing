@@ -34,7 +34,7 @@ namespace Domain
 
         public DateTime RegistrationDate { get; set; }
 
-        public IList<PositionedModel> Models { get; set; } = new List<PositionedModel>();
+        public IList<PositionedModel> Models { get; } = new List<PositionedModel>();
 
         public DateTime LastModificationDate { get; set; }
 
@@ -78,11 +78,6 @@ namespace Domain
         private void ThrowHasTrailingSpaces()
         {
             throw new NameException("Scene name can't have trailing spaces");
-        }
-
-        public void ThrowFoVOutOfRange()
-        {
-            throw new ArgumentOutOfRangeException("FoV must be between 1 and 160");
         }
     }
 }

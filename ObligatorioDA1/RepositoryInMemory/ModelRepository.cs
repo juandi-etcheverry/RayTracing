@@ -15,11 +15,6 @@ namespace RepositoryInMemory
             return model;
         }
 
-        public Model Get(string name)
-        {
-            return _models.FirstOrDefault(m => m.Name.ToLower() == name.ToLower());
-        }
-
         public IList<Model> GetAll()
         {
             return _models;

@@ -14,11 +14,6 @@ namespace RepositoryInMemory
             return _materials;
         }
 
-        public Material Get(string name)
-        {
-            return _materials.FirstOrDefault(m => m.Name.ToLower() == name.ToLower());
-        }
-
         public List<Material> FindMany(string name)
         {
             return _materials.Where(m => m.Name.ToLower().Equals(name.ToLower())).ToList();

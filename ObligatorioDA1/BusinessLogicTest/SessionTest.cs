@@ -32,6 +32,7 @@ namespace BusinessLogicTest
             Assert.AreEqual(client, clientLogic.GetLoggedClient());
         }
 
+
         [TestMethod]
         public void Initialize_Session_Client_Not_Exist_Test_FAIL()
         {
@@ -76,6 +77,7 @@ namespace BusinessLogicTest
             clientLogic.AddClient(client);
             clientLogic.InitializeSession(client);
             clientLogic.Logout();
+            clientLogic.RemoveClient(client);
             Assert.IsNull(clientLogic.GetLoggedClient());
         }
 

@@ -25,11 +25,6 @@ namespace Domain
             return _name.ToLower() == otherName.ToLower();
         }
 
-        public bool AreNamesEqual(Shape otherShape)
-        {
-            return AreNamesEqual(otherShape.Name);
-        }
-
         private void ThrowEmptyName()
         {
             throw new NameException("Shape Name can't be empty");

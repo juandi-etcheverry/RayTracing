@@ -14,11 +14,6 @@ namespace RepositoryInMemory
             return Shapes;
         }
 
-        public Shape Get(string name)
-        {
-            return Shapes.FirstOrDefault(s => s.AreNamesEqual(name));
-        }
-
         public Shape Add(Shape shape)
         {
             Shapes.Add(shape);

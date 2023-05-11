@@ -52,16 +52,6 @@ namespace Domain
 
         public ClientScenePreferences ClientScenePreferences { get; set; }
 
-        public bool AreNamesEqual(string otherName)
-        {
-            return _name.Equals(otherName);
-        }
-
-        public bool AreNamesEqual(Client otherClient)
-        {
-            return AreNamesEqual(otherClient.Name);
-        }
-
         private void ThrowNotAlphanumeric()
         {
             throw new NameException("Client name can't have non-alphanumeric characters");
