@@ -402,5 +402,31 @@ namespace BusinessLogicTest
 
             Assert.AreEqual((uint)10, client.ClientScenePreferences.FoVDefault);
         }
+
+        [TestMethod]
+        public void GetLastRenderDate_NewScene_OK_Test()
+        {
+            var scene = new Scene()
+            {
+                Name = "Scene"
+            };
+            _sceneLogic.Add(scene);
+
+            Assert.AreEqual(DateTime.MinValue, scene.LastRenderDate);
+        }
+
+        [TestMethod]
+        public void GetPositionedModel_Scene_OK_Test()
+        {
+            var scene = new Scene()
+            {
+                Name = "Scene"
+            };
+            _sceneLogic.Add(scene);
+
+            var positionedModel = scene.AddPositionedModel(_newModel, (1, 1, 2));
+
+            Assert.AreEqual(positionedModel, scene.GetPositionedModel(_newModel.Name, (1, 1, 2)));
+        }
     }
 }

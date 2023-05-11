@@ -48,6 +48,20 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
+        public void Material_GetType_OK_Test()
+        {
+            Material material = new Material
+            {
+                Name = "MaterialColor",
+                Color = (0, 245, 0),
+                Type = MaterialType.Lambertian
+            };
+            _materialLogic.Add(material);
+
+            Assert.AreEqual(MaterialType.Lambertian, _materialLogic.Get("MaterialColor").Type);
+        }
+
+        [TestMethod]
         public void Material_EmptyName_Fail_Test()
         {
             Assert.ThrowsException<NameException>(() =>

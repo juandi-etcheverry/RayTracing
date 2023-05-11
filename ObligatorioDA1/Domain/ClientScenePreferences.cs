@@ -15,14 +15,9 @@ namespace Domain
             get => _fovDefault;
             set
             {
-                FovAcceptedRange(value);
+                if (value < 1 || value > 160) ThrowFoVOutOfRange();
                 _fovDefault = value;
             }
-        }
-
-        private void FovAcceptedRange(uint fov)
-        {
-            if (fov < 1 || fov > 160) ThrowFoVOutOfRange();
         }
 
         private void ThrowFoVOutOfRange()

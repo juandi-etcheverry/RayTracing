@@ -12,6 +12,7 @@ namespace Domain
         private static readonly uint MAX_PASSWORD_LENGTH = 25;
         private string _name;
         private string _password;
+        private DateTime _registrationDate;
 
         public Client()
         {
@@ -24,10 +25,8 @@ namespace Domain
             };
         }
 
-        private DateTime _registrationDate { get; }
-
         public string Name
-        {
+        {   
             get => _name;
             set
             {
