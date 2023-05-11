@@ -107,14 +107,7 @@ namespace GraphicsEngine
             if (intersectionWithShape != null)
             {
                 if (depth <= 0) return new Vector { X = 0, Y = 0, Z = 0 };
-                var newPoint = intersectionWithShape.IntersectionPoint.Add(intersectionWithShape.Normal)
-                    .Add(GetRandomInUnitSphere());
-                var newVector = newPoint.Subtract(intersectionWithShape.IntersectionPoint);
-                var newRay = new Ray
-                {
-                    Origin = intersectionWithShape.IntersectionPoint,
-                    Direction = newVector
-                };
+                var newRay = CalculateBouncedRay(intersectionWithShape);
                 var nextColor = ShootRay(newRay, depth - 1);
                 return new Vector
                 {
@@ -124,6 +117,24 @@ namespace GraphicsEngine
                 };
             }
 
+            return GenerateGradientBackground(ray);
+        }
+
+        private Ray CalculateBouncedRay(HitRecord intersectionWithShape)
+        {
+            var newPoint = intersectionWithShape.IntersectionPoint.Add(intersectionWithShape.Normal)
+                .Add(GetRandomInUnitSphere());
+            var newVector = newPoint.Subtract(intersectionWithShape.IntersectionPoint);
+            var newRay = new Ray
+            {
+                Origin = intersectionWithShape.IntersectionPoint,
+                Direction = newVector
+            };
+            return newRay;
+        }
+
+        private static Vector GenerateGradientBackground(Ray ray)
+        {
             var rayDirectionUnit = ray.Direction.Unit();
             var gradientYPosition = 0.5m * (rayDirectionUnit.Y + 1);
             var gradientStart = new Vector { X = 1, Y = 1, Z = 1 };
@@ -137,18 +148,9 @@ namespace GraphicsEngine
             decimal maxDirectionScalingFactor)
         {
             var modelSphere = (Sphere)model.Shape;
-            var modelCoordinates = new Vector
-            {
-                X = model.Coordinates.Item1,
-                Y = model.Coordinates.Item2,
-                Z = model.Coordinates.Item3
-            };
-            var attenuation = new Color
-            {
-                R = model.Material.Color.Item1 / 255m,
-                G = model.Material.Color.Item2 / 255m,
-                B = model.Material.Color.Item3 / 255m
-            };
+            var modelCoordinates = PointFromModelCoordinates(model);
+            var attenuation = ColorFromModelMaterial(model);
+
             var centerToRayOrigin = ray.Origin.Subtract(modelCoordinates);
             var a = ray.Direction.Dot(ray.Direction);
             var b = centerToRayOrigin.Dot(ray.Direction) * 2m;
@@ -163,6 +165,7 @@ namespace GraphicsEngine
             var normal = intersecitionPoint.Subtract(modelCoordinates).Divide(Convert.ToDecimal(modelSphere.Radius));
             if (scalingFactorForIntersection < maxDirectionScalingFactor &&
                 scalingFactorForIntersection > _MINIMUM_DIRECTION_SCALING_FACTOR)
+            {
                 return new HitRecord
                 {
                     ScalingFactor = scalingFactorForIntersection,
@@ -170,8 +173,31 @@ namespace GraphicsEngine
                     Normal = normal,
                     Attenuation = attenuation
                 };
+            }
 
             return null;
+        }
+
+        private Color ColorFromModelMaterial(PositionedModel model)
+        {
+            var attenuation = new Color
+            {
+                R = model.Material.Color.Item1 / 255m,
+                G = model.Material.Color.Item2 / 255m,
+                B = model.Material.Color.Item3 / 255m
+            };
+            return attenuation;
+        }
+
+        private Vector PointFromModelCoordinates(PositionedModel model)
+        {
+            var modelCoordinates = new Vector
+            {
+                X = model.Coordinates.Item1,
+                Y = model.Coordinates.Item2,
+                Z = model.Coordinates.Item3
+            };
+            return modelCoordinates;
         }
 
         private Vector GetRandomInUnitSphere()
@@ -180,16 +206,22 @@ namespace GraphicsEngine
             var onesVector = new Vector { X = 1, Y = 1, Z = 1 };
             do
             {
-                var randomVector = new Vector
-                {
-                    X = Convert.ToDecimal(RandomGenerator.NextDouble()),
-                    Y = Convert.ToDecimal(RandomGenerator.NextDouble()),
-                    Z = Convert.ToDecimal(RandomGenerator.NextDouble())
-                };
+                var randomVector = GenerateRandomVector();
                 finalVector = randomVector.Multiply(2).Subtract(onesVector);
             } while (finalVector.SquaredLength() >= 1);
 
             return finalVector;
+        }
+
+        private Vector GenerateRandomVector()
+        {
+            var randomVector = new Vector
+            {
+                X = Convert.ToDecimal(RandomGenerator.NextDouble()),
+                Y = Convert.ToDecimal(RandomGenerator.NextDouble()),
+                Z = Convert.ToDecimal(RandomGenerator.NextDouble())
+            };
+            return randomVector;
         }
     }
 }
