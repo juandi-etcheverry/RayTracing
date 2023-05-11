@@ -25,7 +25,7 @@ namespace ObligatorioDA1.Model_Panel
         {
             dgvModelList.Rows.Clear();
             foreach (var model in _modelLogic.GetClientModels().ToList())
-                dgvModelList.Rows.Add(model.preview, null, null, null, model.Name, model.Shape.Name, model.Material.Name);
+                dgvModelList.Rows.Add(model.Preview, null, null, null, model.Name, model.Shape.Name, model.Material.Name);
         }
 
         private void InitializeModelList()

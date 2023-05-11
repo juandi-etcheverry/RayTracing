@@ -87,14 +87,14 @@ namespace ObligatorioDA1
         {
             dgvAvailableModelsList.Rows.Clear();
             foreach (var model in _modelLogic.GetClientModels().ToList())
-                dgvAvailableModelsList.Rows.Add(null, null, model.Name, null);
+                dgvAvailableModelsList.Rows.Add(model.Preview, null, model.Name, null);
         }
 
         private void RefreshUsedList()
         {
             dgvUsedModels.Rows.Clear();
             foreach (var posModel in _scene.Models.ToList())
-                dgvUsedModels.Rows.Add(null, null, posModel.Name, null, posModel.Coordinates);
+                dgvUsedModels.Rows.Add(posModel.Preview, null, posModel.Name, null, posModel.Coordinates);
         }
 
         private void dgvAvailableModelsList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -110,17 +110,6 @@ namespace ObligatorioDA1
                     {
                         var newColor = GetColour(model);
                         PaintCell(cell, newColor);
-                    }
-                }
-
-                if (dgvAvailableModelsList.Columns[e.ColumnIndex].Name == "Img")
-                {
-                    var cell = dgvAvailableModelsList.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                    var modelName = dgvAvailableModelsList.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    var model = _modelLogic.Get(modelName);
-                    if (model.WantPreview)
-                    {
-                        // Insert preview on cell
                     }
                 }
             }
@@ -149,17 +138,6 @@ namespace ObligatorioDA1
                     {
                         var newColor = GetColour(model);
                         PaintCell(cell, newColor);
-                    }
-                }
-
-                if (dgvUsedModels.Columns[e.ColumnIndex].Name == "Img")
-                {
-                    var cell = dgvUsedModels.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                    var modelName = dgvUsedModels.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    var model = _modelLogic.Get(modelName);
-                    if (model.WantPreview)
-                    {
-                        // Insert preview on cell
                     }
                 }
             }
@@ -201,12 +179,19 @@ namespace ObligatorioDA1
                 {
                     Width = 300
                 };
+
+
                 Cursor.Current = Cursors.WaitCursor;
                 PPMImage renderedImage = engine.Render(_scene);
+                engine.Width = 30;
+                PPMImage previewImage = engine.Render(_scene);
                 _scene.LastRenderDate = DateTime.Now;
                 string sceneFileName = $"{_scene.OwnerName}_{_scene.LastRenderDate.Millisecond}.ppm";
+                string previewFileName = $"{_scene.OwnerName}_{_scene.LastRenderDate.Millisecond}_preview.ppm";
                 renderedImage.SaveFile(sceneFileName);
+                previewImage.SaveFile(previewFileName);
                 RecoverSceneRender();
+                RecoverScenePreview();
                 Cursor.Current = Cursors.Arrow;
             }
             catch (ArgumentOutOfRangeException outEx)
@@ -229,19 +214,34 @@ namespace ObligatorioDA1
             }
         }
 
+        private void RecoverScenePreview()
+        {
+            string sceneFileName = $"{_scene.OwnerName}_{_scene.LastRenderDate.Millisecond}_preview.ppm";
+            Bitmap renderedImage = RecoverSceneImage(sceneFileName);
+            _scene.Preview = renderedImage;
+        }
+
         private void RecoverSceneRender()
+        {
+            string sceneFileName = $"{_scene.OwnerName}_{_scene.LastRenderDate.Millisecond}.ppm";
+            Bitmap renderedImage = RecoverSceneImage(sceneFileName);
+            pboxRenderedScene.Image = renderedImage;
+
+        }
+
+        private Bitmap RecoverSceneImage(string filename)
         {
             try
             {
-                string sceneFileName = $"{_scene.OwnerName}_{_scene.Name}_{_scene.LastRenderDate.Millisecond}.ppm";
-                Bitmap renderedImage = ImageParser.ConvertPpmToBitmap(sceneFileName);
-                pboxRenderedScene.Image = renderedImage;
+                Bitmap renderedImage = ImageParser.ConvertPpmToBitmap(filename);
                 lblNoFileFound.Visible = false;
+                return renderedImage;
             }
             catch (FileNotFoundException noFle)
             {
                 lblNoFileFound.Text = "No scene render exists";
                 lblNoFileFound.Visible = true;
+                return null;
             }
         }
 

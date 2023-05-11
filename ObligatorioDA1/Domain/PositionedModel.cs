@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 
 namespace Domain
 {
@@ -10,6 +10,7 @@ namespace Domain
             OwnerName = model.OwnerName;
             Shape = model.Shape;
             Material = model.Material;
+            Preview = model.Preview;
             Coordinates = coordinates;
         }
 

@@ -30,7 +30,8 @@ namespace ObligatorioDA1.Scene_Panel
             txbModelYCoordinates.Clear();
             txbModelZCoordinates.Clear();
             lblCoordinatesExceptions.Visible = false;
-            //put the preview
+            pboxModelPreview.Image = _model.Preview;
+            pboxModelPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
         }
 
         private void btnReturnAddModel_Click(object sender, EventArgs e)

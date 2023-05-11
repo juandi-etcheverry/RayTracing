@@ -9,7 +9,7 @@ namespace Domain
     {
         private string _name;
         public bool WantPreview;
-        public Bitmap preview = null;
+        public Bitmap Preview = null;
         public DateTime CreatedAt = DateTime.Now;
 
         public string Name

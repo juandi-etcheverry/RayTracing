@@ -94,7 +94,7 @@ namespace ObligatorioDA1.Model_Panel
             PPMImage renderedPreview = engine.Render(previewScene);
             renderedPreview.SaveFile(modelFileName);
             Bitmap preview = ImageParser.ConvertPpmToBitmap(modelFileName);
-            model.preview = preview;
+            model.Preview = preview;
             Cursor.Current = Cursors.Arrow;
         }
 

@@ -113,7 +113,7 @@
             this.ckbModelPreview.Name = "ckbModelPreview";
             this.ckbModelPreview.Size = new System.Drawing.Size(418, 41);
             this.ckbModelPreview.TabIndex = 4;
-            this.ckbModelPreview.Text = "Generate preview on save";
+            this.ckbModelPreview.Text = "Generate Preview on save";
             this.ckbModelPreview.UseVisualStyleBackColor = true;
             // 
             // cmbNewModelMaterial

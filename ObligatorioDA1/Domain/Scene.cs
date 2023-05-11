@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using BusinessLogicExceptions;
 using ValidationService;
@@ -9,6 +10,7 @@ namespace Domain
     public class Scene
     {
         private string _name;
+
 
         public Scene()
         {
@@ -39,6 +41,7 @@ namespace Domain
         public DateTime LastRenderDate { get; set; }
 
         public ClientScenePreferences ClientScenePreferences { get; set; } = new ClientScenePreferences();
+        public Bitmap Preview = null;
 
         public PositionedModel AddPositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
         {

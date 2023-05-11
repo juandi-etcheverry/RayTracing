@@ -22,7 +22,7 @@ namespace ObligatorioDA1.Scene_Panel
         {
             dgvSceneList.Rows.Clear();
             foreach (var scene in _sceneLogic.GetClientScenes().ToList())
-                dgvSceneList.Rows.Add(null, null, null, null, scene.Name, scene.LastModificationDate);
+                dgvSceneList.Rows.Add(scene.Preview, null, null, null, scene.Name, scene.LastModificationDate);
         }
 
         private void InitializeSceneList()
@@ -59,7 +59,7 @@ namespace ObligatorioDA1.Scene_Panel
                 dgvSceneList.Rows[e.RowIndex].Height = 40;
                 if (dgvSceneList.Columns[e.ColumnIndex].Name == "Preview")
                 {
-                    //Insert preview
+                    //Insert Preview
                 }
             }
         }
