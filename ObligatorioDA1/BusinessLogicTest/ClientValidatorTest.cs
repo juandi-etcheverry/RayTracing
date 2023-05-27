@@ -13,7 +13,11 @@ namespace BusinessLogicTest
         [TestCleanup]
         public void RemoveAllClients()
         {
-            clientLogic.GetClients().Clear();
+            var clients = clientLogic.GetClients();
+            foreach (var client in clients)
+            {
+                clientLogic.RemoveClient(client);
+            }
         }
 
         [TestMethod]
