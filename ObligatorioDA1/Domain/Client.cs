@@ -19,10 +19,10 @@ namespace Domain
             _registrationDate = DateTime.Now;
             ClientScenePreferences = new ClientScenePreferences
             {
-                LookFromDefault = (0, 2, 0),
-                LookAtDefault = (0, 2, 5),
                 FoVDefault = 30
             };
+            ClientScenePreferences.SetLookFromDefault((0, 2, 0));
+            ClientScenePreferences.SetLookAtDefault((0, 2, 5));
         }
 
         public string Name

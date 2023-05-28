@@ -12,8 +12,8 @@ namespace RepositoryInDB
     public class BusinessContext: DbContext
     {
         public DbSet<Client> Clients { get; set; }
-        /*
         public DbSet<ClientScenePreferences> ClientScenePreferences { get; set; }
+        /*
         public DbSet<Material> Materials { get; set; }
         public DbSet<Model> Models { get; set; }
         public DbSet<PositionedModel> PositionedModels { get; set; }
@@ -28,6 +28,7 @@ namespace RepositoryInDB
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             ClientConfiguration.ConfigureEntity(modelBuilder);
+            ClientScenePreferencesConfiguration.ConfigureEntity(modelBuilder);
         }
 
     }
