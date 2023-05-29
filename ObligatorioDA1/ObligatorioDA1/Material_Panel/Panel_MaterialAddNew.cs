@@ -33,7 +33,7 @@ namespace ObligatorioDA1.Material_Panel
             lblNewMaterialNameException.Visible = false;
             lblNewRGBException.Visible = false;
             pnlTypePreferences.Visible = false;
-            rbtnLambertian.Checked = false;
+            rbtnLambertian.Checked = true;
             rbtnMetalic.Checked = false;
         }
 
