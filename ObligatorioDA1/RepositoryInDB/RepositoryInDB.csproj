@@ -55,6 +55,7 @@
     <Compile Include="ClientRepositoryInDB.cs" />
     <Compile Include="DomainConfiguration\ClientConfiguration.cs" />
     <Compile Include="DomainConfiguration\ClientScenePreferencesConfiguration.cs" />
+    <Compile Include="DomainConfiguration\MaterialConfiguration.cs" />
     <Compile Include="Migrations\202305272022453_ClientDB-v1.cs" />
     <Compile Include="Migrations\202305272022453_ClientDB-v1.designer.cs">
       <DependentUpon>202305272022453_ClientDB-v1.cs</DependentUpon>
@@ -70,6 +71,10 @@
     <Compile Include="Migrations\202305282322256_ClientScenePreferencesDB-v3.cs" />
     <Compile Include="Migrations\202305282322256_ClientScenePreferencesDB-v3.designer.cs">
       <DependentUpon>202305282322256_ClientScenePreferencesDB-v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305290001181_MaterialDB-v1.cs" />
+    <Compile Include="Migrations\202305290001181_MaterialDB-v1.designer.cs">
+      <DependentUpon>202305290001181_MaterialDB-v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305282322256_ClientScenePreferencesDB-v3.resx">
       <DependentUpon>202305282322256_ClientScenePreferencesDB-v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305290001181_MaterialDB-v1.resx">
+      <DependentUpon>202305290001181_MaterialDB-v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

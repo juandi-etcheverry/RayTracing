@@ -13,8 +13,8 @@ namespace RepositoryInDB
     {
         public DbSet<Client> Clients { get; set; }
         public DbSet<ClientScenePreferences> ClientScenePreferences { get; set; }
-        /*
         public DbSet<Material> Materials { get; set; }
+        /*
         public DbSet<Model> Models { get; set; }
         public DbSet<PositionedModel> PositionedModels { get; set; }
         public DbSet<Scene> Scenes { get; set; }
@@ -29,6 +29,7 @@ namespace RepositoryInDB
         {
             ClientConfiguration.ConfigureEntity(modelBuilder);
             ClientScenePreferencesConfiguration.ConfigureEntity(modelBuilder);
+            MaterialConfiguration.ConfigureEntity(modelBuilder);
         }
 
     }
