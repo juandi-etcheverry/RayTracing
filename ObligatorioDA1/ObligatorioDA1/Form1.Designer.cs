@@ -47,7 +47,7 @@
             // 
             this.flyPanelPrincipal.BackColor = System.Drawing.Color.Transparent;
             this.flyPanelPrincipal.Location = new System.Drawing.Point(1353, 818);
-            this.flyPanelPrincipal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flyPanelPrincipal.Margin = new System.Windows.Forms.Padding(4);
             this.flyPanelPrincipal.MaximumSize = new System.Drawing.Size(1500, 1000);
             this.flyPanelPrincipal.MinimumSize = new System.Drawing.Size(1500, 1000);
             this.flyPanelPrincipal.Name = "flyPanelPrincipal";
@@ -106,7 +106,7 @@
             // 
             this.txbUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbUserName.Location = new System.Drawing.Point(76, 332);
-            this.txbUserName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbUserName.Margin = new System.Windows.Forms.Padding(4);
             this.txbUserName.Name = "txbUserName";
             this.txbUserName.Size = new System.Drawing.Size(591, 49);
             this.txbUserName.TabIndex = 7;
@@ -115,7 +115,7 @@
             // 
             this.txbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbPassword.Location = new System.Drawing.Point(72, 504);
-            this.txbPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txbPassword.Name = "txbPassword";
             this.txbPassword.PasswordChar = '*';
             this.txbPassword.Size = new System.Drawing.Size(591, 49);
@@ -136,7 +136,7 @@
             // btnSignIn
             // 
             this.btnSignIn.Location = new System.Drawing.Point(204, 675);
-            this.btnSignIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSignIn.Margin = new System.Windows.Forms.Padding(4);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(308, 69);
             this.btnSignIn.TabIndex = 10;
@@ -147,7 +147,7 @@
             // btnSignUp
             // 
             this.btnSignUp.Location = new System.Drawing.Point(1029, 468);
-            this.btnSignUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSignUp.Margin = new System.Windows.Forms.Padding(4);
             this.btnSignUp.Name = "btnSignUp";
             this.btnSignUp.Size = new System.Drawing.Size(308, 68);
             this.btnSignUp.TabIndex = 11;
@@ -194,6 +194,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(1474, 929);
             this.Controls.Add(this.btnRenderLogs);
@@ -209,7 +210,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(1500, 1000);
             this.MinimumSize = new System.Drawing.Size(1500, 1000);
             this.Name = "Form1";

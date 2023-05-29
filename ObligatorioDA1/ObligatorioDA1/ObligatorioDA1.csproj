@@ -100,6 +100,12 @@
     <Compile Include="Scene_Panel\Panel_AddModelToScene.Designer.cs">
       <DependentUpon>Panel_AddModelToScene.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scene_Panel\Panel_ExportScene.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_ExportScene.Designer.cs">
+      <DependentUpon>Panel_ExportScene.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene_Panel\Panel_SceneNewName.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -194,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Scene_Panel\Panel_AddModelToScene.resx">
       <DependentUpon>Panel_AddModelToScene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scene_Panel\Panel_ExportScene.resx">
+      <DependentUpon>Panel_ExportScene.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scene_Panel\Panel_SceneNewName.resx">
       <DependentUpon>Panel_SceneNewName.cs</DependentUpon>
