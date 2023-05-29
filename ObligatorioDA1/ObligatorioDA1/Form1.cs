@@ -47,12 +47,7 @@ namespace ObligatorioDA1
             flyPanelPrincipal.Visible = true;
             flyPanelPrincipal.Controls.Add(userControlAddClient);
             userControlAddClient.RefreshAddClient();
-        }
-        private void btnRenderLogs_Click(object sender, EventArgs e)
-        {
-            flyPanelPrincipal.Visible = true;
-            flyPanelPrincipal.Controls.Add(userControlLogsList);
-            userControlLogsList.RefreshLogsList();
+            btnRenderLogs.Visible = false;
         }
         private void btnSignIn_Click(object sender, EventArgs e)
         {
@@ -64,6 +59,7 @@ namespace ObligatorioDA1
                 _clientLogic.ThrowIfIncorrectPassword(client, txbPassword.Text);
                 _clientLogic.InitializeSession(client);
                 GoToGeneral(_clientLogic.GetLoggedClient());
+                btnRenderLogs.Visible = false;
             }
             catch (NotFoundException notEx)
             {
@@ -93,8 +89,15 @@ namespace ObligatorioDA1
             txbUserName.Clear();
             lblNameException.Visible = false;
             lblPasswordException.Visible = false;
+            btnRenderLogs.Visible = true;
         }
 
-        
+        private void btnRenderLogs_Click_1(object sender, EventArgs e)
+        {
+            btnRenderLogs.Visible = false;
+            flyPanelPrincipal.Visible = true;
+            flyPanelPrincipal.Controls.Add(userControlLogsList);
+            userControlLogsList.RefreshLogsList();
+        }
     }
 }
