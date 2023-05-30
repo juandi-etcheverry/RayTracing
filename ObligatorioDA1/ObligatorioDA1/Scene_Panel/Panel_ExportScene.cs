@@ -33,7 +33,17 @@ namespace ObligatorioDA1.Scene_Panel
 
         private void btnExport_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = FileType();
+            saveFileDialog.Title = "Save an Image File";
+            saveFileDialog.ShowDialog();
             _panelGeneral.GoToSceneEditor(_scene);
+        }
+        private string FileType()
+        {
+            if (rbtnJPG.Checked) return "JPeg Image|*.jpg";
+            else if (rbtnPNG.Checked) return "Png Image|*.png";
+            else return "PPM Image|*.ppm";
         }
     }
 }
