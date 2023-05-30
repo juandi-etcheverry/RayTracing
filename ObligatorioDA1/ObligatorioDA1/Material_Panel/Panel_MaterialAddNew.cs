@@ -32,6 +32,9 @@ namespace ObligatorioDA1.Material_Panel
             txbNewBMaterial.Clear();
             lblNewMaterialNameException.Visible = false;
             lblNewRGBException.Visible = false;
+            pnlTypePreferences.Visible = false;
+            rbtnLambertian.Checked = true;
+            rbtnMetalic.Checked = false;
         }
 
         private void btnShowAllMaterials_Click(object sender, EventArgs e)
@@ -127,6 +130,17 @@ namespace ObligatorioDA1.Material_Panel
                 lblNewRGBException.Visible = true;
                 lblNewRGBException.Text = argEx.Message;
             }
+        }
+
+        private void rbtnMetalic_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlTypePreferences.Visible = true;
+            lblBlurException.Visible = false;
+        }
+
+        private void rbtnLambertian_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlTypePreferences.Visible=false;
         }
     }
 }

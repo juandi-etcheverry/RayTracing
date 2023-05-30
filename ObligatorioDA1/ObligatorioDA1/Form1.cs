@@ -11,6 +11,7 @@ namespace ObligatorioDA1
         private readonly ClientLogic _clientLogic = new ClientLogic();
         private readonly Panel_AddClient userControlAddClient;
         private readonly Panel_General userControlGeneral;
+        private readonly Panel_LogsList userControlLogsList;
 
 
         public Form1()
@@ -18,6 +19,7 @@ namespace ObligatorioDA1
             InitializeComponent();
             userControlAddClient = new Panel_AddClient(this);
             userControlGeneral = new Panel_General(this);
+            userControlLogsList = new Panel_LogsList(this);
             GoBackToWelcome();
             flyPanelPrincipal.Dock = DockStyle.Fill;
         }
@@ -28,13 +30,11 @@ namespace ObligatorioDA1
             flyPanelPrincipal.Controls.Clear();
             flyPanelPrincipal.Visible = false;
         }
-
         public void SignOut()
         {
             _clientLogic.Logout();
             GoBackToWelcome();
         }
-
         public void GoToGeneral(Client client)
         {
             flyPanelPrincipal.Controls.Clear();
@@ -42,14 +42,13 @@ namespace ObligatorioDA1
             userControlGeneral.RefreshGeneralPanel(client);
             flyPanelPrincipal.Controls.Add(userControlGeneral);
         }
-
         private void btnSignUp_Click(object sender, EventArgs e)
         {
             flyPanelPrincipal.Visible = true;
             flyPanelPrincipal.Controls.Add(userControlAddClient);
             userControlAddClient.RefreshAddClient();
+            btnRenderLogs.Visible = false;
         }
-
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             lblNameException.Visible = false;
@@ -60,6 +59,7 @@ namespace ObligatorioDA1
                 _clientLogic.ThrowIfIncorrectPassword(client, txbPassword.Text);
                 _clientLogic.InitializeSession(client);
                 GoToGeneral(_clientLogic.GetLoggedClient());
+                btnRenderLogs.Visible = false;
             }
             catch (NotFoundException notEx)
             {
@@ -89,6 +89,15 @@ namespace ObligatorioDA1
             txbUserName.Clear();
             lblNameException.Visible = false;
             lblPasswordException.Visible = false;
+            btnRenderLogs.Visible = true;
+        }
+
+        private void btnRenderLogs_Click_1(object sender, EventArgs e)
+        {
+            btnRenderLogs.Visible = false;
+            flyPanelPrincipal.Visible = true;
+            flyPanelPrincipal.Controls.Add(userControlLogsList);
+            userControlLogsList.RefreshLogsList();
         }
     }
 }

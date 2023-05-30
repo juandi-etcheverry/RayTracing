@@ -36,12 +36,14 @@ namespace ObligatorioDA1
             lblLookExceptions.Visible = false;
             lblFoVException.Visible = false;
             lblFoVException.Visible = false;
+            pnlBlur.Visible = false;
             RefreshAvailableList();
             RefreshUsedList();
             RefreshLastModified();
             RecoverSceneRender();
             OutDatedRender();
             RefreshLooks();
+            
         }
 
         private void btnReturnNewScene_Click(object sender, EventArgs e)
@@ -322,6 +324,17 @@ namespace ObligatorioDA1
             _scene.ClientScenePreferences.LookFromDefault = tuple1;
             _scene.ClientScenePreferences.LookAtDefault = tuple2;
             _scene.ClientScenePreferences.FoVDefault = fov;
+        }
+
+        private void chkboxBlur_CheckedChanged(object sender, EventArgs e)
+        {
+            lblLensAperture.Visible = false;
+            pnlBlur.Visible = chkboxBlur.Checked;
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            _panelGeneral.GoToExportScene(_scene);
         }
     }
 }
