@@ -22,6 +22,8 @@ namespace ObligatorioDA1
             InitializeComponent();
             InitializeAvailableList();
             InitializeUsedList();
+            lblLastRenderedDate.Visible = false;
+            lblOutdatedImage.Visible = false;
         }
 
         public void RefreshSceneEditor(Scene scene)
@@ -43,7 +45,13 @@ namespace ObligatorioDA1
             RecoverSceneRender();
             OutDatedRender();
             RefreshLooks();
+            ButonExport();
             
+        }
+        private void ButonExport()
+        {
+            if(_scene.Preview != null) btnExport.Visible = true;
+            else  btnExport.Visible = false; 
         }
 
         private void btnReturnNewScene_Click(object sender, EventArgs e)
@@ -191,6 +199,7 @@ namespace ObligatorioDA1
                 renderedImage.SaveFile(sceneFileName);
                 RecoverSceneRender();
                 Cursor.Current = Cursors.Arrow;
+                RefreshPage();
             }
             catch (ArgumentOutOfRangeException outEx)
             {
@@ -269,6 +278,7 @@ namespace ObligatorioDA1
 
         private void OutDatedRender()
         {
+            lblLastRenderedDate.Visible = true;
             lblLastRenderedDate.Text = _scene.LastRenderDate.ToString();
             lblOutdatedImage.Visible = _scene.LastRenderDate < _scene.LastModificationDate;
         }

@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -36,7 +38,13 @@ namespace ObligatorioDA1.Scene_Panel
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = FileType();
             saveFileDialog.Title = "Save an Image File";
-            saveFileDialog.ShowDialog();
+            Bitmap bitmap = _scene.Preview;
+            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+                Console.WriteLine(filePath);
+                bitmap.Save(filePath, FileType1());
+            }
             _panelGeneral.GoToSceneEditor(_scene);
         }
         private string FileType()
@@ -44,6 +52,14 @@ namespace ObligatorioDA1.Scene_Panel
             if (rbtnJPG.Checked) return "JPeg Image|*.jpg";
             else if (rbtnPNG.Checked) return "Png Image|*.png";
             else return "PPM Image|*.ppm";
+        }
+        private ImageFormat FileType1()
+        {
+            ImageFormat imageFormat;
+            if(rbtnPNG.Checked) imageFormat = ImageFormat.Png;
+            else if (rbtnJPG.Checked) imageFormat = ImageFormat.Jpeg;
+            else imageFormat = ImageFormat.Bmp;
+            return imageFormat;
         }
     }
 }
