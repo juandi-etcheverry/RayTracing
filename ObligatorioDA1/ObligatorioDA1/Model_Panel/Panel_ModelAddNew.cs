@@ -82,7 +82,7 @@ namespace ObligatorioDA1.Model_Panel
             Scene previewScene = new Scene()
             {
                 LastRenderDate = DateTime.Now,
-                Name = "Preview scene"
+                SceneName = "Preview scene"
             };
             previewScene.ClientScenePreferences = loggedInClient.ClientScenePreferences;
             previewScene.AddPositionedModel(model, (0, 2, 10));
@@ -105,7 +105,7 @@ namespace ObligatorioDA1.Model_Panel
         {
             cmbNewModelShape.Items.Clear();
             foreach (var s in _shapeLogic.GetClientShapes())
-                cmbNewModelShape.Items.Add(s.Name);
+                cmbNewModelShape.Items.Add(s.ShapeName);
             cmbNewModelShape.Text = "";
         }
 
@@ -113,7 +113,7 @@ namespace ObligatorioDA1.Model_Panel
         {
             cmbNewModelMaterial.Items.Clear();
             foreach (var m in _materialLogic.GetClientMaterials())
-                cmbNewModelMaterial.Items.Add(m.Name);
+                cmbNewModelMaterial.Items.Add(m.MaterialName);
             cmbNewModelMaterial.Text = "";
         }
 

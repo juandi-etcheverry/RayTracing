@@ -22,7 +22,7 @@ namespace ObligatorioDA1.Scene_Panel
         {
             dgvSceneList.Rows.Clear();
             foreach (var scene in _sceneLogic.GetClientScenes().ToList())
-                dgvSceneList.Rows.Add(scene.Preview, null, null, null, scene.Name, scene.LastModificationDate);
+                dgvSceneList.Rows.Add(scene.Preview, null, null, null, scene.SceneName, scene.LastModificationDate);
         }
 
         private void InitializeSceneList()
@@ -33,14 +33,14 @@ namespace ObligatorioDA1.Scene_Panel
 
         private void AddColumns()
         {
-            dgvSceneList.Columns.Add("Name", "Name");
+            dgvSceneList.Columns.Add("MaterialName", "MaterialName");
             dgvSceneList.Columns.Add("Last update", "Last update");
         }
 
         private void SetDisplayOrderColumns()
         {
             dgvSceneList.Columns["Preview"].DisplayIndex = 0;
-            dgvSceneList.Columns["Name"].DisplayIndex = 1;
+            dgvSceneList.Columns["MaterialName"].DisplayIndex = 1;
             dgvSceneList.Columns["Last update"].DisplayIndex = 2;
             dgvSceneList.Columns["Edit"].DisplayIndex = 3;
             dgvSceneList.Columns["Rename"].DisplayIndex = 4;

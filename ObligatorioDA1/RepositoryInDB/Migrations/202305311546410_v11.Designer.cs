@@ -7,13 +7,13 @@ namespace RepositoryInDB.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class ClientScenePreferencesDBv1 : IMigrationMetadata
+    public sealed partial class v11 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ClientScenePreferencesDBv1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(v11));
         
         string IMigrationMetadata.Id
         {
-            get { return "202305272059187_ClientScenePreferencesDB-v1"; }
+            get { return "202305311546410_v11"; }
         }
         
         string IMigrationMetadata.Source

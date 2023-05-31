@@ -59,7 +59,7 @@
             this.lblSceneNameException.Name = "lblSceneNameException";
             this.lblSceneNameException.Size = new System.Drawing.Size(183, 25);
             this.lblSceneNameException.TabIndex = 3;
-            this.lblSceneNameException.Text = "* Name Exception";
+            this.lblSceneNameException.Text = "* MaterialName Exception";
             // 
             // btnConfirmSceneName
             // 

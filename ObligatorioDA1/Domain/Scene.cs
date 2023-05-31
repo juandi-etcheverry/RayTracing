@@ -9,7 +9,15 @@ namespace Domain
 {
     public class Scene
     {
-        private string _name;
+        private string _sceneName;
+        public int Id { get; set; }
+        public Client Client { get; set; }
+        public DateTime RegistrationDate { get; set; }
+        public IList<PositionedModel> Models { get; set; }
+        public DateTime LastModificationDate { get; set; }
+        public DateTime LastRenderDate { get; set; }
+        public ClientScenePreferences ClientScenePreferences { get; set; }
+        public Bitmap Preview = null;
 
 
         public Scene()
@@ -19,29 +27,16 @@ namespace Domain
             ClientScenePreferences = new ClientScenePreferences();
         }
 
-        public string Name
+        public string SceneName
         {
-            get => _name;
+            get => _sceneName;
             set
             {
                 if (value.IsEmpty()) ThrowEmptyName();
                 if (value.HasTrailingSpaces()) ThrowHasTrailingSpaces();
-                _name = value;
+                _sceneName = value;
             }
         }
-
-        public string OwnerName { get; set; }
-
-        public DateTime RegistrationDate { get; set; }
-
-        public IList<PositionedModel> Models { get; } = new List<PositionedModel>();
-
-        public DateTime LastModificationDate { get; set; }
-
-        public DateTime LastRenderDate { get; set; }
-
-        public ClientScenePreferences ClientScenePreferences { get; set; }
-        public Bitmap Preview = null;
 
         public PositionedModel AddPositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
         {
@@ -61,7 +56,7 @@ namespace Domain
         public PositionedModel GetPositionedModel(string name, ValueTuple<decimal, decimal, decimal> coordinates)
         {
             var positionedModel =
-                Models.FirstOrDefault(model => model.Name == name && model.Coordinates == coordinates);
+                Models.FirstOrDefault(model => model.ModelName == name && model.GetCoordinates() == coordinates);
             return positionedModel;
         }
 
@@ -72,7 +67,7 @@ namespace Domain
 
         public bool AreNamesEqual(string otherName)
         {
-            return _name.ToLower() == otherName.ToLower();
+            return _sceneName.ToLower() == otherName.ToLower();
         }
 
         private void ThrowHasTrailingSpaces()

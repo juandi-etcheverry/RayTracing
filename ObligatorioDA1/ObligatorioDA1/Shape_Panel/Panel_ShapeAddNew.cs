@@ -46,7 +46,7 @@ namespace ObligatorioDA1
                 double radius;
                 var validRadius = double.TryParse(txbNewShapeRadius.Text, out radius);
                 if (!validRadius) throw new ArgumentException("Radius must be a decimal number");
-                newSphere.Name = txbNewShapeName.Text;
+                newSphere.ShapeName = txbNewShapeName.Text;
                 newSphere.Radius = radius;
                 _shapeLogic.AddShape(newSphere);
                 _panelGeneral.GoToShapeList();
@@ -73,7 +73,7 @@ namespace ObligatorioDA1
             lblNewShapeNameException.Visible = false;
             try
             {
-                newSphere.Name = txbNewShapeName.Text;
+                newSphere.ShapeName = txbNewShapeName.Text;
             }
             catch (NameException nameEx)
             {

@@ -19,13 +19,13 @@ namespace GraphicsEngineTest
         {
             Shape newShape = new Sphere
             {
-                Name = "NewSphere",
+                ShapeName = "NewSphere",
                 Radius = 1
             };
 
             var newMaterial = new Material
             {
-                Name = "NewMaterial",
+                MaterialName = "NewMaterial",
                 Color = (230, 15, 160),
                 Type = MaterialType.Lambertian
             };
@@ -39,7 +39,7 @@ namespace GraphicsEngineTest
 
             var newScene = new Scene
             {
-                Name = "new scene"
+                SceneName = "new scene"
             };
 
             newScene.ClientScenePreferences.LookAtDefault = (0, 2, 5);
@@ -50,13 +50,13 @@ namespace GraphicsEngineTest
 
             var grass = new Material
             {
-                Name = "Grass",
+                MaterialName = "Grass",
                 OwnerName = "Juandi",
                 Color = (14, 255, 0)
             };
             var globe = new Sphere
             {
-                Name = "Earth",
+                ShapeName = "Earth",
                 OwnerName = "Juandi",
                 Radius = 2000
             };
@@ -87,7 +87,7 @@ namespace GraphicsEngineTest
         {
             var newScene = new Scene
             {
-                Name = "new scene"
+                SceneName = "new scene"
             };
             newScene.ClientScenePreferences.LookAtDefault = (0, 2, 5);
             newScene.ClientScenePreferences.LookFromDefault = (0, 2, 0);
@@ -112,7 +112,7 @@ namespace GraphicsEngineTest
         {
             var newScene = new Scene
             {
-                Name = "new scene"
+                SceneName = "new scene"
             };
             newScene.ClientScenePreferences.LookAtDefault = (0, 2, 5);
             newScene.ClientScenePreferences.LookFromDefault = (0, 2, 0);

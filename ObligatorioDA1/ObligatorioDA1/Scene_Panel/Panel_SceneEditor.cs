@@ -32,7 +32,7 @@ namespace ObligatorioDA1
 
         private void RefreshPage()
         {
-            lblNewSceneName.Text = _scene.Name;
+            lblNewSceneName.Text = _scene.SceneName;
             lblLookExceptions.Visible = false;
             lblFoVException.Visible = false;
             lblFoVException.Visible = false;
@@ -51,7 +51,7 @@ namespace ObligatorioDA1
 
         private void InitializeAvailableList()
         {
-            dgvAvailableModelsList.Columns.Add("Name", "Name");
+            dgvAvailableModelsList.Columns.Add("MaterialName", "MaterialName");
             dgvAvailableModelsList.Columns.Add("Colour", " ");
             SetDisplayOrderColumnsAvailable();
             dgvAvailableModelsList.Columns["Colour"].Width = 5;
@@ -59,7 +59,7 @@ namespace ObligatorioDA1
 
         private void InitializeUsedList()
         {
-            dgvUsedModels.Columns.Add("Name", "Name");
+            dgvUsedModels.Columns.Add("MaterialName", "MaterialName");
             dgvUsedModels.Columns.Add("Colour", " ");
             dgvUsedModels.Columns.Add("Pos", "Pos");
             SetDisplayOrderColumnsUsed();
@@ -70,7 +70,7 @@ namespace ObligatorioDA1
         {
             dgvAvailableModelsList.Columns["Colour"].DisplayIndex = 0;
             dgvAvailableModelsList.Columns["Img"].DisplayIndex = 1;
-            dgvAvailableModelsList.Columns["Name"].DisplayIndex = 2;
+            dgvAvailableModelsList.Columns["MaterialName"].DisplayIndex = 2;
             dgvAvailableModelsList.Columns["Add"].DisplayIndex = 3;
         }
 
@@ -78,7 +78,7 @@ namespace ObligatorioDA1
         {
             dgvUsedModels.Columns["Colour"].DisplayIndex = 0;
             dgvUsedModels.Columns["Preview"].DisplayIndex = 1;
-            dgvUsedModels.Columns["Name"].DisplayIndex = 2;
+            dgvUsedModels.Columns["MaterialName"].DisplayIndex = 2;
             dgvUsedModels.Columns["Pos"].DisplayIndex = 3;
             dgvUsedModels.Columns["Delete"].DisplayIndex = 4;
         }

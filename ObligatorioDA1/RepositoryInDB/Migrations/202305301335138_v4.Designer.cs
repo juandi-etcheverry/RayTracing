@@ -7,13 +7,13 @@ namespace RepositoryInDB.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class MaterialDBv1 : IMigrationMetadata
+    public sealed partial class v4 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MaterialDBv1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(v4));
         
         string IMigrationMetadata.Id
         {
-            get { return "202305290001181_MaterialDB-v1"; }
+            get { return "202305301335138_v4"; }
         }
         
         string IMigrationMetadata.Source

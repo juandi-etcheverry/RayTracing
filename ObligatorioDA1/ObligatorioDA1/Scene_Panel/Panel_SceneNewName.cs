@@ -39,7 +39,7 @@ namespace ObligatorioDA1.Model_Panel
         {
             try
             {
-                _newScene.Name = txbSceneName.Text;
+                _newScene.SceneName = txbSceneName.Text;
                 _sceneLogic.Add(_newScene);
                 _panelGeneral.GoToSceneEditor(_newScene);
             }
@@ -55,7 +55,7 @@ namespace ObligatorioDA1.Model_Panel
             lblSceneNameException.Visible = false;
             try
             {
-                _newScene.Name = txbSceneName.Text;
+                _newScene.SceneName = txbSceneName.Text;
             }
             catch (NameException nameEx)
             {

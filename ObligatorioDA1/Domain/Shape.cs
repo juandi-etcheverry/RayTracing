@@ -7,7 +7,7 @@ namespace Domain
     {
         private string _name { get; set; }
 
-        public string Name
+        public string ShapeName
         {
             get => _name;
             set
@@ -17,9 +17,8 @@ namespace Domain
                 _name = value;
             }
         }
-
-        public string OwnerName { get; set; }
-
+        public int Id { get; set; }
+        public Client Client { get; set; }
         public bool AreNamesEqual(string otherName)
         {
             return _name.ToLower() == otherName.ToLower();
@@ -27,12 +26,12 @@ namespace Domain
 
         private void ThrowEmptyName()
         {
-            throw new NameException("Shape Name can't be empty");
+            throw new NameException("Shape MaterialName can't be empty");
         }
 
         private void ThrowHasTrailingSpaces()
         {
-            throw new NameException("Shape Name can't have trailing spaces");
+            throw new NameException("Shape MaterialName can't have trailing spaces");
         }
     }
 }

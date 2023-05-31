@@ -25,7 +25,7 @@ namespace ObligatorioDA1.Model_Panel
         {
             dgvModelList.Rows.Clear();
             foreach (var model in _modelLogic.GetClientModels().ToList())
-                dgvModelList.Rows.Add(model.Preview, null, null, null, model.Name, model.Shape.Name, model.Material.Name);
+                dgvModelList.Rows.Add(model.Preview, null, null, null, model.Name, model.Shape.ShapeName, model.Material.MaterialName);
         }
 
         private void InitializeModelList()
@@ -38,7 +38,7 @@ namespace ObligatorioDA1.Model_Panel
         private void AddColumns()
         {
             dgvModelList.Columns.Add("Colour", " ");
-            dgvModelList.Columns.Add("Name", "Name");
+            dgvModelList.Columns.Add("MaterialName", "MaterialName");
             dgvModelList.Columns.Add("Shape", "Shape");
             dgvModelList.Columns.Add("Material", "Material");
         }
@@ -47,7 +47,7 @@ namespace ObligatorioDA1.Model_Panel
         {
             dgvModelList.Columns["Colour"].DisplayIndex = 0;
             dgvModelList.Columns["Preview"].DisplayIndex = 1;
-            dgvModelList.Columns["Name"].DisplayIndex = 2;
+            dgvModelList.Columns["MaterialName"].DisplayIndex = 2;
             dgvModelList.Columns["Shape"].DisplayIndex = 3;
             dgvModelList.Columns["Material"].DisplayIndex = 4;
             dgvModelList.Columns["Rename"].DisplayIndex = 5;
@@ -56,7 +56,7 @@ namespace ObligatorioDA1.Model_Panel
 
         private void SetWidthColumns()
         {
-            dgvModelList.Columns["Name"].Width = 100;
+            dgvModelList.Columns["MaterialName"].Width = 100;
             dgvModelList.Columns["Colour"].Width = 5;
         }
 
@@ -82,7 +82,7 @@ namespace ObligatorioDA1.Model_Panel
                     }
                 }
 
-                //if (dgvModelList.Columns[e.ColumnIndex].Name == "Preview")
+                //if (dgvModelList.Columns[e.ColumnIndex].MaterialName == "Preview")
                 //{
                 //    var cell = dgvModelList.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 //    var modelName = dgvModelList.Rows[e.RowIndex].Cells[4].Value.ToString();

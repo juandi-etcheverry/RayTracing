@@ -1,19 +1,30 @@
-﻿    using System;
+﻿using System;
+using System.Drawing;
 
 namespace Domain
 {
     public class PositionedModel : Model
     {
+        public decimal CoordinateX { get; set; }
+        public decimal CoordinateY { get; set; }
+        public decimal CoordinateZ { get; set; }
+        public Scene Scene { get; set; } //no se si va
+
         public PositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
         {
-            Name = model.Name;
-            OwnerName = model.OwnerName;
+            ModelName = model.ModelName;
+            Client = model.Client;
             Shape = model.Shape;
             Material = model.Material;
             Preview = model.Preview;
-            Coordinates = coordinates;
+            CoordinateX = coordinates.Item1;
+            CoordinateY = coordinates.Item2;
+            CoordinateZ = coordinates.Item3;
         }
 
-        public ValueTuple<decimal, decimal, decimal> Coordinates { get; set; }
+        public ValueTuple<decimal, decimal, decimal> GetCoordinates()
+        {
+            return new ValueTuple<decimal, decimal, decimal>(CoordinateX, CoordinateY, CoordinateZ);
+        }
     }
 }

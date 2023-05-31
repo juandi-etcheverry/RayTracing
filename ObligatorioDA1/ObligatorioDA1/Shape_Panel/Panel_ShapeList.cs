@@ -22,7 +22,7 @@ namespace ObligatorioDA1
         {
             dgvShapeList.Rows.Clear();
             foreach (Sphere shape in _shapeLogic.GetClientShapes().ToList())
-                dgvShapeList.Rows.Add(null, null, shape.Name, shape.Radius);
+                dgvShapeList.Rows.Add(null, null, shape.ShapeName, shape.Radius);
         }
 
         private void InititializeList()
@@ -64,7 +64,7 @@ namespace ObligatorioDA1
 
         private void AddColumns()
         {
-            dgvShapeList.Columns.Add("name", "Name");
+            dgvShapeList.Columns.Add("name", "MaterialName");
             dgvShapeList.Columns.Add("radius", "Radius");
         }
 

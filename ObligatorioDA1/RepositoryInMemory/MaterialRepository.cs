@@ -16,7 +16,7 @@ namespace RepositoryInMemory
 
         public List<Material> FindMany(string name)
         {
-            return _materials.Where(m => m.Name.ToLower().Equals(name.ToLower())).ToList();
+            return _materials.Where(m => m.MaterialName.ToLower().Equals(name.ToLower())).ToList();
         }
 
         public Material Add(Material x)

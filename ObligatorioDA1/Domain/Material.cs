@@ -11,16 +11,16 @@ namespace Domain
 
     public class Material
     {
-        private string _name;
+        private string _materialName;
 
-        public string Name
+        public string MaterialName
         {
-            get => _name;
+            get => _materialName;
             set
             {
                 if (value.IsEmpty()) ThrowEmptyName();
                 if (value.HasTrailingSpaces()) ThrowHasTrailingSpaces();
-                _name = value;
+                _materialName = value;
             }
         }
 
@@ -56,6 +56,9 @@ namespace Domain
             }
         }
 
+        public int Id { get; set; }
+        public Client Client { get; set; }
+
         public ValueTuple<int, int, int> GetColor()
         {
             return new ValueTuple<int, int, int>(ColorX, ColorY, ColorZ);
@@ -68,10 +71,6 @@ namespace Domain
             ColorY = y;
             ColorZ = z;
         }
-
-        public MaterialType Type { get; set; }
-
-        public string OwnerName { get; set; }
 
         private void ThrowEmptyName()
         {

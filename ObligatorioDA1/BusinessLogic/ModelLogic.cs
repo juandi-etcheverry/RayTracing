@@ -3,13 +3,14 @@ using System.Linq;
 using BusinessLogicExceptions;
 using Domain;
 using IRepository;
+using RepositoryInDB;
 using RepositoryInMemory;
 
 namespace BusinessLogic
 {
     public class ModelLogic
     {
-        private readonly IRepositoryModel _repository = new ModelRepository();
+        private readonly IRepositoryModel _repository = new ModelRepositoryInDB();
 
         public void Add(Model model)
         {
@@ -20,7 +21,7 @@ namespace BusinessLogic
 
         public Model Get(string name)
         {
-            var existanceValidationModel = new Model { Name = name };
+            var existanceValidationModel = new Model { ModelName = name };
             AssignModelToClient(existanceValidationModel);
             ValidateModelExists(existanceValidationModel);
             return GetModelForOwner(existanceValidationModel);
@@ -29,7 +30,7 @@ namespace BusinessLogic
         public IList<Model> GetClientModels()
         {
             EnsureClientIsLoggedIn();
-            return _repository.GetAll().Where(model => model.OwnerName == Session.LoggedClient.Name).ToList();
+            return _repository.GetAll().Where(model => model.Client.Name == Session.LoggedClient.Name).ToList();
         }
 
         public IList<Model> GetAll()
@@ -40,7 +41,7 @@ namespace BusinessLogic
         public Model Rename(Model model, string newName)
         {
             ValidateRenaming(model, newName);
-            model.Name = newName;
+            model.ModelName = newName;
             return model;
         }
 
@@ -56,7 +57,7 @@ namespace BusinessLogic
         {
             var sceneLogic = new SceneLogic();
             var isModelInUse = sceneLogic.GetClientScenes().Any(scene =>
-                scene.Models.Any(positionedModel => positionedModel.Name == model.Name));
+                scene.Models.Any(positionedModel => positionedModel.ModelName == model.ModelName));
 
             if (isModelInUse) throw new AssociationException("Model is already being used by a Scene");
         }
@@ -64,25 +65,25 @@ namespace BusinessLogic
         private void ValidateRenaming(Model model, string newName)
         {
             ValidateModelExists(model);
-            var nameUniquenessValidationModel = new Model { Name = newName };
+            var nameUniquenessValidationModel = new Model { ModelName = newName };
             AssignModelToClient(nameUniquenessValidationModel);
             ValidateModelNameUniqueness(nameUniquenessValidationModel);
         }
 
         private void ValidateModelNameUniqueness(Model model)
         {
-            if (IsModelNameInUse(model)) ThrowNameInUse(model.Name);
+            if (IsModelNameInUse(model)) ThrowNameInUse(model.ModelName);
         }
 
         private void ValidateModelExists(Model model)
         {
-            if (!IsModelNameInUse(model)) ThrowNotFound(model.Name);
+            if (!IsModelNameInUse(model)) ThrowNotFound(model.ModelName);
         }
 
         private void AssignModelToClient(Model model)
         {
             EnsureClientIsLoggedIn();
-            model.OwnerName = Session.LoggedClient.Name;
+            model.Client.Name = Session.LoggedClient.Name;
         }
 
         private void EnsureClientIsLoggedIn()
@@ -92,18 +93,18 @@ namespace BusinessLogic
 
         private void ValidateMaterialNameUniqueness(Model model)
         {
-            if (IsModelNameInUse(model)) ThrowNameInUse(model.Name);
+            if (IsModelNameInUse(model)) ThrowNameInUse(model.ModelName);
         }
 
         private bool IsModelNameInUse(Model model)
         {
-            var existingModels = _repository.FindMany(model.Name);
-            return existingModels.Exists(existingModel => existingModel.OwnerName == model.OwnerName);
+            var existingModels = _repository.FindMany(model.ModelName);
+            return existingModels.Exists(existingModel => existingModel.Client.Name == model.Client.Name);
         }
 
         private Model GetModelForOwner(Model checkModel)
         {
-            return GetClientModels().FirstOrDefault(model => model.Name.ToLower() == checkModel.Name.ToLower());
+            return GetClientModels().FirstOrDefault(model => model.ModelName.ToLower() == checkModel.ModelName.ToLower());
         }
 
         private void ThrowNameInUse(string name)

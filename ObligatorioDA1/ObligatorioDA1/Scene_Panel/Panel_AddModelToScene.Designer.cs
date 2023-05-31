@@ -187,7 +187,7 @@
             this.lblModelName.Name = "lblModelName";
             this.lblModelName.Size = new System.Drawing.Size(152, 29);
             this.lblModelName.TabIndex = 9;
-            this.lblModelName.Text = "Model Name";
+            this.lblModelName.Text = "Model MaterialName";
             // 
             // pboxModelPreview
             // 
