@@ -1,10 +1,12 @@
 ﻿using Domain;
+using GraphicsEngine;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
@@ -39,27 +41,42 @@ namespace ObligatorioDA1.Scene_Panel
             saveFileDialog.Filter = FileType();
             saveFileDialog.Title = "Save an Image File";
             Bitmap bitmap = _scene.Preview;
-            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string filePath = saveFileDialog.FileName;
                 Console.WriteLine(filePath);
-                bitmap.Save(filePath, FileType1());
+                Save(bitmap, filePath);
             }
             _panelGeneral.GoToSceneEditor(_scene);
         }
         private string FileType()
         {
-            if (rbtnJPG.Checked) return "JPeg Image|*.jpg";
-            else if (rbtnPNG.Checked) return "Png Image|*.png";
-            else return "PPM Image|*.ppm";
+            if (rbtnJPG.Checked) { return "JPeg Image|*.jpg"; }
+            if (rbtnPNG.Checked) return "Png Image|*.png";
+            return "PPM Image|*.ppm";
         }
-        private ImageFormat FileType1()
+        private void Save(Bitmap bitmap, string filePath)
         {
-            ImageFormat imageFormat;
-            if(rbtnPNG.Checked) imageFormat = ImageFormat.Png;
-            else if (rbtnJPG.Checked) imageFormat = ImageFormat.Jpeg;
-            else imageFormat = ImageFormat.Bmp;
-            return imageFormat;
+            if (rbtnPNG.Checked) SavePNG(bitmap, filePath);
+            else if (rbtnJPG.Checked) SaveJPG(bitmap, filePath);
+            else SavePPM(filePath);
+        }
+
+        private void SavePNG(Bitmap bitmap, string filePath)
+        {
+            bitmap.Save(filePath, ImageFormat.Png);
+        }
+
+        private void SaveJPG(Bitmap bitmap, string filePath)
+        {
+            bitmap.Save(filePath, ImageFormat.Jpeg);
+        }
+
+        private void SavePPM(string filePath)
+        {
+            int sceneDateTime = ImageParser.HashDate(_scene.LastRenderDate);
+            string sceneFileName = $"{_scene.OwnerName}_{sceneDateTime}.ppm";
+            File.Copy(sceneFileName, filePath);
         }
     }
 }
