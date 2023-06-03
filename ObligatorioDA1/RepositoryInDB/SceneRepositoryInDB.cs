@@ -43,6 +43,8 @@ namespace RepositoryInDB
                 return context.Scenes
                     .Include(s => s.Client)
                     .Include(s => s.Models.Select(p => p.Model))
+                    .Include(s => s.Models.Select(p => p.Model).Select(m => m.Material))
+                    .Include(s => s.Models.Select(p => p.Model).Select(m => m.Shape))
                     .Include(s => s.ClientScenePreferences)
                     .FirstOrDefault(s => s.Id == id);
             }
