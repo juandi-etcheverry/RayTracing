@@ -25,5 +25,10 @@ namespace RepositoryInMemory
             Shapes.Remove(shape);
             return shape;
         }
+
+        public Shape Update(Shape x, string newName)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

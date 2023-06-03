@@ -28,7 +28,12 @@ namespace RepositoryInMemory
 
         public List<Model> FindMany(string name)
         {
-            return _models.Where(m => m.Name.ToLower().Equals(name.ToLower())).ToList();
+            return _models.Where(m => m.ModelName.ToLower().Equals(name.ToLower())).ToList();
+        }
+
+        public Model Update(Model x, string newName)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 using Domain;
 using IRepository;
 
@@ -14,6 +15,15 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
+                Client loggedClient = context.Clients.FirstOrDefault(c => c.Name == model.Client.Name);
+                model.Client = loggedClient;
+
+                Shape shape = context.Shapes.FirstOrDefault(s => s.Id == model.Shape.Id);
+                model.Shape = shape;
+
+                Material material = context.Materials.FirstOrDefault(m => m.Id == model.Material.Id);
+                model.Material = material;
+
                 context.Models.Add(model);
                 context.SaveChanges();
             }
@@ -24,7 +34,7 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                return context.Models.Where(m => m.ModelName.ToLower().Equals(name.ToLower())).ToList();
+                return context.Models.Include(m => m.Client).Where(m => m.ModelName.ToLower().Equals(name.ToLower())).ToList();
             }
         }
 
@@ -32,7 +42,11 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                return context.Models.ToList();
+                return context.Models
+                            .Include(m => m.Client)
+                            .Include(m => m.Shape)
+                            .Include(m => m.Material)
+                            .ToList();
             }
         }
 
@@ -40,10 +54,22 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                context.Models.Remove(model);
+                Model modelToDelete = context.Models.FirstOrDefault(m => m.Id == model.Id);
+                context.Models.Remove(modelToDelete);
                 context.SaveChanges();
+                return modelToDelete;
             }
-            return model;
+        }
+
+        public Model Update(Model model, string newName)
+        {
+            using (var context = new BusinessContext())
+            {
+                Model modelToUpdate = context.Models.FirstOrDefault(m => m.Id == model.Id);
+                modelToUpdate.ModelName = newName;
+                context.SaveChanges();
+                return modelToUpdate;
+            }
         }
     }
 }

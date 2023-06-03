@@ -23,8 +23,8 @@ namespace ObligatorioDA1.Material_Panel
         {
             dgvMaterialList.Rows.Clear();
             foreach (var material in _materialLogic.GetClientMaterials().ToList())
-                dgvMaterialList.Rows.Add(null, null, null, material.MaterialName, material.Color.Item1, material.Color.Item2,
-                    material.Color.Item3);
+                dgvMaterialList.Rows.Add(null, null, null, material.MaterialName, material.ColorX, material.ColorY,
+                    material.ColorZ);
         }
 
         private void InitializeList()
@@ -105,9 +105,9 @@ namespace ObligatorioDA1.Material_Panel
 
         private Color GetColour(Material _material)
         {
-            var r = (int)_material.Color.Item1;
-            var g = (int)_material.Color.Item2;
-            var b = (int)_material.Color.Item3;
+            var r = (int)_material.ColorX;
+            var g = (int)_material.ColorY;
+            var b = (int)_material.ColorZ;
             var newColor = Color.FromArgb(r, g, b);
             return newColor;
         }

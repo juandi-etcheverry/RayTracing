@@ -13,6 +13,7 @@ namespace ObligatorioDA1
     public partial class Panel_SceneEditor : UserControl
     {
         private readonly ModelLogic _modelLogic = new ModelLogic();
+        private readonly SceneLogic _sceneLogic = new SceneLogic();
         private readonly Panel_General _panelGeneral;
         private Scene _scene;
 
@@ -26,7 +27,7 @@ namespace ObligatorioDA1
 
         public void RefreshSceneEditor(Scene scene)
         {
-            _scene = scene;
+            _scene = _sceneLogic.GetScene(scene.Id);
             RefreshPage();
         }
 
@@ -87,14 +88,15 @@ namespace ObligatorioDA1
         {
             dgvAvailableModelsList.Rows.Clear();
             foreach (var model in _modelLogic.GetClientModels().ToList())
-                dgvAvailableModelsList.Rows.Add(model.Preview, null, model.Name, null);
+                dgvAvailableModelsList.Rows.Add(model.Preview, null, model.ModelName, null);
         }
 
         private void RefreshUsedList()
         {
             dgvUsedModels.Rows.Clear();
+            _scene = _sceneLogic.GetScene(_scene.Id); 
             foreach (var posModel in _scene.Models.ToList())
-                dgvUsedModels.Rows.Add(posModel.Preview, null, posModel.Name, null, posModel.Coordinates);
+                dgvUsedModels.Rows.Add(posModel.Model.Preview, null, posModel.Model.ModelName, null, posModel.GetCoordinates());
         }
 
         private void dgvAvailableModelsList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -154,7 +156,7 @@ namespace ObligatorioDA1
                 var y = decimal.Parse(values[1]);
                 var z = decimal.Parse(values[2]);
                 var tuple = ValueTuple.Create(x, y, z);
-                _scene.DeletePositionedModel(modelName, tuple);
+                _sceneLogic.DeletePositionedModel(modelName, _scene.Id);
                 RefreshPage();
             }
         }
@@ -185,7 +187,7 @@ namespace ObligatorioDA1
                 PPMImage renderedImage = engine.Render(_scene);
                 _scene.LastRenderDate = DateTime.Now;
                 int sceneDateTime = ImageParser.HashDate(_scene.LastRenderDate);
-                string sceneFileName = $"{_scene.OwnerName}_{sceneDateTime}.ppm";
+                string sceneFileName = $"{_scene.Client.Name}_{sceneDateTime}.ppm";
                 renderedImage.SaveFile(sceneFileName);
                 RecoverSceneRender();
                 Cursor.Current = Cursors.Arrow;
@@ -213,7 +215,7 @@ namespace ObligatorioDA1
         private void RecoverSceneRender()
         {
             int sceneDateTime = ImageParser.HashDate(_scene.LastRenderDate);
-            string sceneFileName = $"{_scene.OwnerName}_{sceneDateTime}.ppm";
+            string sceneFileName = $"{_scene.Client.Name}_{sceneDateTime}.ppm";
             Bitmap renderedImage = RecoverSceneImage(sceneFileName);
             pboxRenderedScene.Image = renderedImage;
             _scene.Preview = renderedImage;
@@ -257,10 +259,10 @@ namespace ObligatorioDA1
             return tuple;
         }
 
-        private uint SetFov()
+        private int SetFov()
         {
-            uint x;
-            var validX = uint.TryParse(txbFoV.Text, out x);
+            int x;
+            var validX = int.TryParse(txbFoV.Text, out x);
             if (!validX) throw new ArgumentException("FoV must be a positive number");
             return x;
         }
@@ -273,9 +275,9 @@ namespace ObligatorioDA1
 
         private Color GetColour(Model _model)
         {
-            var r = (int)_model.Material.Color.Item1;
-            var g = (int)_model.Material.Color.Item2;
-            var b = (int)_model.Material.Color.Item3;
+            var r = (int)_model.Material.ColorX;
+            var g = (int)_model.Material.ColorY;
+            var b = (int)_model.Material.ColorZ;
             var newColor = Color.FromArgb(r, g, b);
             return newColor;
         }
@@ -307,20 +309,20 @@ namespace ObligatorioDA1
 
         private void SetLooks()
         {
-            txbXLookFrom.Text = _scene.ClientScenePreferences.LookFromDefault.Item1.ToString();
-            txbYLookFrom.Text = _scene.ClientScenePreferences.LookFromDefault.Item2.ToString();
-            txbZLookFrom.Text = _scene.ClientScenePreferences.LookFromDefault.Item3.ToString();
-            txbXLookAt.Text = _scene.ClientScenePreferences.LookAtDefault.Item1.ToString();
-            txbYLookAt.Text = _scene.ClientScenePreferences.LookAtDefault.Item2.ToString();
-            txbZLookAt.Text = _scene.ClientScenePreferences.LookAtDefault.Item3.ToString();
+            txbXLookFrom.Text = _scene.ClientScenePreferences.LookFromDefaultX.ToString();
+            txbYLookFrom.Text = _scene.ClientScenePreferences.LookFromDefaultY.ToString();
+            txbZLookFrom.Text = _scene.ClientScenePreferences.LookFromDefaultZ.ToString();
+            txbXLookAt.Text = _scene.ClientScenePreferences.LookAtDefaultX.ToString();
+            txbYLookAt.Text = _scene.ClientScenePreferences.LookAtDefaultY.ToString();
+            txbZLookAt.Text = _scene.ClientScenePreferences.LookAtDefaultZ.ToString();
             txbFoV.Text = _scene.ClientScenePreferences.FoVDefault.ToString();
         }
 
         private void SetNewLooksOnRender(ValueTuple<decimal, decimal, decimal> tuple1,
-            ValueTuple<decimal, decimal, decimal> tuple2, uint fov)
+            ValueTuple<decimal, decimal, decimal> tuple2, int fov)
         {
-            _scene.ClientScenePreferences.LookFromDefault = tuple1;
-            _scene.ClientScenePreferences.LookAtDefault = tuple2;
+            _scene.ClientScenePreferences.SetLookFromDefault(tuple1);
+            _scene.ClientScenePreferences.SetLookAtDefault(tuple2);
             _scene.ClientScenePreferences.FoVDefault = fov;
         }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Data.Entity;
 using Domain;
 using IRepository;
 
@@ -15,6 +16,9 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
+                Client loggedClient = context.Clients.FirstOrDefault(c => c.Name == material.Client.Name);
+                material.Client = loggedClient;
+
                 context.Materials.Add(material);
                 context.SaveChanges();
             }
@@ -25,7 +29,7 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                return context.Materials.Where(m => m.MaterialName.ToLower().Equals(name.ToLower())).ToList();
+                return context.Materials.Include(m => m.Client).Where(m => m.MaterialName.ToLower().Equals(name.ToLower())).ToList();
             }
         }
 
@@ -33,7 +37,7 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                return context.Materials.ToList();
+                return context.Materials.Include(m => m.Client).ToList();
             }
         }
 
@@ -41,10 +45,22 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                context.Materials.Remove(material);
+                Material materialToRemove = context.Materials.FirstOrDefault(m => m.Id == material.Id);
+                context.Materials.Remove(materialToRemove);
                 context.SaveChanges();
+                return materialToRemove;
             }
-            return material;
+        }
+
+        public Material Update(Material material, string newName)
+        {
+            using (var context = new BusinessContext())
+            {
+                Material materialToUpdate = context.Materials.FirstOrDefault(m => m.Id == material.Id);
+                materialToUpdate.MaterialName = newName;
+                context.SaveChanges();
+                return materialToUpdate;
+            }
         }
     }
 }

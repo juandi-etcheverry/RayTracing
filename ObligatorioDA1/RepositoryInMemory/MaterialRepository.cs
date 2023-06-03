@@ -30,5 +30,10 @@ namespace RepositoryInMemory
             _materials.Remove(x);
             return x;
         }
+
+        public Material Update(Material x, string newName)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

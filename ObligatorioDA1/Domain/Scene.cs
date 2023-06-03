@@ -38,28 +38,6 @@ namespace Domain
             }
         }
 
-        public PositionedModel AddPositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates)
-        {
-            var newPositionedModel = new PositionedModel(model, coordinates);
-            Models.Add(newPositionedModel);
-            LastModificationDate = DateTime.Now;
-            return newPositionedModel;
-        }
-
-        public void DeletePositionedModel(string name, ValueTuple<decimal, decimal, decimal> coordinates)
-        {
-            var positionedModel = GetPositionedModel(name, coordinates);
-            LastModificationDate = DateTime.Now;
-            Models.Remove(positionedModel);
-        }
-
-        public PositionedModel GetPositionedModel(string name, ValueTuple<decimal, decimal, decimal> coordinates)
-        {
-            var positionedModel =
-                Models.FirstOrDefault(model => model.ModelName == name && model.GetCoordinates() == coordinates);
-            return positionedModel;
-        }
-
         private void ThrowEmptyName()
         {
             throw new NameException("Scene name can't be empty");

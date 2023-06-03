@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 using Domain;
 using IRepository;
 
@@ -14,6 +15,9 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
+                Client loggedClient = context.Clients.FirstOrDefault(c => c.Name == shape.Client.Name);
+                shape.Client = loggedClient;
+
                 context.Shapes.Add(shape);
                 context.SaveChanges();
             }
@@ -24,7 +28,7 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                return context.Shapes.ToList();
+                return context.Shapes.Include(s => s.Client).ToList();
             }
         }
 
@@ -32,10 +36,22 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                context.Shapes.Remove(shape);
+                Shape shapeToRemove = context.Shapes.FirstOrDefault(s => s.Id == shape.Id);
+                context.Shapes.Remove(shapeToRemove);
                 context.SaveChanges();
+                return shapeToRemove;
             }
-            return shape;
+        }
+
+        public Shape Update(Shape shape, string newName)
+        {
+            using (var context = new BusinessContext())
+            {
+                Shape shapeToUpdate = context.Shapes.FirstOrDefault(s => s.Id == shape.Id);
+                shapeToUpdate.ShapeName = newName;
+                context.SaveChanges();
+                return shapeToUpdate;
+            }
         }
     }
 }

@@ -30,5 +30,10 @@ namespace RepositoryInMemory
             _clients.Remove(client);
             return client;
         }
+
+        public Client Update(Client x, string newName)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

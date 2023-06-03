@@ -41,8 +41,7 @@ namespace BusinessLogic
         public Model Rename(Model model, string newName)
         {
             ValidateRenaming(model, newName);
-            model.ModelName = newName;
-            return model;
+            return _repository.Update(model, newName);
         }
 
         public Model Remove(Model model)
@@ -57,7 +56,7 @@ namespace BusinessLogic
         {
             var sceneLogic = new SceneLogic();
             var isModelInUse = sceneLogic.GetClientScenes().Any(scene =>
-                scene.Models.Any(positionedModel => positionedModel.ModelName == model.ModelName));
+                scene.Models.Any(positionedModel => positionedModel.Model.ModelName == model.ModelName));
 
             if (isModelInUse) throw new AssociationException("Model is already being used by a Scene");
         }
@@ -83,7 +82,7 @@ namespace BusinessLogic
         private void AssignModelToClient(Model model)
         {
             EnsureClientIsLoggedIn();
-            model.Client.Name = Session.LoggedClient.Name;
+            model.Client = Session.LoggedClient;
         }
 
         private void EnsureClientIsLoggedIn()

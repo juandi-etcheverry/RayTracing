@@ -34,7 +34,7 @@ namespace BusinessLogic
         private void AssignMaterialToClient(Material material)
         {
             EnsureClientIsLoggedIn();
-            material.Client.Name = Session.LoggedClient.Name;
+            material.Client = Session.LoggedClient;
         }
 
         private void EnsureClientIsLoggedIn()
@@ -60,8 +60,7 @@ namespace BusinessLogic
         public Material Rename(Material material, string newName)
         {
             ValidateRenaming(material, newName);
-            material.MaterialName = newName;
-            return material;
+            return _repository.Update(material, newName);
         }
 
 

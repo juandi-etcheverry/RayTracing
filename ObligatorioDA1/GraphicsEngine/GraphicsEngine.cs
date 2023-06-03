@@ -58,16 +58,16 @@ namespace GraphicsEngine
         {
             var LookAt = new Vector
             {
-                X = scene.ClientScenePreferences.LookAtDefault.Item1,
-                Y = scene.ClientScenePreferences.LookAtDefault.Item2,
-                Z = scene.ClientScenePreferences.LookAtDefault.Item3
+                X = scene.ClientScenePreferences.LookAtDefaultX,
+                Y = scene.ClientScenePreferences.LookAtDefaultY,
+                Z = scene.ClientScenePreferences.LookAtDefaultZ
             };
 
             var LookFrom = new Vector
             {
-                X = scene.ClientScenePreferences.LookFromDefault.Item1,
-                Y = scene.ClientScenePreferences.LookFromDefault.Item2,
-                Z = scene.ClientScenePreferences.LookFromDefault.Item3
+                X = scene.ClientScenePreferences.LookAtDefaultX,
+                Y = scene.ClientScenePreferences.LookFromDefaultY,
+                Z = scene.ClientScenePreferences.LookFromDefaultZ
             };
 
             var Up = new Vector
@@ -147,7 +147,7 @@ namespace GraphicsEngine
         private HitRecord PossibleRayIntersectionWithModel(PositionedModel model, Ray ray,
             decimal maxDirectionScalingFactor)
         {
-            var modelSphere = (Sphere)model.Shape;
+            var modelSphere = (Sphere)model.Model.Shape;
             var modelCoordinates = PointFromModelCoordinates(model);
             var attenuation = ColorFromModelMaterial(model);
 
@@ -182,9 +182,9 @@ namespace GraphicsEngine
         {
             var attenuation = new Color
             {
-                R = model.Material.Color.Item1 / 255m,
-                G = model.Material.Color.Item2 / 255m,
-                B = model.Material.Color.Item3 / 255m
+                R = model.Model.Material.ColorX / 255m,
+                G = model.Model.Material.ColorY / 255m,
+                B = model.Model.Material.ColorZ / 255m
             };
             return attenuation;
         }
@@ -193,9 +193,9 @@ namespace GraphicsEngine
         {
             var modelCoordinates = new Vector
             {
-                X = model.Coordinates.Item1,
-                Y = model.Coordinates.Item2,
-                Z = model.Coordinates.Item3
+                X = model.CoordinateX,
+                Y = model.CoordinateY,
+                Z = model.CoordinateZ
             };
             return modelCoordinates;
         }

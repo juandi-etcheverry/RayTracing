@@ -64,7 +64,7 @@ namespace BusinessLogic
         private void AssignShapeToClient(Shape shape)
         {
             EnsureClientIsLoggedIn();
-            shape.Client.Name = Session.LoggedClient.Name;
+            shape.Client = Session.LoggedClient;
         }
 
         private void EnsureClientIsLoggedIn()
@@ -75,8 +75,7 @@ namespace BusinessLogic
         public Shape RenameShape(Shape shape, string newName)
         {
             EnsureShapeNameUniqueness(newName);
-            shape.ShapeName = newName;
-            return shape;
+            return _repository.Update(shape, newName);
         }
 
         private void EnsureShapeNameUniqueness(string name)

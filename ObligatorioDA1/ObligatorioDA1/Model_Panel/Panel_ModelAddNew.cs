@@ -16,6 +16,7 @@ namespace ObligatorioDA1.Model_Panel
         private Model _newModel;
         private readonly Panel_General _panelGeneral;
         private readonly ShapeLogic _shapeLogic = new ShapeLogic();
+        private readonly SceneLogic _sceneLogic = new SceneLogic();
 
         public Panel_ModelAddNew(Panel_General panelGeneral)
         {
@@ -44,7 +45,7 @@ namespace ObligatorioDA1.Model_Panel
                     throw new ArgumentException("Must select a material");
                 if (cmbNewModelShape.SelectedItem == null)
                     throw new ArgumentException("Must select a shape");
-                _newModel.Name = txbNewModelName.Text;
+                _newModel.ModelName = txbNewModelName.Text;
                 _newModel.Material = _materialLogic.Get(cmbNewModelMaterial.SelectedItem.ToString());
                 _newModel.Shape = _shapeLogic.GetShape(cmbNewModelShape.SelectedItem.ToString());
                 _newModel.WantPreview = ckbModelPreview.Checked;
@@ -85,7 +86,7 @@ namespace ObligatorioDA1.Model_Panel
                 SceneName = "Preview scene"
             };
             previewScene.ClientScenePreferences = loggedInClient.ClientScenePreferences;
-            previewScene.AddPositionedModel(model, (0, 2, 10));
+            _sceneLogic.AddPositionedModel(model, (0, 2, 10), previewScene.Id);
             previewScene.LastRenderDate = DateTime.Now;
             int hashedScene = ImageParser.HashDate(previewScene.LastRenderDate);
             string modelFileName = $"{loggedInClient.Name}_{hashedScene}_p.ppm";
@@ -133,7 +134,7 @@ namespace ObligatorioDA1.Model_Panel
             lblNewModelNameException.Visible = false;
             try
             {
-                _newModel.Name = txbNewModelName.Text;
+                _newModel.ModelName = txbNewModelName.Text;
             }
             catch (NameException nameEx)
             {

@@ -25,7 +25,7 @@ namespace ObligatorioDA1.Model_Panel
         {
             dgvModelList.Rows.Clear();
             foreach (var model in _modelLogic.GetClientModels().ToList())
-                dgvModelList.Rows.Add(model.Preview, null, null, null, model.Name, model.Shape.ShapeName, model.Material.MaterialName);
+                dgvModelList.Rows.Add(model.Preview, null, null, null, model.ModelName, model.Shape.ShapeName, model.Material.MaterialName);
         }
 
         private void InitializeModelList()
@@ -117,9 +117,9 @@ namespace ObligatorioDA1.Model_Panel
 
         private Color GetColour(Model _model)
         {
-            var r = (int)_model.Material.Color.Item1;
-            var g = (int)_model.Material.Color.Item2;
-            var b = (int)_model.Material.Color.Item3;
+            var r = (int)_model.Material.ColorX;
+            var g = (int)_model.Material.ColorY;
+            var b = (int)_model.Material.ColorZ;
             var newColor = Color.FromArgb(r, g, b);
             return newColor;
         }

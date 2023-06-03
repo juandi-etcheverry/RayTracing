@@ -3,6 +3,7 @@ using IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -25,7 +26,7 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                return context.Clients.FirstOrDefault(c => c.Name == name);
+                return context.Clients.Include(c => c.ClientScenePreferences).FirstOrDefault(c => c.Name == name);
             }
         }
 
@@ -41,10 +42,22 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                context.Clients.Remove(client);
+                Client clientToRemove = context.Clients.FirstOrDefault(c => c.Name == client.Name);
+                context.Clients.Remove(clientToRemove);
                 context.SaveChanges();
+                return clientToRemove;
             }
-            return client;
+        }
+
+        public Client Update(Client client, string newName)
+        {
+            using (var context = new BusinessContext())
+            {
+                Client clientToChangeName = context.Clients.FirstOrDefault(c => c.Name == client.Name);
+                clientToChangeName.Name = newName;
+                context.SaveChanges();
+                return clientToChangeName;
+            }
         }
     }
 }

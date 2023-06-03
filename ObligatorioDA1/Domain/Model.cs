@@ -13,6 +13,9 @@ namespace Domain
         public Bitmap Preview = null;
         public DateTime CreatedAt { get; set; }
         public int Id { get; set; }
+        public Shape Shape { get; set; }
+        public Material Material { get; set; }
+        public Client Client { get; set; }
 
 
         public Model()
@@ -30,12 +33,6 @@ namespace Domain
                 _name = value;
             }
         }
-
-        public Shape Shape { get; set; }
-
-        public Material Material { get; set; }
-
-        public Client Client { get; set; }
 
         private void ThrowEmptyName()
         {

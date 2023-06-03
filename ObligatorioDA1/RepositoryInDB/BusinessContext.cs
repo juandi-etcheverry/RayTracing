@@ -26,6 +26,7 @@ namespace RepositoryInDB
             ClientConfiguration.ConfigureEntity(modelBuilder);
             ModelConfiguration.ConfigureEntity(modelBuilder);
             ShapeConfiguration.ConfigureEntity(modelBuilder);
+            SceneConfiguration.ConfigureEntity(modelBuilder);
         }
 
     }
