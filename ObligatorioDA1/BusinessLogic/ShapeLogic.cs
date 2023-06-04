@@ -75,7 +75,8 @@ namespace BusinessLogic
         public Shape RenameShape(Shape shape, string newName)
         {
             EnsureShapeNameUniqueness(newName);
-            return _repository.Update(shape, newName);
+            shape.ShapeName = newName;
+            return _repository.Update(shape);
         }
 
         private void EnsureShapeNameUniqueness(string name)

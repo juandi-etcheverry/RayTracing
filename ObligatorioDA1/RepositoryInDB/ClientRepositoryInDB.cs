@@ -49,12 +49,13 @@ namespace RepositoryInDB
             }
         }
 
-        public Client Update(Client client, string newName)
+        public Client Update(Client client)
         {
             using (var context = new BusinessContext())
             {
                 Client clientToChangeName = context.Clients.FirstOrDefault(c => c.Name == client.Name);
-                clientToChangeName.Name = newName;
+                clientToChangeName.Name = client.Name;
+                clientToChangeName.ClientScenePreferences = client.ClientScenePreferences;
                 context.SaveChanges();
                 return clientToChangeName;
             }

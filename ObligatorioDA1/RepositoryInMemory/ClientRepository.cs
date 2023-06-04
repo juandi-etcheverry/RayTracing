@@ -31,7 +31,7 @@ namespace RepositoryInMemory
             return client;
         }
 
-        public Client Update(Client x, string newName)
+        public Client Update(Client x)
         {
             throw new System.NotImplementedException();
         }

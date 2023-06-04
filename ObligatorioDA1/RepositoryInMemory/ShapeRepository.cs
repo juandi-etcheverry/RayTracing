@@ -26,7 +26,7 @@ namespace RepositoryInMemory
             return shape;
         }
 
-        public Shape Update(Shape x, string newName)
+        public Shape Update(Shape x)
         {
             throw new System.NotImplementedException();
         }

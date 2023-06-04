@@ -41,7 +41,8 @@ namespace BusinessLogic
         public Model Rename(Model model, string newName)
         {
             ValidateRenaming(model, newName);
-            return _repository.Update(model, newName);
+            model.ModelName = newName;
+            return _repository.Update(model);
         }
 
         public Model Remove(Model model)

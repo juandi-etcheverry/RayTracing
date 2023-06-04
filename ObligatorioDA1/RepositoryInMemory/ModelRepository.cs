@@ -31,7 +31,7 @@ namespace RepositoryInMemory
             return _models.Where(m => m.ModelName.ToLower().Equals(name.ToLower())).ToList();
         }
 
-        public Model Update(Model x, string newName)
+        public Model Update(Model x)
         {
             throw new System.NotImplementedException();
         }

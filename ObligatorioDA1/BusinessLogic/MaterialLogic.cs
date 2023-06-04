@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using BusinessLogicExceptions;
 using Domain;
@@ -60,7 +61,8 @@ namespace BusinessLogic
         public Material Rename(Material material, string newName)
         {
             ValidateRenaming(material, newName);
-            return _repository.Update(material, newName);
+            material.MaterialName = newName;
+            return _repository.Update(material);
         }
 
 
