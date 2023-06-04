@@ -123,7 +123,7 @@ namespace GraphicsEngine
         private Ray CalculateBouncedRay(HitRecord intersectionWithShape)
         {
             var newPoint = intersectionWithShape.IntersectionPoint.Add(intersectionWithShape.Normal)
-                .Add(GetRandomInUnitSphere());
+                .Add(Vector.GetRandomInUnitSphere());
             var newVector = newPoint.Subtract(intersectionWithShape.IntersectionPoint);
             var newRay = new Ray
             {
@@ -200,28 +200,6 @@ namespace GraphicsEngine
             return modelCoordinates;
         }
 
-        private Vector GetRandomInUnitSphere()
-        {
-            Vector finalVector;
-            var onesVector = new Vector { X = 1, Y = 1, Z = 1 };
-            do
-            {
-                var randomVector = GenerateRandomVector();
-                finalVector = randomVector.Multiply(2).Subtract(onesVector);
-            } while (finalVector.SquaredLength() >= 1);
 
-            return finalVector;
-        }
-
-        private Vector GenerateRandomVector()
-        {
-            var randomVector = new Vector
-            {
-                X = Convert.ToDecimal(RandomGenerator.NextDouble()),
-                Y = Convert.ToDecimal(RandomGenerator.NextDouble()),
-                Z = Convert.ToDecimal(RandomGenerator.NextDouble())
-            };
-            return randomVector;
-        }
     }
 }
