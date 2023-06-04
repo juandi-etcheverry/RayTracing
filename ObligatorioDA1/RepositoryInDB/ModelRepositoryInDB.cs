@@ -61,12 +61,12 @@ namespace RepositoryInDB
             }
         }
 
-        public Model Update(Model model, string newName)
+        public Model Update(Model model)
         {
             using (var context = new BusinessContext())
             {
                 Model modelToUpdate = context.Models.FirstOrDefault(m => m.Id == model.Id);
-                modelToUpdate.ModelName = newName;
+                modelToUpdate.ModelName = model.ModelName;
                 context.SaveChanges();
                 return modelToUpdate;
             }
