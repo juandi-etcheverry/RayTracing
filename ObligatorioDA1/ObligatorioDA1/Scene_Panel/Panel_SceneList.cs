@@ -33,14 +33,14 @@ namespace ObligatorioDA1.Scene_Panel
 
         private void AddColumns()
         {
-            dgvSceneList.Columns.Add("MaterialName", "MaterialName");
+            dgvSceneList.Columns.Add("Name", "Name");
             dgvSceneList.Columns.Add("Last update", "Last update");
         }
 
         private void SetDisplayOrderColumns()
         {
             dgvSceneList.Columns["Preview"].DisplayIndex = 0;
-            dgvSceneList.Columns["MaterialName"].DisplayIndex = 1;
+            dgvSceneList.Columns["Name"].DisplayIndex = 1;
             dgvSceneList.Columns["Last update"].DisplayIndex = 2;
             dgvSceneList.Columns["Edit"].DisplayIndex = 3;
             dgvSceneList.Columns["Rename"].DisplayIndex = 4;

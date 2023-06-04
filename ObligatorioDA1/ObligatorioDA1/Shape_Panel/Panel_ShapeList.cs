@@ -64,7 +64,7 @@ namespace ObligatorioDA1
 
         private void AddColumns()
         {
-            dgvShapeList.Columns.Add("name", "MaterialName");
+            dgvShapeList.Columns.Add("name", "Name");
             dgvShapeList.Columns.Add("radius", "Radius");
         }
 

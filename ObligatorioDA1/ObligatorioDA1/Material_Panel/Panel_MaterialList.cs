@@ -78,7 +78,7 @@ namespace ObligatorioDA1.Material_Panel
         private void AddColumns()
         {
             dgvMaterialList.Columns.Add("Colour1", "");
-            dgvMaterialList.Columns.Add("MaterialName", "MaterialName");
+            dgvMaterialList.Columns.Add("Name", "Name");
             dgvMaterialList.Columns.Add("R", "R");
             dgvMaterialList.Columns.Add("G", "G");
             dgvMaterialList.Columns.Add("B", "B");
@@ -87,7 +87,7 @@ namespace ObligatorioDA1.Material_Panel
         private void SetDisplayOrderColumns()
         {
             dgvMaterialList.Columns["Colour1"].DisplayIndex = 0;
-            dgvMaterialList.Columns["MaterialName"].DisplayIndex = 1;
+            dgvMaterialList.Columns["Name"].DisplayIndex = 1;
             dgvMaterialList.Columns["R"].DisplayIndex = 2;
             dgvMaterialList.Columns["G"].DisplayIndex = 3;
             dgvMaterialList.Columns["B"].DisplayIndex = 4;

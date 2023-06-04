@@ -11,7 +11,7 @@ namespace BusinessLogicTest
         private readonly ClientLogic _clientLogic = new ClientLogic();
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private readonly ModelLogic _modelLogic = new ModelLogic();
-        public readonly SceneLogic _sceneLogic = new SceneLogic();
+        private readonly SceneLogic _sceneLogic = new SceneLogic();
         private readonly ShapeLogic _shapeLogic = new ShapeLogic();
         private Client _client;
 

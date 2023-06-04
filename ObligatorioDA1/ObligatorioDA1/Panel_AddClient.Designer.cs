@@ -75,7 +75,7 @@
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(55, 20);
             this.lblName.TabIndex = 2;
-            this.lblName.Text = "MaterialName:";
+            this.lblName.Text = "Name:";
             // 
             // btnAddNewClient
             // 

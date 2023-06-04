@@ -77,7 +77,7 @@ namespace ObligatorioDA1.Model_Panel
         private void AddColumns()
         {
             dgvModelList.Columns.Add("Colour", " ");
-            dgvModelList.Columns.Add("MaterialName", "MaterialName");
+            dgvModelList.Columns.Add("Name", "Name");
             dgvModelList.Columns.Add("Shape", "Shape");
             dgvModelList.Columns.Add("Material", "Material");
         }
@@ -86,7 +86,7 @@ namespace ObligatorioDA1.Model_Panel
         {
             dgvModelList.Columns["Colour"].DisplayIndex = 0;
             dgvModelList.Columns["Preview"].DisplayIndex = 1;
-            dgvModelList.Columns["MaterialName"].DisplayIndex = 2;
+            dgvModelList.Columns["Name"].DisplayIndex = 2;
             dgvModelList.Columns["Shape"].DisplayIndex = 3;
             dgvModelList.Columns["Material"].DisplayIndex = 4;
             dgvModelList.Columns["Rename"].DisplayIndex = 5;
@@ -95,7 +95,7 @@ namespace ObligatorioDA1.Model_Panel
 
         private void SetWidthColumns()
         {
-            dgvModelList.Columns["MaterialName"].Width = 100;
+            dgvModelList.Columns["Name"].Width = 100;
             dgvModelList.Columns["Colour"].Width = 5;
         }
 
@@ -121,16 +121,6 @@ namespace ObligatorioDA1.Model_Panel
                     }
                 }
 
-                //if (dgvModelList.Columns[e.ColumnIndex].MaterialName == "Preview")
-                //{
-                //    var cell = dgvModelList.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                //    var modelName = dgvModelList.Rows[e.RowIndex].Cells[4].Value.ToString();
-                //    var model = _modelLogic.Get(modelName);
-                //    if (model.WantPreview)
-                //    {
-
-                //    }
-                //}
             }
         }
 
@@ -138,7 +128,7 @@ namespace ObligatorioDA1.Model_Panel
         {
             string modelName;
             Model model;
-            if (dgvModelList.Columns[e.ColumnIndex].Name == "Delete")
+            if (dgvModelList.Columns[e.ColumnIndex].Name == "Delete" && e.RowIndex != 0)
             {
                 modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
                 model = _modelLogic.Get(modelName);
@@ -146,7 +136,7 @@ namespace ObligatorioDA1.Model_Panel
                 dgvModelList.Rows.Remove(dgvModelList.CurrentRow);
             }
 
-            if (dgvModelList.Columns[e.ColumnIndex].Name == "Rename")
+            if (dgvModelList.Columns[e.ColumnIndex].Name == "Rename" && e.RowIndex != 0)
             {
                 modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
                 model = _modelLogic.Get(modelName);

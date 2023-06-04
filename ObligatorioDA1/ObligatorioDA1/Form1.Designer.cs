@@ -164,7 +164,7 @@
             this.lblNameException.Name = "lblNameException";
             this.lblNameException.Size = new System.Drawing.Size(103, 15);
             this.lblNameException.TabIndex = 12;
-            this.lblNameException.Text = "*MaterialName Exception";
+            this.lblNameException.Text = "*Name Exception";
             // 
             // lblPasswordException
             // 

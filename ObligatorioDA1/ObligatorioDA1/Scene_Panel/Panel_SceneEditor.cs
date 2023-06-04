@@ -52,7 +52,7 @@ namespace ObligatorioDA1
 
         private void InitializeAvailableList()
         {
-            dgvAvailableModelsList.Columns.Add("MaterialName", "MaterialName");
+            dgvAvailableModelsList.Columns.Add("Name", "Name");
             dgvAvailableModelsList.Columns.Add("Colour", " ");
             SetDisplayOrderColumnsAvailable();
             dgvAvailableModelsList.Columns["Colour"].Width = 5;
@@ -60,7 +60,7 @@ namespace ObligatorioDA1
 
         private void InitializeUsedList()
         {
-            dgvUsedModels.Columns.Add("MaterialName", "MaterialName");
+            dgvUsedModels.Columns.Add("Name", "Name");
             dgvUsedModels.Columns.Add("Colour", " ");
             dgvUsedModels.Columns.Add("Pos", "Pos");
             SetDisplayOrderColumnsUsed();
@@ -71,7 +71,7 @@ namespace ObligatorioDA1
         {
             dgvAvailableModelsList.Columns["Colour"].DisplayIndex = 0;
             dgvAvailableModelsList.Columns["Img"].DisplayIndex = 1;
-            dgvAvailableModelsList.Columns["MaterialName"].DisplayIndex = 2;
+            dgvAvailableModelsList.Columns["Name"].DisplayIndex = 2;
             dgvAvailableModelsList.Columns["Add"].DisplayIndex = 3;
         }
 
@@ -79,7 +79,7 @@ namespace ObligatorioDA1
         {
             dgvUsedModels.Columns["Colour"].DisplayIndex = 0;
             dgvUsedModels.Columns["Preview"].DisplayIndex = 1;
-            dgvUsedModels.Columns["MaterialName"].DisplayIndex = 2;
+            dgvUsedModels.Columns["Name"].DisplayIndex = 2;
             dgvUsedModels.Columns["Pos"].DisplayIndex = 3;
             dgvUsedModels.Columns["Delete"].DisplayIndex = 4;
         }
@@ -94,7 +94,7 @@ namespace ObligatorioDA1
         private void RefreshUsedList()
         {
             dgvUsedModels.Rows.Clear();
-            _scene = _sceneLogic.GetScene(_scene.Id); 
+            _scene = _sceneLogic.GetScene(_scene.Id);
             foreach (var posModel in _scene.Models.ToList())
                 dgvUsedModels.Rows.Add(posModel.Model.Preview, null, posModel.Model.ModelName, null, posModel.GetCoordinates());
         }
