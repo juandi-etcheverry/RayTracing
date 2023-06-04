@@ -33,7 +33,7 @@ namespace BusinessLogicTest
             _clientLogic.InitializeSession(client);
             var oneShape = new Shape
             {
-                Name = "Nicolas"
+                ShapeName = "Nicolas"
             };
             _shapeLogic.AddShape(oneShape);
             Assert.IsTrue(_shapeLogic.GetClientShapes().Count == 1);
@@ -53,11 +53,11 @@ namespace BusinessLogicTest
 
             var shape1 = new Shape
             {
-                Name = "Ticu"
+                ShapeName = "Ticu"
             };
             var shape2 = new Shape
             {
-                Name = "Teito"
+                ShapeName = "Teito"
             };
             _shapeLogic.AddShape(shape1);
             _shapeLogic.AddShape(shape2);
@@ -77,7 +77,7 @@ namespace BusinessLogicTest
 
             var shape1 = new Shape
             {
-                Name = "Esfera"
+                ShapeName = "Esfera"
             };
             _shapeLogic.AddShape(shape1);
             Assert.ThrowsException<NameException>(() => _shapeLogic.AddShape(shape1));
@@ -98,7 +98,7 @@ namespace BusinessLogicTest
             {
                 var shape1 = new Shape
                 {
-                    Name = ""
+                    ShapeName = ""
                 };
             });
         }
@@ -118,7 +118,7 @@ namespace BusinessLogicTest
             {
                 var shape1 = new Shape
                 {
-                    Name = "   Nicolas"
+                    ShapeName = "   Nicolas"
                 };
             });
         }
@@ -136,7 +136,7 @@ namespace BusinessLogicTest
 
             var shape1 = new Shape
             {
-                Name = "Nicolas"
+                ShapeName = "Nicolas"
             };
             _shapeLogic.AddShape(shape1);
         }
@@ -154,7 +154,7 @@ namespace BusinessLogicTest
 
             var shape1 = new Shape
             {
-                Name = "Nicolas"
+                ShapeName = "Nicolas"
             };
             _shapeLogic.AddShape(shape1);
             _shapeLogic.RemoveShape(shape1);
@@ -174,11 +174,11 @@ namespace BusinessLogicTest
 
             var shape1 = new Shape
             {
-                Name = "Nicolas"
+                ShapeName = "Nicolas"
             };
             var shape2 = new Shape
             {
-                Name = "Mateo"
+                ShapeName = "Mateo"
             };
             _shapeLogic.AddShape(shape1);
             _shapeLogic.AddShape(shape2);
@@ -199,7 +199,7 @@ namespace BusinessLogicTest
 
             var shape1 = new Shape
             {
-                Name = "Nicolas"
+                ShapeName = "Nicolas"
             };
             _shapeLogic.AddShape(shape1);
             var shape2 = new Shape();
@@ -219,11 +219,11 @@ namespace BusinessLogicTest
 
             var shape1 = new Shape
             {
-                Name = "Nicolas"
+                ShapeName = "Nicolas"
             };
             _shapeLogic.AddShape(shape1);
             _shapeLogic.RenameShape(shape1, "JuanDiego");
-            Assert.AreEqual("JuanDiego", shape1.Name);
+            Assert.AreEqual("JuanDiego", shape1.ShapeName);
         }
 
         [TestMethod]
@@ -239,12 +239,12 @@ namespace BusinessLogicTest
 
             var shape1 = new Shape
             {
-                Name = "Nicolas"
+                ShapeName = "Nicolas"
             };
             _shapeLogic.AddShape(shape1);
             var shape2 = new Shape
             {
-                Name = "Mateo"
+                ShapeName = "Mateo"
             };
             _shapeLogic.AddShape(shape2);
             Assert.ThrowsException<NameException>(() => _shapeLogic.RenameShape(shape1, "Mateo"));
@@ -263,7 +263,7 @@ namespace BusinessLogicTest
 
             var newSphere = new Sphere
             {
-                Name = "Nicolas",
+                ShapeName = "Nicolas",
                 Radius = 3
             };
             _shapeLogic.AddShape(newSphere);
@@ -285,7 +285,7 @@ namespace BusinessLogicTest
             {
                 var newSphere = new Sphere
                 {
-                    Name = "Nicolas",
+                    ShapeName = "Nicolas",
                     Radius = -3
                 };
             });
@@ -304,7 +304,7 @@ namespace BusinessLogicTest
 
             var newSphere = new Sphere
             {
-                Name = "JD",
+                ShapeName = "JD",
                 Radius = 2
             };
             _shapeLogic.AddShape(newSphere);
@@ -324,7 +324,7 @@ namespace BusinessLogicTest
 
             var newShape = new Shape
             {
-                Name = "NewShape"
+                ShapeName = "NewShape"
             };
             _shapeLogic.AddShape(newShape);
 
@@ -343,7 +343,7 @@ namespace BusinessLogicTest
 
             var newShape = new Shape
             {
-                Name = "NewShape"
+                ShapeName = "NewShape"
             };
 
             Assert.ThrowsException<SessionException>(() => _shapeLogic.AddShape(newShape));
@@ -361,7 +361,7 @@ namespace BusinessLogicTest
             _clientLogic.InitializeSession(client);
             var oneShape = new Shape
             {
-                Name = "Shape1"
+                ShapeName = "Shape1"
             };
             _shapeLogic.AddShape(oneShape);
 
@@ -375,11 +375,11 @@ namespace BusinessLogicTest
             _clientLogic.InitializeSession(anotherClient);
             var newShape1 = new Shape
             {
-                Name = "newShape1"
+                ShapeName = "newShape1"
             };
             var newShape2 = new Shape
             {
-                Name = "newShape2"
+                ShapeName = "newShape2"
             };
             _shapeLogic.AddShape(newShape1);
             _shapeLogic.AddShape(newShape2);
@@ -400,7 +400,7 @@ namespace BusinessLogicTest
 
             var shape = new Shape
             {
-                Name = "Shape"
+                ShapeName = "Shape"
             };
             _shapeLogic.AddShape(shape);
 
@@ -429,13 +429,13 @@ namespace BusinessLogicTest
 
             var shape = new Shape
             {
-                Name = "Shape"
+                ShapeName = "Shape"
             };
             _shapeLogic.AddShape(shape);
 
             var material = new Material
             {
-                Name = "Material",
+                MaterialName = "Material",
                 Color = (10, 50, 11),
                 Type = MaterialType.Lambertian
             };

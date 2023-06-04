@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using BusinessLogic;
 using Domain;
 
 namespace ObligatorioDA1.Scene_Panel
@@ -9,6 +10,7 @@ namespace ObligatorioDA1.Scene_Panel
         private Model _model;
         private readonly Panel_General _panelGeneral;
         private Scene _scene;
+        private readonly SceneLogic _sceneLogic = new SceneLogic();
 
         public Panel_AddModelToScene(Panel_General panelGeneral)
         {
@@ -25,7 +27,7 @@ namespace ObligatorioDA1.Scene_Panel
 
         private void RefreshPage()
         {
-            lblModelName.Text = _model.Name;
+            lblModelName.Text = _model.ModelName;
             txbModelXCoordinates.Clear();
             txbModelYCoordinates.Clear();
             txbModelZCoordinates.Clear();
@@ -48,7 +50,7 @@ namespace ObligatorioDA1.Scene_Panel
                 var validY = decimal.TryParse(txbModelYCoordinates.Text, out y);
                 var validZ = decimal.TryParse(txbModelZCoordinates.Text, out z);
                 if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
-                _scene.AddPositionedModel(_model, (x, y, z));
+                _sceneLogic.AddPositionedModel(_model, (x, y, z), _scene.Id);
                 _panelGeneral.GoToSceneEditor(_scene);
             }
             catch (ArgumentException argEx)

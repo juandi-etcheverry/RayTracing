@@ -3,13 +3,14 @@ using System.Linq;
 using BusinessLogicExceptions;
 using Domain;
 using IRepository;
+using RepositoryInDB;
 using RepositoryInMemory;
 
 namespace BusinessLogic
 {
     public class ClientLogic
     {
-        private readonly IRepositoryClient _repository = new ClientRepository();
+        private readonly IRepositoryClient _repository = new ClientRepositoryInDB();
 
         public IList<Client> GetClients()
         {

@@ -22,7 +22,7 @@ namespace ObligatorioDA1.Scene_Panel
         {
             dgvSceneList.Rows.Clear();
             foreach (var scene in _sceneLogic.GetClientScenes().ToList())
-                dgvSceneList.Rows.Add(scene.Preview, null, null, null, scene.Name, scene.LastModificationDate);
+                dgvSceneList.Rows.Add(scene.Preview, null, null, null, scene.SceneName, scene.LastModificationDate);
         }
 
         private void InitializeSceneList()

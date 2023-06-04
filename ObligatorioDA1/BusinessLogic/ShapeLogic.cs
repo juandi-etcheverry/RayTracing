@@ -3,13 +3,14 @@ using System.Linq;
 using BusinessLogicExceptions;
 using Domain;
 using IRepository;
+using RepositoryInDB;
 using RepositoryInMemory;
 
 namespace BusinessLogic
 {
     public class ShapeLogic
     {
-        private readonly IRepositoryShape _repository = new ShapeRepository();
+        private readonly IRepositoryShape _repository = new ShapeRepositoryInDB();
 
         public IList<Shape> GetShapes()
         {
@@ -19,13 +20,13 @@ namespace BusinessLogic
         public IList<Shape> GetClientShapes()
         {
             EnsureClientIsLoggedIn();
-            return _repository.GetAll().Where(shape => shape.OwnerName == Session.LoggedClient.Name).ToList();
+            return _repository.GetAll().Where(shape => shape.Client.Name == Session.LoggedClient.Name).ToList();
         }
 
         public Shape GetShape(string name)
         {
             EnsureClientIsLoggedIn();
-            Shape existenceValidationShape = new Shape { Name = name };
+            Shape existenceValidationShape = new Shape { ShapeName = name };
             AssignShapeToClient(existenceValidationShape);
             EnsureShapeExists(name);
             return GetShapeForOwner(existenceValidationShape);
@@ -33,7 +34,7 @@ namespace BusinessLogic
 
         private void EnsureShapeExists(string name)
         {
-            var sceneExists = GetClientShapes().Any(shape => shape.Name.ToLower() == name.ToLower());
+            var sceneExists = GetClientShapes().Any(shape => shape.ShapeName.ToLower() == name.ToLower());
             if (!sceneExists) ThrowNotFound();
         }
 
@@ -41,20 +42,20 @@ namespace BusinessLogic
         {
             ValidateShapeRefencedByModel(shape);
             var removedShape = _repository.Remove(shape);
-            if (removedShape.Name is null) ThrowNotFound();
+            if (removedShape.ShapeName is null) ThrowNotFound();
             return shape;
         }
 
         private void ValidateShapeRefencedByModel(Shape shape)
         {
             var modelLogic = new ModelLogic();
-            var isShapeInUse = modelLogic.GetClientModels().Any(model => model.Shape.Name == shape.Name);
+            var isShapeInUse = modelLogic.GetClientModels().Any(model => model.Shape.ShapeName == shape.ShapeName);
             if (isShapeInUse) ThrowShapeReferencedByModel();
         }
 
         public Shape AddShape(Shape shape)
         {
-            EnsureShapeNameUniqueness(shape.Name);
+            EnsureShapeNameUniqueness(shape.ShapeName);
             AssignShapeToClient(shape);
             _repository.Add(shape);
             return shape;
@@ -63,7 +64,7 @@ namespace BusinessLogic
         private void AssignShapeToClient(Shape shape)
         {
             EnsureClientIsLoggedIn();
-            shape.OwnerName = Session.LoggedClient.Name;
+            shape.Client = Session.LoggedClient;
         }
 
         private void EnsureClientIsLoggedIn()
@@ -74,8 +75,7 @@ namespace BusinessLogic
         public Shape RenameShape(Shape shape, string newName)
         {
             EnsureShapeNameUniqueness(newName);
-            shape.Name = newName;
-            return shape;
+            return _repository.Update(shape, newName);
         }
 
         private void EnsureShapeNameUniqueness(string name)
@@ -86,7 +86,7 @@ namespace BusinessLogic
 
         private Shape GetShapeForOwner(Shape checkShape)
         {
-            return GetClientShapes().FirstOrDefault(shape => shape.AreNamesEqual(checkShape.Name));
+            return GetClientShapes().FirstOrDefault(shape => shape.AreNamesEqual(checkShape.ShapeName));
         }
 
         private void ThrowNotFound()

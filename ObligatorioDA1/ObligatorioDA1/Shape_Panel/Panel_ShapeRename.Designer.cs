@@ -72,7 +72,7 @@
             this.lblRenameException.Name = "lblRenameException";
             this.lblRenameException.Size = new System.Drawing.Size(92, 13);
             this.lblRenameException.TabIndex = 3;
-            this.lblRenameException.Text = "* Name Exception";
+            this.lblRenameException.Text = "* MaterialName Exception";
             // 
             // btnConfirmRename
             // 

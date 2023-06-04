@@ -12,17 +12,18 @@ namespace Domain
         private static readonly uint MAX_PASSWORD_LENGTH = 25;
         private string _name;
         private string _password;
-        private DateTime _registrationDate;
+        public DateTime RegistrationDate { get; set; }
+        public ClientScenePreferences ClientScenePreferences { get; set; }
 
         public Client()
         {
-            _registrationDate = DateTime.Now;
+            RegistrationDate = DateTime.Now;
             ClientScenePreferences = new ClientScenePreferences
             {
-                LookFromDefault = (0, 2, 0),
-                LookAtDefault = (0, 2, 5),
                 FoVDefault = 30
             };
+            ClientScenePreferences.SetLookFromDefault((0, 2, 0));
+            ClientScenePreferences.SetLookAtDefault((0, 2, 5));
         }
 
         public string Name
@@ -48,8 +49,6 @@ namespace Domain
                 _password = value;
             }
         }
-
-        public ClientScenePreferences ClientScenePreferences { get; set; }
 
         private void ThrowNotAlphanumeric()
         {

@@ -1,30 +1,72 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using BusinessLogicExceptions;
 using Domain;
 using IRepository;
+using RepositoryInDB;
 using RepositoryInMemory;
 
 namespace BusinessLogic
 {
     public class SceneLogic
     {
-        private readonly IRepositoryScene _repository = new SceneRepository();
+        private readonly IRepositoryScene _repository = new SceneRepositoryInDB();
+        private readonly IRepositoryClient _repositoryClient = new ClientRepositoryInDB();
 
         public Scene Add(Scene scene)
         {
-            EnsureSceneNameUniqueness(scene.Name);
+            EnsureSceneNameUniqueness(scene.SceneName);
             AssignSceneToClient(scene);
             SetSceneDefaultValues(scene);
             _repository.Add(scene);
             return scene;
         }
 
+        public Scene GetScene(int id)
+        {
+            return _repository.Get(id);
+        }
+
+        public PositionedModel AddPositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates, int id)
+        {
+            Scene scene = GetScene(id);
+            var newPositionedModel = new PositionedModel()
+            {
+                Model = model,
+                CoordinateX = coordinates.Item1,
+                CoordinateY = coordinates.Item2,
+                CoordinateZ = coordinates.Item3,
+            };
+            AddPositionedModel(scene, newPositionedModel);
+            return newPositionedModel;
+        }
+
+        public void DeletePositionedModel(string name, int id)
+        {
+            Scene scene = GetScene(id);
+            var positionedModel = GetPositionedModel(scene, name);
+            scene.LastModificationDate = DateTime.Now;
+            _repository.DeleteModel(scene, positionedModel);
+        }
+
+        public PositionedModel GetPositionedModel(Scene scene, string modelName)
+        {
+            return _repository.GetModel(scene, modelName);
+        }
+
+        private void AddPositionedModel(Scene scene, PositionedModel model)
+        {
+            scene.LastModificationDate = DateTime.Now;
+            _repository.AddModel(scene, model);
+        }
+
         private void SetSceneDefaultValues(Scene scene)
         {
-            var client = Session.LoggedClient;
-            scene.ClientScenePreferences.LookFromDefault = client.ClientScenePreferences.LookFromDefault;
-            scene.ClientScenePreferences.LookAtDefault = client.ClientScenePreferences.LookAtDefault;
+            var client = _repositoryClient.Get(Session.LoggedClient.Name);
+            scene.ClientScenePreferences.SetLookAtDefault(client.ClientScenePreferences.GetLookAtDefault());
+            scene.ClientScenePreferences.SetLookFromDefault(client.ClientScenePreferences.GetLookFromDefault());
             scene.ClientScenePreferences.FoVDefault = client.ClientScenePreferences.FoVDefault;
         }
 
@@ -37,7 +79,7 @@ namespace BusinessLogic
         private void AssignSceneToClient(Scene scene)
         {
             EnsureClientIsLoggedIn();
-            scene.OwnerName = Session.LoggedClient.Name;
+            scene.Client = Session.LoggedClient;
         }
 
         private void EnsureClientIsLoggedIn()
@@ -47,27 +89,26 @@ namespace BusinessLogic
 
         public void RemoveScene(Scene scene)
         {
-            EnsureSceneExists(scene.Name);
+            EnsureSceneExists(scene.SceneName);
             _repository.Remove(scene);
         }
 
         public Scene RenameScene(Scene scene, string newName)
         {
-            EnsureSceneExists(scene.Name);
+            EnsureSceneExists(scene.SceneName);
             EnsureSceneNameUniqueness(newName);
-            scene.Name = newName;
-            return scene;
+            return _repository.Update(scene, newName);
         }
 
         private void EnsureSceneExists(string name)
         {
-            var sceneExists = GetClientScenes().Any(scene => scene.Name.ToLower() == name.ToLower());
+            var sceneExists = GetClientScenes().Any(scene => scene.SceneName.ToLower() == name.ToLower());
             if (!sceneExists) ThrowNotFound();
         }
 
         public Scene GetScene(string name)
         {
-            var existanceValidationScene = new Scene { Name = name };
+            var existanceValidationScene = new Scene { SceneName = name };
             AssignSceneToClient(existanceValidationScene);
             EnsureSceneExists(name);
             return GetSceneForOwner(existanceValidationScene);
@@ -75,7 +116,7 @@ namespace BusinessLogic
 
         private Scene GetSceneForOwner(Scene checkScene)
         {
-            return GetClientScenes().FirstOrDefault(scene => scene.AreNamesEqual(checkScene.Name));
+            return GetClientScenes().FirstOrDefault(scene => scene.AreNamesEqual(checkScene.SceneName));
         }
 
         public IList<Scene> GetAll()
@@ -85,7 +126,7 @@ namespace BusinessLogic
 
         public IList<Scene> GetClientScenes()
         {
-            return _repository.GetAll().Where(scene => scene.OwnerName == Session.LoggedClient.Name)
+            return _repository.GetAll().Where(scene => scene.Client.Name == Session.LoggedClient.Name)
                 .OrderByDescending(scene => scene.LastModificationDate).ToList();
         }
 

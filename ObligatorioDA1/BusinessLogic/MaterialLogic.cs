@@ -3,13 +3,14 @@ using System.Linq;
 using BusinessLogicExceptions;
 using Domain;
 using IRepository;
+using RepositoryInDB;
 using RepositoryInMemory;
 
 namespace BusinessLogic
 {
     public class MaterialLogic
     {
-        private readonly IRepositoryMaterial _repository = new MaterialRepository();
+        private readonly IRepositoryMaterial _repository = new MaterialRepositoryInDB();
 
         public IList<Material> GetAll()
         {
@@ -19,7 +20,7 @@ namespace BusinessLogic
         public IList<Material> GetClientMaterials()
         {
             EnsureClientIsLoggedIn();
-            return _repository.GetAll().Where(material => material.OwnerName == Session.LoggedClient.Name).ToList();
+            return _repository.GetAll().Where(material => material.Client.Name == Session.LoggedClient.Name).ToList();
         }
 
         public Material Add(Material newMaterial)
@@ -33,7 +34,7 @@ namespace BusinessLogic
         private void AssignMaterialToClient(Material material)
         {
             EnsureClientIsLoggedIn();
-            material.OwnerName = Session.LoggedClient.Name;
+            material.Client = Session.LoggedClient;
         }
 
         private void EnsureClientIsLoggedIn()
@@ -52,21 +53,20 @@ namespace BusinessLogic
         private void ValidateMaterialReferencedByModel(Material material)
         {
             var modelLogic = new ModelLogic();
-            var isMaterialInUse = modelLogic.GetClientModels().Any(model => model.Material.Name == material.Name);
+            var isMaterialInUse = modelLogic.GetClientModels().Any(model => model.Material.MaterialName == material.MaterialName);
             if (isMaterialInUse) ThrowMaterialReferencedByModel();
         }
 
         public Material Rename(Material material, string newName)
         {
             ValidateRenaming(material, newName);
-            material.Name = newName;
-            return material;
+            return _repository.Update(material, newName);
         }
 
 
         public Material Get(string name)
         {
-            var existanceValidationMaterial = new Material { Name = name };
+            var existanceValidationMaterial = new Material { MaterialName = name };
             AssignMaterialToClient(existanceValidationMaterial);
             ValidateMaterialExists(existanceValidationMaterial);
             return GetMaterialForOwner(existanceValidationMaterial);
@@ -75,19 +75,19 @@ namespace BusinessLogic
         private void ValidateRenaming(Material material, string newName)
         {
             ValidateMaterialExists(material);
-            var nameUniquenessValidationMaterial = new Material { Name = newName };
+            var nameUniquenessValidationMaterial = new Material { MaterialName = newName };
             AssignMaterialToClient(nameUniquenessValidationMaterial);
             ValidateMaterialNameUniqueness(nameUniquenessValidationMaterial);
         }
 
         private void ValidateMaterialNameUniqueness(Material material)
         {
-            if (IsMaterialNameInUse(material)) ThrowNameInUse(material.Name);
+            if (IsMaterialNameInUse(material)) ThrowNameInUse(material.MaterialName);
         }
 
         private void ValidateMaterialExists(Material material)
         {
-            if (!IsMaterialNameInUse(material)) ThrowNotFound(material.Name);
+            if (!IsMaterialNameInUse(material)) ThrowNotFound(material.MaterialName);
         }
 
         private void ThrowNameInUse(string name)
@@ -111,14 +111,14 @@ namespace BusinessLogic
 
         private bool IsMaterialNameInUse(Material material)
         {
-            var existingMaterials = _repository.FindMany(material.Name);
-            return existingMaterials.Exists(existingMaterial => existingMaterial.OwnerName == material.OwnerName);
+            var existingMaterials = _repository.FindMany(material.MaterialName);
+            return existingMaterials.Exists(existingMaterial => existingMaterial.Client.Name == material.Client.Name);
         }
 
         private Material GetMaterialForOwner(Material checkMaterial)
         {
             return GetClientMaterials()
-                .FirstOrDefault(material => material.Name.ToLower() == checkMaterial.Name.ToLower());
+                .FirstOrDefault(material => material.MaterialName.ToLower() == checkMaterial.MaterialName.ToLower());
         }
     }
 }

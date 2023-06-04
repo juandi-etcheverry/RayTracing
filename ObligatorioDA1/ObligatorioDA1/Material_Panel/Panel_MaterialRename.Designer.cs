@@ -57,9 +57,9 @@
             this.lblRenameException.Location = new System.Drawing.Point(71, 100);
             this.lblRenameException.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRenameException.Name = "lblRenameException";
-            this.lblRenameException.Size = new System.Drawing.Size(92, 13);
+            this.lblRenameException.Size = new System.Drawing.Size(89, 13);
             this.lblRenameException.TabIndex = 3;
-            this.lblRenameException.Text = "* Name Exception";
+            this.lblRenameException.Text = "*Name Exception";
             // 
             // btnConfirmRename
             // 

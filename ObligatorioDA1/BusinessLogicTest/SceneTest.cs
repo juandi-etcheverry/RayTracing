@@ -30,14 +30,14 @@ namespace BusinessLogicTest
 
             Shape newShape = new Sphere
             {
-                Name = "NewSphere",
+                ShapeName = "NewSphere",
                 Radius = 5
             };
             _shapeLogic.AddShape(newShape);
 
             var newMaterial = new Material
             {
-                Name = "NewMaterial",
+                MaterialName = "NewMaterial",
                 Color = (100, 54, 6),
                 Type = MaterialType.Lambertian
             };
@@ -68,7 +68,7 @@ namespace BusinessLogicTest
         {
             var newScene = new Scene
             {
-                Name = "NewScene"
+                SceneName = "NewScene"
             };
             newScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
             newScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
@@ -85,7 +85,7 @@ namespace BusinessLogicTest
         {
             var newScene = new Scene
             {
-                Name = "NewScene"
+                SceneName = "NewScene"
             };
             newScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
             newScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
@@ -102,7 +102,7 @@ namespace BusinessLogicTest
         {
             var newScene = new Scene
             {
-                Name = "NewScene"
+                SceneName = "NewScene"
             };
             newScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
             newScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
@@ -117,7 +117,7 @@ namespace BusinessLogicTest
             {
                 var newScene = new Scene
                 {
-                    Name = ""
+                    SceneName = ""
                 };
             });
         }
@@ -127,7 +127,7 @@ namespace BusinessLogicTest
         {
             var oneScene = new Scene
             {
-                Name = "SameName"
+                SceneName = "SameName"
             };
             oneScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
             oneScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
@@ -137,7 +137,7 @@ namespace BusinessLogicTest
 
             var anotherScene = new Scene
             {
-                Name = "SameName"
+                SceneName = "SameName"
             };
             anotherScene.ClientScenePreferences.LookFromDefault = (20, 10, 30);
             anotherScene.ClientScenePreferences.LookAtDefault = (0, 0, 15);
@@ -154,7 +154,7 @@ namespace BusinessLogicTest
             {
                 var anotherScene = new Scene
                 {
-                    Name = "  Invalid Name"
+                    SceneName = "  Invalid MaterialName"
                 };
             });
         }
@@ -164,7 +164,7 @@ namespace BusinessLogicTest
         {
             var newScene = new Scene
             {
-                Name = "NewScene"
+                SceneName = "NewScene"
             };
             var positionedModel = newScene.AddPositionedModel(_newModel, (10, 10, 10));
 
@@ -180,7 +180,7 @@ namespace BusinessLogicTest
         {
             var newScene = new Scene
             {
-                Name = "NewScene"
+                SceneName = "NewScene"
             };
             var positionedModel = newScene.AddPositionedModel(_newModel, (10, 10, 10));
 
@@ -196,7 +196,7 @@ namespace BusinessLogicTest
         {
             var newScene = new Scene
             {
-                Name = "NewScene"
+                SceneName = "NewScene"
             };
             _sceneLogic.Add(newScene);
 
@@ -208,7 +208,7 @@ namespace BusinessLogicTest
         {
             var newScene = new Scene
             {
-                Name = "NewScene"
+                SceneName = "NewScene"
             };
             _sceneLogic.Add(newScene);
 
@@ -220,7 +220,7 @@ namespace BusinessLogicTest
         {
             var newScene = new Scene
             {
-                Name = "NewScene"
+                SceneName = "NewScene"
             };
             _sceneLogic.Add(newScene);
 
@@ -234,7 +234,7 @@ namespace BusinessLogicTest
             {
                 var newScene = new Scene
                 {
-                    Name = "NewScene"
+                    SceneName = "NewScene"
                 };
                 newScene.ClientScenePreferences.FoVDefault = 200;
             });
@@ -245,19 +245,19 @@ namespace BusinessLogicTest
         {
             var firstScene = new Scene
             {
-                Name = "NewScene1"
+                SceneName = "NewScene1"
             };
             _sceneLogic.Add(firstScene);
 
             var secondScene = new Scene
             {
-                Name = "NewScene2"
+                SceneName = "NewScene2"
             };
             _sceneLogic.Add(secondScene);
 
             firstScene.LastModificationDate = DateTime.Today.AddDays(-1);
 
-            Assert.AreEqual("NewScene2", _sceneLogic.GetClientScenes()[0].Name);
+            Assert.AreEqual("NewScene2", _sceneLogic.GetClientScenes()[0].SceneName);
         }
 
         [TestMethod]
@@ -265,7 +265,7 @@ namespace BusinessLogicTest
         {
             var scene = new Scene
             {
-                Name = "NewScene1"
+                SceneName = "NewScene1"
             };
             _sceneLogic.Add(scene);
 
@@ -282,7 +282,7 @@ namespace BusinessLogicTest
         {
             var scene = new Scene
             {
-                Name = "NewScene1"
+                SceneName = "NewScene1"
             };
             _sceneLogic.Add(scene);
             _sceneLogic.RemoveScene(scene);
@@ -295,7 +295,7 @@ namespace BusinessLogicTest
         {
             var scene = new Scene
             {
-                Name = "NewScene1"
+                SceneName = "NewScene1"
             };
             _sceneLogic.Add(scene);
 
@@ -307,13 +307,13 @@ namespace BusinessLogicTest
         {
             var scene = new Scene
             {
-                Name = "NewScene1"
+                SceneName = "NewScene1"
             };
             _sceneLogic.Add(scene);
 
             _sceneLogic.RenameScene(_sceneLogic.GetScene("newScene1"), "NewScene2");
 
-            Assert.AreEqual("NewScene2", scene.Name);
+            Assert.AreEqual("NewScene2", scene.SceneName);
         }
 
         [TestMethod]
@@ -321,7 +321,7 @@ namespace BusinessLogicTest
         {
             var scene = new Scene
             {
-                Name = "NewScene1"
+                SceneName = "NewScene1"
             };
             _sceneLogic.Add(scene);
 
@@ -334,12 +334,12 @@ namespace BusinessLogicTest
         {
             var scene1 = new Scene
             {
-                Name = "NewScene1"
+                SceneName = "NewScene1"
             };
             _sceneLogic.Add(scene1);
             var scene2 = new Scene
             {
-                Name = "NewScene2"
+                SceneName = "NewScene2"
             };
             _sceneLogic.Add(scene2);
 
@@ -356,7 +356,7 @@ namespace BusinessLogicTest
 
             var scene = new Scene
             {
-                Name = "scene"
+                SceneName = "scene"
             };
             _sceneLogic.Add(scene);
 
@@ -370,7 +370,7 @@ namespace BusinessLogicTest
         {
             var scene = new Scene
             {
-                Name = "Scene"
+                SceneName = "Scene"
             };
             _sceneLogic.Add(scene);
 
@@ -385,7 +385,7 @@ namespace BusinessLogicTest
             client.ClientScenePreferences.FoVDefault = 10;
             var scene = new Scene
             {
-                Name = "Scene"
+                SceneName = "Scene"
             };
             _sceneLogic.Add(scene);
             scene.ClientScenePreferences.FoVDefault = 90;
@@ -408,7 +408,7 @@ namespace BusinessLogicTest
         {
             var scene = new Scene()
             {
-                Name = "Scene"
+                SceneName = "Scene"
             };
             _sceneLogic.Add(scene);
 
@@ -420,7 +420,7 @@ namespace BusinessLogicTest
         {
             var scene = new Scene()
             {
-                Name = "Scene"
+                SceneName = "Scene"
             };
             _sceneLogic.Add(scene);
 

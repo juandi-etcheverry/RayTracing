@@ -40,11 +40,11 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                Name = "VantaBlack",
+                MaterialName = "VantaBlack",
                 Color = (0, 0, 0),
                 Type = MaterialType.Lambertian
             };
-            Assert.AreEqual("VantaBlack", material.Name);
+            Assert.AreEqual("VantaBlack", material.MaterialName);
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace BusinessLogicTest
         {
             Material material = new Material
             {
-                Name = "MaterialColor",
+                MaterialName = "MaterialColor",
                 Color = (0, 245, 0),
                 Type = MaterialType.Lambertian
             };
@@ -68,7 +68,7 @@ namespace BusinessLogicTest
             {
                 var material = new Material
                 {
-                    Name = "",
+                    MaterialName = "",
                     Color = (0, 0, 0),
                     Type = MaterialType.Lambertian
                 };
@@ -82,7 +82,7 @@ namespace BusinessLogicTest
             {
                 var material = new Material
                 {
-                    Name = "Light Gray ",
+                    MaterialName = "Light Gray ",
                     Color = (40, 40, 40),
                     Type = MaterialType.Lambertian
                 };
@@ -96,7 +96,7 @@ namespace BusinessLogicTest
             {
                 var material = new Material
                 {
-                    Name = "Vibranium Violet",
+                    MaterialName = "Vibranium Violet",
                     Color = (256, 80, 130),
                     Type = MaterialType.Lambertian
                 };
@@ -110,7 +110,7 @@ namespace BusinessLogicTest
             {
                 var material = new Material
                 {
-                    Name = "Geologic Green",
+                    MaterialName = "Geologic Green",
                     Color = (80, 300, 130),
                     Type = MaterialType.Lambertian
                 };
@@ -125,7 +125,7 @@ namespace BusinessLogicTest
             {
                 var material = new Material
                 {
-                    Name = "Beautiful Blue",
+                    MaterialName = "Beautiful Blue",
                     Color = (20, 0, 256),
                     Type = MaterialType.Lambertian
                 };
@@ -137,7 +137,7 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                Name = "Organic Orange",
+                MaterialName = "Organic Orange",
                 Color = (180, 60, 60),
                 Type = MaterialType.Lambertian
             };
@@ -150,13 +150,13 @@ namespace BusinessLogicTest
         {
             var m1 = new Material
             {
-                Name = "Double Dummy",
+                MaterialName = "Double Dummy",
                 Color = (110, 221, 123),
                 Type = MaterialType.Lambertian
             };
             var m2 = new Material
             {
-                Name = "double dummY",
+                MaterialName = "double dummY",
                 Color = (30, 60, 90),
                 Type = MaterialType.Lambertian
             };
@@ -169,7 +169,7 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                Name = "Tan Tangerine",
+                MaterialName = "Tan Tangerine",
                 Color = (180, 60, 60),
                 Type = MaterialType.Lambertian
             };
@@ -183,7 +183,7 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                Name = "Nonexistant Neon",
+                MaterialName = "Nonexistant Neon",
                 Color = (245, 60, 60),
                 Type = MaterialType.Lambertian
             };
@@ -195,7 +195,7 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                Name = "Valid Vlue",
+                MaterialName = "Valid Vlue",
                 Color = (180, 20, 170),
                 Type = MaterialType.Lambertian
             };
@@ -209,7 +209,7 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                Name = "Valid Vlue",
+                MaterialName = "Valid Vlue",
                 Color = (180, 20, 170),
                 Type = MaterialType.Lambertian
             };
@@ -221,13 +221,13 @@ namespace BusinessLogicTest
         {
             var presentMaterial = new Material
             {
-                Name = "Present Purple",
+                MaterialName = "Present Purple",
                 Color = (180, 20, 170),
                 Type = MaterialType.Lambertian
             };
             var newMaterial = new Material
             {
-                Name = "Unique Unicorn",
+                MaterialName = "Unique Unicorn",
                 Color = (10, 45, 11),
                 Type = MaterialType.Lambertian
             };
@@ -241,7 +241,7 @@ namespace BusinessLogicTest
         {
             var newMaterial = new Material
             {
-                Name = "Unicorn",
+                MaterialName = "Unicorn",
                 Color = (10, 45, 11),
                 Type = MaterialType.Lambertian
             };
@@ -256,7 +256,7 @@ namespace BusinessLogicTest
             _clientLogic.Logout();
             var newMaterial = new Material
             {
-                Name = "Unicorn",
+                MaterialName = "Unicorn",
                 Color = (10, 50, 11),
                 Type = MaterialType.Lambertian
             };
@@ -269,7 +269,7 @@ namespace BusinessLogicTest
         {
             var material1 = new Material
             {
-                Name = "Same Name",
+                MaterialName = "Same MaterialName",
                 Color = (10, 50, 11),
                 Type = MaterialType.Lambertian
             };
@@ -286,7 +286,7 @@ namespace BusinessLogicTest
 
             var material2 = new Material
             {
-                Name = "Same Name",
+                MaterialName = "Same MaterialName",
                 Color = (10, 50, 11),
                 Type = MaterialType.Lambertian
             };
@@ -301,13 +301,13 @@ namespace BusinessLogicTest
         {
             var material1 = new Material
             {
-                Name = "Material 1",
+                MaterialName = "Material 1",
                 Color = (10, 50, 11),
                 Type = MaterialType.Lambertian
             };
             var material2 = new Material
             {
-                Name = "Material 2",
+                MaterialName = "Material 2",
                 Color = (107, 50, 15),
                 Type = MaterialType.Lambertian
             };
@@ -324,7 +324,7 @@ namespace BusinessLogicTest
             _clientLogic.InitializeSession(anotherClient);
             var material3 = new Material
             {
-                Name = "Material 3",
+                MaterialName = "Material 3",
                 Color = (1, 29, 114),
                 Type = MaterialType.Lambertian
             };
@@ -337,7 +337,7 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                Name = "VantaBlack",
+                MaterialName = "VantaBlack",
                 Color = (0, 0, 0),
                 Type = MaterialType.Lambertian
             };
@@ -345,7 +345,7 @@ namespace BusinessLogicTest
 
             Shape sphere = new Sphere
             {
-                Name = "Sphere",
+                ShapeName = "Sphere",
                 Radius = 3
             };
             _shapeLogic.AddShape(sphere);

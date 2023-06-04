@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_AddModelToScene));
             this.btnReturnAddModel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pboxModelPreview = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblCoordinatesExceptions = new System.Windows.Forms.Label();
             this.btnAddToScene = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblModelName = new System.Windows.Forms.Label();
-            this.pboxModelPreview = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pboxModelPreview)).BeginInit();
             this.SuspendLayout();
@@ -75,10 +75,19 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lblModelName);
             this.panel1.Location = new System.Drawing.Point(80, 136);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(656, 371);
             this.panel1.TabIndex = 8;
+            // 
+            // pboxModelPreview
+            // 
+            this.pboxModelPreview.Image = ((System.Drawing.Image)(resources.GetObject("pboxModelPreview.Image")));
+            this.pboxModelPreview.Location = new System.Drawing.Point(114, 46);
+            this.pboxModelPreview.Name = "pboxModelPreview";
+            this.pboxModelPreview.Size = new System.Drawing.Size(97, 52);
+            this.pboxModelPreview.TabIndex = 20;
+            this.pboxModelPreview.TabStop = false;
             // 
             // label5
             // 
@@ -189,15 +198,6 @@
             this.lblModelName.TabIndex = 9;
             this.lblModelName.Text = "Model Name";
             // 
-            // pboxModelPreview
-            // 
-            this.pboxModelPreview.Image = ((System.Drawing.Image)(resources.GetObject("pboxModelPreview.Image")));
-            this.pboxModelPreview.Location = new System.Drawing.Point(114, 46);
-            this.pboxModelPreview.Name = "pboxModelPreview";
-            this.pboxModelPreview.Size = new System.Drawing.Size(97, 52);
-            this.pboxModelPreview.TabIndex = 20;
-            this.pboxModelPreview.TabStop = false;
-            // 
             // Panel_AddModelToScene
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -205,7 +205,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnReturnAddModel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(800, 640);
             this.MinimumSize = new System.Drawing.Size(800, 640);
             this.Name = "Panel_AddModelToScene";

@@ -37,12 +37,12 @@ namespace ObligatorioDA1.Scene_Panel
 
         private void SetDefaultValues()
         {
-            txbLookFromX.Text = _client.ClientScenePreferences.LookFromDefault.Item1.ToString();
-            txbLookFromY.Text = _client.ClientScenePreferences.LookFromDefault.Item2.ToString();
-            txbLookFromZ.Text = _client.ClientScenePreferences.LookFromDefault.Item3.ToString();
-            txbLookAtX.Text = _client.ClientScenePreferences.LookAtDefault.Item1.ToString();
-            txbLookAtY.Text = _client.ClientScenePreferences.LookAtDefault.Item2.ToString();
-            txbLookAtZ.Text = _client.ClientScenePreferences.LookAtDefault.Item3.ToString();
+            txbLookFromX.Text = _client.ClientScenePreferences.LookFromDefaultX.ToString();
+            txbLookFromY.Text = _client.ClientScenePreferences.LookFromDefaultY.ToString();
+            txbLookFromZ.Text = _client.ClientScenePreferences.LookFromDefaultZ.ToString();
+            txbLookAtX.Text = _client.ClientScenePreferences.LookAtDefaultX.ToString();
+            txbLookAtY.Text = _client.ClientScenePreferences.LookAtDefaultY.ToString();
+            txbLookAtZ.Text = _client.ClientScenePreferences.LookAtDefaultZ.ToString();
             txbFoV.Text = _client.ClientScenePreferences.FoVDefault.ToString();
         }
 
@@ -103,19 +103,19 @@ namespace ObligatorioDA1.Scene_Panel
             return tuple;
         }
 
-        private uint SetFov()
+        private int SetFov()
         {
-            uint x;
-            var validX = uint.TryParse(txbFoV.Text, out x);
+            int x;
+            var validX = int.TryParse(txbFoV.Text, out x);
             if (!validX) throw new ArgumentException("FoV must be a positive number");
             return x;
         }
 
         private void SetNewDefaults(ValueTuple<decimal, decimal, decimal> tuple1,
-            ValueTuple<decimal, decimal, decimal> tuple2, uint fov)
+            ValueTuple<decimal, decimal, decimal> tuple2, int fov)
         {
-            _client.ClientScenePreferences.LookFromDefault = tuple1;
-            _client.ClientScenePreferences.LookAtDefault = tuple2;
+            _client.ClientScenePreferences.SetLookFromDefault(tuple1);
+            _client.ClientScenePreferences.SetLookAtDefault(tuple2);;
             _client.ClientScenePreferences.FoVDefault = fov;
         }
     }

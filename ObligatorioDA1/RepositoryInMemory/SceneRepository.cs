@@ -15,15 +15,40 @@ namespace RepositoryInMemory
             return scene;
         }
 
+        public void AddModel(Scene scene, PositionedModel model)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteModel(Scene scene, PositionedModel model)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Scene Get(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IList<Scene> GetAll()
         {
             return _scenes;
+        }
+
+        public PositionedModel GetModel(Scene scene, string modelName)
+        {
+            throw new System.NotImplementedException();
         }
 
         public Scene Remove(Scene scene)
         {
             _scenes.Remove(scene);
             return scene;
+        }
+
+        public Scene Update(Scene x, string newName)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

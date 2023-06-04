@@ -11,7 +11,7 @@ namespace BusinessLogicTest
         private readonly ClientLogic _clientLogic = new ClientLogic();
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private readonly ModelLogic _modelLogic = new ModelLogic();
-        public readonly SceneLogic _sceneLogic = new SceneLogic();
+        private readonly SceneLogic _sceneLogic = new SceneLogic();
         private readonly ShapeLogic _shapeLogic = new ShapeLogic();
         private Client _client;
 
@@ -28,12 +28,12 @@ namespace BusinessLogicTest
 
             Shape sphere1 = new Sphere
             {
-                Name = "New Sphere 1",
+                ShapeName = "New Sphere 1",
                 Radius = 3
             };
             Shape sphere2 = new Sphere
             {
-                Name = "New Sphere 2",
+                ShapeName = "New Sphere 2",
                 Radius = 3
             };
             _shapeLogic.AddShape(sphere1);
@@ -41,13 +41,13 @@ namespace BusinessLogicTest
 
             var material1 = new Material
             {
-                Name = "New Material 1",
+                MaterialName = "New Material 1",
                 Color = (0, 0, 0),
                 Type = MaterialType.Lambertian
             };
             var material2 = new Material
             {
-                Name = "New Material 2",
+                MaterialName = "New Material 2",
                 Color = (190, 2, 42),
                 Type = MaterialType.Lambertian
             };
@@ -227,14 +227,14 @@ namespace BusinessLogicTest
 
             Shape sphere2 = new Sphere
             {
-                Name = "Sphere2",
+                ShapeName = "Sphere2",
                 Radius = 3
             };
             _shapeLogic.AddShape(sphere2);
 
             var material2 = new Material
             {
-                Name = "Material2",
+                MaterialName = "Material2",
                 Color = (190, 2, 42),
                 Type = MaterialType.Lambertian
             };
@@ -307,13 +307,13 @@ namespace BusinessLogicTest
 
             Shape newShape = new Sphere
             {
-                Name = "newShape",
+                ShapeName = "newShape",
                 Radius = 3
             };
             _shapeLogic.AddShape(newShape);
             var newMaterial = new Material
             {
-                Name = "newMaterial",
+                MaterialName = "newMaterial",
                 Color = (10, 2, 154),
                 Type = MaterialType.Lambertian
             };
@@ -367,7 +367,7 @@ namespace BusinessLogicTest
 
             var scene = new Scene
             {
-                Name = "Scene"
+                SceneName = "Scene"
             };
             _sceneLogic.Add(scene);
             scene.AddPositionedModel(model, (10, 13, 5));

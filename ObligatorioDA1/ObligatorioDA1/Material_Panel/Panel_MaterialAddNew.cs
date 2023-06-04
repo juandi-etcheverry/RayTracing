@@ -48,13 +48,13 @@ namespace ObligatorioDA1.Material_Panel
             lblNewRGBException.Visible = false;
             try
             {
-                uint r, g, b;
-                var validR = uint.TryParse(txbNewRMaterial.Text, out r);
-                var validG = uint.TryParse(txbNewGMaterial.Text, out g);
-                var validB = uint.TryParse(txbNewBMaterial.Text, out b);
+                int r, g, b;
+                var validR = int.TryParse(txbNewRMaterial.Text, out r);
+                var validG = int.TryParse(txbNewGMaterial.Text, out g);
+                var validB = int.TryParse(txbNewBMaterial.Text, out b);
                 if (!validR || !validG || !validB) throw new ArgumentException("RGB must be numbers between 0 and 255");
-                newMaterial.Name = txbNewMaterialName.Text;
-                newMaterial.Color = (r, g, b);
+                newMaterial.MaterialName = txbNewMaterialName.Text;
+                newMaterial.SetColor(r, g, b);
                 _materialLogic.Add(newMaterial);
                 _panelGeneral.GoToMaterialList();
             }
@@ -75,7 +75,7 @@ namespace ObligatorioDA1.Material_Panel
             lblNewMaterialNameException.Visible = false;
             try
             {
-                newMaterial.Name = txbNewMaterialName.Text;
+                newMaterial.MaterialName = txbNewMaterialName.Text;
             }
             catch (NameException nameEx)
             {

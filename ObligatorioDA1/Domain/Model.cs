@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using BusinessLogicExceptions;
 using ValidationService;
@@ -8,11 +9,21 @@ namespace Domain
     public class Model
     {
         private string _name;
-        public bool WantPreview;
+        public bool WantPreview { get; set; }
         public Bitmap Preview = null;
-        public DateTime CreatedAt = DateTime.Now;
+        public DateTime CreatedAt { get; set; }
+        public int Id { get; set; }
+        public Shape Shape { get; set; }
+        public Material Material { get; set; }
+        public Client Client { get; set; }
 
-        public string Name
+
+        public Model()
+        {
+            CreatedAt = DateTime.Now;
+        }
+
+        public string ModelName
         {
             get => _name;
             set
@@ -22,12 +33,6 @@ namespace Domain
                 _name = value;
             }
         }
-
-        public Shape Shape { get; set; }
-
-        public Material Material { get; set; }
-
-        public string OwnerName { get; set; }
 
         private void ThrowEmptyName()
         {

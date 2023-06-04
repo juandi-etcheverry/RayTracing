@@ -22,7 +22,7 @@ namespace ObligatorioDA1
         {
             dgvShapeList.Rows.Clear();
             foreach (Sphere shape in _shapeLogic.GetClientShapes().ToList())
-                dgvShapeList.Rows.Add(null, null, shape.Name, shape.Radius);
+                dgvShapeList.Rows.Add(null, null, shape.ShapeName, shape.Radius);
         }
 
         private void InititializeList()

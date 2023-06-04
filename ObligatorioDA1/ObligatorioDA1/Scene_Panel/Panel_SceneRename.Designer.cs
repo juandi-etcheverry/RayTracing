@@ -44,20 +44,20 @@
             this.panel1.Controls.Add(this.btnRename);
             this.panel1.Controls.Add(this.txbRenameScene);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(106, 250);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(53, 130);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(978, 377);
+            this.panel1.Size = new System.Drawing.Size(489, 196);
             this.panel1.TabIndex = 5;
             // 
             // lblSceneRenameException
             // 
             this.lblSceneRenameException.AutoSize = true;
             this.lblSceneRenameException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblSceneRenameException.Location = new System.Drawing.Point(142, 192);
-            this.lblSceneRenameException.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSceneRenameException.Location = new System.Drawing.Point(71, 100);
+            this.lblSceneRenameException.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSceneRenameException.Name = "lblSceneRenameException";
-            this.lblSceneRenameException.Size = new System.Drawing.Size(183, 25);
+            this.lblSceneRenameException.Size = new System.Drawing.Size(92, 13);
             this.lblSceneRenameException.TabIndex = 3;
             this.lblSceneRenameException.Text = "* Name Exception";
             // 
@@ -66,10 +66,10 @@
             this.btnRename.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnRename.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRename.ForeColor = System.Drawing.Color.White;
-            this.btnRename.Location = new System.Drawing.Point(278, 262);
-            this.btnRename.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRename.Location = new System.Drawing.Point(139, 136);
+            this.btnRename.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRename.Name = "btnRename";
-            this.btnRename.Size = new System.Drawing.Size(410, 62);
+            this.btnRename.Size = new System.Drawing.Size(205, 32);
             this.btnRename.TabIndex = 2;
             this.btnRename.Text = "Rename";
             this.btnRename.UseVisualStyleBackColor = false;
@@ -78,20 +78,20 @@
             // txbRenameScene
             // 
             this.txbRenameScene.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbRenameScene.Location = new System.Drawing.Point(148, 135);
-            this.txbRenameScene.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbRenameScene.Location = new System.Drawing.Point(74, 70);
+            this.txbRenameScene.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txbRenameScene.Name = "txbRenameScene";
-            this.txbRenameScene.Size = new System.Drawing.Size(672, 49);
+            this.txbRenameScene.Size = new System.Drawing.Size(338, 28);
             this.txbRenameScene.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(140, 83);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(70, 43);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 37);
+            this.label1.Size = new System.Drawing.Size(88, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "New name:";
             // 
@@ -99,10 +99,10 @@
             // 
             this.btnReturnRename.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnReturnRename.ForeColor = System.Drawing.Color.White;
-            this.btnReturnRename.Location = new System.Drawing.Point(106, 150);
-            this.btnReturnRename.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReturnRename.Location = new System.Drawing.Point(53, 78);
+            this.btnReturnRename.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnReturnRename.Name = "btnReturnRename";
-            this.btnReturnRename.Size = new System.Drawing.Size(164, 71);
+            this.btnReturnRename.Size = new System.Drawing.Size(82, 37);
             this.btnReturnRename.TabIndex = 7;
             this.btnReturnRename.Text = "Return";
             this.btnReturnRename.UseVisualStyleBackColor = false;
@@ -110,16 +110,15 @@
             // 
             // Panel_SceneRename
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.btnReturnRename);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.MaximumSize = new System.Drawing.Size(1200, 1000);
-            this.MinimumSize = new System.Drawing.Size(1200, 1000);
+            this.MaximumSize = new System.Drawing.Size(600, 520);
+            this.MinimumSize = new System.Drawing.Size(600, 520);
             this.Name = "Panel_SceneRename";
-            this.Size = new System.Drawing.Size(1200, 1000);
+            this.Size = new System.Drawing.Size(600, 520);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

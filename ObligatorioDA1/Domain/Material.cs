@@ -11,34 +11,66 @@ namespace Domain
 
     public class Material
     {
-        private string _name;
+        private string _materialName;
 
-        public string Name
+        public string MaterialName
         {
-            get => _name;
+            get => _materialName;
             set
             {
                 if (value.IsEmpty()) ThrowEmptyName();
                 if (value.HasTrailingSpaces()) ThrowHasTrailingSpaces();
-                _name = value;
+                _materialName = value;
             }
         }
 
-        private ValueTuple<uint, uint, uint> _color { get; set; }
+        private int _colorX { get; set; }
+        private int _colorY { get; set; }
+        private int _colorZ { get; set; }
 
-        public ValueTuple<uint, uint, uint> Color
+        public int ColorX
         {
-            get => _color;
+            get => _colorX;
             set
             {
                 if (HasInvalidColor(value)) ThrowColorsOutOfRange();
-                _color = value;
+                _colorX = value;
+            }
+        }
+        public int ColorY
+        {
+            get => _colorY;
+            set
+            {
+                if (HasInvalidColor(value)) ThrowColorsOutOfRange();
+                _colorY = value;
+            }
+        }
+        public int ColorZ
+        {
+            get => _colorZ;
+            set
+            {
+                if (HasInvalidColor(value)) ThrowColorsOutOfRange();
+                _colorZ = value;
             }
         }
 
-        public MaterialType Type { get; set; }
+        public int Id { get; set; }
+        public Client Client { get; set; }
 
-        public string OwnerName { get; set; }
+        public ValueTuple<int, int, int> GetColor()
+        {
+            return new ValueTuple<int, int, int>(ColorX, ColorY, ColorZ);
+        }
+
+        public void SetColor(int x, int y, int z)
+        {
+            if (HasInvalidColor(x) || HasInvalidColor(y) || HasInvalidColor(z)) ThrowColorsOutOfRange();
+            ColorX = x;
+            ColorY = y;
+            ColorZ = z;
+        }
 
         private void ThrowEmptyName()
         {
@@ -55,10 +87,9 @@ namespace Domain
             throw new ArgumentOutOfRangeException("RGB must be numbers between 0 and 255");
         }
 
-        private bool HasInvalidColor(ValueTuple<uint, uint, uint> color)
+        private bool HasInvalidColor(int color)
         {
-            return color.Item1 > 255 || color.Item2 > 255 || color.Item3 > 255;
+            return color > 255 || color < 0;
         }
-
     }
 }

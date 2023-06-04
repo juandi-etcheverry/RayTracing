@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using BusinessLogic;
 using Domain;
 using GraphicsEngine;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Color = System.Drawing.Color;
 
 namespace ObligatorioDA1.Model_Panel
@@ -12,6 +13,7 @@ namespace ObligatorioDA1.Model_Panel
     public partial class Panel_ModelList : UserControl
     {
         private readonly ModelLogic _modelLogic = new ModelLogic();
+        private readonly SceneLogic _sceneLogic = new SceneLogic();
         private readonly Panel_General _panelGeneral;
 
         public Panel_ModelList(Panel_General userControl)
@@ -21,11 +23,48 @@ namespace ObligatorioDA1.Model_Panel
             InitializeModelList();
         }
 
+
+        private void SetPreviewForNewModel(Model model)
+        {
+            ClientLogic clientLogic = new ClientLogic();
+            Client loggedInClient = clientLogic.GetLoggedClient();
+            Scene previewScene = new Scene()
+            {
+                LastRenderDate = DateTime.Now,
+                SceneName = "Preview scene" + DateTime.Now.ToString(),
+            };
+            previewScene.ClientScenePreferences = loggedInClient.ClientScenePreferences;
+            Scene addedScene = _sceneLogic.Add(previewScene);
+
+            _sceneLogic.AddPositionedModel(model, (0, 2, 10), addedScene.Id);
+            Scene updatedScene = _sceneLogic.GetScene(addedScene.Id);
+            updatedScene.LastRenderDate = DateTime.Now;
+            int hashedScene = ImageParser.HashDate(updatedScene.LastRenderDate);
+            string modelFileName = $"{loggedInClient.Name}_{hashedScene}_p.ppm";
+            GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine()
+            {
+                Width = 30
+            };
+            Cursor.Current = Cursors.WaitCursor;
+            PPMImage renderedPreview = engine.Render(updatedScene);
+            renderedPreview.SaveFile(modelFileName);
+            Bitmap preview = ImageParser.ConvertPpmToBitmap(modelFileName);
+            model.Preview = preview;
+            Cursor.Current = Cursors.Arrow;
+            _sceneLogic.RemoveScene(updatedScene);
+        }
+
+
+
         public void RefreshModelList()
         {
             dgvModelList.Rows.Clear();
             foreach (var model in _modelLogic.GetClientModels().ToList())
-                dgvModelList.Rows.Add(model.Preview, null, null, null, model.Name, model.Shape.Name, model.Material.Name);
+            {
+                if (model.WantPreview) SetPreviewForNewModel(model);
+                dgvModelList.Rows.Add(model.Preview, null, null, null, model.ModelName, model.Shape.ShapeName,
+                    model.Material.MaterialName);
+            }
         }
 
         private void InitializeModelList()
@@ -82,16 +121,6 @@ namespace ObligatorioDA1.Model_Panel
                     }
                 }
 
-                //if (dgvModelList.Columns[e.ColumnIndex].Name == "Preview")
-                //{
-                //    var cell = dgvModelList.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                //    var modelName = dgvModelList.Rows[e.RowIndex].Cells[4].Value.ToString();
-                //    var model = _modelLogic.Get(modelName);
-                //    if (model.WantPreview)
-                //    {
-
-                //    }
-                //}
             }
         }
 
@@ -99,7 +128,7 @@ namespace ObligatorioDA1.Model_Panel
         {
             string modelName;
             Model model;
-            if (dgvModelList.Columns[e.ColumnIndex].Name == "Delete")
+            if (dgvModelList.Columns[e.ColumnIndex].Name == "Delete" && e.RowIndex != 0)
             {
                 modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
                 model = _modelLogic.Get(modelName);
@@ -107,7 +136,7 @@ namespace ObligatorioDA1.Model_Panel
                 dgvModelList.Rows.Remove(dgvModelList.CurrentRow);
             }
 
-            if (dgvModelList.Columns[e.ColumnIndex].Name == "Rename")
+            if (dgvModelList.Columns[e.ColumnIndex].Name == "Rename" && e.RowIndex != 0)
             {
                 modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
                 model = _modelLogic.Get(modelName);
@@ -117,9 +146,9 @@ namespace ObligatorioDA1.Model_Panel
 
         private Color GetColour(Model _model)
         {
-            var r = (int)_model.Material.Color.Item1;
-            var g = (int)_model.Material.Color.Item2;
-            var b = (int)_model.Material.Color.Item3;
+            var r = (int)_model.Material.ColorX;
+            var g = (int)_model.Material.ColorY;
+            var b = (int)_model.Material.ColorZ;
             var newColor = Color.FromArgb(r, g, b);
             return newColor;
         }
