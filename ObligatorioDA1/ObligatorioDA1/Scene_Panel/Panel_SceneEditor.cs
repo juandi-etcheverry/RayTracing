@@ -23,6 +23,8 @@ namespace ObligatorioDA1
             InitializeComponent();
             InitializeAvailableList();
             InitializeUsedList();
+            lblLastRenderedDate.Visible = false;
+            lblOutdatedImage.Visible = false;
         }
 
         public void RefreshSceneEditor(Scene scene)
@@ -37,12 +39,20 @@ namespace ObligatorioDA1
             lblLookExceptions.Visible = false;
             lblFoVException.Visible = false;
             lblFoVException.Visible = false;
+            pnlBlur.Visible = false;
             RefreshAvailableList();
             RefreshUsedList();
             RefreshLastModified();
             RecoverSceneRender();
             OutDatedRender();
             RefreshLooks();
+            ButonExport();
+            
+        }
+        private void ButonExport()
+        {
+            if(_scene.Preview != null) btnExport.Visible = true;
+            else  btnExport.Visible = false; 
         }
 
         private void btnReturnNewScene_Click(object sender, EventArgs e)
@@ -191,6 +201,7 @@ namespace ObligatorioDA1
                 renderedImage.SaveFile(sceneFileName);
                 RecoverSceneRender();
                 Cursor.Current = Cursors.Arrow;
+                RefreshPage();
             }
             catch (ArgumentOutOfRangeException outEx)
             {
@@ -269,6 +280,7 @@ namespace ObligatorioDA1
 
         private void OutDatedRender()
         {
+            lblLastRenderedDate.Visible = true;
             lblLastRenderedDate.Text = _scene.LastRenderDate.ToString();
             lblOutdatedImage.Visible = _scene.LastRenderDate < _scene.LastModificationDate;
         }
@@ -324,6 +336,17 @@ namespace ObligatorioDA1
             _scene.ClientScenePreferences.SetLookFromDefault(tuple1);
             _scene.ClientScenePreferences.SetLookAtDefault(tuple2);
             _scene.ClientScenePreferences.FoVDefault = fov;
+        }
+
+        private void chkboxBlur_CheckedChanged(object sender, EventArgs e)
+        {
+            lblLensAperture.Visible = false;
+            pnlBlur.Visible = chkboxBlur.Checked;
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            _panelGeneral.GoToExportScene(_scene);
         }
     }
 }

@@ -98,11 +98,23 @@
     <Compile Include="Model_Panel\Panel_ModelRename.Designer.cs">
       <DependentUpon>Panel_ModelRename.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panel_LogsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_LogsList.Designer.cs">
+      <DependentUpon>Panel_LogsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scene_Panel\Panel_AddModelToScene.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Scene_Panel\Panel_AddModelToScene.Designer.cs">
       <DependentUpon>Panel_AddModelToScene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_ExportScene.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Scene_Panel\Panel_ExportScene.Designer.cs">
+      <DependentUpon>Panel_ExportScene.cs</DependentUpon>
     </Compile>
     <Compile Include="Scene_Panel\Panel_SceneNewName.cs">
       <SubType>UserControl</SubType>
@@ -193,8 +205,14 @@
     <EmbeddedResource Include="Panel_General.resx">
       <DependentUpon>Panel_General.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Panel_LogsList.resx">
+      <DependentUpon>Panel_LogsList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Scene_Panel\Panel_AddModelToScene.resx">
       <DependentUpon>Panel_AddModelToScene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scene_Panel\Panel_ExportScene.resx">
+      <DependentUpon>Panel_ExportScene.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scene_Panel\Panel_SceneNewName.resx">
       <DependentUpon>Panel_SceneNewName.cs</DependentUpon>
