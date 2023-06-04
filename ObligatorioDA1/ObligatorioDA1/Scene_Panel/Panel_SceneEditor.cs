@@ -47,12 +47,12 @@ namespace ObligatorioDA1
             OutDatedRender();
             RefreshLooks();
             ButonExport();
-            
+
         }
         private void ButonExport()
         {
-            if(_scene.Preview != null) btnExport.Visible = true;
-            else  btnExport.Visible = false; 
+            if (_scene.Preview != null) btnExport.Visible = true;
+            else btnExport.Visible = false;
         }
 
         private void btnReturnNewScene_Click(object sender, EventArgs e)
@@ -199,6 +199,7 @@ namespace ObligatorioDA1
                 int sceneDateTime = ImageParser.HashDate(_scene.LastRenderDate);
                 string sceneFileName = $"{_scene.Client.Name}_{sceneDateTime}.ppm";
                 renderedImage.SaveFile(sceneFileName);
+                _sceneLogic.UpdateLastRender(_scene);
                 RecoverSceneRender();
                 Cursor.Current = Cursors.Arrow;
                 RefreshPage();

@@ -52,12 +52,12 @@ namespace RepositoryInDB
             }
         }
 
-        public Material Update(Material material, string newName)
+        public Material Update(Material material)
         {
             using (var context = new BusinessContext())
             {
                 Material materialToUpdate = context.Materials.FirstOrDefault(m => m.Id == material.Id);
-                materialToUpdate.MaterialName = newName;
+                materialToUpdate.MaterialName = material.MaterialName;
                 context.SaveChanges();
                 return materialToUpdate;
             }

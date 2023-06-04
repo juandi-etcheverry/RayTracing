@@ -27,7 +27,7 @@ namespace ObligatorioDA1.Scene_Panel
         public void RefreshSceneExport(Scene newScene)
         {
             _scene = newScene;
-            lblSceneName.Text = _scene.Name;
+            lblSceneName.Text = _scene.SceneName;
             rbtnPNG.Checked = true;
         }
         private void btnReturn_Click(object sender, EventArgs e)
@@ -75,7 +75,7 @@ namespace ObligatorioDA1.Scene_Panel
         private void SavePPM(string filePath)
         {
             int sceneDateTime = ImageParser.HashDate(_scene.LastRenderDate);
-            string sceneFileName = $"{_scene.OwnerName}_{sceneDateTime}.ppm";
+            string sceneFileName = $"{_scene.Client.Name}_{sceneDateTime}.ppm";
             File.Copy(sceneFileName, filePath);
         }
     }

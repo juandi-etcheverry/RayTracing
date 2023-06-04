@@ -29,6 +29,12 @@ namespace BusinessLogic
             return _repository.Get(id);
         }
 
+        public Scene UpdateLastRender(Scene scene)
+        {
+            EnsureSceneExists(scene.SceneName);
+            return _repository.Update(scene);
+        }
+
         public PositionedModel AddPositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates, int id)
         {
             Scene scene = GetScene(id);
@@ -97,7 +103,8 @@ namespace BusinessLogic
         {
             EnsureSceneExists(scene.SceneName);
             EnsureSceneNameUniqueness(newName);
-            return _repository.Update(scene, newName);
+            scene.SceneName = newName;
+            return _repository.Update(scene);
         }
 
         private void EnsureSceneExists(string name)

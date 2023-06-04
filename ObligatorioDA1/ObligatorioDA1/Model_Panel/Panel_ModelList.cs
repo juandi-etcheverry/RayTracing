@@ -128,7 +128,7 @@ namespace ObligatorioDA1.Model_Panel
         {
             string modelName;
             Model model;
-            if (dgvModelList.Columns[e.ColumnIndex].Name == "Delete" && e.RowIndex != 0)
+            if (dgvModelList.Columns[e.ColumnIndex].Name == "Delete")
             {
                 modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
                 model = _modelLogic.Get(modelName);
@@ -136,7 +136,7 @@ namespace ObligatorioDA1.Model_Panel
                 dgvModelList.Rows.Remove(dgvModelList.CurrentRow);
             }
 
-            if (dgvModelList.Columns[e.ColumnIndex].Name == "Rename" && e.RowIndex != 0)
+            if (dgvModelList.Columns[e.ColumnIndex].Name == "Rename")
             {
                 modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
                 model = _modelLogic.Get(modelName);

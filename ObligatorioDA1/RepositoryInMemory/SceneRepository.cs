@@ -46,7 +46,7 @@ namespace RepositoryInMemory
             return scene;
         }
 
-        public Scene Update(Scene x, string newName)
+        public Scene Update(Scene x)
         {
             throw new System.NotImplementedException();
         }

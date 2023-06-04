@@ -7,6 +7,6 @@ namespace IRepository
         IList<T> GetAll();
         T Add(T x);
         T Remove(T x);
-        T Update(T x, string newName);
+        T Update(T x);
     }
 }

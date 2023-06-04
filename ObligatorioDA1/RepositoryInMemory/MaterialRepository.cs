@@ -31,7 +31,7 @@ namespace RepositoryInMemory
             return x;
         }
 
-        public Material Update(Material x, string newName)
+        public Material Update(Material x)
         {
             throw new System.NotImplementedException();
         }

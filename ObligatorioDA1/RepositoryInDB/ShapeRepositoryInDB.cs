@@ -43,12 +43,12 @@ namespace RepositoryInDB
             }
         }
 
-        public Shape Update(Shape shape, string newName)
+        public Shape Update(Shape shape)
         {
             using (var context = new BusinessContext())
             {
                 Shape shapeToUpdate = context.Shapes.FirstOrDefault(s => s.Id == shape.Id);
-                shapeToUpdate.ShapeName = newName;
+                shapeToUpdate.ShapeName = shape.ShapeName;
                 context.SaveChanges();
                 return shapeToUpdate;
             }
