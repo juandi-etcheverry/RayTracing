@@ -9,11 +9,14 @@ namespace GraphicsEngine
         public uint Width { get; set; }
         private Camera _camera;
         private Scene _scene;
-        public PPMImage Render(Scene scene)
+
+        public GraphicsEngine(Scene scene)
         {
             _scene = scene;
-            CreateCameraForRendering(scene);
-
+            DefaultCamera();
+        }
+        public PPMImage Render()
+        {
             var renderedImage = new PPMImage(Width);
 
             for (var row = renderedImage.Height - 1; row >= 0; row--)
@@ -24,6 +27,24 @@ namespace GraphicsEngine
                 }
 
             return renderedImage;
+        }
+
+        public void BlurCamera(decimal aperture)
+        {
+            var cameraDetails = DefaultCameraDetails(_scene);
+            var blurCameraDetails = new BlurCameraDetails(cameraDetails)
+            {
+                Aperture = aperture
+            };
+            var camera = new BlurCamera(blurCameraDetails);
+            _camera = camera;
+        }
+
+        public void DefaultCamera()
+        {
+            var cameraDetails = DefaultCameraDetails(_scene);
+            var camera = new Camera(cameraDetails);
+            _camera = camera;
         }
 
         private Color CalculatePixelColor(int column, int row,
@@ -54,7 +75,7 @@ namespace GraphicsEngine
             return color;
         }
 
-        private void CreateCameraForRendering(Scene scene)
+        private CameraDetails DefaultCameraDetails(Scene scene)
         {
             var LookAt = new Vector
             {
@@ -86,8 +107,7 @@ namespace GraphicsEngine
                 Up = Up
             };
 
-            var camera = new Camera(cameraDetails);
-            _camera = camera;
+            return cameraDetails;
         }
 
         private Vector ShootRay(Ray ray, decimal depth)

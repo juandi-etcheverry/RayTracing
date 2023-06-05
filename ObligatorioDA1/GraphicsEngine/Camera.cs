@@ -24,6 +24,7 @@ namespace GraphicsEngine
             Origin = _cameraDetails.LookFrom;
             SetHorizontalUnitOfDistance();
             SetVerticalUnitOfDistance();
+            SetLowerLeftCornerOfCameraView();
         }
 
         internal Vector Origin { get; set; }
@@ -45,17 +46,17 @@ namespace GraphicsEngine
             return emittedRay;
         }
 
-        protected virtual void SetVerticalUnitOfDistance()
+        private void SetVerticalUnitOfDistance()
         {
             VerticalUnitOfDistance = verticalUnit.Multiply(2 * halfOfHeight);
         }
 
-        protected virtual void SetHorizontalUnitOfDistance()
+        private void SetHorizontalUnitOfDistance()
         {
             HorizontalUnitOfDistance = horizontalUnit.Multiply(2 * halfOfWidth);
         }
 
-        protected virtual void SetLowerLeftCornerOfCameraView()
+        private void SetLowerLeftCornerOfCameraView()
         {
             LowerLeftCornerOfCameraView = Origin.Subtract(horizontalUnit.Multiply(halfOfWidth))
                 .Subtract(verticalUnit.Multiply(halfOfHeight)).Subtract(depthUnit);

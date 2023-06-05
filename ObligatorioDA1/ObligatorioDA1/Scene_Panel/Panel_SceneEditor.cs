@@ -40,16 +40,17 @@ namespace ObligatorioDA1
             lblFoVException.Visible = false;
             lblFoVException.Visible = false;
             pnlBlur.Visible = false;
+            chkboxBlur.Checked = false;
             RefreshAvailableList();
             RefreshUsedList();
             RefreshLastModified();
             RecoverSceneRender();
             OutDatedRender();
             RefreshLooks();
-            ButonExport();
+            ButtonExport();
 
         }
-        private void ButonExport()
+        private void ButtonExport()
         {
             if (_scene.Preview != null) btnExport.Visible = true;
             else btnExport.Visible = false;
@@ -187,14 +188,16 @@ namespace ObligatorioDA1
                 OutDatedRender();
 
 
-                GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine()
+                GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine(_scene)
                 {
                     Width = 300
                 };
-
-
                 Cursor.Current = Cursors.WaitCursor;
-                PPMImage renderedImage = engine.Render(_scene);
+                if (chkboxBlur.Checked)
+                {
+                    engine.BlurCamera(Convert.ToDecimal(txbBlur.Text));
+                }
+                PPMImage renderedImage = engine.Render();
                 _scene.LastRenderDate = DateTime.Now;
                 int sceneDateTime = ImageParser.HashDate(_scene.LastRenderDate);
                 string sceneFileName = $"{_scene.Client.Name}_{sceneDateTime}.ppm";
