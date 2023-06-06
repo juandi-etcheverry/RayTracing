@@ -18,11 +18,11 @@ namespace ObligatorioDA1.Material_Panel
             _panelGeneral = userControl;
             InitializeComponent();
             InitializeList();
-            lblEliminationException.Visible = false;
         }
 
         public void RefreshMaterialList()
         {
+            lblEliminationException.Visible = false;
             dgvMaterialList.Rows.Clear();
             foreach (var material in _materialLogic.GetClientMaterials().ToList())
                 dgvMaterialList.Rows.Add(null, null, null, material.MaterialName, material.ColorX, material.ColorY,
