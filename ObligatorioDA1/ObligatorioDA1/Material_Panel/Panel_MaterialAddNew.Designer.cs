@@ -61,10 +61,10 @@
             this.btnShowAllMaterials.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnShowAllMaterials.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShowAllMaterials.ForeColor = System.Drawing.Color.White;
-            this.btnShowAllMaterials.Location = new System.Drawing.Point(82, 59);
-            this.btnShowAllMaterials.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnShowAllMaterials.Location = new System.Drawing.Point(41, 31);
+            this.btnShowAllMaterials.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnShowAllMaterials.Name = "btnShowAllMaterials";
-            this.btnShowAllMaterials.Size = new System.Drawing.Size(868, 71);
+            this.btnShowAllMaterials.Size = new System.Drawing.Size(434, 37);
             this.btnShowAllMaterials.TabIndex = 2;
             this.btnShowAllMaterials.Text = "SHOW ALL MATERIALS";
             this.btnShowAllMaterials.UseVisualStyleBackColor = false;
@@ -89,11 +89,10 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(82, 115);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-
+            this.panel1.Location = new System.Drawing.Point(41, 60);
+            this.panel1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(868, 723);
+            this.panel1.Size = new System.Drawing.Size(434, 376);
             this.panel1.TabIndex = 3;
             // 
             // pnlTypePreferences
@@ -101,9 +100,10 @@
             this.pnlTypePreferences.Controls.Add(this.lblBlurException);
             this.pnlTypePreferences.Controls.Add(this.txbBlur);
             this.pnlTypePreferences.Controls.Add(this.Blur);
-            this.pnlTypePreferences.Location = new System.Drawing.Point(366, 461);
+            this.pnlTypePreferences.Location = new System.Drawing.Point(183, 240);
+            this.pnlTypePreferences.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlTypePreferences.Name = "pnlTypePreferences";
-            this.pnlTypePreferences.Size = new System.Drawing.Size(453, 100);
+            this.pnlTypePreferences.Size = new System.Drawing.Size(226, 52);
             this.pnlTypePreferences.TabIndex = 14;
             // 
             // lblBlurException
@@ -111,29 +111,30 @@
             this.lblBlurException.AutoSize = true;
             this.lblBlurException.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBlurException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblBlurException.Location = new System.Drawing.Point(14, 61);
-            this.lblBlurException.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBlurException.Location = new System.Drawing.Point(7, 32);
+            this.lblBlurException.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBlurException.Name = "lblBlurException";
-            this.lblBlurException.Size = new System.Drawing.Size(168, 29);
+            this.lblBlurException.Size = new System.Drawing.Size(86, 15);
             this.lblBlurException.TabIndex = 16;
             this.lblBlurException.Text = "Blur Exception";
             // 
             // txbBlur
             // 
             this.txbBlur.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbBlur.Location = new System.Drawing.Point(102, 11);
-            this.txbBlur.Margin = new System.Windows.Forms.Padding(4);
+            this.txbBlur.Location = new System.Drawing.Point(51, 6);
+            this.txbBlur.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txbBlur.Name = "txbBlur";
-            this.txbBlur.Size = new System.Drawing.Size(120, 44);
+            this.txbBlur.Size = new System.Drawing.Size(62, 26);
             this.txbBlur.TabIndex = 15;
             // 
             // Blur
             // 
             this.Blur.AutoSize = true;
             this.Blur.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Blur.Location = new System.Drawing.Point(12, 15);
+            this.Blur.Location = new System.Drawing.Point(6, 8);
+            this.Blur.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Blur.Name = "Blur";
-            this.Blur.Size = new System.Drawing.Size(83, 37);
+            this.Blur.Size = new System.Drawing.Size(41, 20);
             this.Blur.TabIndex = 0;
             this.Blur.Text = "Blur:";
             // 
@@ -141,9 +142,11 @@
             // 
             this.grpbxType.Controls.Add(this.rbtnMetalic);
             this.grpbxType.Controls.Add(this.rbtnLambertian);
-            this.grpbxType.Location = new System.Drawing.Point(104, 461);
+            this.grpbxType.Location = new System.Drawing.Point(52, 240);
+            this.grpbxType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.grpbxType.Name = "grpbxType";
-            this.grpbxType.Size = new System.Drawing.Size(220, 100);
+            this.grpbxType.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpbxType.Size = new System.Drawing.Size(110, 52);
             this.grpbxType.TabIndex = 13;
             this.grpbxType.TabStop = false;
             // 
@@ -151,9 +154,10 @@
             // 
             this.rbtnMetalic.AutoSize = true;
             this.rbtnMetalic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnMetalic.Location = new System.Drawing.Point(6, 56);
+            this.rbtnMetalic.Location = new System.Drawing.Point(3, 29);
+            this.rbtnMetalic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rbtnMetalic.Name = "rbtnMetalic";
-            this.rbtnMetalic.Size = new System.Drawing.Size(131, 35);
+            this.rbtnMetalic.Size = new System.Drawing.Size(70, 21);
             this.rbtnMetalic.TabIndex = 1;
             this.rbtnMetalic.TabStop = true;
             this.rbtnMetalic.Text = "Metalic";
@@ -164,9 +168,10 @@
             // 
             this.rbtnLambertian.AutoSize = true;
             this.rbtnLambertian.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnLambertian.Location = new System.Drawing.Point(6, 15);
+            this.rbtnLambertian.Location = new System.Drawing.Point(3, 8);
+            this.rbtnLambertian.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rbtnLambertian.Name = "rbtnLambertian";
-            this.rbtnLambertian.Size = new System.Drawing.Size(180, 35);
+            this.rbtnLambertian.Size = new System.Drawing.Size(97, 21);
             this.rbtnLambertian.TabIndex = 0;
             this.rbtnLambertian.TabStop = true;
             this.rbtnLambertian.Text = "Lambertian";
@@ -177,10 +182,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(96, 421);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(48, 219);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 37);
+            this.label7.Size = new System.Drawing.Size(47, 20);
             this.label7.TabIndex = 12;
             this.label7.Text = "Type:";
             // 
@@ -188,10 +193,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(599, 309);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(302, 167);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 37);
+            this.label6.Size = new System.Drawing.Size(24, 20);
             this.label6.TabIndex = 9;
             this.label6.Text = "B:";
             // 
@@ -199,10 +204,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(339, 309);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(172, 167);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 37);
+            this.label5.Size = new System.Drawing.Size(26, 20);
             this.label5.TabIndex = 8;
             this.label5.Text = "G:";
             // 
@@ -210,30 +215,30 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(97, 306);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(53, 167);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 37);
+            this.label4.Size = new System.Drawing.Size(25, 20);
             this.label4.TabIndex = 7;
             this.label4.Text = "R:";
             // 
             // txbNewBMaterial
             // 
             this.txbNewBMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNewBMaterial.Location = new System.Drawing.Point(327, 175);
-            this.txbNewBMaterial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNewBMaterial.Location = new System.Drawing.Point(329, 164);
+            this.txbNewBMaterial.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txbNewBMaterial.Name = "txbNewBMaterial";
-            this.txbNewBMaterial.Size = new System.Drawing.Size(120, 44);
+            this.txbNewBMaterial.Size = new System.Drawing.Size(62, 26);
             this.txbNewBMaterial.TabIndex = 4;
             this.txbNewBMaterial.TextChanged += new System.EventHandler(this.txbNewBMaterial_TextChanged);
             // 
             // txbNewGMaterial
             // 
             this.txbNewGMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNewGMaterial.Location = new System.Drawing.Point(199, 175);
-            this.txbNewGMaterial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNewGMaterial.Location = new System.Drawing.Point(201, 164);
+            this.txbNewGMaterial.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txbNewGMaterial.Name = "txbNewGMaterial";
-            this.txbNewGMaterial.Size = new System.Drawing.Size(120, 44);
+            this.txbNewGMaterial.Size = new System.Drawing.Size(62, 26);
             this.txbNewGMaterial.TabIndex = 3;
             this.txbNewGMaterial.TextChanged += new System.EventHandler(this.txbNewGMaterial_TextChanged);
             // 
@@ -242,10 +247,10 @@
             this.btnNewMaterial.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnNewMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewMaterial.ForeColor = System.Drawing.Color.White;
-            this.btnNewMaterial.Location = new System.Drawing.Point(98, 244);
-            this.btnNewMaterial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNewMaterial.Location = new System.Drawing.Point(100, 326);
+            this.btnNewMaterial.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnNewMaterial.Name = "btnNewMaterial";
-            this.btnNewMaterial.Size = new System.Drawing.Size(476, 60);
+            this.btnNewMaterial.Size = new System.Drawing.Size(238, 31);
             this.btnNewMaterial.TabIndex = 5;
             this.btnNewMaterial.Text = "Add Material";
             this.btnNewMaterial.UseVisualStyleBackColor = false;
@@ -256,10 +261,10 @@
             this.lblNewRGBException.AutoSize = true;
             this.lblNewRGBException.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNewRGBException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblNewRGBException.Location = new System.Drawing.Point(98, 354);
-            this.lblNewRGBException.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNewRGBException.Location = new System.Drawing.Point(51, 193);
+            this.lblNewRGBException.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNewRGBException.Name = "lblNewRGBException";
-            this.lblNewRGBException.Size = new System.Drawing.Size(332, 29);
+            this.lblNewRGBException.Size = new System.Drawing.Size(170, 15);
             this.lblNewRGBException.TabIndex = 6;
             this.lblNewRGBException.Text = "*New material RGB exception";
             // 
@@ -268,30 +273,30 @@
             this.lblNewMaterialNameException.AutoSize = true;
             this.lblNewMaterialNameException.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNewMaterialNameException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblNewMaterialNameException.Location = new System.Drawing.Point(98, 204);
-            this.lblNewMaterialNameException.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNewMaterialNameException.Location = new System.Drawing.Point(54, 120);
+            this.lblNewMaterialNameException.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNewMaterialNameException.Name = "lblNewMaterialNameException";
-            this.lblNewMaterialNameException.Size = new System.Drawing.Size(341, 29);
+            this.lblNewMaterialNameException.Size = new System.Drawing.Size(176, 15);
             this.lblNewMaterialNameException.TabIndex = 5;
             this.lblNewMaterialNameException.Text = "*New material name exception";
             // 
             // txbNewRMaterial
             // 
             this.txbNewRMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNewRMaterial.Location = new System.Drawing.Point(74, 175);
-            this.txbNewRMaterial.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNewRMaterial.Location = new System.Drawing.Point(78, 164);
+            this.txbNewRMaterial.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txbNewRMaterial.Name = "txbNewRMaterial";
-            this.txbNewRMaterial.Size = new System.Drawing.Size(120, 44);
+            this.txbNewRMaterial.Size = new System.Drawing.Size(62, 26);
             this.txbNewRMaterial.TabIndex = 2;
             this.txbNewRMaterial.TextChanged += new System.EventHandler(this.txbNewRMaterial_TextChanged);
             // 
             // txbNewMaterialName
             // 
             this.txbNewMaterialName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNewMaterialName.Location = new System.Drawing.Point(52, 91);
-            this.txbNewMaterialName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNewMaterialName.Location = new System.Drawing.Point(55, 93);
+            this.txbNewMaterialName.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.txbNewMaterialName.Name = "txbNewMaterialName";
-            this.txbNewMaterialName.Size = new System.Drawing.Size(670, 44);
+            this.txbNewMaterialName.Size = new System.Drawing.Size(337, 26);
             this.txbNewMaterialName.TabIndex = 1;
             this.txbNewMaterialName.TextChanged += new System.EventHandler(this.txbNewMaterialName_TextChanged);
             // 
@@ -300,10 +305,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label3.Location = new System.Drawing.Point(340, 56);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(170, 29);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(235, 42);
+            this.label3.Size = new System.Drawing.Size(119, 24);
             this.label3.TabIndex = 2;
             this.label3.Text = "New Material";
             // 
@@ -311,10 +316,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(96, 259);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(53, 143);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 37);
+            this.label2.Size = new System.Drawing.Size(59, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Colour:";
             // 
@@ -322,25 +327,24 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(96, 115);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(53, 72);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 37);
+            this.label1.Size = new System.Drawing.Size(55, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name:";
             // 
             // Panel_MaterialAddNew
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnShowAllMaterials);
-            this.Margin = new System.Windows.Forms.Padding(6);
-            this.MaximumSize = new System.Drawing.Size(1200, 1000);
-            this.MinimumSize = new System.Drawing.Size(1200, 1000);
+            this.MaximumSize = new System.Drawing.Size(600, 520);
+            this.MinimumSize = new System.Drawing.Size(600, 520);
             this.Name = "Panel_MaterialAddNew";
-            this.Size = new System.Drawing.Size(1200, 1000);
+            this.Size = new System.Drawing.Size(600, 520);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pnlTypePreferences.ResumeLayout(false);

@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlurCamera.cs" />
+    <Compile Include="BlurCameraDetails.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="CameraDetails.cs" />
     <Compile Include="Color.cs" />

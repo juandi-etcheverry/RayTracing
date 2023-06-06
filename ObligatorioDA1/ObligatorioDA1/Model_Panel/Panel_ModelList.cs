@@ -41,12 +41,12 @@ namespace ObligatorioDA1.Model_Panel
             updatedScene.LastRenderDate = DateTime.Now;
             int hashedScene = ImageParser.HashDate(updatedScene.LastRenderDate);
             string modelFileName = $"{loggedInClient.Name}_{hashedScene}_p.ppm";
-            GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine()
+            GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine(updatedScene)
             {
                 Width = 30
             };
             Cursor.Current = Cursors.WaitCursor;
-            PPMImage renderedPreview = engine.Render(updatedScene);
+            PPMImage renderedPreview = engine.Render();
             renderedPreview.SaveFile(modelFileName);
             Bitmap preview = ImageParser.ConvertPpmToBitmap(modelFileName);
             model.Preview = preview;

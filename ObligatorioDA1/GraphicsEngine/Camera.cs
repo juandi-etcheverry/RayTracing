@@ -5,22 +5,26 @@ namespace GraphicsEngine
     internal class Camera
     {
         private readonly CameraDetails _cameraDetails;
+        protected decimal halfOfHeight;
+        protected decimal halfOfWidth;
+        protected Vector depthUnit;
+        protected Vector horizontalUnit;
+        protected Vector verticalUnit;
 
         internal Camera(CameraDetails cameraDetails)
         {
             _cameraDetails = cameraDetails;
-            var halfOfHeight = CalculateHalfOfHeight();
-            var halfOfWidth = CalculateHalfOfWidth(halfOfHeight);
+            halfOfHeight = CalculateHalfOfHeight();
+            halfOfWidth = CalculateHalfOfWidth();
 
-            var depthUnit = CalculateDepthUnit();
-            var horizontalUnit = CalculateHorizontalUnit(depthUnit);
-            var verticalUnit = CalculateVerticalUnit(depthUnit, horizontalUnit);
+            depthUnit = CalculateDepthUnit();
+            horizontalUnit = CalculateHorizontalUnit();
+            verticalUnit = CalculateVerticalUnit();
 
             Origin = _cameraDetails.LookFrom;
-            SetHorizontalUnitOfDistance(horizontalUnit, halfOfWidth);
-            SetVerticalUnitOfDistance(verticalUnit, halfOfHeight);
-            LowerLeftCornerOfCameraView = Origin.Subtract(horizontalUnit.Multiply(halfOfWidth))
-                .Subtract(verticalUnit.Multiply(halfOfHeight)).Subtract(depthUnit);
+            SetHorizontalUnitOfDistance();
+            SetVerticalUnitOfDistance();
+            SetLowerLeftCornerOfCameraView();
         }
 
         internal Vector Origin { get; set; }
@@ -28,7 +32,7 @@ namespace GraphicsEngine
         internal Vector VerticalUnitOfDistance { get; set; }
         internal Vector LowerLeftCornerOfCameraView { get; set; }
 
-        internal Ray RayFromCoordinates(decimal horizontalDistanceFromLeft, decimal verticalDistanceFromBottom)
+        internal virtual Ray RayFromCoordinates(decimal horizontalDistanceFromLeft, decimal verticalDistanceFromBottom)
         {
             var horizontalPosition = HorizontalUnitOfDistance.Multiply(horizontalDistanceFromLeft);
             var verticalPosition = VerticalUnitOfDistance.Multiply(verticalDistanceFromBottom);
@@ -42,22 +46,28 @@ namespace GraphicsEngine
             return emittedRay;
         }
 
-        private void SetVerticalUnitOfDistance(Vector verticalUnit, decimal halfOfHeight)
+        private void SetVerticalUnitOfDistance()
         {
             VerticalUnitOfDistance = verticalUnit.Multiply(2 * halfOfHeight);
         }
 
-        private void SetHorizontalUnitOfDistance(Vector horizontalUnit, decimal halfOfWidth)
+        private void SetHorizontalUnitOfDistance()
         {
             HorizontalUnitOfDistance = horizontalUnit.Multiply(2 * halfOfWidth);
         }
 
-        private static Vector CalculateVerticalUnit(Vector depthUnit, Vector horizontalUnit)
+        private void SetLowerLeftCornerOfCameraView()
+        {
+            LowerLeftCornerOfCameraView = Origin.Subtract(horizontalUnit.Multiply(halfOfWidth))
+                .Subtract(verticalUnit.Multiply(halfOfHeight)).Subtract(depthUnit);
+        }
+
+        private Vector CalculateVerticalUnit()
         {
             return depthUnit.Cross(horizontalUnit);
         }
 
-        private Vector CalculateHorizontalUnit(Vector depthUnit)
+        private Vector CalculateHorizontalUnit()
         {
             return _cameraDetails.Up.Cross(depthUnit).Unit();
         }
@@ -73,7 +83,7 @@ namespace GraphicsEngine
             return Convert.ToDecimal(Math.Tan(rayAngleFromImage / 2));
         }
 
-        private decimal CalculateHalfOfWidth(decimal halfOfHeight)
+        private decimal CalculateHalfOfWidth()
         {
             return halfOfHeight * _cameraDetails.AspectRatio;
         }

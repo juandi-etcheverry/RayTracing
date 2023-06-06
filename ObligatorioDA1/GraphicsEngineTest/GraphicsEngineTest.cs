@@ -74,7 +74,7 @@ namespace GraphicsEngineTest
             RandomGenerator.DefaultValue = 0.5;
             var engine = new GraphicsEngine.GraphicsEngine
             {
-                Width = 12
+                Width = 12,
             };
             var result = engine.Render(newScene);
             var TrueImage =
