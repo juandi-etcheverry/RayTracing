@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using BusinessLogic;
+using BusinessLogicExceptions;
 using Domain;
 
 namespace ObligatorioDA1.Material_Panel
@@ -17,6 +18,7 @@ namespace ObligatorioDA1.Material_Panel
             _panelGeneral = userControl;
             InitializeComponent();
             InitializeList();
+            lblEliminationException.Visible = false;
         }
 
         public void RefreshMaterialList()
@@ -41,21 +43,33 @@ namespace ObligatorioDA1.Material_Panel
 
         private void dgvMaterialList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string materialName;
-            Material material;
-            if (dgvMaterialList.Columns[e.ColumnIndex].Name == "Delete")
+            if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
             {
-                materialName = dgvMaterialList.CurrentRow.Cells[3].Value.ToString();
-                material = _materialLogic.Get(materialName);
-                _materialLogic.Remove(material);
-                dgvMaterialList.Rows.Remove(dgvMaterialList.CurrentRow);
-            }
+                string materialName;
+                Material material;
+                if (dgvMaterialList.Columns[e.ColumnIndex].Name == "Delete")
+                {
+                    try
+                    {
+                        materialName = dgvMaterialList.CurrentRow.Cells[3].Value.ToString();
+                        material = _materialLogic.Get(materialName);
+                        _materialLogic.Remove(material);
+                        dgvMaterialList.Rows.Remove(dgvMaterialList.CurrentRow);
+                        lblEliminationException.Visible = false;
+                    }
+                    catch(AssociationException AssEx)
+                    {
+                        lblEliminationException.Visible = true;
+                        lblEliminationException.Text = AssEx.Message;
+                    }
+                }
 
-            if (dgvMaterialList.Columns[e.ColumnIndex].Name == "Rename")
-            {
-                materialName = dgvMaterialList.CurrentRow.Cells[3].Value.ToString();
-                material = _materialLogic.Get(materialName);
-                _panelGeneral.GoToMaterialRename(material);
+                if (dgvMaterialList.Columns[e.ColumnIndex].Name == "Rename")
+                {
+                    materialName = dgvMaterialList.CurrentRow.Cells[3].Value.ToString();
+                    material = _materialLogic.Get(materialName);
+                    _panelGeneral.GoToMaterialRename(material);
+                }
             }
         }
 
