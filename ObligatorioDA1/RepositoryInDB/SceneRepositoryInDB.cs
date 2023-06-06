@@ -85,6 +85,7 @@ namespace RepositoryInDB
                 model.Model = modelAux;
 
                 sceneAux.Models.Add(model);
+                sceneAux.LastModificationDate = DateTime.Now;
                 context.SaveChanges();
             }
         }
@@ -102,6 +103,7 @@ namespace RepositoryInDB
                     .FirstOrDefault(m => m.Id == model.Id);
 
                 sceneToDelete.Models.Remove(modelAux);
+                sceneToDelete.LastModificationDate = DateTime.Now;
                 context.SaveChanges();
             }
         }

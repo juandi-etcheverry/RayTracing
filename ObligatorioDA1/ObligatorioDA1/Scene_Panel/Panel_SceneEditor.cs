@@ -52,6 +52,7 @@ namespace ObligatorioDA1
         {
             lblLookExceptions.Visible = false;
             lblFoVException.Visible = false;
+            lblLensAperture.Visible = false;
             RefreshLastModified();
             OutDatedRender();
             ButtonExport();
@@ -200,7 +201,10 @@ namespace ObligatorioDA1
                 Cursor.Current = Cursors.WaitCursor;
                 if (chkboxBlur.Checked)
                 {
-                    engine.BlurCamera(Convert.ToDecimal(txbBlur.Text));
+                    decimal x;
+                    var validX = decimal.TryParse(txbBlur.Text, out x) && x >= 0;
+                    if (!validX) throw new ArgumentException("Aperture must be > 0,0");
+                    engine.BlurCamera(x);
                 }
                 PPMImage renderedImage = engine.Render();
                 _scene.LastRenderDate = DateTime.Now;
@@ -221,7 +225,12 @@ namespace ObligatorioDA1
             }
             catch (ArgumentException argEx)
             {
-                if (argEx.Message == "X, Y, Z must be numbers")
+                if(argEx.Message == "Aperture must be > 0,0")
+                {
+                    lblLensAperture.Visible = true;
+                    lblLensAperture.Text = argEx.Message;
+                }
+                else if (argEx.Message == "X, Y, Z must be numbers")
                 {
                     lblLookExceptions.Visible = true;
                     lblLookExceptions.Text = argEx.Message;
