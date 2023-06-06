@@ -42,7 +42,7 @@
             this.btnRender = new System.Windows.Forms.Button();
             this.lblOutdatedImage = new System.Windows.Forms.Label();
             this.lblLastRenderedDate = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lblRendered = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pboxRenderedScene = new System.Windows.Forms.PictureBox();
@@ -130,22 +130,22 @@
             this.panel1.Controls.Add(this.btnRender);
             this.panel1.Controls.Add(this.lblOutdatedImage);
             this.panel1.Controls.Add(this.lblLastRenderedDate);
-            this.panel1.Controls.Add(this.label13);
+            this.panel1.Controls.Add(this.lblRendered);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Location = new System.Drawing.Point(13, 166);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(324, 354);
+            this.panel1.Size = new System.Drawing.Size(324, 333);
             this.panel1.TabIndex = 14;
             // 
             // btnExport
             // 
             this.btnExport.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnExport.ForeColor = System.Drawing.Color.White;
-            this.btnExport.Location = new System.Drawing.Point(13, 303);
+            this.btnExport.Location = new System.Drawing.Point(13, 283);
             this.btnExport.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(112, 36);
+            this.btnExport.Size = new System.Drawing.Size(133, 36);
             this.btnExport.TabIndex = 28;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = false;
@@ -167,10 +167,10 @@
             // 
             this.btnRender.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnRender.ForeColor = System.Drawing.Color.White;
-            this.btnRender.Location = new System.Drawing.Point(193, 295);
+            this.btnRender.Location = new System.Drawing.Point(168, 283);
             this.btnRender.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnRender.Name = "btnRender";
-            this.btnRender.Size = new System.Drawing.Size(112, 36);
+            this.btnRender.Size = new System.Drawing.Size(136, 36);
             this.btnRender.TabIndex = 8;
             this.btnRender.Text = "Render";
             this.btnRender.UseVisualStyleBackColor = false;
@@ -181,7 +181,7 @@
             this.lblOutdatedImage.AutoSize = true;
             this.lblOutdatedImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOutdatedImage.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblOutdatedImage.Location = new System.Drawing.Point(13, 282);
+            this.lblOutdatedImage.Location = new System.Drawing.Point(12, 260);
             this.lblOutdatedImage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOutdatedImage.Name = "lblOutdatedImage";
             this.lblOutdatedImage.Size = new System.Drawing.Size(123, 20);
@@ -192,23 +192,23 @@
             // 
             this.lblLastRenderedDate.AutoSize = true;
             this.lblLastRenderedDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastRenderedDate.Location = new System.Drawing.Point(133, 266);
+            this.lblLastRenderedDate.Location = new System.Drawing.Point(153, 240);
             this.lblLastRenderedDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLastRenderedDate.Name = "lblLastRenderedDate";
             this.lblLastRenderedDate.Size = new System.Drawing.Size(89, 20);
             this.lblLastRenderedDate.TabIndex = 19;
             this.lblLastRenderedDate.Text = "20/04/2023";
             // 
-            // label13
+            // lblRendered
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(13, 266);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(112, 20);
-            this.label13.TabIndex = 19;
-            this.label13.Text = "Last rendered:";
+            this.lblRendered.AutoSize = true;
+            this.lblRendered.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRendered.Location = new System.Drawing.Point(13, 240);
+            this.lblRendered.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRendered.Name = "lblRendered";
+            this.lblRendered.Size = new System.Drawing.Size(112, 20);
+            this.lblRendered.TabIndex = 19;
+            this.lblRendered.Text = "Last rendered:";
             // 
             // label12
             // 
@@ -228,7 +228,7 @@
             this.panel3.Controls.Add(this.pboxRenderedScene);
             this.panel3.Location = new System.Drawing.Point(16, 26);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(289, 237);
+            this.panel3.Size = new System.Drawing.Size(289, 211);
             this.panel3.TabIndex = 0;
             // 
             // pboxRenderedScene
@@ -236,7 +236,7 @@
             this.pboxRenderedScene.Location = new System.Drawing.Point(1, 0);
             this.pboxRenderedScene.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pboxRenderedScene.Name = "pboxRenderedScene";
-            this.pboxRenderedScene.Size = new System.Drawing.Size(287, 237);
+            this.pboxRenderedScene.Size = new System.Drawing.Size(287, 210);
             this.pboxRenderedScene.TabIndex = 0;
             this.pboxRenderedScene.TabStop = false;
             // 
@@ -443,7 +443,7 @@
             this.chkboxBlur.AutoSize = true;
             this.chkboxBlur.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkboxBlur.Location = new System.Drawing.Point(4, 83);
-            this.chkboxBlur.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkboxBlur.Margin = new System.Windows.Forms.Padding(2);
             this.chkboxBlur.Name = "chkboxBlur";
             this.chkboxBlur.Size = new System.Drawing.Size(52, 21);
             this.chkboxBlur.TabIndex = 29;
@@ -457,7 +457,7 @@
             this.pnlBlur.Controls.Add(this.lblLensAperture);
             this.pnlBlur.Controls.Add(this.txbBlur);
             this.pnlBlur.Location = new System.Drawing.Point(63, 74);
-            this.pnlBlur.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlBlur.Margin = new System.Windows.Forms.Padding(2);
             this.pnlBlur.Name = "pnlBlur";
             this.pnlBlur.Size = new System.Drawing.Size(260, 36);
             this.pnlBlur.TabIndex = 28;
@@ -749,7 +749,7 @@
         private System.Windows.Forms.Button btnRender;
         private System.Windows.Forms.Label lblOutdatedImage;
         private System.Windows.Forms.Label lblLastRenderedDate;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblRendered;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dgvAvailableModelsList;

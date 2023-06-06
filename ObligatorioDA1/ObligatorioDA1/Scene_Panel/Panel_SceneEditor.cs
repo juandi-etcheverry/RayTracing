@@ -16,6 +16,7 @@ namespace ObligatorioDA1
         private readonly SceneLogic _sceneLogic = new SceneLogic();
         private readonly Panel_General _panelGeneral;
         private Scene _scene;
+        private bool editedFirstTime;
 
         public Panel_SceneEditor(Panel_General panelGeneral)
         {
@@ -30,25 +31,30 @@ namespace ObligatorioDA1
         public void RefreshSceneEditor(Scene scene)
         {
             _scene = _sceneLogic.GetScene(scene.Id);
-            RefreshPage();
+            InitializePage();
         }
-
-        private void RefreshPage()
+        private void InitializePage()
         {
             lblNewSceneName.Text = _scene.SceneName;
             lblLookExceptions.Visible = false;
-            lblFoVException.Visible = false;
             lblFoVException.Visible = false;
             pnlBlur.Visible = false;
             chkboxBlur.Checked = false;
             RefreshAvailableList();
             RefreshUsedList();
             RefreshLastModified();
-            RecoverSceneRender();
             OutDatedRender();
+            RecoverSceneRender();
             RefreshLooks();
             ButtonExport();
-
+        }
+        private void RefreshPage()
+        {
+            lblLookExceptions.Visible = false;
+            lblFoVException.Visible = false;
+            RefreshLastModified();
+            OutDatedRender();
+            ButtonExport();
         }
         private void ButtonExport()
         {
@@ -135,6 +141,8 @@ namespace ObligatorioDA1
                 var modelName = dgvAvailableModelsList.CurrentRow.Cells[2].Value.ToString();
                 var model = _modelLogic.Get(modelName);
                 _panelGeneral.GoToSceneAddModel(model, _scene);
+                editedFirstTime = true;
+                RefreshPage();
             }
         }
 
@@ -185,9 +193,6 @@ namespace ObligatorioDA1
                 var tupleLookAt = SetLookAt();
                 var fov = SetFov();
                 SetNewLooksOnRender(tupleLookFrom, tupleLookAt, fov);
-                OutDatedRender();
-
-
                 GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine(_scene)
                 {
                     Width = 300
@@ -205,6 +210,8 @@ namespace ObligatorioDA1
                 _sceneLogic.UpdateLastRender(_scene);
                 RecoverSceneRender();
                 Cursor.Current = Cursors.Arrow;
+                lblLastRenderedDate.Visible = true;
+                lblRendered.Visible = true;
                 RefreshPage();
             }
             catch (ArgumentOutOfRangeException outEx)
@@ -258,7 +265,7 @@ namespace ObligatorioDA1
             var validX = decimal.TryParse(txbXLookFrom.Text, out x);
             var validY = decimal.TryParse(txbYLookFrom.Text, out y);
             var validZ = decimal.TryParse(txbZLookFrom.Text, out z);
-            if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
+            if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers > 0");
             var tuple = ValueTuple.Create(x, y, z);
             return tuple;
         }
@@ -284,9 +291,8 @@ namespace ObligatorioDA1
 
         private void OutDatedRender()
         {
-            lblLastRenderedDate.Visible = true;
             lblLastRenderedDate.Text = _scene.LastRenderDate.ToString();
-            lblOutdatedImage.Visible = _scene.LastRenderDate < _scene.LastModificationDate;
+            if(editedFirstTime) lblOutdatedImage.Visible = _scene.LastRenderDate < _scene.LastModificationDate;
         }
 
         private Color GetColour(Model _model)
