@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using BusinessLogic;
+using BusinessLogicExceptions;
 using Domain;
 
 namespace ObligatorioDA1
@@ -20,6 +21,7 @@ namespace ObligatorioDA1
 
         public void RefreshShapeList()
         {
+            lblEliminationException.Visible = false;
             dgvShapeList.Rows.Clear();
             foreach (Sphere shape in _shapeLogic.GetClientShapes().ToList())
                 dgvShapeList.Rows.Add(null, null, shape.ShapeName, shape.Radius);
@@ -38,22 +40,36 @@ namespace ObligatorioDA1
 
         private void dgvShapeList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string shapeName;
-            Shape shape;
-            if (dgvShapeList.Columns[e.ColumnIndex].Name == "Delete")
+            if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
             {
-                shapeName = dgvShapeList.CurrentRow.Cells[2].Value.ToString();
-                shape = _shapeLogic.GetShape(shapeName);
-                _shapeLogic.RemoveShape(shape);
-                dgvShapeList.Rows.Remove(dgvShapeList.CurrentRow);
-            }
+                string shapeName;
+                Shape shape;
+                if (dgvShapeList.Columns[e.ColumnIndex].Name == "Delete")
+                {
+                    try
+                    {
+                        shapeName = dgvShapeList.CurrentRow.Cells[2].Value.ToString();
+                        shape = _shapeLogic.GetShape(shapeName);
+                        _shapeLogic.RemoveShape(shape);
+                        dgvShapeList.Rows.Remove(dgvShapeList.CurrentRow);
+                        lblEliminationException.Visible = false;
+                    }
+                    catch(AssociationException AssEx)
+                    {
+                        lblEliminationException.Visible = true;
+                        lblEliminationException.Text = AssEx.Message;
+                    }
+                    
+                }
 
-            if (dgvShapeList.Columns[e.ColumnIndex].Name == "Rename")
-            {
-                shapeName = dgvShapeList.CurrentRow.Cells[2].Value.ToString();
-                shape = _shapeLogic.GetShape(shapeName);
-                _panelGeneral.GoToShapeRename(shape);
+                if (dgvShapeList.Columns[e.ColumnIndex].Name == "Rename")
+                {
+                    shapeName = dgvShapeList.CurrentRow.Cells[2].Value.ToString();
+                    shape = _shapeLogic.GetShape(shapeName);
+                    _panelGeneral.GoToShapeRename(shape);
+                }
             }
+            
         }
 
         private void dgvShapeList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

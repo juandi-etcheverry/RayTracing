@@ -8,6 +8,7 @@ namespace RepositoryInDB.DomainConfiguration
         public static void ConfigureEntity(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Client>().HasKey(c => c.Name);
+            modelBuilder.Entity<Client>().Property(c => c.RegistrationDate).HasColumnType("datetime2");
         }
     }
 }

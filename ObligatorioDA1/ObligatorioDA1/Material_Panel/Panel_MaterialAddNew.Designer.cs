@@ -61,8 +61,8 @@
             this.btnShowAllMaterials.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnShowAllMaterials.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShowAllMaterials.ForeColor = System.Drawing.Color.White;
-            this.btnShowAllMaterials.Location = new System.Drawing.Point(41, 31);
-            this.btnShowAllMaterials.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnShowAllMaterials.Location = new System.Drawing.Point(76, 42);
+            this.btnShowAllMaterials.Margin = new System.Windows.Forms.Padding(1);
             this.btnShowAllMaterials.Name = "btnShowAllMaterials";
             this.btnShowAllMaterials.Size = new System.Drawing.Size(434, 37);
             this.btnShowAllMaterials.TabIndex = 2;
@@ -89,10 +89,10 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(41, 60);
-            this.panel1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.panel1.Location = new System.Drawing.Point(76, 94);
+            this.panel1.Margin = new System.Windows.Forms.Padding(1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(434, 376);
+            this.panel1.Size = new System.Drawing.Size(434, 365);
             this.panel1.TabIndex = 3;
             // 
             // pnlTypePreferences
@@ -101,7 +101,7 @@
             this.pnlTypePreferences.Controls.Add(this.txbBlur);
             this.pnlTypePreferences.Controls.Add(this.Blur);
             this.pnlTypePreferences.Location = new System.Drawing.Point(183, 240);
-            this.pnlTypePreferences.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlTypePreferences.Margin = new System.Windows.Forms.Padding(2);
             this.pnlTypePreferences.Name = "pnlTypePreferences";
             this.pnlTypePreferences.Size = new System.Drawing.Size(226, 52);
             this.pnlTypePreferences.TabIndex = 14;
@@ -122,7 +122,7 @@
             // 
             this.txbBlur.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbBlur.Location = new System.Drawing.Point(51, 6);
-            this.txbBlur.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbBlur.Margin = new System.Windows.Forms.Padding(2);
             this.txbBlur.Name = "txbBlur";
             this.txbBlur.Size = new System.Drawing.Size(62, 26);
             this.txbBlur.TabIndex = 15;
@@ -143,9 +143,9 @@
             this.grpbxType.Controls.Add(this.rbtnMetalic);
             this.grpbxType.Controls.Add(this.rbtnLambertian);
             this.grpbxType.Location = new System.Drawing.Point(52, 240);
-            this.grpbxType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpbxType.Margin = new System.Windows.Forms.Padding(2);
             this.grpbxType.Name = "grpbxType";
-            this.grpbxType.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpbxType.Padding = new System.Windows.Forms.Padding(2);
             this.grpbxType.Size = new System.Drawing.Size(110, 52);
             this.grpbxType.TabIndex = 13;
             this.grpbxType.TabStop = false;
@@ -155,7 +155,7 @@
             this.rbtnMetalic.AutoSize = true;
             this.rbtnMetalic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnMetalic.Location = new System.Drawing.Point(3, 29);
-            this.rbtnMetalic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbtnMetalic.Margin = new System.Windows.Forms.Padding(2);
             this.rbtnMetalic.Name = "rbtnMetalic";
             this.rbtnMetalic.Size = new System.Drawing.Size(70, 21);
             this.rbtnMetalic.TabIndex = 1;
@@ -169,7 +169,7 @@
             this.rbtnLambertian.AutoSize = true;
             this.rbtnLambertian.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnLambertian.Location = new System.Drawing.Point(3, 8);
-            this.rbtnLambertian.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbtnLambertian.Margin = new System.Windows.Forms.Padding(2);
             this.rbtnLambertian.Name = "rbtnLambertian";
             this.rbtnLambertian.Size = new System.Drawing.Size(97, 21);
             this.rbtnLambertian.TabIndex = 0;
@@ -226,7 +226,7 @@
             // 
             this.txbNewBMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNewBMaterial.Location = new System.Drawing.Point(329, 164);
-            this.txbNewBMaterial.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txbNewBMaterial.Margin = new System.Windows.Forms.Padding(1);
             this.txbNewBMaterial.Name = "txbNewBMaterial";
             this.txbNewBMaterial.Size = new System.Drawing.Size(62, 26);
             this.txbNewBMaterial.TabIndex = 4;
@@ -236,7 +236,7 @@
             // 
             this.txbNewGMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNewGMaterial.Location = new System.Drawing.Point(201, 164);
-            this.txbNewGMaterial.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txbNewGMaterial.Margin = new System.Windows.Forms.Padding(1);
             this.txbNewGMaterial.Name = "txbNewGMaterial";
             this.txbNewGMaterial.Size = new System.Drawing.Size(62, 26);
             this.txbNewGMaterial.TabIndex = 3;
@@ -248,7 +248,7 @@
             this.btnNewMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewMaterial.ForeColor = System.Drawing.Color.White;
             this.btnNewMaterial.Location = new System.Drawing.Point(100, 326);
-            this.btnNewMaterial.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnNewMaterial.Margin = new System.Windows.Forms.Padding(1);
             this.btnNewMaterial.Name = "btnNewMaterial";
             this.btnNewMaterial.Size = new System.Drawing.Size(238, 31);
             this.btnNewMaterial.TabIndex = 5;
@@ -284,7 +284,7 @@
             // 
             this.txbNewRMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNewRMaterial.Location = new System.Drawing.Point(78, 164);
-            this.txbNewRMaterial.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txbNewRMaterial.Margin = new System.Windows.Forms.Padding(1);
             this.txbNewRMaterial.Name = "txbNewRMaterial";
             this.txbNewRMaterial.Size = new System.Drawing.Size(62, 26);
             this.txbNewRMaterial.TabIndex = 2;
@@ -294,7 +294,7 @@
             // 
             this.txbNewMaterialName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbNewMaterialName.Location = new System.Drawing.Point(55, 93);
-            this.txbNewMaterialName.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.txbNewMaterialName.Margin = new System.Windows.Forms.Padding(1);
             this.txbNewMaterialName.Name = "txbNewMaterialName";
             this.txbNewMaterialName.Size = new System.Drawing.Size(337, 26);
             this.txbNewMaterialName.TabIndex = 1;

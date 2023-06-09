@@ -9,6 +9,6 @@ namespace IRepository
         Scene Get(int id);
         void AddModel(Scene scene, PositionedModel model);
         void DeleteModel(Scene scene, PositionedModel model);
-        PositionedModel GetModel(Scene scene, string modelName);
+        PositionedModel GetModel(Scene scene, int idModel);
     }
 }

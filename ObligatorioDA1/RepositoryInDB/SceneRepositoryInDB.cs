@@ -31,7 +31,7 @@ namespace RepositoryInDB
             {
                 return context.Scenes
                             .Include(s => s.Client)
-                            .Include(s => s.Models)
+                            .Include(s => s.Models.Select(m => m.Model))
                             .ToList();
             }
         }
@@ -65,7 +65,25 @@ namespace RepositoryInDB
                 return sceneToRemove;
             }
         }
+        public void DeleteModel(Scene scene, PositionedModel model)
+        {
+            using (var context = new BusinessContext())
+            {
+                Scene sceneToDelete = context.Scenes
+                    .Include(m => m.Models)
+                    .Include(m => m.ClientScenePreferences)
+                    .FirstOrDefault(s => s.Id == scene.Id);
 
+                PositionedModel modelAux = context.Scenes.Include(s => s.Models)
+                    .FirstOrDefault(s => s.Id == scene.Id).Models
+                    .FirstOrDefault(m => m.Id == model.Id);
+
+                context.Entry(modelAux).State = EntityState.Deleted;
+               
+                sceneToDelete.LastModificationDate = DateTime.Now;
+                context.SaveChanges();
+            }
+        }
         public void AddModel(Scene scene, PositionedModel model)
         {
             using (var context = new BusinessContext())
@@ -85,28 +103,14 @@ namespace RepositoryInDB
                 model.Model = modelAux;
 
                 sceneAux.Models.Add(model);
+                sceneAux.LastModificationDate = DateTime.Now;
                 context.SaveChanges();
             }
         }
 
-        public void DeleteModel(Scene scene, PositionedModel model)
-        {
-            using (var context = new BusinessContext())
-            {
-                Scene sceneToDelete = context.Scenes
-                    .Include(m => m.Models)
-                    .Include(m => m.ClientScenePreferences)
-                    .FirstOrDefault(s => s.Id == scene.Id);
+      
 
-                PositionedModel modelAux = context.Scenes.Include(s => s.Models).FirstOrDefault(s => s.Id == scene.Id).Models
-                    .FirstOrDefault(m => m.Id == model.Id);
-
-                sceneToDelete.Models.Remove(modelAux);
-                context.SaveChanges();
-            }
-        }
-
-        public PositionedModel GetModel(Scene scene, string modelName)
+        public PositionedModel GetModel(Scene scene, int idModel)
         {
             using (var context = new BusinessContext())
             {
@@ -116,7 +120,20 @@ namespace RepositoryInDB
                     .FirstOrDefault(s => s.Id == scene.Id);
 
                 return sceneToGet.Models.FirstOrDefault(m =>
-                    m.Model.ModelName == modelName);
+                    m.Id == idModel);
+            }
+        }
+        public PositionedModel GetModel1(Scene scene, int id)
+        {
+            using (var context = new BusinessContext())
+            {
+                Scene sceneToGet = context.Scenes
+                    .Include(m => m.Models.Select(p => p.Model).Select(x => x.Shape))
+                    .Include(m => m.Models.Select(p => p.Model).Select(x => x.Material))
+                    .FirstOrDefault(s => s.Id == scene.Id);
+
+                return sceneToGet.Models.FirstOrDefault(m =>
+                    m.Model.Id == id);
             }
         }
 

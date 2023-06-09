@@ -17,17 +17,10 @@ namespace RepositoryInDB.DomainConfiguration
             modelBuilder.Entity<Scene>().Property(s => s.LastModificationDate).HasColumnType("datetime2");
             modelBuilder.Entity<Scene>().Property(s => s.LastRenderDate).HasColumnType("datetime2");
 
-            modelBuilder.Entity<PositionedModel>()
-                .HasKey(p => p.Id)
-                .Property(p => p.Id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-
-            //I want that when you delete a scene, all the positionedModels associated to the scene are deleted
             modelBuilder.Entity<Scene>()
                 .HasMany(s => s.Models)
                 .WithRequired(pm => pm.Scene)
                 .WillCascadeOnDelete(true);
-
         }
     }
 }

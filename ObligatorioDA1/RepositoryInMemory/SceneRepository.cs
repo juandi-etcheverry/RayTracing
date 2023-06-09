@@ -35,7 +35,7 @@ namespace RepositoryInMemory
             return _scenes;
         }
 
-        public PositionedModel GetModel(Scene scene, string modelName)
+        public PositionedModel GetModel(Scene scene, int idModel)
         {
             throw new System.NotImplementedException();
         }

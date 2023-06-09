@@ -35,6 +35,7 @@
             this.dgvMaterialList = new System.Windows.Forms.DataGridView();
             this.Rename = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.lblEliminationException = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterialList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,11 +121,24 @@
             this.Delete.Name = "Delete";
             this.Delete.Width = 59;
             // 
+            // lblEliminationException
+            // 
+            this.lblEliminationException.AutoSize = true;
+            this.lblEliminationException.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEliminationException.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblEliminationException.Location = new System.Drawing.Point(60, 445);
+            this.lblEliminationException.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEliminationException.Name = "lblEliminationException";
+            this.lblEliminationException.Size = new System.Drawing.Size(147, 18);
+            this.lblEliminationException.TabIndex = 6;
+            this.lblEliminationException.Text = "Elimination exception";
+            // 
             // Panel_MaterialList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.lblEliminationException);
             this.Controls.Add(this.dgvMaterialList);
             this.Controls.Add(this.btnAddMaterial);
             this.MaximumSize = new System.Drawing.Size(600, 520);
@@ -133,6 +147,7 @@
             this.Size = new System.Drawing.Size(600, 520);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterialList)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -142,5 +157,6 @@
         private System.Windows.Forms.DataGridView dgvMaterialList;
         private System.Windows.Forms.DataGridViewImageColumn Rename;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
+        private System.Windows.Forms.Label lblEliminationException;
     }
 }

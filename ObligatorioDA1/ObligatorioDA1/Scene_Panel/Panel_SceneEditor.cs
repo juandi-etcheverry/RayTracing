@@ -16,6 +16,7 @@ namespace ObligatorioDA1
         private readonly SceneLogic _sceneLogic = new SceneLogic();
         private readonly Panel_General _panelGeneral;
         private Scene _scene;
+        private bool editedFirstTime;
 
         public Panel_SceneEditor(Panel_General panelGeneral)
         {
@@ -30,25 +31,31 @@ namespace ObligatorioDA1
         public void RefreshSceneEditor(Scene scene)
         {
             _scene = _sceneLogic.GetScene(scene.Id);
-            RefreshPage();
+            InitializePage();
         }
-
-        private void RefreshPage()
+        private void InitializePage()
         {
             lblNewSceneName.Text = _scene.SceneName;
             lblLookExceptions.Visible = false;
-            lblFoVException.Visible = false;
             lblFoVException.Visible = false;
             pnlBlur.Visible = false;
             chkboxBlur.Checked = false;
             RefreshAvailableList();
             RefreshUsedList();
             RefreshLastModified();
-            RecoverSceneRender();
             OutDatedRender();
+            RecoverSceneRender();
             RefreshLooks();
             ButtonExport();
-
+        }
+        private void RefreshPage()
+        {
+            lblLookExceptions.Visible = false;
+            lblFoVException.Visible = false;
+            lblLensAperture.Visible = false;
+            RefreshLastModified();
+            OutDatedRender();
+            ButtonExport();
         }
         private void ButtonExport()
         {
@@ -74,8 +81,10 @@ namespace ObligatorioDA1
             dgvUsedModels.Columns.Add("Name", "Name");
             dgvUsedModels.Columns.Add("Colour", " ");
             dgvUsedModels.Columns.Add("Pos", "Pos");
+            dgvUsedModels.Columns.Add("Id", "Id");
             SetDisplayOrderColumnsUsed();
             dgvUsedModels.Columns["Colour"].Width = 5;
+            
         }
 
         private void SetDisplayOrderColumnsAvailable()
@@ -93,6 +102,8 @@ namespace ObligatorioDA1
             dgvUsedModels.Columns["Name"].DisplayIndex = 2;
             dgvUsedModels.Columns["Pos"].DisplayIndex = 3;
             dgvUsedModels.Columns["Delete"].DisplayIndex = 4;
+            dgvUsedModels.Columns["Id"].DisplayIndex = 5;
+            dgvUsedModels.Columns["Id"].Visible = false;
         }
 
         private void RefreshAvailableList()
@@ -107,7 +118,7 @@ namespace ObligatorioDA1
             dgvUsedModels.Rows.Clear();
             _scene = _sceneLogic.GetScene(_scene.Id);
             foreach (var posModel in _scene.Models.ToList())
-                dgvUsedModels.Rows.Add(posModel.Model.Preview, null, posModel.Model.ModelName, null, posModel.GetCoordinates());
+                dgvUsedModels.Rows.Add(posModel.Model.Preview, null, posModel.Model.ModelName, null, posModel.GetCoordinates(), posModel.Id);
         }
 
         private void dgvAvailableModelsList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -135,6 +146,8 @@ namespace ObligatorioDA1
                 var modelName = dgvAvailableModelsList.CurrentRow.Cells[2].Value.ToString();
                 var model = _modelLogic.Get(modelName);
                 _panelGeneral.GoToSceneAddModel(model, _scene);
+                editedFirstTime = true;
+                RefreshPage();
             }
         }
 
@@ -158,17 +171,16 @@ namespace ObligatorioDA1
 
         private void dgvUsedModels_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvUsedModels.Columns[e.ColumnIndex].Name == "Delete")
+            if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
             {
-                var modelName = dgvUsedModels.CurrentRow.Cells[2].Value.ToString();
-                var pos = dgvUsedModels.CurrentRow.Cells[4].Value.ToString();
-                var values = pos.Trim('(', ')').Split(',');
-                var x = decimal.Parse(values[0]);
-                var y = decimal.Parse(values[1]);
-                var z = decimal.Parse(values[2]);
-                var tuple = ValueTuple.Create(x, y, z);
-                _sceneLogic.DeletePositionedModel(modelName, _scene.Id);
-                RefreshPage();
+                if (dgvUsedModels.Columns[e.ColumnIndex].Name == "Delete")
+                {
+                    int idModel = int.Parse(dgvUsedModels.CurrentRow.Cells[5].Value.ToString());
+                    _sceneLogic.DeletePositionedModel(idModel, _scene.Id);
+                    dgvUsedModels.Rows.Remove(dgvUsedModels.CurrentRow);
+                    _scene.LastModificationDate = DateTime.Now;
+                    RefreshPage();
+                }
             }
         }
 
@@ -185,9 +197,6 @@ namespace ObligatorioDA1
                 var tupleLookAt = SetLookAt();
                 var fov = SetFov();
                 SetNewLooksOnRender(tupleLookFrom, tupleLookAt, fov);
-                OutDatedRender();
-
-
                 GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine(_scene)
                 {
                     Width = 300
@@ -195,7 +204,10 @@ namespace ObligatorioDA1
                 Cursor.Current = Cursors.WaitCursor;
                 if (chkboxBlur.Checked)
                 {
-                    engine.BlurCamera(Convert.ToDecimal(txbBlur.Text));
+                    decimal x;
+                    var validX = decimal.TryParse(txbBlur.Text, out x) && x >= 0;
+                    if (!validX) throw new ArgumentException("Aperture must be > 0,0");
+                    engine.BlurCamera(x);
                 }
                 PPMImage renderedImage = engine.Render();
                 _scene.LastRenderDate = DateTime.Now;
@@ -205,6 +217,8 @@ namespace ObligatorioDA1
                 _sceneLogic.UpdateLastRender(_scene);
                 RecoverSceneRender();
                 Cursor.Current = Cursors.Arrow;
+                lblLastRenderedDate.Visible = true;
+                lblRendered.Visible = true;
                 RefreshPage();
             }
             catch (ArgumentOutOfRangeException outEx)
@@ -214,7 +228,12 @@ namespace ObligatorioDA1
             }
             catch (ArgumentException argEx)
             {
-                if (argEx.Message == "X, Y, Z must be numbers")
+                if(argEx.Message == "Aperture must be > 0,0")
+                {
+                    lblLensAperture.Visible = true;
+                    lblLensAperture.Text = argEx.Message;
+                }
+                else if (argEx.Message == "X, Y, Z must be numbers")
                 {
                     lblLookExceptions.Visible = true;
                     lblLookExceptions.Text = argEx.Message;
@@ -258,7 +277,7 @@ namespace ObligatorioDA1
             var validX = decimal.TryParse(txbXLookFrom.Text, out x);
             var validY = decimal.TryParse(txbYLookFrom.Text, out y);
             var validZ = decimal.TryParse(txbZLookFrom.Text, out z);
-            if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers");
+            if (!validX || !validY || !validZ) throw new ArgumentException("X, Y, Z must be numbers > 0");
             var tuple = ValueTuple.Create(x, y, z);
             return tuple;
         }
@@ -284,9 +303,8 @@ namespace ObligatorioDA1
 
         private void OutDatedRender()
         {
-            lblLastRenderedDate.Visible = true;
             lblLastRenderedDate.Text = _scene.LastRenderDate.ToString();
-            lblOutdatedImage.Visible = _scene.LastRenderDate < _scene.LastModificationDate;
+            if(editedFirstTime) lblOutdatedImage.Visible = _scene.LastRenderDate < _scene.LastModificationDate;
         }
 
         private Color GetColour(Model _model)

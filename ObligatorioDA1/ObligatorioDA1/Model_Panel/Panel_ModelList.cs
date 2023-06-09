@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using BusinessLogic;
+using BusinessLogicExceptions;
 using Domain;
 using GraphicsEngine;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -22,7 +23,6 @@ namespace ObligatorioDA1.Model_Panel
             InitializeComponent();
             InitializeModelList();
         }
-
 
         private void SetPreviewForNewModel(Model model)
         {
@@ -54,10 +54,9 @@ namespace ObligatorioDA1.Model_Panel
             _sceneLogic.RemoveScene(updatedScene);
         }
 
-
-
         public void RefreshModelList()
         {
+            lblEliminationException.Visible = false;
             dgvModelList.Rows.Clear();
             foreach (var model in _modelLogic.GetClientModels().ToList())
             {
@@ -120,27 +119,37 @@ namespace ObligatorioDA1.Model_Panel
                         PaintCell(cell, newColor);
                     }
                 }
-
             }
         }
 
         private void dgvModelList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string modelName;
-            Model model;
-            if (dgvModelList.Columns[e.ColumnIndex].Name == "Delete")
+            if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
             {
-                modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
-                model = _modelLogic.Get(modelName);
-                _modelLogic.Remove(model);
-                dgvModelList.Rows.Remove(dgvModelList.CurrentRow);
-            }
-
-            if (dgvModelList.Columns[e.ColumnIndex].Name == "Rename")
-            {
-                modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
-                model = _modelLogic.Get(modelName);
-                _panelGeneral.GoToModelRename(model);
+                string modelName;
+                Model model;
+                if (dgvModelList.Columns[e.ColumnIndex].Name == "Delete")
+                {
+                    try
+                    {
+                        modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
+                        model = _modelLogic.Get(modelName);
+                        _modelLogic.Remove(model);
+                        dgvModelList.Rows.Remove(dgvModelList.CurrentRow);
+                        lblEliminationException.Visible = false;
+                    }
+                    catch(AssociationException AssEx)
+                    {
+                        lblEliminationException.Visible = true;
+                        lblEliminationException.Text = AssEx.Message;
+                    }
+                }
+                if (dgvModelList.Columns[e.ColumnIndex].Name == "Rename")
+                {
+                    modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
+                    model = _modelLogic.Get(modelName);
+                    _panelGeneral.GoToModelRename(model);
+                }
             }
         }
 

@@ -58,13 +58,9 @@
     <Compile Include="DomainConfiguration\SceneConfiguration.cs" />
     <Compile Include="DomainConfiguration\ShapeConfiguration.cs" />
     <Compile Include="MaterialRepositoryInDB.cs" />
-    <Compile Include="Migrations\202306030027254_v1.cs" />
-    <Compile Include="Migrations\202306030027254_v1.designer.cs">
-      <DependentUpon>202306030027254_v1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306032147493_v2.cs" />
-    <Compile Include="Migrations\202306032147493_v2.designer.cs">
-      <DependentUpon>202306032147493_v2.cs</DependentUpon>
+    <Compile Include="Migrations\202306091353523_v1.cs" />
+    <Compile Include="Migrations\202306091353523_v1.designer.cs">
+      <DependentUpon>202306091353523_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelRepositoryInDB.cs" />
@@ -87,11 +83,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202306030027254_v1.resx">
-      <DependentUpon>202306030027254_v1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306032147493_v2.resx">
-      <DependentUpon>202306032147493_v2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306091353523_v1.resx">
+      <DependentUpon>202306091353523_v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

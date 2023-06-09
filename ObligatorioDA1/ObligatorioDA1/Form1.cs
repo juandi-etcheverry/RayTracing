@@ -44,6 +44,7 @@ namespace ObligatorioDA1
         }
         private void btnSignUp_Click(object sender, EventArgs e)
         {
+            RefreshWelcome();
             flyPanelPrincipal.Visible = true;
             flyPanelPrincipal.Controls.Add(userControlAddClient);
             userControlAddClient.RefreshAddClient();
@@ -59,6 +60,7 @@ namespace ObligatorioDA1
                 _clientLogic.ThrowIfIncorrectPassword(client, txbPassword.Text);
                 _clientLogic.InitializeSession(client);
                 GoToGeneral(_clientLogic.GetLoggedClient());
+                RefreshWelcome();
                 btnRenderLogs.Visible = false;
             }
             catch (NotFoundException notEx)
