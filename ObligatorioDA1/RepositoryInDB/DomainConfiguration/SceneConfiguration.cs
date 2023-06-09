@@ -23,11 +23,15 @@ namespace RepositoryInDB.DomainConfiguration
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             //I want that when you delete a scene, all the positionedModels associated to the scene are deleted
-            modelBuilder.Entity<Scene>()
+            /*modelBuilder.Entity<Scene>()
                 .HasMany(s => s.Models)
                 .WithRequired(pm => pm.Scene)
                 .WillCascadeOnDelete(true);
 
+            modelBuilder.Entity<PositionedModel>()
+                .HasRequired(pm => pm.Model)
+                .WithMany()  // No collection navigation property in Model
+                .WillCascadeOnDelete(false);*/
         }
     }
 }

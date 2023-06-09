@@ -49,17 +49,17 @@ namespace BusinessLogic
             return newPositionedModel;
         }
 
-        public void DeletePositionedModel(string name, int id)
+        public void DeletePositionedModel(int idModel, int idScene)
         {
-            Scene scene = GetScene(id);
-            var positionedModel = GetPositionedModel(scene, name);
-            scene.LastModificationDate = DateTime.Now;
-            _repository.DeleteModel(scene, positionedModel);
+            Scene scene = GetScene(idScene);
+            //var positionedModel = GetPositionedModel(scene, idModel);
+            //scene.LastModificationDate = DateTime.Now;
+            _repository.DeleteModel(scene, idModel);
         }
 
-        public PositionedModel GetPositionedModel(Scene scene, string modelName)
+        public PositionedModel GetPositionedModel(Scene scene, int idModel)
         {
-            return _repository.GetModel(scene, modelName);
+            return _repository.GetModel(scene, idModel);
         }
 
         private void AddPositionedModel(Scene scene, PositionedModel model)

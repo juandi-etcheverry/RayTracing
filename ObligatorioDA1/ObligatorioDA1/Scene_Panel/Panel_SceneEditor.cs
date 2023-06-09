@@ -81,8 +81,10 @@ namespace ObligatorioDA1
             dgvUsedModels.Columns.Add("Name", "Name");
             dgvUsedModels.Columns.Add("Colour", " ");
             dgvUsedModels.Columns.Add("Pos", "Pos");
+            dgvUsedModels.Columns.Add("Id", "Id");
             SetDisplayOrderColumnsUsed();
             dgvUsedModels.Columns["Colour"].Width = 5;
+            
         }
 
         private void SetDisplayOrderColumnsAvailable()
@@ -100,6 +102,8 @@ namespace ObligatorioDA1
             dgvUsedModels.Columns["Name"].DisplayIndex = 2;
             dgvUsedModels.Columns["Pos"].DisplayIndex = 3;
             dgvUsedModels.Columns["Delete"].DisplayIndex = 4;
+            dgvUsedModels.Columns["Id"].DisplayIndex = 5;
+            dgvUsedModels.Columns["Id"].Visible = false;
         }
 
         private void RefreshAvailableList()
@@ -114,7 +118,7 @@ namespace ObligatorioDA1
             dgvUsedModels.Rows.Clear();
             _scene = _sceneLogic.GetScene(_scene.Id);
             foreach (var posModel in _scene.Models.ToList())
-                dgvUsedModels.Rows.Add(posModel.Model.Preview, null, posModel.Model.ModelName, null, posModel.GetCoordinates());
+                dgvUsedModels.Rows.Add(posModel.Model.Preview, null, posModel.Model.ModelName, null, posModel.GetCoordinates(), posModel.Id);
         }
 
         private void dgvAvailableModelsList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -169,14 +173,8 @@ namespace ObligatorioDA1
         {
             if (dgvUsedModels.Columns[e.ColumnIndex].Name == "Delete")
             {
-                var modelName = dgvUsedModels.CurrentRow.Cells[2].Value.ToString();
-                var pos = dgvUsedModels.CurrentRow.Cells[4].Value.ToString();
-                var values = pos.Trim('(', ')').Split(',');
-                var x = decimal.Parse(values[0]);
-                var y = decimal.Parse(values[1]);
-                var z = decimal.Parse(values[2]);
-                var tuple = ValueTuple.Create(x, y, z);
-                _sceneLogic.DeletePositionedModel(modelName, _scene.Id);
+                int idModel = int.Parse(dgvUsedModels.CurrentRow.Cells[5].Value.ToString());
+                _sceneLogic.DeletePositionedModel(idModel, _scene.Id);
                 RefreshPage();
             }
         }
