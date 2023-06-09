@@ -80,7 +80,6 @@ namespace RepositoryInDB
 
                 context.Entry(modelAux).State = EntityState.Deleted;
                
-                //sceneToDelete.Models.Remove(modelAux);
                 sceneToDelete.LastModificationDate = DateTime.Now;
                 context.SaveChanges();
             }
