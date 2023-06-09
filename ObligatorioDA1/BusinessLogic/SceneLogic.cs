@@ -52,9 +52,9 @@ namespace BusinessLogic
         public void DeletePositionedModel(int idModel, int idScene)
         {
             Scene scene = GetScene(idScene);
-            //var positionedModel = GetPositionedModel(scene, idModel);
-            //scene.LastModificationDate = DateTime.Now;
-            _repository.DeleteModel(scene, idModel);
+            var positionedModel = GetPositionedModel(scene, idModel);
+            scene.LastModificationDate = DateTime.Now;
+            _repository.DeleteModel(scene, positionedModel);
         }
 
         public PositionedModel GetPositionedModel(Scene scene, int idModel)

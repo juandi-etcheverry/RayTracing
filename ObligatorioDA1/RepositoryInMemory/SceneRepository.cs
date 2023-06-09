@@ -20,7 +20,7 @@ namespace RepositoryInMemory
             throw new System.NotImplementedException();
         }
 
-        public void DeleteModel(Scene scene, int idModel)
+        public void DeleteModel(Scene scene, PositionedModel model)
         {
             throw new System.NotImplementedException();
         }

@@ -65,22 +65,23 @@ namespace RepositoryInDB
                 return sceneToRemove;
             }
         }
-        public void DeleteModel(Scene scene, int idModel)
+        public void DeleteModel(Scene scene, PositionedModel model)
         {
             using (var context = new BusinessContext())
             {
                 Scene sceneToDelete = context.Scenes
-                    .Include(m => m.Models.Select(p => p.Model))
+                    .Include(m => m.Models)
                     .Include(m => m.ClientScenePreferences)
                     .FirstOrDefault(s => s.Id == scene.Id);
 
-                //PositionedModel modelAux = context.Scenes.Include(s => s.Models)
-                //    .FirstOrDefault(s => s.Id == scene.Id).Models
-                //    .FirstOrDefault(m => m.Id == idModel);
-                PositionedModel modelAux = sceneToDelete.Models.FirstOrDefault(m => m.Id == idModel);
-                
-                sceneToDelete.Models.Remove(modelAux);
-                sceneToDelete.LastModificationDate = DateTime.Now;
+                PositionedModel modelAux = context.Scenes.Include(s => s.Models)
+                    .FirstOrDefault(s => s.Id == scene.Id).Models
+                    .FirstOrDefault(m => m.Id == model.Id);
+
+                context.Entry(modelAux).State = EntityState.Deleted;
+               
+                //sceneToDelete.Models.Remove(modelAux);
+                //sceneToDelete.LastModificationDate = DateTime.Now;
                 context.SaveChanges();
             }
         }

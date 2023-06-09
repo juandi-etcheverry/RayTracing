@@ -171,11 +171,15 @@ namespace ObligatorioDA1
 
         private void dgvUsedModels_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvUsedModels.Columns[e.ColumnIndex].Name == "Delete")
+            if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
             {
-                int idModel = int.Parse(dgvUsedModels.CurrentRow.Cells[5].Value.ToString());
-                _sceneLogic.DeletePositionedModel(idModel, _scene.Id);
-                RefreshPage();
+                if (dgvUsedModels.Columns[e.ColumnIndex].Name == "Delete")
+                {
+                    int idModel = int.Parse(dgvUsedModels.CurrentRow.Cells[5].Value.ToString());
+                    _sceneLogic.DeletePositionedModel(idModel, _scene.Id);
+                    dgvUsedModels.Rows.Remove(dgvUsedModels.CurrentRow);
+                    RefreshPage();
+                }
             }
         }
 

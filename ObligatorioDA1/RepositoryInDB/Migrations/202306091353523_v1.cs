@@ -12,7 +12,7 @@
                 c => new
                     {
                         Name = c.String(nullable: false, maxLength: 128),
-                        RegistrationDate = c.DateTime(nullable: false),
+                        RegistrationDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         Password = c.String(),
                         ClientScenePreferences_Id = c.Int(),
                     })
@@ -56,7 +56,7 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         WantPreview = c.Boolean(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false),
+                        CreatedAt = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         ModelName = c.String(),
                         Client_Name = c.String(maxLength: 128),
                         Material_Id = c.Int(),
@@ -109,11 +109,11 @@
                         CoordinateY = c.Decimal(nullable: false, precision: 18, scale: 2),
                         CoordinateZ = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Model_Id = c.Int(),
-                        Scene_Id = c.Int(),
+                        Scene_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Models", t => t.Model_Id)
-                .ForeignKey("dbo.Scenes", t => t.Scene_Id)
+                .ForeignKey("dbo.Scenes", t => t.Scene_Id, cascadeDelete: true)
                 .Index(t => t.Model_Id)
                 .Index(t => t.Scene_Id);
             
