@@ -178,6 +178,7 @@ namespace ObligatorioDA1
                     int idModel = int.Parse(dgvUsedModels.CurrentRow.Cells[5].Value.ToString());
                     _sceneLogic.DeletePositionedModel(idModel, _scene.Id);
                     dgvUsedModels.Rows.Remove(dgvUsedModels.CurrentRow);
+                    _scene.LastModificationDate = DateTime.Now;
                     RefreshPage();
                 }
             }

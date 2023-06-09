@@ -31,7 +31,7 @@ namespace RepositoryInDB
             {
                 return context.Scenes
                             .Include(s => s.Client)
-                            .Include(s => s.Models)
+                            .Include(s => s.Models.Select(m => m.Model))
                             .ToList();
             }
         }
@@ -81,7 +81,7 @@ namespace RepositoryInDB
                 context.Entry(modelAux).State = EntityState.Deleted;
                
                 //sceneToDelete.Models.Remove(modelAux);
-                //sceneToDelete.LastModificationDate = DateTime.Now;
+                sceneToDelete.LastModificationDate = DateTime.Now;
                 context.SaveChanges();
             }
         }
