@@ -121,7 +121,7 @@ namespace RepositoryInDB
                     .FirstOrDefault(s => s.Id == scene.Id);
 
                 return sceneToGet.Models.FirstOrDefault(m =>
-                    m.Model.Id == idModel);
+                    m.Id == idModel);
             }
         }
         public PositionedModel GetModel1(Scene scene, int id)
