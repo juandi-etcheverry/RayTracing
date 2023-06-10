@@ -62,10 +62,6 @@
       <Project>{E9806FC1-AD64-4403-B098-E8B202C28478}</Project>
       <Name>IRepository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RepositoryInDB\RepositoryInDB.csproj">
-      <Project>{25BF3B67-A8C9-4DD6-BCB8-D9432C41F17F}</Project>
-      <Name>RepositoryInDB</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RepositoryInMemory\RepositoryInMemory.csproj">
       <Project>{ED16732A-5D62-4315-8571-BF41BA6B2852}</Project>
       <Name>RepositoryInMemory</Name>

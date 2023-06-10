@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessContext.cs" />
+    <Compile Include="ClearDatabase.cs" />
     <Compile Include="ClientRepositoryInDB.cs" />
     <Compile Include="DomainConfiguration\ClientConfiguration.cs" />
     <Compile Include="DomainConfiguration\ModelConfiguration.cs" />
