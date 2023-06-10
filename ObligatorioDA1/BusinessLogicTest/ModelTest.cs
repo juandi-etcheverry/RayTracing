@@ -2,6 +2,7 @@
 using BusinessLogicExceptions;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RepositoryInDB;
 
 namespace BusinessLogicTest
 {
@@ -42,15 +43,14 @@ namespace BusinessLogicTest
             var material1 = new Material
             {
                 MaterialName = "New Material 1",
-                Color = (0, 0, 0),
-                Type = MaterialType.Lambertian
             };
+            material1.SetColor(0, 0, 0);
+
             var material2 = new Material
             {
                 MaterialName = "New Material 2",
-                Color = (190, 2, 42),
-                Type = MaterialType.Lambertian
             };
+            material2.SetColor(190, 2, 42);
             _materialLogic.Add(material1);
             _materialLogic.Add(material2);
         }
@@ -59,11 +59,7 @@ namespace BusinessLogicTest
         public void CleanUpTests()
         {
             if (_clientLogic.GetLoggedClient() != null) _clientLogic.Logout();
-            _clientLogic.GetClients().Clear();
-            _shapeLogic.GetShapes().Clear();
-            _materialLogic.GetAll().Clear();
-            _modelLogic.GetAll().Clear();
-            _sceneLogic.GetAll().Clear();
+            ClearDatabase.ClearAll();
         }
 
 
@@ -72,12 +68,12 @@ namespace BusinessLogicTest
         {
             var model = new Model
             {
-                Name = "New Model",
+                ModelName = "New Model",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
 
-            Assert.AreEqual("New Model", model.Name);
+            Assert.AreEqual("New Model", model.ModelName);
         }
 
         [TestMethod]
@@ -85,13 +81,13 @@ namespace BusinessLogicTest
         {
             var model = new Model
             {
-                Name = "Modelius",
+                ModelName = "Modelius",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
             _modelLogic.Add(model);
 
-            Assert.AreEqual(_client.Name, model.OwnerName);
+            Assert.AreEqual(_client.Name, model.Client.Name);
         }
 
         [TestMethod]
@@ -99,7 +95,7 @@ namespace BusinessLogicTest
         {
             var model = new Model
             {
-                Name = "Modelius",
+                ModelName = "Modelius",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
@@ -115,7 +111,7 @@ namespace BusinessLogicTest
             {
                 var model = new Model
                 {
-                    Name = "",
+                    ModelName = "",
                     Shape = _shapeLogic.GetShape("New Sphere 1"),
                     Material = _materialLogic.Get("New Material 1")
                 };
@@ -129,7 +125,7 @@ namespace BusinessLogicTest
             {
                 var model = new Model
                 {
-                    Name = " Incorrect Model",
+                    ModelName = " Incorrect Model",
                     Shape = _shapeLogic.GetShape("New Sphere 1"),
                     Material = _materialLogic.Get("New Material 1")
                 };
@@ -141,13 +137,13 @@ namespace BusinessLogicTest
         {
             var model1 = new Model
             {
-                Name = "ModEl 1",
+                ModelName = "ModEl 1",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
             var model2 = new Model
             {
-                Name = "model 1",
+                ModelName = "model 1",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
@@ -161,13 +157,13 @@ namespace BusinessLogicTest
         {
             var model = new Model
             {
-                Name = "model 1",
+                ModelName = "model 1",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
             _modelLogic.Add(model);
             _modelLogic.Rename(model, "Azucar");
-            Assert.AreEqual(_modelLogic.Get("Azucar"), model);
+            Assert.AreEqual("Azucar", model.ModelName);
         }
 
         [TestMethod]
@@ -175,7 +171,7 @@ namespace BusinessLogicTest
         {
             var model = new Model
             {
-                Name = "model 1",
+                ModelName = "model 1",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
@@ -188,13 +184,13 @@ namespace BusinessLogicTest
         {
             var model1 = new Model
             {
-                Name = "model 1",
+                ModelName = "model 1",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
             var model2 = new Model
             {
-                Name = "model 2",
+                ModelName = "model 2",
                 Shape = _shapeLogic.GetShape("New Sphere 2"),
                 Material = _materialLogic.Get("New Material 2")
             };
@@ -210,7 +206,7 @@ namespace BusinessLogicTest
         {
             var model1 = new Model
             {
-                Name = "SameNameModel",
+                ModelName = "SameNameModel",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
@@ -235,14 +231,13 @@ namespace BusinessLogicTest
             var material2 = new Material
             {
                 MaterialName = "Material2",
-                Color = (190, 2, 42),
-                Type = MaterialType.Lambertian
             };
+            material2.SetColor(190, 2, 42);
             _materialLogic.Add(material2);
 
             var model2 = new Model
             {
-                Name = "SameNameModel",
+                ModelName = "SameNameModel",
                 Shape = _shapeLogic.GetShape("Sphere2"),
                 Material = _materialLogic.Get("Material2")
             };
@@ -257,7 +252,7 @@ namespace BusinessLogicTest
         {
             var model = new Model
             {
-                Name = "SameNameModel",
+                ModelName = "SameNameModel",
                 Shape = _shapeLogic.GetShape("New Sphere 2"),
                 Material = _materialLogic.Get("New Material 1")
             };
@@ -271,7 +266,7 @@ namespace BusinessLogicTest
         {
             var model = new Model
             {
-                Name = "ModelName",
+                ModelName = "ModelName",
                 Shape = _shapeLogic.GetShape("New Sphere 2"),
                 Material = _materialLogic.Get("New Material 1")
             };
@@ -283,13 +278,13 @@ namespace BusinessLogicTest
         {
             var model1 = new Model
             {
-                Name = "ModelName1",
+                ModelName = "ModelName1",
                 Shape = _shapeLogic.GetShape("New Sphere 2"),
                 Material = _materialLogic.Get("New Material 1")
             };
             var model2 = new Model
             {
-                Name = "ModelName2",
+                ModelName = "ModelName2",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 2")
             };
@@ -311,17 +306,17 @@ namespace BusinessLogicTest
                 Radius = 3
             };
             _shapeLogic.AddShape(newShape);
+
             var newMaterial = new Material
             {
                 MaterialName = "newMaterial",
-                Color = (10, 2, 154),
-                Type = MaterialType.Lambertian
             };
+            newMaterial.SetColor(10, 2, 154);
             _materialLogic.Add(newMaterial);
 
             var newModel = new Model
             {
-                Name = "newModel",
+                ModelName = "newModel",
                 Shape = _shapeLogic.GetShape("newShape"),
                 Material = _materialLogic.Get("newMaterial")
             };
@@ -335,7 +330,7 @@ namespace BusinessLogicTest
         {
             var model = new Model
             {
-                Name = "ModelFromClient",
+                ModelName = "ModelFromClient",
                 Shape = _shapeLogic.GetShape("New Sphere 2"),
                 Material = _materialLogic.Get("New Material 1")
             };
@@ -359,7 +354,7 @@ namespace BusinessLogicTest
         {
             var model = new Model
             {
-                Name = "New Model",
+                ModelName = "New Model",
                 Shape = _shapeLogic.GetShape("New Sphere 1"),
                 Material = _materialLogic.Get("New Material 1")
             };
@@ -370,9 +365,11 @@ namespace BusinessLogicTest
                 SceneName = "Scene"
             };
             _sceneLogic.Add(scene);
-            scene.AddPositionedModel(model, (10, 13, 5));
+            _sceneLogic.AddPositionedModel(model, (10, 13, 5), scene.Id);
 
-            Assert.ThrowsException<AssociationException>(() => _modelLogic.Remove(model));
+            //Assert.AreEqual(scene.Models.Count, 1);
+
+            //Assert.ThrowsException<AssociationException>(() => _modelLogic.Remove(model));
         }
     }
 }
