@@ -74,6 +74,10 @@
       <Project>{D68AA8F8-57F2-4044-98F4-11211E8BF654}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RepositoryInDB\RepositoryInDB.csproj">
+      <Project>{25BF3B67-A8C9-4DD6-BCB8-D9432C41F17F}</Project>
+      <Name>RepositoryInDB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ValidationService\ValidationService.csproj">
       <Project>{4566B165-F155-4475-965F-C549CB664BC3}</Project>
       <Name>ValidationService</Name>
