@@ -83,6 +83,11 @@ namespace BusinessLogic
             Session.LoggedClient = null;
         }
 
+        public void Update(Client client)
+        {
+            _repository.Update(client);
+        }
+
         private void EnsureClientIsLoggedIn()
         {
             if (Session.LoggedClient == null) ThrowClientNotLoggedIn();

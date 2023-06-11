@@ -1,17 +1,45 @@
 ﻿using System;
+using BusinessLogic;
 using Domain;
 using GraphicsEngine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RepositoryInDB;
 
 namespace GraphicsEngineTest
 {
     [TestClass]
     public class GraphicsEngineTest
     {
+
+        private readonly SceneLogic _sceneLogic = new SceneLogic();
+        private readonly ModelLogic _modelLogic = new ModelLogic();
+        private readonly ClientLogic _clientLogic = new ClientLogic();
+        private readonly MaterialLogic _materialLogic = new MaterialLogic();
+        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
+
+
+        [TestInitialize]
+        public void SetUp()
+        {
+            Client newClient = new Client()
+            {
+                Name = "NewClient",
+                Password = "TicuEsUnGenio1"
+            };
+            newClient.ClientScenePreferences.SetLookAtDefault((10, 10, 10));
+            newClient.ClientScenePreferences.SetLookFromDefault((20, 30, 1));
+            newClient.ClientScenePreferences.FoVDefault = 50;
+
+            _clientLogic.AddClient(newClient);
+            _clientLogic.InitializeSession(newClient);
+        }
+
         [TestCleanup]
         public void ResetRandom()
         {
             RandomGenerator.ShowDefaultValue = false;
+            if(_clientLogic.GetLoggedClient() != null) _clientLogic.Logout();
+            ClearDatabase.ClearAll();
         }
 
         [TestMethod]
@@ -22,61 +50,71 @@ namespace GraphicsEngineTest
                 ShapeName = "NewSphere",
                 Radius = 1
             };
+            _shapeLogic.AddShape(newShape);
 
             var newMaterial = new Material
             {
                 MaterialName = "NewMaterial",
-                Color = (230, 15, 160),
-                Type = MaterialType.Lambertian
             };
+            newMaterial.SetColor(230, 15, 160);
+            _materialLogic.Add(newMaterial);
 
             var newModel = new Model
             {
-                Name = "NewModel",
+                ModelName = "NewModel",
                 Shape = newShape,
                 Material = newMaterial
             };
+            _modelLogic.Add(newModel);
 
             var newScene = new Scene
             {
                 SceneName = "new scene"
             };
+            _sceneLogic.Add(newScene);
 
-            newScene.ClientScenePreferences.LookAtDefault = (0, 2, 5);
-            newScene.ClientScenePreferences.LookFromDefault = (0, 2, 0);
+            newScene.ClientScenePreferences.SetLookAtDefault((1, 2, 5));
+            newScene.ClientScenePreferences.SetLookAtDefault((1, 2, 1));
             newScene.ClientScenePreferences.FoVDefault = 30;
 
-            newScene.AddPositionedModel(newModel, (0, 2, 8));
+            Scene sceneContext = _sceneLogic.Update(newScene);
+
+            _sceneLogic.AddPositionedModel(newModel, (10, 2, 8), sceneContext.Id);
 
             var grass = new Material
             {
                 MaterialName = "Grass",
-                OwnerName = "Juandi",
-                Color = (14, 255, 0)
             };
-            var globe = new Sphere
+            grass.SetColor(14, 255, 10);
+
+            Shape globe = new Sphere()
             {
                 ShapeName = "Earth",
-                OwnerName = "Juandi",
                 Radius = 2000
             };
+            _shapeLogic.AddShape(globe);
+
             var globeModel = new Model
             {
                 Material = grass,
                 Shape = globe,
-                Name = "Globe",
-                OwnerName = "Juandi",
+                ModelName = "Globe",
                 WantPreview = false
             };
-            newScene.AddPositionedModel(globeModel, (0, -1999, 8));
+            _modelLogic.Add(globeModel);
+
+            _sceneLogic.AddPositionedModel(globeModel, (1, -1999, 8), sceneContext.Id);
 
             RandomGenerator.ShowDefaultValue = true;
             RandomGenerator.DefaultValue = 0.5;
-            var engine = new GraphicsEngine.GraphicsEngine
+
+            Scene sceneWithContext = _sceneLogic.GetScene(sceneContext.SceneName);
+
+            var engine = new GraphicsEngine.GraphicsEngine(sceneWithContext)
             {
                 Width = 12,
             };
-            var result = engine.Render(newScene);
+            var result = engine.Render();
             var TrueImage =
                 "P3\n12 8\n255\n178 209 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n178 209 255\n181 211 255\n181 211 255\n181 211 255\n181 211 255\n181 210 255\n181 210 255\n181 210 255\n181 210 255\n181 211 255\n181 211 255\n181 211 255\n181 211 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n130 11 160\n130 11 160\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n189 216 255\n189 216 255\n189 216 255\n189 215 255\n158 12 160\n159 12 160\n159 12 160\n158 12 160\n189 215 255\n189 216 255\n189 216 255\n189 216 255\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n6 11 0\n6 11 0\n6 11 0\n6 11 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n0 1 0\n0 1 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n7 179 0\n";
             Assert.AreEqual(TrueImage, result.parser.Parse());
@@ -89,11 +127,11 @@ namespace GraphicsEngineTest
             {
                 SceneName = "new scene"
             };
-            newScene.ClientScenePreferences.LookAtDefault = (0, 2, 5);
-            newScene.ClientScenePreferences.LookFromDefault = (0, 2, 0);
+            newScene.ClientScenePreferences.SetLookAtDefault((0, 2, 5));
+            newScene.ClientScenePreferences.SetLookFromDefault((0, 2, 0));
             newScene.ClientScenePreferences.FoVDefault = 30;
 
-            var engine = new GraphicsEngine.GraphicsEngine
+            var engine = new GraphicsEngine.GraphicsEngine(newScene)
             {
                 Width = 12
             };
@@ -101,7 +139,7 @@ namespace GraphicsEngineTest
             RandomGenerator.ShowDefaultValue = true;
             RandomGenerator.DefaultValue = 0.5;
 
-            var result = engine.Render(newScene);
+            var result = engine.Render();
             var BlueSkies =
                 "P3\n12 8\n255\n178 209 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n177 208 255\n178 209 255\n181 211 255\n181 211 255\n181 211 255\n181 211 255\n181 210 255\n181 210 255\n181 210 255\n181 210 255\n181 211 255\n181 211 255\n181 211 255\n181 211 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n185 213 255\n189 216 255\n189 216 255\n189 216 255\n189 215 255\n189 215 255\n189 215 255\n189 215 255\n189 215 255\n189 215 255\n189 216 255\n189 216 255\n189 216 255\n193 218 255\n193 218 255\n193 218 255\n193 218 255\n193 218 255\n193 218 255\n193 218 255\n193 218 255\n193 218 255\n193 218 255\n193 218 255\n193 218 255\n197 220 255\n197 220 255\n197 220 255\n198 221 255\n198 221 255\n198 221 255\n198 221 255\n198 221 255\n198 221 255\n197 220 255\n197 220 255\n197 220 255\n201 223 255\n201 223 255\n202 223 255\n202 223 255\n202 223 255\n202 223 255\n202 223 255\n202 223 255\n202 223 255\n202 223 255\n201 223 255\n201 223 255\n205 225 255\n205 225 255\n205 225 255\n206 225 255\n206 225 255\n206 225 255\n206 225 255\n206 225 255\n206 225 255\n205 225 255\n205 225 255\n205 225 255\n";
             Assert.AreEqual(BlueSkies, result.parser.Parse());
@@ -114,11 +152,11 @@ namespace GraphicsEngineTest
             {
                 SceneName = "new scene"
             };
-            newScene.ClientScenePreferences.LookAtDefault = (0, 2, 5);
-            newScene.ClientScenePreferences.LookFromDefault = (0, 2, 0);
+            newScene.ClientScenePreferences.SetLookAtDefault((0, 2, 5));
+            newScene.ClientScenePreferences.SetLookFromDefault((0, 2, 0));
             newScene.ClientScenePreferences.FoVDefault = 30;
 
-            var engine = new GraphicsEngine.GraphicsEngine
+            var engine = new GraphicsEngine.GraphicsEngine(newScene)
             {
                 Width = 12
             };
@@ -126,7 +164,7 @@ namespace GraphicsEngineTest
             RandomGenerator.ShowDefaultValue = true;
             RandomGenerator.DefaultValue = 0.5;
 
-            var result = engine.Render(newScene);
+            var result = engine.Render();
             newScene.LastRenderDate = DateTime.Now;
 
             Assert.AreEqual(newScene.LastRenderDate, DateTime.Now);

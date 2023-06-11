@@ -12,6 +12,7 @@ namespace GraphicsEngine
 
         public GraphicsEngine(Scene scene)
         {
+            Console.WriteLine(scene.ClientScenePreferences.LookAtDefaultX);
             _scene = scene;
             DefaultCamera();
         }
@@ -43,6 +44,7 @@ namespace GraphicsEngine
         public void DefaultCamera()
         {
             var cameraDetails = DefaultCameraDetails(_scene);
+            Console.WriteLine(_scene.ClientScenePreferences.LookAtDefaultX);
             var camera = new Camera(cameraDetails);
             _camera = camera;
         }

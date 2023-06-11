@@ -107,6 +107,11 @@ namespace BusinessLogic
             return _repository.Update(scene);
         }
 
+        public Scene Update(Scene scene)
+        {
+           return _repository.Update(scene);
+        }
+
         private void EnsureSceneExists(string name)
         {
             var sceneExists = GetClientScenes().Any(scene => scene.SceneName.ToLower() == name.ToLower());
