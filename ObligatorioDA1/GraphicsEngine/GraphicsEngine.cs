@@ -41,10 +41,15 @@ namespace GraphicsEngine
         {
             Log newLog = new Log();
             newLog.RenderingTimeInSeconds = elapsedTime;
-            newLog.RenderWindow = "0 seconds";
+            newLog.RenderWindow = CalculateRenderWindow();
             newLog.SceneName = _scene.SceneName; //cambiar
             newLog.NumberOfModels = _scene.Models.Count;
             _renderLogLogic.Add(newLog);
+        }
+
+        private string CalculateRenderWindow()
+        {
+            return "0 seconds";
         }
 
         public void BlurCamera(decimal aperture)
