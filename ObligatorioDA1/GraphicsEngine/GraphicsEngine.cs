@@ -1,4 +1,5 @@
 ﻿using System;
+using BusinessLogic;
 using Domain;
 
 namespace GraphicsEngine
@@ -9,11 +10,11 @@ namespace GraphicsEngine
         public uint Width { get; set; }
         private Camera _camera;
         private Scene _scene;
+        private readonly SceneLogic _sceneLogic = new SceneLogic();
 
         public GraphicsEngine(Scene scene)
         {
-            Console.WriteLine(scene.ClientScenePreferences.LookAtDefaultX);
-            _scene = scene;
+            _scene = _sceneLogic.Update(scene);
             DefaultCamera();
         }
         public PPMImage Render()
@@ -44,7 +45,6 @@ namespace GraphicsEngine
         public void DefaultCamera()
         {
             var cameraDetails = DefaultCameraDetails(_scene);
-            Console.WriteLine(_scene.ClientScenePreferences.LookAtDefaultX);
             var camera = new Camera(cameraDetails);
             _camera = camera;
         }

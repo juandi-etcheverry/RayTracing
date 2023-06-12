@@ -62,8 +62,8 @@ namespace GraphicsEngineTest
             var newModel = new Model
             {
                 ModelName = "NewModel",
-                Shape = newShape,
-                Material = newMaterial
+                Shape = _shapeLogic.GetShape(newShape.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
             };
             _modelLogic.Add(newModel);
 
@@ -73,19 +73,22 @@ namespace GraphicsEngineTest
             };
             _sceneLogic.Add(newScene);
 
-            newScene.ClientScenePreferences.SetLookAtDefault((1, 2, 5));
-            newScene.ClientScenePreferences.SetLookAtDefault((1, 2, 1));
+            newScene.ClientScenePreferences.SetLookAtDefault((0, 2, 5));
+            newScene.ClientScenePreferences.SetLookFromDefault((0, 2, 0));
             newScene.ClientScenePreferences.FoVDefault = 30;
 
             Scene sceneContext = _sceneLogic.Update(newScene);
 
-            _sceneLogic.AddPositionedModel(newModel, (10, 2, 8), sceneContext.Id);
+            Model newModelContext = _modelLogic.Get(newModel.ModelName);
+
+            _sceneLogic.AddPositionedModel(newModelContext, (0, 2, 8), sceneContext.Id);
 
             var grass = new Material
             {
                 MaterialName = "Grass",
             };
-            grass.SetColor(14, 255, 10);
+            grass.SetColor(14, 255, 0);
+            _materialLogic.Add(grass);
 
             Shape globe = new Sphere()
             {
@@ -96,21 +99,21 @@ namespace GraphicsEngineTest
 
             var globeModel = new Model
             {
-                Material = grass,
-                Shape = globe,
+                Material = _materialLogic.Get(grass.MaterialName),
+                Shape = _shapeLogic.GetShape(globe.ShapeName),
                 ModelName = "Globe",
                 WantPreview = false
             };
             _modelLogic.Add(globeModel);
 
-            _sceneLogic.AddPositionedModel(globeModel, (1, -1999, 8), sceneContext.Id);
+            Model globeModelContext = _modelLogic.Get(globeModel.ModelName);
+
+            _sceneLogic.AddPositionedModel(globeModelContext, (0, -1999, 8), sceneContext.Id);
 
             RandomGenerator.ShowDefaultValue = true;
             RandomGenerator.DefaultValue = 0.5;
 
-            Scene sceneWithContext = _sceneLogic.GetScene(sceneContext.SceneName);
-
-            var engine = new GraphicsEngine.GraphicsEngine(sceneWithContext)
+            var engine = new GraphicsEngine.GraphicsEngine(sceneContext)
             {
                 Width = 12,
             };
@@ -127,11 +130,14 @@ namespace GraphicsEngineTest
             {
                 SceneName = "new scene"
             };
+            _sceneLogic.Add(newScene);
             newScene.ClientScenePreferences.SetLookAtDefault((0, 2, 5));
             newScene.ClientScenePreferences.SetLookFromDefault((0, 2, 0));
             newScene.ClientScenePreferences.FoVDefault = 30;
 
-            var engine = new GraphicsEngine.GraphicsEngine(newScene)
+            Scene updatedScene = _sceneLogic.Update(newScene);
+
+            var engine = new GraphicsEngine.GraphicsEngine(updatedScene)
             {
                 Width = 12
             };
@@ -152,11 +158,14 @@ namespace GraphicsEngineTest
             {
                 SceneName = "new scene"
             };
+            _sceneLogic.Add(newScene);
             newScene.ClientScenePreferences.SetLookAtDefault((0, 2, 5));
             newScene.ClientScenePreferences.SetLookFromDefault((0, 2, 0));
             newScene.ClientScenePreferences.FoVDefault = 30;
 
-            var engine = new GraphicsEngine.GraphicsEngine(newScene)
+            Scene updatedScene = _sceneLogic.Update(newScene);
+
+            var engine = new GraphicsEngine.GraphicsEngine(updatedScene)
             {
                 Width = 12
             };
