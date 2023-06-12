@@ -14,7 +14,7 @@ namespace GraphicsEngine
 
         public GraphicsEngine(Scene scene)
         {
-            _scene = _sceneLogic.Update(scene);
+            _scene = scene;
             DefaultCamera();
         }
         public PPMImage Render()

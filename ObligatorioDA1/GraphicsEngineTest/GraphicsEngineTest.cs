@@ -113,7 +113,9 @@ namespace GraphicsEngineTest
             RandomGenerator.ShowDefaultValue = true;
             RandomGenerator.DefaultValue = 0.5;
 
-            var engine = new GraphicsEngine.GraphicsEngine(sceneContext)
+            Scene updatedScene = _sceneLogic.GetScene(sceneContext.Id);
+
+            var engine = new GraphicsEngine.GraphicsEngine(updatedScene)
             {
                 Width = 12,
             };
