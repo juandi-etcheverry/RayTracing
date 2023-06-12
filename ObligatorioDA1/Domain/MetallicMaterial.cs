@@ -22,7 +22,7 @@ namespace Domain
 
         private void ValidateBlur(decimal blur)
         {
-            if (blur < MIN_BLUR_VALUE) throw new ArgumentOutOfRangeException("Blur must be greater than or equal to 0");
+            if (blur < MIN_BLUR_VALUE) throw new ArgumentOutOfRangeException("Blur must be a non negative number");
         }
     }
 }

@@ -16,10 +16,15 @@ namespace GraphicsEngine
 
             var lambertianScatter = new LambertianScatterStrategy()
             {
+                hitRecord = hitRecord
+            };
+            var metallicScatter = new MetallicScatterStrategy()
+            {
                 hitRecord = hitRecord,
                 incomingRay = incomingRay
             };
             _scatterStrategies.Add(lambertianScatter);
+            _scatterStrategies.Add(metallicScatter);
         }
 
         internal Ray Scatter()

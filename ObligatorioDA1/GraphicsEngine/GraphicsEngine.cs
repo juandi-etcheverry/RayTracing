@@ -129,6 +129,15 @@ namespace GraphicsEngine
                 if (depth <= 0) return new Vector { X = 0, Y = 0, Z = 0 };
                 var scatterController = new ScatterController(intersectionWithShape, ray);
                 var newRay = scatterController.Scatter();
+                if (newRay is null)
+                {
+                    return new Vector()
+                    {
+                        X = 0m,
+                        Y = 0m,
+                        Z = 0m,
+                    };
+                }
                 var nextColor = ShootRay(newRay, depth - 1);
                 return new Vector
                 {

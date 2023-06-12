@@ -10,7 +10,7 @@ namespace ObligatorioDA1.Material_Panel
     {
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private readonly Panel_General _panelGeneral;
-        private Material newMaterial;
+        private Material _material;
 
         public Panel_MaterialAddNew(Panel_General userControl)
         {
@@ -20,7 +20,7 @@ namespace ObligatorioDA1.Material_Panel
 
         public void RefreshMaterialAddNew()
         {
-            newMaterial = new Material();
+            _material = new Material();
             RefreshPanel();
         }
 
@@ -53,15 +53,36 @@ namespace ObligatorioDA1.Material_Panel
                 var validG = int.TryParse(txbNewGMaterial.Text, out g);
                 var validB = int.TryParse(txbNewBMaterial.Text, out b);
                 if (!validR || !validG || !validB) throw new ArgumentException("RGB must be numbers between 0 and 255");
-                newMaterial.MaterialName = txbNewMaterialName.Text;
-                newMaterial.SetColor(r, g, b);
-                _materialLogic.Add(newMaterial);
+                _material.MaterialName = txbNewMaterialName.Text;
+                _material.SetColor(r, g, b);
+                if (rbtnMetalic.Checked)
+                {
+                    MetallicMaterial metallicMaterial = new MetallicMaterial()
+                    {
+                        MaterialName = _material.MaterialName,
+                    };
+                    metallicMaterial.SetColor(r, g, b);
+                    decimal blur;
+                    var validBlur = decimal.TryParse(txbBlur.Text, out blur);
+                    if (!validBlur)
+                        throw new ArgumentOutOfRangeException("Blur must be a non negative number");
+                    metallicMaterial.Blur = blur;
+                    _materialLogic.Add(metallicMaterial);
+                    _panelGeneral.GoToMaterialList();
+                    return;
+                }
+                _materialLogic.Add(_material);
                 _panelGeneral.GoToMaterialList();
             }
             catch (NameException nameEx)
             {
                 lblNewMaterialNameException.Visible = true;
                 lblNewMaterialNameException.Text = nameEx.Message;
+            }
+            catch (ArgumentOutOfRangeException arORex)
+            {
+                lblBlurException.Visible = true;
+                lblBlurException.Text = arORex.Message;
             }
             catch (ArgumentException arEex)
             {
@@ -75,7 +96,7 @@ namespace ObligatorioDA1.Material_Panel
             lblNewMaterialNameException.Visible = false;
             try
             {
-                newMaterial.MaterialName = txbNewMaterialName.Text;
+                _material.MaterialName = txbNewMaterialName.Text;
             }
             catch (NameException nameEx)
             {
@@ -140,7 +161,7 @@ namespace ObligatorioDA1.Material_Panel
 
         private void rbtnLambertian_CheckedChanged(object sender, EventArgs e)
         {
-            pnlTypePreferences.Visible=false;
+            pnlTypePreferences.Visible = false;
         }
     }
 }

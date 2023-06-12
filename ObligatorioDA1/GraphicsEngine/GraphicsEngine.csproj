@@ -50,7 +50,7 @@
     <Compile Include="GraphicsEngine.cs" />
     <Compile Include="HitRecord.cs" />
     <Compile Include="ImageParser.cs" />
-    <Compile Include="MaterialScatterStrategy.cs" />
+    <Compile Include="MetallicScatterStrategy.cs" />
     <Compile Include="LambertianScatterStrategy.cs" />
     <Compile Include="PPMImage.cs" />
     <Compile Include="RandomGenerator.cs" />

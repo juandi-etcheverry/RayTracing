@@ -19,6 +19,7 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void CreateAndInitializeClient()
         {
+            ClearDatabase.ClearAll();
             client = new Client
             {
                 Name = "NewClient",
