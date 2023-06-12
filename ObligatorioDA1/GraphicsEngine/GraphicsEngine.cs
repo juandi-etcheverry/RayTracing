@@ -19,14 +19,7 @@ namespace GraphicsEngine
         }
         public PPMImage Render()
         {
-            //create Log
-            Log newLog = new Log();
-            newLog.RenderingTimeInSeconds = 2; //cambiar
-            newLog.RenderWindow = DateTime.Today; //cambiar
-            newLog.SceneName = _scene.SceneName; //cambiar
-            newLog.NumberOfModels = _scene.Models.Count;
-            _renderLogLogic.Add(newLog);
-
+            DateTime startTime = DateTime.Now;
 
             var renderedImage = new PPMImage(Width);
 
@@ -37,7 +30,21 @@ namespace GraphicsEngine
                     renderedImage.SavePixel(row, column, color);
                 }
 
+            DateTime endTime = DateTime.Now;
+            int elapsedTime = (endTime - startTime).Seconds;
+            CreateLog(elapsedTime);
+
             return renderedImage;
+        }
+
+        private void CreateLog(int elapsedTime)
+        {
+            Log newLog = new Log();
+            newLog.RenderingTimeInSeconds = elapsedTime;
+            newLog.RenderWindow = DateTime.Today; //cambiar
+            newLog.SceneName = _scene.SceneName; //cambiar
+            newLog.NumberOfModels = _scene.Models.Count;
+            _renderLogLogic.Add(newLog);
         }
 
         public void BlurCamera(decimal aperture)
