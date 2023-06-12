@@ -21,6 +21,7 @@ namespace GraphicsEngineTest
         [TestInitialize]
         public void SetUp()
         {
+            ClearDatabase.ClearAll();
             Client newClient = new Client()
             {
                 Name = "NewClient",
@@ -38,7 +39,7 @@ namespace GraphicsEngineTest
         public void ResetRandom()
         {
             RandomGenerator.ShowDefaultValue = false;
-            if(_clientLogic.GetLoggedClient() != null) _clientLogic.Logout();
+            if (_clientLogic.GetLoggedClient() != null) _clientLogic.Logout();
             ClearDatabase.ClearAll();
         }
 

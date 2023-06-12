@@ -44,6 +44,8 @@
                         ColorX = c.Int(nullable: false),
                         ColorY = c.Int(nullable: false),
                         ColorZ = c.Int(nullable: false),
+                        Blur = c.Decimal(precision: 18, scale: 2),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
                         Client_Name = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)

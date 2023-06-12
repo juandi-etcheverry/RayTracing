@@ -42,17 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlurCamera.cs" />
-    <Compile Include="BlurCameraDetails.cs" />
-    <Compile Include="Camera.cs" />
-    <Compile Include="CameraDetails.cs" />
+    <Compile Include="Camera\BlurCamera.cs" />
+    <Compile Include="Camera\BlurCameraDetails.cs" />
+    <Compile Include="Camera\Camera.cs" />
+    <Compile Include="Camera\CameraDetails.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="GraphicsEngine.cs" />
     <Compile Include="HitRecord.cs" />
     <Compile Include="ImageParser.cs" />
+    <Compile Include="MaterialScatterStrategy.cs" />
+    <Compile Include="LambertianScatterStrategy.cs" />
     <Compile Include="PPMImage.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Ray.cs" />
+    <Compile Include="ScatterController.cs" />
+    <Compile Include="ScatterStrategy.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,5 +66,6 @@
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

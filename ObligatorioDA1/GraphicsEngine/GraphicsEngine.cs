@@ -127,30 +127,18 @@ namespace GraphicsEngine
             if (intersectionWithShape != null)
             {
                 if (depth <= 0) return new Vector { X = 0, Y = 0, Z = 0 };
-                var newRay = CalculateBouncedRay(intersectionWithShape);
+                var scatterController = new ScatterController(intersectionWithShape, ray);
+                var newRay = scatterController.Scatter();
                 var nextColor = ShootRay(newRay, depth - 1);
                 return new Vector
                 {
-                    X = nextColor.X * intersectionWithShape.Attenuation.R,
-                    Y = nextColor.Y * intersectionWithShape.Attenuation.G,
-                    Z = nextColor.Z * intersectionWithShape.Attenuation.B
+                    X = nextColor.X * intersectionWithShape.Material.ColorX / 255m,
+                    Y = nextColor.Y * intersectionWithShape.Material.ColorY / 255m,
+                    Z = nextColor.Z * intersectionWithShape.Material.ColorZ / 255m
                 };
             }
 
             return GenerateGradientBackground(ray);
-        }
-
-        private Ray CalculateBouncedRay(HitRecord intersectionWithShape)
-        {
-            var newPoint = intersectionWithShape.IntersectionPoint.Add(intersectionWithShape.Normal)
-                .Add(Vector.GetRandomInUnitSphere());
-            var newVector = newPoint.Subtract(intersectionWithShape.IntersectionPoint);
-            var newRay = new Ray
-            {
-                Origin = intersectionWithShape.IntersectionPoint,
-                Direction = newVector
-            };
-            return newRay;
         }
 
         private static Vector GenerateGradientBackground(Ray ray)
@@ -169,7 +157,6 @@ namespace GraphicsEngine
         {
             var modelSphere = (Sphere)model.Model.Shape;
             var modelCoordinates = PointFromModelCoordinates(model);
-            var attenuation = ColorFromModelMaterial(model);
 
             var centerToRayOrigin = ray.Origin.Subtract(modelCoordinates);
             var a = ray.Direction.Dot(ray.Direction);
@@ -191,22 +178,11 @@ namespace GraphicsEngine
                     ScalingFactor = scalingFactorForIntersection,
                     IntersectionPoint = intersecitionPoint,
                     Normal = normal,
-                    Attenuation = attenuation
+                    Material = model.Model.Material,
                 };
             }
 
             return null;
-        }
-
-        private Color ColorFromModelMaterial(PositionedModel model)
-        {
-            var attenuation = new Color
-            {
-                R = model.Model.Material.ColorX / 255m,
-                G = model.Model.Material.ColorY / 255m,
-                B = model.Model.Material.ColorZ / 255m
-            };
-            return attenuation;
         }
 
         private Vector PointFromModelCoordinates(PositionedModel model)

@@ -4,11 +4,6 @@ using ValidationService;
 
 namespace Domain
 {
-    public enum MaterialType
-    {
-        Lambertian
-    }
-
     public class Material
     {
         private string _materialName;
