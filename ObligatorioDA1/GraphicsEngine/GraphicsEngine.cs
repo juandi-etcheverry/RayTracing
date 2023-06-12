@@ -1,4 +1,5 @@
 ﻿using System;
+using BusinessLogic;
 using Domain;
 
 namespace GraphicsEngine
@@ -9,6 +10,7 @@ namespace GraphicsEngine
         public uint Width { get; set; }
         private Camera _camera;
         private Scene _scene;
+        private readonly RenderLogLogic _renderLogLogic = new RenderLogLogic();
 
         public GraphicsEngine(Scene scene)
         {
@@ -17,6 +19,15 @@ namespace GraphicsEngine
         }
         public PPMImage Render()
         {
+            //create Log
+            Log newLog = new Log();
+            newLog.RenderingTimeInSeconds = 2; //cambiar
+            newLog.RenderWindow = DateTime.Today; //cambiar
+            newLog.SceneName = _scene.SceneName; //cambiar
+            newLog.NumberOfModels = _scene.Models.Count;
+            _renderLogLogic.Add(newLog);
+
+
             var renderedImage = new PPMImage(Width);
 
             for (var row = renderedImage.Height - 1; row >= 0; row--)

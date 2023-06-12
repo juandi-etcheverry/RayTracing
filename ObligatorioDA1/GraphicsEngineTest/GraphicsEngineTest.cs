@@ -23,7 +23,7 @@ namespace GraphicsEngineTest
         {
             Client newClient = new Client()
             {
-                Name = "NewClient",
+                Name = "NewClient3",
                 Password = "TicuEsUnGenio1"
             };
             newClient.ClientScenePreferences.SetLookAtDefault((10, 10, 10));
@@ -234,7 +234,7 @@ namespace GraphicsEngineTest
 
             var result = engine.Render();
 
-            Assert.AreEqual(1, _renderLogLogic.GetAll().count);
+            Assert.AreEqual(1, _renderLogLogic.GetAll().Count);
         }
     }
 }
