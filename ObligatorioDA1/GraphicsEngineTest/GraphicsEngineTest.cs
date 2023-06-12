@@ -16,7 +16,7 @@ namespace GraphicsEngineTest
         private readonly ClientLogic _clientLogic = new ClientLogic();
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private readonly ShapeLogic _shapeLogic = new ShapeLogic();
-
+        private readonly RenderLogLogic _renderLogLogic = new RenderLogLogic();
 
         [TestInitialize]
         public void SetUp()
@@ -179,6 +179,62 @@ namespace GraphicsEngineTest
             newScene.LastRenderDate = DateTime.Now;
 
             Assert.AreEqual(newScene.LastRenderDate, DateTime.Now);
+        }
+
+        [TestMethod]
+        public void RenderScene_LogGenerated_OK_Test()
+        {
+            Shape newShape = new Sphere
+            {
+                ShapeName = "NewSphere",
+                Radius = 1
+            };
+            _shapeLogic.AddShape(newShape);
+
+            var newMaterial = new Material
+            {
+                MaterialName = "NewMaterial",
+            };
+            newMaterial.SetColor(230, 15, 160);
+            _materialLogic.Add(newMaterial);
+
+            var newModel = new Model
+            {
+                ModelName = "NewModel",
+                Shape = _shapeLogic.GetShape(newShape.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            _modelLogic.Add(newModel);
+
+            var newScene = new Scene
+            {
+                SceneName = "new scene"
+            };
+            _sceneLogic.Add(newScene);
+
+            newScene.ClientScenePreferences.SetLookAtDefault((0, 2, 5));
+            newScene.ClientScenePreferences.SetLookFromDefault((0, 2, 0));
+            newScene.ClientScenePreferences.FoVDefault = 30;
+
+            Scene updatedScene1 = _sceneLogic.Update(newScene);
+
+            Model newModelContext = _modelLogic.Get(newModel.ModelName);
+
+            _sceneLogic.AddPositionedModel(newModelContext, (0, 2, 8), updatedScene1.Id);
+
+            Scene updatedScene2 = _sceneLogic.Update(newScene);
+
+            var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
+            {
+                Width = 12
+            };
+
+            RandomGenerator.ShowDefaultValue = true;
+            RandomGenerator.DefaultValue = 0.5;
+
+            var result = engine.Render();
+
+            Assert.AreEqual(1, _renderLogLogic.GetAll().count);
         }
     }
 }
