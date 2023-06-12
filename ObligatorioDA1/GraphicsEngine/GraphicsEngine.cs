@@ -1,5 +1,4 @@
 ﻿using System;
-using BusinessLogic;
 using Domain;
 
 namespace GraphicsEngine
@@ -10,7 +9,6 @@ namespace GraphicsEngine
         public uint Width { get; set; }
         private Camera _camera;
         private Scene _scene;
-        private readonly SceneLogic _sceneLogic = new SceneLogic();
 
         public GraphicsEngine(Scene scene)
         {
