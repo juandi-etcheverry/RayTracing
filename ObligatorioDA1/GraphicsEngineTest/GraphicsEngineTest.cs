@@ -345,5 +345,61 @@ namespace GraphicsEngineTest
             Log log = _renderLogLogic.GetAll().FirstOrDefault();
             Assert.AreEqual("0 seconds", log.RenderWindow);
         }
+
+        [TestMethod]
+        public void RenderScene_RenderWindow_OK_Test()
+        {
+            Shape newShape = new Sphere
+            {
+                ShapeName = "NewSphere",
+                Radius = 1
+            };
+            _shapeLogic.AddShape(newShape);
+
+            var newMaterial = new Material
+            {
+                MaterialName = "NewMaterial",
+            };
+            newMaterial.SetColor(2, 150, 10);
+            _materialLogic.Add(newMaterial);
+
+            var newModel = new Model
+            {
+                ModelName = "NewModel",
+                Shape = _shapeLogic.GetShape(newShape.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            _modelLogic.Add(newModel);
+
+            var newScene = new Scene
+            {
+                SceneName = "NewModel"
+            };
+            _sceneLogic.Add(newScene);
+
+            Scene updatedScene1 = _sceneLogic.Update(newScene);
+
+            Model newModelContext = _modelLogic.Get(newModel.ModelName);
+
+            _sceneLogic.AddPositionedModel(newModelContext, (0, 2, 8), updatedScene1.Id);
+            _sceneLogic.AddPositionedModel(newModelContext, (10, 10, 3), updatedScene1.Id);
+
+
+            Scene updatedScene2 = _sceneLogic.Update(newScene);
+
+            var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
+            {
+                Width = 12
+            };
+
+            RandomGenerator.ShowDefaultValue = true;
+            RandomGenerator.DefaultValue = 0.5;
+
+            var result = engine.Render();
+            var result2 = engine.Render();
+            Log log = _renderLogLogic.GetAll().Last();
+
+            Assert.IsTrue(log.RenderWindow.Contains("seconds"));
+        }
     }
 }
