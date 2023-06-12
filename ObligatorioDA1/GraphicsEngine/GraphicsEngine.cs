@@ -41,7 +41,7 @@ namespace GraphicsEngine
         {
             Log newLog = new Log();
             newLog.RenderingTimeInSeconds = elapsedTime;
-            newLog.RenderWindow = DateTime.Today; //cambiar
+            newLog.RenderWindow = "0 seconds";
             newLog.SceneName = _scene.SceneName; //cambiar
             newLog.NumberOfModels = _scene.Models.Count;
             _renderLogLogic.Add(newLog);
