@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using BusinessLogic;
 using Domain;
 
 namespace ObligatorioDA1.Scene_Panel
@@ -8,6 +9,7 @@ namespace ObligatorioDA1.Scene_Panel
     {
         private Client _client;
         private readonly Panel_General _panelGeneral;
+        private readonly ClientLogic _clientLogic = new ClientLogic();
 
         public Panel_SceneSetDefaultCamera(Panel_General panelGeneral)
         {
@@ -117,6 +119,7 @@ namespace ObligatorioDA1.Scene_Panel
             _client.ClientScenePreferences.SetLookFromDefault(tuple1);
             _client.ClientScenePreferences.SetLookAtDefault(tuple2);;
             _client.ClientScenePreferences.FoVDefault = fov;
+            _clientLogic.Update(_client);
         }
     }
 }

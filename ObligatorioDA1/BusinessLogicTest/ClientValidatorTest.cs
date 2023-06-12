@@ -2,6 +2,7 @@
 using BusinessLogicExceptions;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RepositoryInDB;
 
 namespace BusinessLogicTest
 {
@@ -13,11 +14,7 @@ namespace BusinessLogicTest
         [TestCleanup]
         public void RemoveAllClients()
         {
-            var clients = clientLogic.GetClients();
-            foreach (var client in clients)
-            {
-                clientLogic.RemoveClient(client);
-            }
+            ClearDatabase.ClearAll();
         }
 
         [TestMethod]
@@ -152,6 +149,5 @@ namespace BusinessLogicTest
                 };
             });
         }
-
     }
 }

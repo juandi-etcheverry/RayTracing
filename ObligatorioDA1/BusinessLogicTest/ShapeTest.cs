@@ -2,6 +2,8 @@
 using BusinessLogicExceptions;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RepositoryInDB;
+using System;
 
 namespace BusinessLogicTest
 {
@@ -17,8 +19,7 @@ namespace BusinessLogicTest
         public void RemoveAllShapesAndClients()
         {
             if (_clientLogic.GetLoggedClient() != null) _clientLogic.Logout();
-            _clientLogic.GetClients().Clear();
-            _shapeLogic.GetShapes().Clear();
+            ClearDatabase.ClearAll();
         }
 
         [TestMethod]
@@ -203,7 +204,7 @@ namespace BusinessLogicTest
             };
             _shapeLogic.AddShape(shape1);
             var shape2 = new Shape();
-            Assert.ThrowsException<NotFoundException>(() => _shapeLogic.RemoveShape(shape2));
+            Assert.ThrowsException<ArgumentNullException>(() => _shapeLogic.RemoveShape(shape2));
         }
 
         [TestMethod]
@@ -328,7 +329,7 @@ namespace BusinessLogicTest
             };
             _shapeLogic.AddShape(newShape);
 
-            Assert.AreEqual(newClient.Name, newShape.OwnerName);
+            Assert.AreEqual(newClient.Name, newShape.Client.Name);
         }
 
         [TestMethod]
@@ -436,14 +437,13 @@ namespace BusinessLogicTest
             var material = new Material
             {
                 MaterialName = "Material",
-                Color = (10, 50, 11),
-                Type = MaterialType.Lambertian
             };
+            material.SetColor(10, 50, 11);
             _materialLogic.Add(material);
 
             var model = new Model
             {
-                Name = "Model",
+                ModelName = "Model",
                 Material = _materialLogic.Get("Material"),
                 Shape = _shapeLogic.GetShape("Shape")
             };

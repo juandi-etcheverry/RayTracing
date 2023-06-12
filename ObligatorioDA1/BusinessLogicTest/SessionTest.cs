@@ -2,6 +2,7 @@
 using BusinessLogicExceptions;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RepositoryInDB;
 
 namespace BusinessLogicTest
 {
@@ -14,7 +15,7 @@ namespace BusinessLogicTest
         public void RemoveAllClientsAndSession()
         {
             if (clientLogic.GetLoggedClient() != null) clientLogic.Logout();
-            clientLogic.GetClients().Clear();
+            ClearDatabase.ClearAll();
         }
 
         [TestMethod]

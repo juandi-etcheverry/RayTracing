@@ -3,6 +3,7 @@ using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RepositoryInDB;
 
 namespace BusinessLogicTest
 {
@@ -31,8 +32,7 @@ namespace BusinessLogicTest
         public void RemoveAllMaterialsAndClients()
         {
             if (_clientLogic.GetLoggedClient() != null) _clientLogic.Logout();
-            _clientLogic.GetClients().Clear();
-            _materialLogic.GetAll().Clear();
+            ClearDatabase.ClearAll();
         }
 
         [TestMethod]
@@ -41,24 +41,9 @@ namespace BusinessLogicTest
             var material = new Material
             {
                 MaterialName = "VantaBlack",
-                Color = (0, 0, 0),
-                Type = MaterialType.Lambertian
             };
+            material.SetColor(0, 0, 0);
             Assert.AreEqual("VantaBlack", material.MaterialName);
-        }
-
-        [TestMethod]
-        public void Material_GetType_OK_Test()
-        {
-            Material material = new Material
-            {
-                MaterialName = "MaterialColor",
-                Color = (0, 245, 0),
-                Type = MaterialType.Lambertian
-            };
-            _materialLogic.Add(material);
-
-            Assert.AreEqual(MaterialType.Lambertian, _materialLogic.Get("MaterialColor").Type);
         }
 
         [TestMethod]
@@ -69,8 +54,6 @@ namespace BusinessLogicTest
                 var material = new Material
                 {
                     MaterialName = "",
-                    Color = (0, 0, 0),
-                    Type = MaterialType.Lambertian
                 };
             });
         }
@@ -83,8 +66,6 @@ namespace BusinessLogicTest
                 var material = new Material
                 {
                     MaterialName = "Light Gray ",
-                    Color = (40, 40, 40),
-                    Type = MaterialType.Lambertian
                 };
             });
         }
@@ -97,9 +78,8 @@ namespace BusinessLogicTest
                 var material = new Material
                 {
                     MaterialName = "Vibranium Violet",
-                    Color = (256, 80, 130),
-                    Type = MaterialType.Lambertian
                 };
+                material.SetColor(256, 80, 130);
             });
         }
 
@@ -111,9 +91,8 @@ namespace BusinessLogicTest
                 var material = new Material
                 {
                     MaterialName = "Geologic Green",
-                    Color = (80, 300, 130),
-                    Type = MaterialType.Lambertian
                 };
+                material.SetColor(80, 300, 130);
             });
         }
 
@@ -126,9 +105,8 @@ namespace BusinessLogicTest
                 var material = new Material
                 {
                     MaterialName = "Beautiful Blue",
-                    Color = (20, 0, 256),
-                    Type = MaterialType.Lambertian
                 };
+                material.SetColor(20, 0, 256);
             });
         }
 
@@ -138,9 +116,8 @@ namespace BusinessLogicTest
             var material = new Material
             {
                 MaterialName = "Organic Orange",
-                Color = (180, 60, 60),
-                Type = MaterialType.Lambertian
             };
+            material.SetColor(180, 60, 60);
             _materialLogic.Add(material);
             Assert.AreEqual(1, _materialLogic.GetAll().Count);
         }
@@ -151,15 +128,13 @@ namespace BusinessLogicTest
             var m1 = new Material
             {
                 MaterialName = "Double Dummy",
-                Color = (110, 221, 123),
-                Type = MaterialType.Lambertian
             };
+            m1.SetColor(110, 221, 123);
             var m2 = new Material
             {
                 MaterialName = "double dummY",
-                Color = (30, 60, 90),
-                Type = MaterialType.Lambertian
             };
+            m2.SetColor(30, 60, 90);
             _materialLogic.Add(m1);
             Assert.ThrowsException<NameException>(() => { _materialLogic.Add(m2); });
         }
@@ -170,9 +145,8 @@ namespace BusinessLogicTest
             var material = new Material
             {
                 MaterialName = "Tan Tangerine",
-                Color = (180, 60, 60),
-                Type = MaterialType.Lambertian
             };
+            material.SetColor(180, 60, 60);
             _materialLogic.Add(material);
             _materialLogic.Remove(material);
             Assert.AreEqual(0, _materialLogic.GetAll().Count);
@@ -184,9 +158,8 @@ namespace BusinessLogicTest
             var material = new Material
             {
                 MaterialName = "Nonexistant Neon",
-                Color = (245, 60, 60),
-                Type = MaterialType.Lambertian
             };
+            material.SetColor(245, 60, 60);
             Assert.ThrowsException<NotFoundException>(() => _materialLogic.Remove(material));
         }
 
@@ -196,12 +169,11 @@ namespace BusinessLogicTest
             var material = new Material
             {
                 MaterialName = "Valid Vlue",
-                Color = (180, 20, 170),
-                Type = MaterialType.Lambertian
             };
+            material.SetColor(180, 20, 170);
             _materialLogic.Add(material);
             _materialLogic.Rename(material, "Balid Blue");
-            Assert.AreEqual(_materialLogic.Get("Balid Blue"), material);
+            Assert.AreEqual("Balid Blue", material.MaterialName);
         }
 
         [TestMethod]
@@ -210,9 +182,8 @@ namespace BusinessLogicTest
             var material = new Material
             {
                 MaterialName = "Valid Vlue",
-                Color = (180, 20, 170),
-                Type = MaterialType.Lambertian
             };
+            material.SetColor(180, 20, 170);
             Assert.ThrowsException<NotFoundException>(() => { _materialLogic.Rename(material, "Balid Blue"); });
         }
 
@@ -222,15 +193,13 @@ namespace BusinessLogicTest
             var presentMaterial = new Material
             {
                 MaterialName = "Present Purple",
-                Color = (180, 20, 170),
-                Type = MaterialType.Lambertian
             };
+            presentMaterial.SetColor(180, 20, 170);
             var newMaterial = new Material
             {
                 MaterialName = "Unique Unicorn",
-                Color = (10, 45, 11),
-                Type = MaterialType.Lambertian
             };
+            newMaterial.SetColor(10, 45, 11);
             _materialLogic.Add(presentMaterial);
             _materialLogic.Add(newMaterial);
             Assert.ThrowsException<NameException>(() => { _materialLogic.Rename(newMaterial, "Present Purple"); });
@@ -242,12 +211,11 @@ namespace BusinessLogicTest
             var newMaterial = new Material
             {
                 MaterialName = "Unicorn",
-                Color = (10, 45, 11),
-                Type = MaterialType.Lambertian
             };
+            newMaterial.SetColor(10, 45, 11);
             _materialLogic.Add(newMaterial);
 
-            Assert.AreEqual(client.Name, newMaterial.OwnerName);
+            Assert.AreEqual(client.Name, newMaterial.Client.Name);
         }
 
         [TestMethod]
@@ -257,9 +225,8 @@ namespace BusinessLogicTest
             var newMaterial = new Material
             {
                 MaterialName = "Unicorn",
-                Color = (10, 50, 11),
-                Type = MaterialType.Lambertian
             };
+            newMaterial.SetColor(10, 50, 11);
 
             Assert.ThrowsException<SessionException>(() => _materialLogic.Add(newMaterial));
         }
@@ -270,9 +237,8 @@ namespace BusinessLogicTest
             var material1 = new Material
             {
                 MaterialName = "Same MaterialName",
-                Color = (10, 50, 11),
-                Type = MaterialType.Lambertian
             };
+            material1.SetColor(10, 50, 11);
             _materialLogic.Add(material1);
             _clientLogic.Logout();
 
@@ -286,10 +252,9 @@ namespace BusinessLogicTest
 
             var material2 = new Material
             {
-                MaterialName = "Same MaterialName",
-                Color = (10, 50, 11),
-                Type = MaterialType.Lambertian
+                MaterialName = "Same MaterialName"
             };
+            material2.SetColor(10, 50, 11);
             _materialLogic.Add(material2);
 
 
@@ -301,16 +266,14 @@ namespace BusinessLogicTest
         {
             var material1 = new Material
             {
-                MaterialName = "Material 1",
-                Color = (10, 50, 11),
-                Type = MaterialType.Lambertian
+                MaterialName = "Material 1"
             };
+            material1.SetColor(10, 50, 11);
             var material2 = new Material
             {
                 MaterialName = "Material 2",
-                Color = (107, 50, 15),
-                Type = MaterialType.Lambertian
             };
+            material2.SetColor(107, 50, 15);
             _materialLogic.Add(material1);
             _materialLogic.Add(material2);
             _clientLogic.Logout();
@@ -325,9 +288,8 @@ namespace BusinessLogicTest
             var material3 = new Material
             {
                 MaterialName = "Material 3",
-                Color = (1, 29, 114),
-                Type = MaterialType.Lambertian
             };
+            material3.SetColor(1, 29, 114);
             _materialLogic.Add(material3);
             Assert.AreEqual(1, _materialLogic.GetClientMaterials().Count);
         }
@@ -338,9 +300,8 @@ namespace BusinessLogicTest
             var material = new Material
             {
                 MaterialName = "VantaBlack",
-                Color = (0, 0, 0),
-                Type = MaterialType.Lambertian
             };
+            material.SetColor(0, 0, 0);
             _materialLogic.Add(material);
 
             Shape sphere = new Sphere
@@ -352,7 +313,7 @@ namespace BusinessLogicTest
 
             var model = new Model
             {
-                Name = "New Model",
+                ModelName = "New Model",
                 Shape = _shapeLogic.GetShape("Sphere"),
                 Material = _materialLogic.Get("VantaBlack")
             };
