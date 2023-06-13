@@ -36,6 +36,22 @@
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.Logs",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        RenderingTimeInSeconds = c.Int(nullable: false),
+                        RenderDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        RenderWindow = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        SceneName = c.String(),
+                        NumberOfModels = c.Int(nullable: false),
+                        Client_Name = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Clients", t => t.Client_Name)
+                .Index(t => t.Client_Name);
+            
+            CreateTable(
                 "dbo.Materials",
                 c => new
                     {
@@ -142,6 +158,7 @@
             DropForeignKey("dbo.Models", "Material_Id", "dbo.Materials");
             DropForeignKey("dbo.Models", "Client_Name", "dbo.Clients");
             DropForeignKey("dbo.Materials", "Client_Name", "dbo.Clients");
+            DropForeignKey("dbo.Logs", "Client_Name", "dbo.Clients");
             DropForeignKey("dbo.Clients", "ClientScenePreferences_Id", "dbo.ClientScenePreferences");
             DropIndex("dbo.Spheres", new[] { "Id" });
             DropIndex("dbo.PositionedModels", new[] { "Scene_Id" });
@@ -153,6 +170,7 @@
             DropIndex("dbo.Models", new[] { "Material_Id" });
             DropIndex("dbo.Models", new[] { "Client_Name" });
             DropIndex("dbo.Materials", new[] { "Client_Name" });
+            DropIndex("dbo.Logs", new[] { "Client_Name" });
             DropIndex("dbo.Clients", new[] { "ClientScenePreferences_Id" });
             DropTable("dbo.Spheres");
             DropTable("dbo.PositionedModels");
@@ -160,6 +178,7 @@
             DropTable("dbo.Shapes");
             DropTable("dbo.Models");
             DropTable("dbo.Materials");
+            DropTable("dbo.Logs");
             DropTable("dbo.ClientScenePreferences");
             DropTable("dbo.Clients");
         }

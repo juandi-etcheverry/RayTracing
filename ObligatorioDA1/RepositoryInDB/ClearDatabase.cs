@@ -53,8 +53,18 @@ namespace RepositoryInDB
             }
         }
 
+        private static void ClearLogs()
+        {
+            using (var context = new BusinessContext())
+            {
+                context.Logs.RemoveRange(context.Logs);
+                context.SaveChanges();
+            }
+        }
+
         public static void ClearAll()
         {
+            ClearLogs();
             ClearScenes();
             ClearModels();
             ClearShapes();

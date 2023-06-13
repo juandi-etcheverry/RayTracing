@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using BusinessLogic;
 using Domain;
 using GraphicsEngine;
@@ -16,14 +17,14 @@ namespace GraphicsEngineTest
         private readonly ClientLogic _clientLogic = new ClientLogic();
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private readonly ShapeLogic _shapeLogic = new ShapeLogic();
-
+        private readonly RenderLogLogic _renderLogLogic = new RenderLogLogic();
 
         [TestInitialize]
         public void SetUp()
         {
             Client newClient = new Client()
             {
-                Name = "NewClient",
+                Name = "NewClient3",
                 Password = "TicuEsUnGenio1"
             };
             newClient.ClientScenePreferences.SetLookAtDefault((10, 10, 10));
@@ -179,6 +180,562 @@ namespace GraphicsEngineTest
             newScene.LastRenderDate = DateTime.Now;
 
             Assert.AreEqual(newScene.LastRenderDate, DateTime.Now);
+        }
+
+        [TestMethod]
+        public void RenderScene_LogGenerated_OK_Test()
+        {
+            Shape newShape = new Sphere
+            {
+                ShapeName = "NewSphere",
+                Radius = 1
+            };
+            _shapeLogic.AddShape(newShape);
+
+            var newMaterial = new Material
+            {
+                MaterialName = "NewMaterial",
+            };
+            newMaterial.SetColor(230, 15, 160);
+            _materialLogic.Add(newMaterial);
+
+            var newModel = new Model
+            {
+                ModelName = "NewModel",
+                Shape = _shapeLogic.GetShape(newShape.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            _modelLogic.Add(newModel);
+
+            var newScene = new Scene
+            {
+                SceneName = "new scene"
+            };
+            _sceneLogic.Add(newScene);
+
+            newScene.ClientScenePreferences.SetLookAtDefault((0, 2, 5));
+            newScene.ClientScenePreferences.SetLookFromDefault((0, 2, 0));
+            newScene.ClientScenePreferences.FoVDefault = 30;
+
+            Scene updatedScene1 = _sceneLogic.Update(newScene);
+
+            Model newModelContext = _modelLogic.Get(newModel.ModelName);
+
+            _sceneLogic.AddPositionedModel(newModelContext, (0, 2, 8), updatedScene1.Id);
+
+            Scene updatedScene2 = _sceneLogic.Update(newScene);
+
+            var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
+            {
+                Width = 12
+            };
+
+            RandomGenerator.ShowDefaultValue = true;
+            RandomGenerator.DefaultValue = 0.5;
+
+            var result = engine.Render();
+
+            Assert.AreEqual(1, _renderLogLogic.GetAll().Count);
+        }
+
+        [TestMethod]
+        public void RenderScene_RenderingTimeInSeconds_OK_Test()
+        {
+            Shape newShape = new Sphere
+            {
+                ShapeName = "NewSphere",
+                Radius = 1
+            };
+            _shapeLogic.AddShape(newShape);
+
+            var newMaterial = new Material
+            {
+                MaterialName = "NewMaterial",
+            };
+            newMaterial.SetColor(230, 15, 160);
+            _materialLogic.Add(newMaterial);
+
+            var newModel = new Model
+            {
+                ModelName = "NewModel",
+                Shape = _shapeLogic.GetShape(newShape.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            _modelLogic.Add(newModel);
+
+            var newScene = new Scene
+            {
+                SceneName = "new scene"
+            };
+            _sceneLogic.Add(newScene);
+
+            newScene.ClientScenePreferences.SetLookAtDefault((0, 2, 5));
+            newScene.ClientScenePreferences.SetLookFromDefault((0, 2, 0));
+            newScene.ClientScenePreferences.FoVDefault = 30;
+
+            Scene updatedScene1 = _sceneLogic.Update(newScene);
+
+            Model newModelContext = _modelLogic.Get(newModel.ModelName);
+
+            _sceneLogic.AddPositionedModel(newModelContext, (0, 2, 8), updatedScene1.Id);
+
+            Scene updatedScene2 = _sceneLogic.Update(newScene);
+
+            var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
+            {
+                Width = 12
+            };
+
+            RandomGenerator.ShowDefaultValue = true;
+            RandomGenerator.DefaultValue = 0.5;
+
+            var result = engine.Render();
+            Log log = _renderLogLogic.GetAll().FirstOrDefault();
+            Assert.IsTrue(log.RenderingTimeInSeconds >= 0);
+        }
+
+        [TestMethod]
+        public void RenderPreview_RenderWindow_OK_Test()
+        {
+            Shape newShape = new Sphere
+            {
+                ShapeName = "NewSphere",
+                Radius = 1
+            };
+            _shapeLogic.AddShape(newShape);
+
+            var newMaterial = new Material
+            {
+                MaterialName = "NewMaterial",
+            };
+            newMaterial.SetColor(230, 15, 160);
+            _materialLogic.Add(newMaterial);
+
+            var newModel = new Model
+            {
+                ModelName = "NewModel",
+                Shape = _shapeLogic.GetShape(newShape.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            _modelLogic.Add(newModel);
+
+            var newScene = new Scene
+            {
+                SceneName = "preview-NewModel"
+            };
+            _sceneLogic.Add(newScene);
+
+            Scene updatedScene1 = _sceneLogic.Update(newScene);
+
+            Model newModelContext = _modelLogic.Get(newModel.ModelName);
+
+            _sceneLogic.AddPositionedModel(newModelContext, (0, 2, 8), updatedScene1.Id);
+
+            Scene updatedScene2 = _sceneLogic.Update(newScene);
+
+            var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
+            {
+                Width = 12
+            };
+
+            RandomGenerator.ShowDefaultValue = true;
+            RandomGenerator.DefaultValue = 0.5;
+
+            var result = engine.Render();
+            Log log = _renderLogLogic.GetAll().FirstOrDefault();
+            Assert.AreEqual("0 seconds", log.RenderWindow);
+        }
+
+        [TestMethod]
+        public void RenderScene_RenderWindow_OK_Test()
+        {
+            Shape newShape = new Sphere
+            {
+                ShapeName = "NewSphere",
+                Radius = 1
+            };
+            _shapeLogic.AddShape(newShape);
+
+            var newMaterial = new Material
+            {
+                MaterialName = "NewMaterial",
+            };
+            newMaterial.SetColor(2, 150, 10);
+            _materialLogic.Add(newMaterial);
+
+            var newModel = new Model
+            {
+                ModelName = "NewModel",
+                Shape = _shapeLogic.GetShape(newShape.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            _modelLogic.Add(newModel);
+
+            var newScene = new Scene
+            {
+                SceneName = "NewModel"
+            };
+            _sceneLogic.Add(newScene);
+
+            Scene updatedScene1 = _sceneLogic.Update(newScene);
+
+            Model newModelContext = _modelLogic.Get(newModel.ModelName);
+
+            _sceneLogic.AddPositionedModel(newModelContext, (0, 2, 8), updatedScene1.Id);
+            _sceneLogic.AddPositionedModel(newModelContext, (10, 10, 3), updatedScene1.Id);
+
+
+            Scene updatedScene2 = _sceneLogic.Update(newScene);
+
+            var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
+            {
+                Width = 12
+            };
+
+            RandomGenerator.ShowDefaultValue = true;
+            RandomGenerator.DefaultValue = 0.5;
+
+            var result = engine.Render();
+            var result2 = engine.Render();
+            Log log = _renderLogLogic.GetAll().Last();
+
+            Assert.IsTrue(log.RenderWindow.Contains("seconds"));
+        }
+
+        [TestMethod]
+        public void RenderScene_NumberOfModels_OK_Test()
+        {
+            Shape newShape1 = new Sphere
+            {
+                ShapeName = "NewSphere1",
+                Radius = 1
+            };
+            Shape newShape2 = new Sphere
+            {
+                ShapeName = "NewSphere2",
+                Radius = 10
+            };
+
+            _shapeLogic.AddShape(newShape1);
+            _shapeLogic.AddShape(newShape2);
+
+            var newMaterial = new Material
+            {
+                MaterialName = "NewMaterial",
+            };
+            newMaterial.SetColor(234, 3, 90);
+            _materialLogic.Add(newMaterial);
+
+            var newModel1 = new Model
+            {
+                ModelName = "NewModel1",
+                Shape = _shapeLogic.GetShape(newShape1.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            var newModel2 = new Model
+            {
+                ModelName = "NewModel2",
+                Shape = _shapeLogic.GetShape(newShape2.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            _modelLogic.Add(newModel1);
+            _modelLogic.Add(newModel2);
+
+            var newScene = new Scene
+            {
+                SceneName = "NewScene"
+            };
+            _sceneLogic.Add(newScene);
+
+            Scene updatedScene1 = _sceneLogic.Update(newScene);
+
+            Model newModel1Context = _modelLogic.Get(newModel1.ModelName);
+            Model newModel2Context = _modelLogic.Get(newModel2.ModelName);
+
+            _sceneLogic.AddPositionedModel(newModel1Context, (0, 2, 8), updatedScene1.Id);
+            _sceneLogic.AddPositionedModel(newModel2Context, (10, 10, 3), updatedScene1.Id);
+
+
+            Scene updatedScene2 = _sceneLogic.Update(newScene);
+
+            var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
+            {
+                Width = 12
+            };
+
+            RandomGenerator.ShowDefaultValue = true;
+            RandomGenerator.DefaultValue = 0.5;
+
+            var result = engine.Render();
+            Log log = _renderLogLogic.GetAll().FirstOrDefault();
+
+            Assert.AreEqual(2, log.NumberOfModels);
+        }
+
+        [TestMethod]
+        public void AverageRenderTime_OK_Test()
+        {
+            Shape newShape1 = new Sphere
+            {
+                ShapeName = "NewSphere1",
+                Radius = 1
+            };
+            Shape newShape2 = new Sphere
+            {
+                ShapeName = "NewSphere2",
+                Radius = 10
+            };
+
+            _shapeLogic.AddShape(newShape1);
+            _shapeLogic.AddShape(newShape2);
+
+            var newMaterial = new Material
+            {
+                MaterialName = "NewMaterial",
+            };
+            newMaterial.SetColor(234, 3, 90);
+            _materialLogic.Add(newMaterial);
+
+            var newModel1 = new Model
+            {
+                ModelName = "NewModel1",
+                Shape = _shapeLogic.GetShape(newShape1.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            var newModel2 = new Model
+            {
+                ModelName = "NewModel2",
+                Shape = _shapeLogic.GetShape(newShape2.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            _modelLogic.Add(newModel1);
+            _modelLogic.Add(newModel2);
+
+            var newScene = new Scene
+            {
+                SceneName = "NewScene"
+            };
+            _sceneLogic.Add(newScene);
+
+            var anotherScene = new Scene
+            {
+                SceneName = "AnotherScene"
+            };
+            _sceneLogic.Add(anotherScene);
+            Scene updatedAnotherScene = _sceneLogic.Update(anotherScene);
+
+            Scene updatedScene1 = _sceneLogic.Update(newScene);
+
+            Model newModel1Context = _modelLogic.Get(newModel1.ModelName);
+            Model newModel2Context = _modelLogic.Get(newModel2.ModelName);
+
+            _sceneLogic.AddPositionedModel(newModel1Context, (0, 2, 8), updatedScene1.Id);
+            _sceneLogic.AddPositionedModel(newModel2Context, (10, 10, 3), updatedScene1.Id);
+
+            _sceneLogic.AddPositionedModel(newModel1Context, (9, 15, 1), updatedAnotherScene.Id);
+            _sceneLogic.AddPositionedModel(newModel2Context, (0, 5, 2), updatedAnotherScene.Id);
+
+
+
+            Scene updatedScene2 = _sceneLogic.Update(newScene);
+            Scene updatedAnotherScene2 = _sceneLogic.Update(anotherScene);
+
+            var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
+            {
+                Width = 75
+            };
+
+            var engine2 = new GraphicsEngine.GraphicsEngine(updatedAnotherScene2)
+            {
+                Width = 75
+            };
+
+            RandomGenerator.ShowDefaultValue = true;
+            RandomGenerator.DefaultValue = 0.5;
+
+            var result1 = engine.Render();
+            var result2 = engine.Render();
+            var result3 = engine2.Render();
+
+            Assert.IsTrue(_renderLogLogic.GetAverageRenderTime() > 1);
+        }
+
+        [TestMethod]
+        public void TotalRenderTimeInMinutes_OK_Test()
+        {
+            Shape newShape1 = new Sphere
+            {
+                ShapeName = "NewSphere1",
+                Radius = 1
+            };
+            Shape newShape2 = new Sphere
+            {
+                ShapeName = "NewSphere2",
+                Radius = 10
+            };
+
+            _shapeLogic.AddShape(newShape1);
+            _shapeLogic.AddShape(newShape2);
+
+            var newMaterial = new Material
+            {
+                MaterialName = "NewMaterial",
+            };
+            newMaterial.SetColor(234, 3, 90);
+            _materialLogic.Add(newMaterial);
+
+            var newModel1 = new Model
+            {
+                ModelName = "NewModel1",
+                Shape = _shapeLogic.GetShape(newShape1.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            var newModel2 = new Model
+            {
+                ModelName = "NewModel2",
+                Shape = _shapeLogic.GetShape(newShape2.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            _modelLogic.Add(newModel1);
+            _modelLogic.Add(newModel2);
+
+            var newScene = new Scene
+            {
+                SceneName = "NewScene"
+            };
+            _sceneLogic.Add(newScene);
+
+            var anotherScene = new Scene
+            {
+                SceneName = "AnotherScene"
+            };
+            _sceneLogic.Add(anotherScene);
+            Scene updatedAnotherScene = _sceneLogic.Update(anotherScene);
+
+            Scene updatedScene1 = _sceneLogic.Update(newScene);
+
+            Model newModel1Context = _modelLogic.Get(newModel1.ModelName);
+            Model newModel2Context = _modelLogic.Get(newModel2.ModelName);
+
+            _sceneLogic.AddPositionedModel(newModel1Context, (0, 2, 8), updatedScene1.Id);
+            _sceneLogic.AddPositionedModel(newModel2Context, (10, 10, 3), updatedScene1.Id);
+
+            _sceneLogic.AddPositionedModel(newModel1Context, (9, 15, 1), updatedAnotherScene.Id);
+            _sceneLogic.AddPositionedModel(newModel2Context, (0, 5, 2), updatedAnotherScene.Id);
+
+
+
+            Scene updatedScene2 = _sceneLogic.Update(newScene);
+            Scene updatedAnotherScene2 = _sceneLogic.Update(anotherScene);
+
+            var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
+            {
+                Width = 75
+            };
+
+            var engine2 = new GraphicsEngine.GraphicsEngine(updatedAnotherScene2)
+            {
+                Width = 75
+            };
+
+            RandomGenerator.ShowDefaultValue = true;
+            RandomGenerator.DefaultValue = 0.5;
+
+            var result1 = engine.Render();
+            var result2 = engine.Render();
+            var result3 = engine2.Render();
+
+            Assert.IsTrue(_renderLogLogic.GetTotalRenderTimeInMinutes() >= 0);
+        }
+
+
+        [TestMethod]
+        public void ClientWithMaxRenderTime_OK_Test()
+        {
+            Shape newShape1 = new Sphere
+            {
+                ShapeName = "NewSphere1",
+                Radius = 1
+            };
+            Shape newShape2 = new Sphere
+            {
+                ShapeName = "NewSphere2",
+                Radius = 10
+            };
+
+            _shapeLogic.AddShape(newShape1);
+            _shapeLogic.AddShape(newShape2);
+
+            var newMaterial = new Material
+            {
+                MaterialName = "NewMaterial",
+            };
+            newMaterial.SetColor(234, 3, 90);
+            _materialLogic.Add(newMaterial);
+
+            var newModel1 = new Model
+            {
+                ModelName = "NewModel1",
+                Shape = _shapeLogic.GetShape(newShape1.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            var newModel2 = new Model
+            {
+                ModelName = "NewModel2",
+                Shape = _shapeLogic.GetShape(newShape2.ShapeName),
+                Material = _materialLogic.Get(newMaterial.MaterialName)
+            };
+            _modelLogic.Add(newModel1);
+            _modelLogic.Add(newModel2);
+
+            var newScene = new Scene
+            {
+                SceneName = "NewScene"
+            };
+            _sceneLogic.Add(newScene);
+
+            var anotherScene = new Scene
+            {
+                SceneName = "AnotherScene"
+            };
+            _sceneLogic.Add(anotherScene);
+            Scene updatedAnotherScene = _sceneLogic.Update(anotherScene);
+
+            Scene updatedScene1 = _sceneLogic.Update(newScene);
+
+            Model newModel1Context = _modelLogic.Get(newModel1.ModelName);
+            Model newModel2Context = _modelLogic.Get(newModel2.ModelName);
+
+            _sceneLogic.AddPositionedModel(newModel1Context, (0, 2, 8), updatedScene1.Id);
+            _sceneLogic.AddPositionedModel(newModel2Context, (10, 10, 3), updatedScene1.Id);
+
+            _sceneLogic.AddPositionedModel(newModel1Context, (9, 15, 1), updatedAnotherScene.Id);
+            _sceneLogic.AddPositionedModel(newModel2Context, (0, 5, 2), updatedAnotherScene.Id);
+
+
+
+            Scene updatedScene2 = _sceneLogic.Update(newScene);
+            Scene updatedAnotherScene2 = _sceneLogic.Update(anotherScene);
+
+            var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
+            {
+                Width = 15
+            };
+
+            var engine2 = new GraphicsEngine.GraphicsEngine(updatedAnotherScene2)
+            {
+                Width = 15
+            };
+
+            RandomGenerator.ShowDefaultValue = true;
+            RandomGenerator.DefaultValue = 0.5;
+
+            var result1 = engine.Render();
+            var result2 = engine.Render();
+            var result3 = engine2.Render();
+
+            Assert.AreEqual("NewClient3", _renderLogLogic.GetClientWithMaxRenderTime().Client.Name);
+            Assert.IsTrue(_renderLogLogic.GetClientWithMaxRenderTime().AccumulatedRenderTime >= 0);
         }
     }
 }
