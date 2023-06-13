@@ -42,6 +42,23 @@ namespace BusinessLogic
             return (int)Math.Floor(GetAll().Select(l => l.RenderingTimeInSeconds).Sum() / 60.0);
         }
 
+        public (Client Client, int AccumulatedRenderTime) GetCilientWithMaxRenderTime()
+        {
+            var result = GetAll()
+                .GroupBy(l => l.Client)
+                .Select(g => new
+                {
+                    Client = g.Key,
+                    AccumulatedRenderTime = g.Sum(lr => lr.RenderingTimeInSeconds)
+                })
+                .OrderByDescending(g => g.AccumulatedRenderTime)
+                .FirstOrDefault();
+
+            if (result is null) throw new NullReferenceException("There are no rendered scenes");
+
+            return (result.Client, result.AccumulatedRenderTime);
+        }
+
         private void AssignSceneToClient(Log log)
         {
             if (Session.LoggedClient == null) throw new SessionException("Client needs to be logged in to create new model");

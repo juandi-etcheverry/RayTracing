@@ -735,7 +735,7 @@ namespace GraphicsEngineTest
             var result3 = engine2.Render();
 
             Assert.AreEqual("NewClient3", _renderLogLogic.GetCilientWithMaxRenderTime().Client.Name);
-            Assert.IsTrue(_renderLogLogic.GetCilientWithMaxRenderTime().MaxRenderTime >= 0);
+            Assert.IsTrue(_renderLogLogic.GetCilientWithMaxRenderTime().AccumulatedRenderTime >= 0);
         }
     }
 }

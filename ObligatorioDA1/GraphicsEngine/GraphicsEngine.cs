@@ -31,8 +31,9 @@ namespace GraphicsEngine
                 }
 
             DateTime endTime = DateTime.Now;
-            int elapsedTime = (endTime - startTime).Seconds;
-            CreateLog(elapsedTime);
+            double elapsedTimeMinutes = (endTime - startTime).TotalSeconds;
+            int elapsedTimeSeconds = (int)Math.Floor(elapsedTimeMinutes);
+            CreateLog(elapsedTimeSeconds);
 
             return renderedImage;
         }
