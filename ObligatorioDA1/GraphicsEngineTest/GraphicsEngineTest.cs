@@ -645,7 +645,7 @@ namespace GraphicsEngineTest
             var result2 = engine.Render();
             var result3 = engine2.Render();
 
-            Assert.IsTrue(_renderLogLogic.GetTotalRenderTimeInMinuted() >= 0);
+            Assert.IsTrue(_renderLogLogic.GetTotalRenderTimeInMinutes() >= 0);
         }
     }
 }

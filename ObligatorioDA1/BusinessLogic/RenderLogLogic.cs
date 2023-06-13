@@ -37,6 +37,11 @@ namespace BusinessLogic
             return (int) Math.Floor(GetAll().Select(l => l.RenderingTimeInSeconds).Average());
         }
 
+        public int GetTotalRenderTimeInMinutes()
+        {
+            return (int)Math.Floor(GetAll().Select(l => l.RenderingTimeInSeconds).Sum() / 60.0);
+        }
+
         private void AssignSceneToClient(Log log)
         {
             if (Session.LoggedClient == null) throw new SessionException("Client needs to be logged in to create new model");
