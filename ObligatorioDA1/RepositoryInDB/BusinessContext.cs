@@ -16,6 +16,7 @@ namespace RepositoryInDB
         public DbSet<Model> Models { get; set; }
         public DbSet<Shape> Shapes { get; set; }
         public DbSet<Scene> Scenes { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
         public BusinessContext(): base("DA1DB")
         {
@@ -27,6 +28,7 @@ namespace RepositoryInDB
             ModelConfiguration.ConfigureEntity(modelBuilder);
             ShapeConfiguration.ConfigureEntity(modelBuilder);
             SceneConfiguration.ConfigureEntity(modelBuilder);
+            LogConfiguration.ConfigureEntity(modelBuilder);
         }
 
     }

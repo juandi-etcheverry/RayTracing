@@ -31,7 +31,7 @@ namespace ObligatorioDA1.Model_Panel
             Scene previewScene = new Scene()
             {
                 LastRenderDate = DateTime.Now,
-                SceneName = "Preview scene" + DateTime.Now.ToString(),
+                SceneName = "Preview - " + model.ModelName,
             };
             previewScene.ClientScenePreferences = loggedInClient.ClientScenePreferences;
             Scene addedScene = _sceneLogic.Add(previewScene);

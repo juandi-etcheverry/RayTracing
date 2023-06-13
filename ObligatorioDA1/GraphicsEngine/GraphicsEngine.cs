@@ -1,4 +1,5 @@
 ﻿using System;
+using BusinessLogic;
 using Domain;
 
 namespace GraphicsEngine
@@ -9,6 +10,7 @@ namespace GraphicsEngine
         public uint Width { get; set; }
         private Camera _camera;
         private Scene _scene;
+        private readonly RenderLogLogic _renderLogLogic = new RenderLogLogic();
 
         public GraphicsEngine(Scene scene)
         {
@@ -17,6 +19,8 @@ namespace GraphicsEngine
         }
         public PPMImage Render()
         {
+            DateTime startTime = DateTime.Now;
+
             var renderedImage = new PPMImage(Width);
 
             for (var row = renderedImage.Height - 1; row >= 0; row--)
@@ -26,7 +30,40 @@ namespace GraphicsEngine
                     renderedImage.SavePixel(row, column, color);
                 }
 
+            DateTime endTime = DateTime.Now;
+            double elapsedTimeDouble = (endTime - startTime).TotalSeconds;
+            int elapsedTimeSeconds = (int)Math.Floor(elapsedTimeDouble);
+            CreateLog(elapsedTimeSeconds);
+
             return renderedImage;
+        }
+
+        private void CreateLog(int elapsedTime)
+        {
+            Log newLog = new Log();
+            newLog.RenderingTimeInSeconds = elapsedTime;
+            newLog.RenderWindow = CalculateRenderWindow();
+            newLog.SceneName = _scene.SceneName;
+            newLog.NumberOfModels = _scene.Models.Count;
+            _renderLogLogic.Add(newLog);
+        }
+
+        private string CalculateRenderWindow()
+        {
+            var lastLog = _renderLogLogic.Get(_scene.SceneName, _scene.Client.Name);
+            if (_scene.SceneName.Contains("preview") || lastLog is null) return "0 seconds";
+            TimeSpan difference = DateTime.Now - lastLog.RenderDate;
+            return StringParseRenderWindow(difference);
+        }
+
+        private string StringParseRenderWindow(TimeSpan difference)
+        {
+            if (difference.TotalDays >= 1) return $"{(int)Math.Floor(difference.TotalDays)} days";
+            if (difference.TotalHours >= 1) return $"{(int)Math.Floor(difference.TotalHours)} hours";
+            if (difference.TotalMinutes >= 1) return $"{(int)Math.Floor(difference.TotalMinutes)} minutes";
+            if (difference.TotalSeconds >= 1) return $"{(int)Math.Floor(difference.TotalSeconds)} seconds";
+
+            return "0 seconds";
         }
 
         public void BlurCamera(decimal aperture)

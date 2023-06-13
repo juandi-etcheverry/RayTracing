@@ -45,6 +45,7 @@
     <Compile Include="MaterialLogic.cs" />
     <Compile Include="ModelLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RenderLogLogic.cs" />
     <Compile Include="SceneLogic.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="ShapeLogic.cs" />
