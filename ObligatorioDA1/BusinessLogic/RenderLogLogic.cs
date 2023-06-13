@@ -42,7 +42,7 @@ namespace BusinessLogic
             return Convert.ToInt32(Math.Floor(GetAll().Select(l => l.RenderingTimeInSeconds).Sum() / 60.0));
         }
 
-        public (Client Client, int AccumulatedRenderTime) GetCilientWithMaxRenderTime()
+        public (Client Client, int AccumulatedRenderTime) GetClientWithMaxRenderTime()
         {
             var result = GetAll()
                 .GroupBy(l => l.Client)
