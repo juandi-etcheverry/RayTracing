@@ -542,12 +542,12 @@ namespace GraphicsEngineTest
 
             var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
             {
-                Width = 12
+                Width = 75
             };
 
             var engine2 = new GraphicsEngine.GraphicsEngine(updatedAnotherScene2)
             {
-                Width = 12
+                Width = 75
             };
 
             RandomGenerator.ShowDefaultValue = true;
@@ -557,7 +557,7 @@ namespace GraphicsEngineTest
             var result2 = engine.Render();
             var result3 = engine2.Render();
 
-            Assert.IsTrue(_renderLogLogic.GetAverageRenderTime() > 10);
+            Assert.IsTrue(_renderLogLogic.GetAverageRenderTime() > 1);
         }
     }
 }

@@ -32,6 +32,11 @@ namespace BusinessLogic
             return _repository.Get(sceneName, clientName);
         }
 
+        public int GetAverageRenderTime()
+        {
+            return (int) Math.Floor(GetAll().Select(l => l.RenderingTimeInSeconds).Average());
+        }
+
         private void AssignSceneToClient(Log log)
         {
             if (Session.LoggedClient == null) throw new SessionException("Client needs to be logged in to create new model");
