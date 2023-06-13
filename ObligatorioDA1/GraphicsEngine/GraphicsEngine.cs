@@ -51,11 +51,13 @@ namespace GraphicsEngine
         private string CalculateRenderWindow()
         {
             var lastLog = _renderLogLogic.Get(_scene.SceneName, _scene.Client.Name);
-
             if (_scene.SceneName.Contains("preview") || lastLog is null) return "0 seconds";
-
             TimeSpan difference = DateTime.Now - lastLog.RenderDate;
+            return StringParseRenderWindow(difference);
+        }
 
+        private string StringParseRenderWindow(TimeSpan difference)
+        {
             if (difference.TotalDays >= 1) return $"{(int)Math.Floor(difference.TotalDays)} days";
             if (difference.TotalHours >= 1) return $"{(int)Math.Floor(difference.TotalHours)} hours";
             if (difference.TotalMinutes >= 1) return $"{(int)Math.Floor(difference.TotalMinutes)} minutes";

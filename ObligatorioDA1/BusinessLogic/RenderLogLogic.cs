@@ -18,7 +18,7 @@ namespace BusinessLogic
 
         public Log Add(Log logToAdd)
         {
-            AssignSceneToClient(logToAdd);
+            AssignLogToClient(logToAdd);
             return _repository.Add(logToAdd);
         }
 
@@ -34,12 +34,12 @@ namespace BusinessLogic
 
         public int GetAverageRenderTime()
         {
-            return (int) Math.Floor(GetAll().Select(l => l.RenderingTimeInSeconds).Average());
+            return Convert.ToInt32(Math.Floor(GetAll().Select(l => l.RenderingTimeInSeconds).Average()));
         }
 
         public int GetTotalRenderTimeInMinutes()
         {
-            return (int)Math.Floor(GetAll().Select(l => l.RenderingTimeInSeconds).Sum() / 60.0);
+            return Convert.ToInt32(Math.Floor(GetAll().Select(l => l.RenderingTimeInSeconds).Sum() / 60.0));
         }
 
         public (Client Client, int AccumulatedRenderTime) GetCilientWithMaxRenderTime()
@@ -59,7 +59,7 @@ namespace BusinessLogic
             return (result.Client, result.AccumulatedRenderTime);
         }
 
-        private void AssignSceneToClient(Log log)
+        private void AssignLogToClient(Log log)
         {
             if (Session.LoggedClient == null) throw new SessionException("Client needs to be logged in to create new model");
             log.Client = Session.LoggedClient;
