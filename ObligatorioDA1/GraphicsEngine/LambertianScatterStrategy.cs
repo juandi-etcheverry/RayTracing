@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace GraphicsEngine
 {
-    internal class LambertianScatterStrategy : ScatterStrategy
+    internal class LambertianScatterStrategy : IScatterStrategy
     {
-        internal override Ray Scatter()
+        internal HitRecord hitRecord { get; set; }
+        public Ray Scatter()
         {
             var newPoint = hitRecord.IntersectionPoint.Add(hitRecord.Normal)
                 .Add(Vector.GetRandomInUnitSphere());
@@ -22,7 +23,7 @@ namespace GraphicsEngine
             return newRay;
         }
 
-        internal override bool CanExecute()
+        public bool CanExecute()
         {
             return hitRecord.Material.GetType() == typeof(Material);
         }

@@ -127,7 +127,7 @@ namespace GraphicsEngine
             if (intersectionWithShape != null)
             {
                 if (depth <= 0) return new Vector { X = 0, Y = 0, Z = 0 };
-                var scatterController = new ScatterController(intersectionWithShape, ray);
+                var scatterController = new ScatterContext(intersectionWithShape, ray);
                 var newRay = scatterController.Scatter();
                 if (newRay is null)
                 {

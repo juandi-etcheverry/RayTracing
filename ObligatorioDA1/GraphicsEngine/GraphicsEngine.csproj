@@ -55,8 +55,8 @@
     <Compile Include="PPMImage.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Ray.cs" />
-    <Compile Include="ScatterController.cs" />
-    <Compile Include="ScatterStrategy.cs" />
+    <Compile Include="ScatterContext.cs" />
+    <Compile Include="IScatterStrategy.cs" />
     <Compile Include="Vector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

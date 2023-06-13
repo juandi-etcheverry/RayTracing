@@ -7,9 +7,11 @@ using Domain;
 
 namespace GraphicsEngine
 {
-    internal class MetallicScatterStrategy : ScatterStrategy
+    internal class MetallicScatterStrategy : IScatterStrategy
     {
-        internal override Ray Scatter()
+        internal HitRecord hitRecord { get; set; }
+        internal Ray incomingRay { get; set; }
+        public Ray Scatter()
         {
             var scatteredRay = new Ray()
             {
@@ -26,13 +28,14 @@ namespace GraphicsEngine
 
         private Vector ReflectedVector()
         {
+            var unitDirection = incomingRay.Direction.Unit();
             var cosineOfAngleOfReflection =
-                incomingRay.Direction.Unit().Dot(hitRecord.Normal);
-            var reflectedVector = incomingRay.Direction.Subtract(hitRecord.Normal.Multiply(2m * cosineOfAngleOfReflection));
-            return reflectedVector.Add(Vector.GetRandomInUnitSphere()).Multiply(((MetallicMaterial)hitRecord.Material).Blur);
+                unitDirection.Dot(hitRecord.Normal);
+            var reflectedVector = unitDirection.Subtract(hitRecord.Normal.Multiply(2m * cosineOfAngleOfReflection));
+            return reflectedVector.Add(Vector.GetRandomInUnitSphere().Multiply(((MetallicMaterial)hitRecord.Material).Blur));
         }
 
-        internal override bool CanExecute()
+        public bool CanExecute()
         {
             return hitRecord.Material.GetType() == typeof(MetallicMaterial);
         }
