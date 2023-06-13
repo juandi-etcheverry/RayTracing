@@ -51,6 +51,8 @@ namespace ObligatorioDA1.Model_Panel
                 _newModel.WantPreview = ckbModelPreview.Checked;
                 _modelLogic.Add(_newModel);
 
+                if (_newModel.WantPreview) SetPreviewForNewModel(_newModel);
+
                 _panelGeneral.GoToModelList();
             }
             catch (NameException nameEx)
@@ -71,6 +73,35 @@ namespace ObligatorioDA1.Model_Panel
                     lblModelSelectShape.Text = argEx.Message;
                 }
             }
+        }
+
+        private void SetPreviewForNewModel(Model model)
+        {
+            ClientLogic clientLogic = new ClientLogic();
+            Client loggedInClient = clientLogic.GetLoggedClient();
+            Scene previewScene = new Scene()
+            {
+                LastRenderDate = DateTime.Now,
+                SceneName = "Preview - " + model.ModelName,
+            };
+            previewScene.ClientScenePreferences = loggedInClient.ClientScenePreferences;
+            Scene addedScene = _sceneLogic.Add(previewScene);
+
+            _sceneLogic.AddPositionedModel(model, (0, 2, 10), addedScene.Id);
+            Scene updatedScene = _sceneLogic.GetScene(addedScene.Id);
+            updatedScene.LastRenderDate = DateTime.Now;
+            string modelFileName = $"{model.Id}.ppm";
+            GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine(updatedScene)
+            {
+                Width = 30
+            };
+            Cursor.Current = Cursors.WaitCursor;
+            PPMImage renderedPreview = engine.Render();
+            renderedPreview.SaveFile(modelFileName);
+            Bitmap preview = ImageParser.ConvertPpmToBitmap(modelFileName);
+            model.Preview = preview;
+            Cursor.Current = Cursors.Arrow;
+            _sceneLogic.RemoveScene(updatedScene);
         }
 
         private void RefreshShapeCombo()

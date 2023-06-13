@@ -110,7 +110,30 @@ namespace ObligatorioDA1
         {
             dgvAvailableModelsList.Rows.Clear();
             foreach (var model in _modelLogic.GetClientModels().ToList())
+            {
+                RecoverSceneRender(model);
                 dgvAvailableModelsList.Rows.Add(model.Preview, null, model.ModelName, null);
+            }
+        } 
+        
+        private void RecoverSceneRender(Model model)
+        {
+            string sceneFileName = $"{model.Id}.ppm";
+            Bitmap renderedImage = RecoverModelPreview(sceneFileName);
+            model.Preview = renderedImage;
+        }
+
+        private Bitmap RecoverModelPreview(string filename)
+        {
+            try
+            {
+                Bitmap renderedImage = ImageParser.ConvertPpmToBitmap(filename);
+                return renderedImage;
+            }
+            catch (FileNotFoundException noFle)
+            {
+                return null;
+            }
         }
 
         private void RefreshUsedList()
@@ -118,7 +141,10 @@ namespace ObligatorioDA1
             dgvUsedModels.Rows.Clear();
             _scene = _sceneLogic.GetScene(_scene.Id);
             foreach (var posModel in _scene.Models.ToList())
+            {
+                RecoverSceneRender(posModel.Model);
                 dgvUsedModels.Rows.Add(posModel.Model.Preview, null, posModel.Model.ModelName, null, posModel.GetCoordinates(), posModel.Id);
+            }
         }
 
         private void dgvAvailableModelsList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

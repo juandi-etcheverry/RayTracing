@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using BusinessLogic;
@@ -22,47 +23,37 @@ namespace ObligatorioDA1.Model_Panel
             _panelGeneral = userControl;
             InitializeComponent();
             InitializeModelList();
-        }
-
-        private void SetPreviewForNewModel(Model model)
-        {
-            ClientLogic clientLogic = new ClientLogic();
-            Client loggedInClient = clientLogic.GetLoggedClient();
-            Scene previewScene = new Scene()
-            {
-                LastRenderDate = DateTime.Now,
-                SceneName = "Preview - " + model.ModelName,
-            };
-            previewScene.ClientScenePreferences = loggedInClient.ClientScenePreferences;
-            Scene addedScene = _sceneLogic.Add(previewScene);
-
-            _sceneLogic.AddPositionedModel(model, (0, 2, 10), addedScene.Id);
-            Scene updatedScene = _sceneLogic.GetScene(addedScene.Id);
-            updatedScene.LastRenderDate = DateTime.Now;
-            int hashedScene = ImageParser.HashDate(updatedScene.LastRenderDate);
-            string modelFileName = $"{loggedInClient.Name}_{hashedScene}_p.ppm";
-            GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine(updatedScene)
-            {
-                Width = 30
-            };
-            Cursor.Current = Cursors.WaitCursor;
-            PPMImage renderedPreview = engine.Render();
-            renderedPreview.SaveFile(modelFileName);
-            Bitmap preview = ImageParser.ConvertPpmToBitmap(modelFileName);
-            model.Preview = preview;
-            Cursor.Current = Cursors.Arrow;
-            _sceneLogic.RemoveScene(updatedScene);
-        }
-
+        } 
+        
         public void RefreshModelList()
         {
             lblEliminationException.Visible = false;
             dgvModelList.Rows.Clear();
             foreach (var model in _modelLogic.GetClientModels().ToList())
             {
-                if (model.WantPreview) SetPreviewForNewModel(model);
+                if (model.WantPreview) RecoverSceneRender(model);
                 dgvModelList.Rows.Add(model.Preview, null, null, null, model.ModelName, model.Shape.ShapeName,
                     model.Material.MaterialName);
+            }
+        }
+
+        private void RecoverSceneRender(Model model)
+        {
+            string sceneFileName = $"{model.Id}.ppm";
+            Bitmap renderedImage = RecoverSceneImage(sceneFileName);
+            model.Preview = renderedImage;
+        }
+
+        private Bitmap RecoverSceneImage(string filename)
+        {
+            try
+            {
+                Bitmap renderedImage = ImageParser.ConvertPpmToBitmap(filename);
+                return renderedImage;
+            }
+            catch (FileNotFoundException noFle)
+            {
+                return null;
             }
         }
 
