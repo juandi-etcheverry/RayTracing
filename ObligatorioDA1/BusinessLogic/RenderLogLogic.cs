@@ -27,6 +27,11 @@ namespace BusinessLogic
             return _repository.GetAll();
         }
 
+        public Log Get(string sceneName, string clientName)
+        {
+            return _repository.Get(sceneName, clientName);
+        }
+
         private void AssignSceneToClient(Log log)
         {
             if (Session.LoggedClient == null) throw new SessionException("Client needs to be logged in to create new model");

@@ -11,5 +11,6 @@ namespace IRepository
     {
         IList<Log> GetAll();
         Log Add(Log x);
+        Log Get(string sceneName, string clientName);
     }
 }

@@ -24,6 +24,16 @@ namespace RepositoryInDB
             }
         }
 
+        public Log Get(string sceneName, string clientName)
+        {
+            using (var context = new BusinessContext())
+            {
+                return context.Logs
+                    .Include(l => l.Client)
+                    .FirstOrDefault(l => l.SceneName == sceneName && l.Client.Name == clientName);
+            }
+        }
+
         public IList<Log> GetAll()
         {
             using (var context = new BusinessContext())

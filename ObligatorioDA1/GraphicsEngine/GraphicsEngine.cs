@@ -42,13 +42,24 @@ namespace GraphicsEngine
             Log newLog = new Log();
             newLog.RenderingTimeInSeconds = elapsedTime;
             newLog.RenderWindow = CalculateRenderWindow();
-            newLog.SceneName = _scene.SceneName; //cambiar
+            newLog.SceneName = _scene.SceneName;
             newLog.NumberOfModels = _scene.Models.Count;
             _renderLogLogic.Add(newLog);
         }
 
         private string CalculateRenderWindow()
         {
+            var lastLog = _renderLogLogic.Get(_scene.SceneName, _scene.Client.Name);
+
+            if (_scene.SceneName.Contains("preview") || lastLog is null) return "0 seconds";
+
+            TimeSpan difference = DateTime.Now - lastLog.RenderDate;
+
+            if (difference.TotalDays >= 1) return $"{(int)Math.Floor(difference.TotalDays)} days";
+            if (difference.TotalHours >= 1) return $"{(int)Math.Floor(difference.TotalHours)} hours";
+            if (difference.TotalMinutes >= 1) return $"{(int)Math.Floor(difference.TotalMinutes)} minutes";
+            if (difference.TotalSeconds >= 1) return $"{(int)Math.Floor(difference.TotalSeconds)} seconds";
+
             return "0 seconds";
         }
 
