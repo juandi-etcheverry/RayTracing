@@ -42,13 +42,13 @@ namespace BusinessLogicTest
 
             var material1 = new Material
             {
-                MaterialName = "New Material 1",
+                MaterialName = "New Material 1"
             };
             material1.SetColor(0, 0, 0);
 
             var material2 = new Material
             {
-                MaterialName = "New Material 2",
+                MaterialName = "New Material 2"
             };
             material2.SetColor(190, 2, 42);
             _materialLogic.Add(material1);
@@ -230,7 +230,7 @@ namespace BusinessLogicTest
 
             var material2 = new Material
             {
-                MaterialName = "Material2",
+                MaterialName = "Material2"
             };
             material2.SetColor(190, 2, 42);
             _materialLogic.Add(material2);
@@ -309,7 +309,7 @@ namespace BusinessLogicTest
 
             var newMaterial = new Material
             {
-                MaterialName = "newMaterial",
+                MaterialName = "newMaterial"
             };
             newMaterial.SetColor(10, 2, 154);
             _materialLogic.Add(newMaterial);

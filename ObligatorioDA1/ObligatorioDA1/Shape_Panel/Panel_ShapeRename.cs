@@ -9,8 +9,8 @@ namespace ObligatorioDA1
     public partial class Panel_ShapeRename : UserControl
     {
         private readonly Panel_General _panelGeneral;
-        private Shape _shape;
         private readonly ShapeLogic _shapeLogic = new ShapeLogic();
+        private Shape _shape;
 
         public Panel_ShapeRename(Panel_General userControl)
         {

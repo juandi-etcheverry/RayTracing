@@ -1,9 +1,9 @@
-﻿using BusinessLogic;
+﻿using System;
+using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RepositoryInDB;
-using System;
 
 namespace BusinessLogicTest
 {
@@ -436,7 +436,7 @@ namespace BusinessLogicTest
 
             var material = new Material
             {
-                MaterialName = "Material",
+                MaterialName = "Material"
             };
             material.SetColor(10, 50, 11);
             _materialLogic.Add(material);

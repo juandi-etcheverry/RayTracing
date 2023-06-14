@@ -8,9 +8,9 @@ namespace ObligatorioDA1.Model_Panel
 {
     public partial class Panel_SceneNewName : UserControl
     {
-        private Scene _newScene;
         private readonly Panel_General _panelGeneral;
         private readonly SceneLogic _sceneLogic = new SceneLogic();
+        private Scene _newScene;
 
         public Panel_SceneNewName(Panel_General panelGeneral)
         {

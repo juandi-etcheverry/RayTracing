@@ -12,8 +12,6 @@ namespace Domain
         private static readonly uint MAX_PASSWORD_LENGTH = 25;
         private string _name;
         private string _password;
-        public DateTime RegistrationDate { get; set; }
-        public ClientScenePreferences ClientScenePreferences { get; set; }
 
         public Client()
         {
@@ -26,8 +24,11 @@ namespace Domain
             ClientScenePreferences.SetLookAtDefault((0, 2, 5));
         }
 
+        public DateTime RegistrationDate { get; set; }
+        public ClientScenePreferences ClientScenePreferences { get; set; }
+
         public string Name
-        {   
+        {
             get => _name;
             set
             {
@@ -79,6 +80,5 @@ namespace Domain
         {
             throw new PasswordException("Client password must have at least one number");
         }
-
     }
 }

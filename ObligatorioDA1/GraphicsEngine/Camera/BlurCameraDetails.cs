@@ -1,23 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphicsEngine
 {
     internal class BlurCameraDetails : CameraDetails
     {
         private decimal _aperture;
-        internal decimal Aperture
-        {
-            get => _aperture;
-            set
-            {
-                ValidateAperture(value);
-                _aperture = value;
-            }
-        }
 
         internal BlurCameraDetails(CameraDetails cameraDetails)
         {
@@ -26,6 +13,16 @@ namespace GraphicsEngine
             Up = cameraDetails.Up;
             FieldOfView = cameraDetails.FieldOfView;
             AspectRatio = cameraDetails.AspectRatio;
+        }
+
+        internal decimal Aperture
+        {
+            get => _aperture;
+            set
+            {
+                ValidateAperture(value);
+                _aperture = value;
+            }
         }
 
         private void ValidateAperture(decimal aperture)

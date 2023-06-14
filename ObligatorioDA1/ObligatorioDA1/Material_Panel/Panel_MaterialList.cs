@@ -48,7 +48,6 @@ namespace ObligatorioDA1.Material_Panel
                 string materialName;
                 Material material;
                 if (dgvMaterialList.Columns[e.ColumnIndex].Name == "Delete")
-                {
                     try
                     {
                         materialName = dgvMaterialList.CurrentRow.Cells[3].Value.ToString();
@@ -57,12 +56,11 @@ namespace ObligatorioDA1.Material_Panel
                         dgvMaterialList.Rows.Remove(dgvMaterialList.CurrentRow);
                         lblEliminationException.Visible = false;
                     }
-                    catch(AssociationException AssEx)
+                    catch (AssociationException AssEx)
                     {
                         lblEliminationException.Visible = true;
                         lblEliminationException.Text = AssEx.Message;
                     }
-                }
 
                 if (dgvMaterialList.Columns[e.ColumnIndex].Name == "Rename")
                 {
@@ -119,9 +117,9 @@ namespace ObligatorioDA1.Material_Panel
 
         private Color GetColour(Material _material)
         {
-            var r = (int)_material.ColorX;
-            var g = (int)_material.ColorY;
-            var b = (int)_material.ColorZ;
+            var r = _material.ColorX;
+            var g = _material.ColorY;
+            var b = _material.ColorZ;
             var newColor = Color.FromArgb(r, g, b);
             return newColor;
         }

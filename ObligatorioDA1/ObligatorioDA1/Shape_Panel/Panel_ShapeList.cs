@@ -45,7 +45,6 @@ namespace ObligatorioDA1
                 string shapeName;
                 Shape shape;
                 if (dgvShapeList.Columns[e.ColumnIndex].Name == "Delete")
-                {
                     try
                     {
                         shapeName = dgvShapeList.CurrentRow.Cells[2].Value.ToString();
@@ -54,13 +53,11 @@ namespace ObligatorioDA1
                         dgvShapeList.Rows.Remove(dgvShapeList.CurrentRow);
                         lblEliminationException.Visible = false;
                     }
-                    catch(AssociationException AssEx)
+                    catch (AssociationException AssEx)
                     {
                         lblEliminationException.Visible = true;
                         lblEliminationException.Text = AssEx.Message;
                     }
-                    
-                }
 
                 if (dgvShapeList.Columns[e.ColumnIndex].Name == "Rename")
                 {
@@ -69,7 +66,6 @@ namespace ObligatorioDA1
                     _panelGeneral.GoToShapeRename(shape);
                 }
             }
-            
         }
 
         private void dgvShapeList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

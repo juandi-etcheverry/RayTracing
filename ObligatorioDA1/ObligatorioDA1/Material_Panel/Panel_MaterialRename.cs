@@ -8,9 +8,9 @@ namespace ObligatorioDA1.Material_Panel
 {
     public partial class Panel_MaterialRename : UserControl
     {
-        private Material _material;
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private readonly Panel_General _panelGeneral;
+        private Material _material;
 
         public Panel_MaterialRename(Panel_General userControl)
         {

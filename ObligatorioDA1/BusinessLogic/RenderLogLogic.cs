@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BusinessLogicExceptions;
 using Domain;
 using IRepository;
@@ -12,7 +10,6 @@ namespace BusinessLogic
 {
     public class RenderLogLogic
     {
-
         private readonly IRepositoryLog _repository = new LogRepositoryInDB();
 
 
@@ -61,7 +58,8 @@ namespace BusinessLogic
 
         private void AssignLogToClient(Log log)
         {
-            if (Session.LoggedClient == null) throw new SessionException("Client needs to be logged in to create new model");
+            if (Session.LoggedClient == null)
+                throw new SessionException("Client needs to be logged in to create new model");
             log.Client = Session.LoggedClient;
         }
     }

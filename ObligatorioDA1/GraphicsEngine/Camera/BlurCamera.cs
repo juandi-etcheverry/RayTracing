@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GraphicsEngine
+﻿namespace GraphicsEngine
 {
     internal class BlurCamera : Camera
     {
-        private decimal focalDistance;
+        private readonly decimal focalDistance;
         private decimal lensRadius;
+
         public BlurCamera(BlurCameraDetails blurCameraDetails) : base(blurCameraDetails)
         {
             focalDistance = DistanceBetweenLookFromAndLookAt(blurCameraDetails);
@@ -37,7 +32,8 @@ namespace GraphicsEngine
         private void SetLowerLeftCornerOfCameraView()
         {
             LowerLeftCornerOfCameraView = Origin.Subtract(horizontalUnit.Multiply(halfOfWidth * focalDistance))
-                .Subtract(verticalUnit.Multiply(halfOfHeight * focalDistance)).Subtract(depthUnit.Multiply(focalDistance));
+                .Subtract(verticalUnit.Multiply(halfOfHeight * focalDistance))
+                .Subtract(depthUnit.Multiply(focalDistance));
         }
 
         internal override Ray RayFromCoordinates(decimal horizontalDistanceFromLeft, decimal verticalDistanceFromBottom)

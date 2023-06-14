@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using BusinessLogicExceptions;
 using Domain;
 using IRepository;
 using RepositoryInDB;
-using RepositoryInMemory;
 
 namespace BusinessLogic
 {
@@ -35,15 +33,16 @@ namespace BusinessLogic
             return _repository.Update(scene);
         }
 
-        public PositionedModel AddPositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates, int id)
+        public PositionedModel AddPositionedModel(Model model, ValueTuple<decimal, decimal, decimal> coordinates,
+            int id)
         {
-            Scene scene = GetScene(id);
-            var newPositionedModel = new PositionedModel()
+            var scene = GetScene(id);
+            var newPositionedModel = new PositionedModel
             {
                 Model = model,
                 CoordinateX = coordinates.Item1,
                 CoordinateY = coordinates.Item2,
-                CoordinateZ = coordinates.Item3,
+                CoordinateZ = coordinates.Item3
             };
             AddPositionedModel(scene, newPositionedModel);
             return newPositionedModel;
@@ -51,7 +50,7 @@ namespace BusinessLogic
 
         public void DeletePositionedModel(int idModel, int idScene)
         {
-            Scene scene = GetScene(idScene);
+            var scene = GetScene(idScene);
             var positionedModel = GetPositionedModel(scene, idModel);
             scene.LastModificationDate = DateTime.Now;
             _repository.DeleteModel(scene, positionedModel);
@@ -109,7 +108,7 @@ namespace BusinessLogic
 
         public Scene Update(Scene scene)
         {
-           return _repository.Update(scene);
+            return _repository.Update(scene);
         }
 
         private void EnsureSceneExists(string name)
@@ -146,14 +145,15 @@ namespace BusinessLogic
         {
             throw new NotFoundException("Scene not found");
         }
+
         private void ThrowNameExists()
         {
             throw new NameException("Scene name already exists");
         }
+
         private void ThrowClientNotLoggedIn()
         {
             throw new SessionException("Client not logged in");
         }
-
     }
 }

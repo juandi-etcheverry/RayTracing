@@ -32,6 +32,7 @@ namespace Domain
                 _colorX = value;
             }
         }
+
         public int ColorY
         {
             get => _colorY;
@@ -41,6 +42,7 @@ namespace Domain
                 _colorY = value;
             }
         }
+
         public int ColorZ
         {
             get => _colorZ;

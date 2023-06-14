@@ -7,9 +7,9 @@ namespace ObligatorioDA1.Scene_Panel
 {
     public partial class Panel_SceneSetDefaultCamera : UserControl
     {
-        private Client _client;
-        private readonly Panel_General _panelGeneral;
         private readonly ClientLogic _clientLogic = new ClientLogic();
+        private readonly Panel_General _panelGeneral;
+        private Client _client;
 
         public Panel_SceneSetDefaultCamera(Panel_General panelGeneral)
         {
@@ -117,7 +117,8 @@ namespace ObligatorioDA1.Scene_Panel
             ValueTuple<decimal, decimal, decimal> tuple2, int fov)
         {
             _client.ClientScenePreferences.SetLookFromDefault(tuple1);
-            _client.ClientScenePreferences.SetLookAtDefault(tuple2);;
+            _client.ClientScenePreferences.SetLookAtDefault(tuple2);
+            ;
             _client.ClientScenePreferences.FoVDefault = fov;
             _clientLogic.Update(_client);
         }

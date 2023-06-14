@@ -8,9 +8,9 @@ namespace ObligatorioDA1.Model_Panel
 {
     public partial class Panel_ModelRename : UserControl
     {
-        private Model _model;
         private readonly ModelLogic _modelLogic = new ModelLogic();
         private readonly Panel_General _panelGeneral;
+        private Model _model;
 
         public Panel_ModelRename(Panel_General panelGeneral)
         {

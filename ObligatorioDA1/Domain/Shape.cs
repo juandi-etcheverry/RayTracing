@@ -17,8 +17,10 @@ namespace Domain
                 _name = value;
             }
         }
+
         public int Id { get; set; }
         public Client Client { get; set; }
+
         public bool AreNamesEqual(string otherName)
         {
             return _name.ToLower() == otherName.ToLower();

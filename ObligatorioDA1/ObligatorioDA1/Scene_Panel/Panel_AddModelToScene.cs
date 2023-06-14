@@ -7,10 +7,10 @@ namespace ObligatorioDA1.Scene_Panel
 {
     public partial class Panel_AddModelToScene : UserControl
     {
-        private Model _model;
         private readonly Panel_General _panelGeneral;
-        private Scene _scene;
         private readonly SceneLogic _sceneLogic = new SceneLogic();
+        private Model _model;
+        private Scene _scene;
 
         public Panel_AddModelToScene(Panel_General panelGeneral)
         {
@@ -33,7 +33,7 @@ namespace ObligatorioDA1.Scene_Panel
             txbModelZCoordinates.Clear();
             lblCoordinatesExceptions.Visible = false;
             pboxModelPreview.Image = _model.Preview;
-            pboxModelPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            pboxModelPreview.SizeMode = PictureBoxSizeMode.CenterImage;
         }
 
         private void btnReturnAddModel_Click(object sender, EventArgs e)

@@ -286,10 +286,6 @@
       <Project>{E9806FC1-AD64-4403-B098-E8B202C28478}</Project>
       <Name>IRepository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RepositoryInMemory\RepositoryInMemory.csproj">
-      <Project>{ED16732A-5D62-4315-8571-BF41BA6B2852}</Project>
-      <Name>RepositoryInMemory</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

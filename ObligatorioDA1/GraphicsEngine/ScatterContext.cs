@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain;
 
 namespace GraphicsEngine
 {
     internal class ScatterContext
     {
-        private IList<IScatterStrategy> _scatterStrategies = new List<IScatterStrategy>();
+        private readonly IList<IScatterStrategy> _scatterStrategies = new List<IScatterStrategy>();
 
         internal ScatterContext(HitRecord hitRecord, Ray incomingRay)
         {
@@ -24,7 +20,7 @@ namespace GraphicsEngine
 
         private void LoadLambertianScatter(HitRecord hitRecord)
         {
-            var lambertianScatter = new LambertianScatterStrategy()
+            var lambertianScatter = new LambertianScatterStrategy
             {
                 hitRecord = hitRecord
             };
@@ -33,7 +29,7 @@ namespace GraphicsEngine
 
         private void LoadMetallicStrategy(HitRecord hitRecord, Ray incomingRay)
         {
-            var metallicScatter = new MetallicScatterStrategy()
+            var metallicScatter = new MetallicScatterStrategy
             {
                 hitRecord = hitRecord,
                 incomingRay = incomingRay

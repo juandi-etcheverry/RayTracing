@@ -4,7 +4,6 @@ using BusinessLogicExceptions;
 using Domain;
 using IRepository;
 using RepositoryInDB;
-using RepositoryInMemory;
 
 namespace BusinessLogic
 {
@@ -26,7 +25,7 @@ namespace BusinessLogic
         public Shape GetShape(string name)
         {
             EnsureClientIsLoggedIn();
-            Shape existenceValidationShape = new Shape { ShapeName = name };
+            var existenceValidationShape = new Shape { ShapeName = name };
             AssignShapeToClient(existenceValidationShape);
             EnsureShapeExists(name);
             return GetShapeForOwner(existenceValidationShape);
@@ -99,10 +98,12 @@ namespace BusinessLogic
         {
             throw new SessionException("Client not logged in");
         }
+
         private void ThrowShapeReferencedByModel()
         {
             throw new AssociationException("Shape is already being used by a Model.");
         }
+
         private void ThrowNameExists()
         {
             throw new NameException("Shape name already exists");
