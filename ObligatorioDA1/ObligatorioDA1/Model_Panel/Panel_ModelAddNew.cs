@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Drawing;
-using System.Reflection;
 using System.Windows.Forms;
 using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
-using GraphicsEngine;
 using ImageController;
 
 namespace ObligatorioDA1.Model_Panel
@@ -14,10 +11,10 @@ namespace ObligatorioDA1.Model_Panel
     {
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private readonly ModelLogic _modelLogic = new ModelLogic();
-        private Model _newModel;
         private readonly Panel_General _panelGeneral;
-        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
         private readonly SceneLogic _sceneLogic = new SceneLogic();
+        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
+        private Model _newModel;
 
         public Panel_ModelAddNew(Panel_General panelGeneral)
         {

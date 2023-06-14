@@ -1,5 +1,5 @@
-﻿using Domain;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using Domain;
 
 namespace RepositoryInDB.DomainConfiguration
 {

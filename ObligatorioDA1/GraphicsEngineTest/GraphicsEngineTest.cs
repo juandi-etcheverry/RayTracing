@@ -11,19 +11,19 @@ namespace GraphicsEngineTest
     [TestClass]
     public class GraphicsEngineTest
     {
-
-        private readonly SceneLogic _sceneLogic = new SceneLogic();
-        private readonly ModelLogic _modelLogic = new ModelLogic();
         private readonly ClientLogic _clientLogic = new ClientLogic();
         private readonly MaterialLogic _materialLogic = new MaterialLogic();
-        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
+        private readonly ModelLogic _modelLogic = new ModelLogic();
         private readonly RenderLogLogic _renderLogLogic = new RenderLogLogic();
+
+        private readonly SceneLogic _sceneLogic = new SceneLogic();
+        private readonly ShapeLogic _shapeLogic = new ShapeLogic();
 
         [TestInitialize]
         public void SetUp()
         {
             ClearDatabase.ClearAll();
-            Client newClient = new Client()
+            var newClient = new Client
             {
                 Name = "NewClient3",
                 Password = "TicuEsUnGenio1"
@@ -56,7 +56,7 @@ namespace GraphicsEngineTest
 
             var newMaterial = new Material
             {
-                MaterialName = "NewMaterial",
+                MaterialName = "NewMaterial"
             };
             newMaterial.SetColor(230, 15, 160);
             _materialLogic.Add(newMaterial);
@@ -79,20 +79,20 @@ namespace GraphicsEngineTest
             newScene.ClientScenePreferences.SetLookFromDefault((0, 2, 0));
             newScene.ClientScenePreferences.FoVDefault = 30;
 
-            Scene sceneContext = _sceneLogic.Update(newScene);
+            var sceneContext = _sceneLogic.Update(newScene);
 
-            Model newModelContext = _modelLogic.Get(newModel.ModelName);
+            var newModelContext = _modelLogic.Get(newModel.ModelName);
 
             _sceneLogic.AddPositionedModel(newModelContext, (0, 2, 8), sceneContext.Id);
 
             var grass = new Material
             {
-                MaterialName = "Grass",
+                MaterialName = "Grass"
             };
             grass.SetColor(14, 255, 0);
             _materialLogic.Add(grass);
 
-            Shape globe = new Sphere()
+            Shape globe = new Sphere
             {
                 ShapeName = "Earth",
                 Radius = 2000
@@ -108,18 +108,18 @@ namespace GraphicsEngineTest
             };
             _modelLogic.Add(globeModel);
 
-            Model globeModelContext = _modelLogic.Get(globeModel.ModelName);
+            var globeModelContext = _modelLogic.Get(globeModel.ModelName);
 
             _sceneLogic.AddPositionedModel(globeModelContext, (0, -1999, 8), sceneContext.Id);
 
             RandomGenerator.ShowDefaultValue = true;
             RandomGenerator.DefaultValue = 0.5;
 
-            Scene updatedScene = _sceneLogic.GetScene(sceneContext.Id);
+            var updatedScene = _sceneLogic.GetScene(sceneContext.Id);
 
             var engine = new GraphicsEngine.GraphicsEngine(updatedScene)
             {
-                Width = 12,
+                Width = 12
             };
             var result = engine.Render();
             var TrueImage =
@@ -139,7 +139,7 @@ namespace GraphicsEngineTest
             newScene.ClientScenePreferences.SetLookFromDefault((0, 2, 0));
             newScene.ClientScenePreferences.FoVDefault = 30;
 
-            Scene updatedScene = _sceneLogic.Update(newScene);
+            var updatedScene = _sceneLogic.Update(newScene);
 
             var engine = new GraphicsEngine.GraphicsEngine(updatedScene)
             {
@@ -167,7 +167,7 @@ namespace GraphicsEngineTest
             newScene.ClientScenePreferences.SetLookFromDefault((0, 2, 0));
             newScene.ClientScenePreferences.FoVDefault = 30;
 
-            Scene updatedScene = _sceneLogic.Update(newScene);
+            var updatedScene = _sceneLogic.Update(newScene);
 
             var engine = new GraphicsEngine.GraphicsEngine(updatedScene)
             {
@@ -195,7 +195,7 @@ namespace GraphicsEngineTest
 
             var newMaterial = new Material
             {
-                MaterialName = "NewMaterial",
+                MaterialName = "NewMaterial"
             };
             newMaterial.SetColor(230, 15, 160);
             _materialLogic.Add(newMaterial);
@@ -218,13 +218,13 @@ namespace GraphicsEngineTest
             newScene.ClientScenePreferences.SetLookFromDefault((0, 2, 0));
             newScene.ClientScenePreferences.FoVDefault = 30;
 
-            Scene updatedScene1 = _sceneLogic.Update(newScene);
+            var updatedScene1 = _sceneLogic.Update(newScene);
 
-            Model newModelContext = _modelLogic.Get(newModel.ModelName);
+            var newModelContext = _modelLogic.Get(newModel.ModelName);
 
             _sceneLogic.AddPositionedModel(newModelContext, (0, 2, 8), updatedScene1.Id);
 
-            Scene updatedScene2 = _sceneLogic.Update(newScene);
+            var updatedScene2 = _sceneLogic.Update(newScene);
 
             var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
             {
@@ -251,7 +251,7 @@ namespace GraphicsEngineTest
 
             var newMaterial = new Material
             {
-                MaterialName = "NewMaterial",
+                MaterialName = "NewMaterial"
             };
             newMaterial.SetColor(230, 15, 160);
             _materialLogic.Add(newMaterial);
@@ -274,13 +274,13 @@ namespace GraphicsEngineTest
             newScene.ClientScenePreferences.SetLookFromDefault((0, 2, 0));
             newScene.ClientScenePreferences.FoVDefault = 30;
 
-            Scene updatedScene1 = _sceneLogic.Update(newScene);
+            var updatedScene1 = _sceneLogic.Update(newScene);
 
-            Model newModelContext = _modelLogic.Get(newModel.ModelName);
+            var newModelContext = _modelLogic.Get(newModel.ModelName);
 
             _sceneLogic.AddPositionedModel(newModelContext, (0, 2, 8), updatedScene1.Id);
 
-            Scene updatedScene2 = _sceneLogic.Update(newScene);
+            var updatedScene2 = _sceneLogic.Update(newScene);
 
             var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
             {
@@ -291,7 +291,7 @@ namespace GraphicsEngineTest
             RandomGenerator.DefaultValue = 0.5;
 
             var result = engine.Render();
-            Log log = _renderLogLogic.GetAll().FirstOrDefault();
+            var log = _renderLogLogic.GetAll().FirstOrDefault();
             Assert.IsTrue(log.RenderingTimeInSeconds >= 0);
         }
 
@@ -307,7 +307,7 @@ namespace GraphicsEngineTest
 
             var newMaterial = new Material
             {
-                MaterialName = "NewMaterial",
+                MaterialName = "NewMaterial"
             };
             newMaterial.SetColor(230, 15, 160);
             _materialLogic.Add(newMaterial);
@@ -326,13 +326,13 @@ namespace GraphicsEngineTest
             };
             _sceneLogic.Add(newScene);
 
-            Scene updatedScene1 = _sceneLogic.Update(newScene);
+            var updatedScene1 = _sceneLogic.Update(newScene);
 
-            Model newModelContext = _modelLogic.Get(newModel.ModelName);
+            var newModelContext = _modelLogic.Get(newModel.ModelName);
 
             _sceneLogic.AddPositionedModel(newModelContext, (0, 2, 8), updatedScene1.Id);
 
-            Scene updatedScene2 = _sceneLogic.Update(newScene);
+            var updatedScene2 = _sceneLogic.Update(newScene);
 
             var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
             {
@@ -343,7 +343,7 @@ namespace GraphicsEngineTest
             RandomGenerator.DefaultValue = 0.5;
 
             var result = engine.Render();
-            Log log = _renderLogLogic.GetAll().FirstOrDefault();
+            var log = _renderLogLogic.GetAll().FirstOrDefault();
             Assert.AreEqual("0 seconds", log.RenderWindow);
         }
 
@@ -359,7 +359,7 @@ namespace GraphicsEngineTest
 
             var newMaterial = new Material
             {
-                MaterialName = "NewMaterial",
+                MaterialName = "NewMaterial"
             };
             newMaterial.SetColor(2, 150, 10);
             _materialLogic.Add(newMaterial);
@@ -378,15 +378,15 @@ namespace GraphicsEngineTest
             };
             _sceneLogic.Add(newScene);
 
-            Scene updatedScene1 = _sceneLogic.Update(newScene);
+            var updatedScene1 = _sceneLogic.Update(newScene);
 
-            Model newModelContext = _modelLogic.Get(newModel.ModelName);
+            var newModelContext = _modelLogic.Get(newModel.ModelName);
 
             _sceneLogic.AddPositionedModel(newModelContext, (0, 2, 8), updatedScene1.Id);
             _sceneLogic.AddPositionedModel(newModelContext, (10, 10, 3), updatedScene1.Id);
 
 
-            Scene updatedScene2 = _sceneLogic.Update(newScene);
+            var updatedScene2 = _sceneLogic.Update(newScene);
 
             var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
             {
@@ -398,7 +398,7 @@ namespace GraphicsEngineTest
 
             var result = engine.Render();
             var result2 = engine.Render();
-            Log log = _renderLogLogic.GetAll().Last();
+            var log = _renderLogLogic.GetAll().Last();
 
             Assert.IsTrue(log.RenderWindow.Contains("seconds"));
         }
@@ -422,7 +422,7 @@ namespace GraphicsEngineTest
 
             var newMaterial = new Material
             {
-                MaterialName = "NewMaterial",
+                MaterialName = "NewMaterial"
             };
             newMaterial.SetColor(234, 3, 90);
             _materialLogic.Add(newMaterial);
@@ -448,16 +448,16 @@ namespace GraphicsEngineTest
             };
             _sceneLogic.Add(newScene);
 
-            Scene updatedScene1 = _sceneLogic.Update(newScene);
+            var updatedScene1 = _sceneLogic.Update(newScene);
 
-            Model newModel1Context = _modelLogic.Get(newModel1.ModelName);
-            Model newModel2Context = _modelLogic.Get(newModel2.ModelName);
+            var newModel1Context = _modelLogic.Get(newModel1.ModelName);
+            var newModel2Context = _modelLogic.Get(newModel2.ModelName);
 
             _sceneLogic.AddPositionedModel(newModel1Context, (0, 2, 8), updatedScene1.Id);
             _sceneLogic.AddPositionedModel(newModel2Context, (10, 10, 3), updatedScene1.Id);
 
 
-            Scene updatedScene2 = _sceneLogic.Update(newScene);
+            var updatedScene2 = _sceneLogic.Update(newScene);
 
             var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
             {
@@ -468,7 +468,7 @@ namespace GraphicsEngineTest
             RandomGenerator.DefaultValue = 0.5;
 
             var result = engine.Render();
-            Log log = _renderLogLogic.GetAll().FirstOrDefault();
+            var log = _renderLogLogic.GetAll().FirstOrDefault();
 
             Assert.AreEqual(2, log.NumberOfModels);
         }
@@ -492,7 +492,7 @@ namespace GraphicsEngineTest
 
             var newMaterial = new Material
             {
-                MaterialName = "NewMaterial",
+                MaterialName = "NewMaterial"
             };
             newMaterial.SetColor(234, 3, 90);
             _materialLogic.Add(newMaterial);
@@ -523,12 +523,12 @@ namespace GraphicsEngineTest
                 SceneName = "AnotherScene"
             };
             _sceneLogic.Add(anotherScene);
-            Scene updatedAnotherScene = _sceneLogic.Update(anotherScene);
+            var updatedAnotherScene = _sceneLogic.Update(anotherScene);
 
-            Scene updatedScene1 = _sceneLogic.Update(newScene);
+            var updatedScene1 = _sceneLogic.Update(newScene);
 
-            Model newModel1Context = _modelLogic.Get(newModel1.ModelName);
-            Model newModel2Context = _modelLogic.Get(newModel2.ModelName);
+            var newModel1Context = _modelLogic.Get(newModel1.ModelName);
+            var newModel2Context = _modelLogic.Get(newModel2.ModelName);
 
             _sceneLogic.AddPositionedModel(newModel1Context, (0, 2, 8), updatedScene1.Id);
             _sceneLogic.AddPositionedModel(newModel2Context, (10, 10, 3), updatedScene1.Id);
@@ -537,9 +537,8 @@ namespace GraphicsEngineTest
             _sceneLogic.AddPositionedModel(newModel2Context, (0, 5, 2), updatedAnotherScene.Id);
 
 
-
-            Scene updatedScene2 = _sceneLogic.Update(newScene);
-            Scene updatedAnotherScene2 = _sceneLogic.Update(anotherScene);
+            var updatedScene2 = _sceneLogic.Update(newScene);
+            var updatedAnotherScene2 = _sceneLogic.Update(anotherScene);
 
             var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
             {
@@ -580,7 +579,7 @@ namespace GraphicsEngineTest
 
             var newMaterial = new Material
             {
-                MaterialName = "NewMaterial",
+                MaterialName = "NewMaterial"
             };
             newMaterial.SetColor(234, 3, 90);
             _materialLogic.Add(newMaterial);
@@ -611,12 +610,12 @@ namespace GraphicsEngineTest
                 SceneName = "AnotherScene"
             };
             _sceneLogic.Add(anotherScene);
-            Scene updatedAnotherScene = _sceneLogic.Update(anotherScene);
+            var updatedAnotherScene = _sceneLogic.Update(anotherScene);
 
-            Scene updatedScene1 = _sceneLogic.Update(newScene);
+            var updatedScene1 = _sceneLogic.Update(newScene);
 
-            Model newModel1Context = _modelLogic.Get(newModel1.ModelName);
-            Model newModel2Context = _modelLogic.Get(newModel2.ModelName);
+            var newModel1Context = _modelLogic.Get(newModel1.ModelName);
+            var newModel2Context = _modelLogic.Get(newModel2.ModelName);
 
             _sceneLogic.AddPositionedModel(newModel1Context, (0, 2, 8), updatedScene1.Id);
             _sceneLogic.AddPositionedModel(newModel2Context, (10, 10, 3), updatedScene1.Id);
@@ -625,9 +624,8 @@ namespace GraphicsEngineTest
             _sceneLogic.AddPositionedModel(newModel2Context, (0, 5, 2), updatedAnotherScene.Id);
 
 
-
-            Scene updatedScene2 = _sceneLogic.Update(newScene);
-            Scene updatedAnotherScene2 = _sceneLogic.Update(anotherScene);
+            var updatedScene2 = _sceneLogic.Update(newScene);
+            var updatedAnotherScene2 = _sceneLogic.Update(anotherScene);
 
             var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
             {
@@ -669,7 +667,7 @@ namespace GraphicsEngineTest
 
             var newMaterial = new Material
             {
-                MaterialName = "NewMaterial",
+                MaterialName = "NewMaterial"
             };
             newMaterial.SetColor(234, 3, 90);
             _materialLogic.Add(newMaterial);
@@ -700,12 +698,12 @@ namespace GraphicsEngineTest
                 SceneName = "AnotherScene"
             };
             _sceneLogic.Add(anotherScene);
-            Scene updatedAnotherScene = _sceneLogic.Update(anotherScene);
+            var updatedAnotherScene = _sceneLogic.Update(anotherScene);
 
-            Scene updatedScene1 = _sceneLogic.Update(newScene);
+            var updatedScene1 = _sceneLogic.Update(newScene);
 
-            Model newModel1Context = _modelLogic.Get(newModel1.ModelName);
-            Model newModel2Context = _modelLogic.Get(newModel2.ModelName);
+            var newModel1Context = _modelLogic.Get(newModel1.ModelName);
+            var newModel2Context = _modelLogic.Get(newModel2.ModelName);
 
             _sceneLogic.AddPositionedModel(newModel1Context, (0, 2, 8), updatedScene1.Id);
             _sceneLogic.AddPositionedModel(newModel2Context, (10, 10, 3), updatedScene1.Id);
@@ -714,9 +712,8 @@ namespace GraphicsEngineTest
             _sceneLogic.AddPositionedModel(newModel2Context, (0, 5, 2), updatedAnotherScene.Id);
 
 
-
-            Scene updatedScene2 = _sceneLogic.Update(newScene);
-            Scene updatedAnotherScene2 = _sceneLogic.Update(anotherScene);
+            var updatedScene2 = _sceneLogic.Update(newScene);
+            var updatedAnotherScene2 = _sceneLogic.Update(anotherScene);
 
             var engine = new GraphicsEngine.GraphicsEngine(updatedScene2)
             {

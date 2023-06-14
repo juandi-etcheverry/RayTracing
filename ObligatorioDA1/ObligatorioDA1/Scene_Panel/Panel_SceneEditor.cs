@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using BusinessLogic;
 using Domain;
-using GraphicsEngine;
 using ImageController;
-using Color = System.Drawing.Color;
 
 namespace ObligatorioDA1
 {
     public partial class Panel_SceneEditor : UserControl
     {
         private readonly ModelLogic _modelLogic = new ModelLogic();
-        private readonly SceneLogic _sceneLogic = new SceneLogic();
         private readonly Panel_General _panelGeneral;
+        private readonly SceneLogic _sceneLogic = new SceneLogic();
         private Scene _scene;
         private bool editedFirstTime;
 
@@ -34,6 +31,7 @@ namespace ObligatorioDA1
             _scene = _sceneLogic.GetScene(scene.Id);
             InitializePage();
         }
+
         private void InitializePage()
         {
             lblNewSceneName.Text = _scene.SceneName;
@@ -63,6 +61,7 @@ namespace ObligatorioDA1
                 pboxRenderedScene.Image = _scene.Preview;
             }
         }
+
         private void RefreshPage()
         {
             lblLookExceptions.Visible = false;
@@ -72,6 +71,7 @@ namespace ObligatorioDA1
             OutDatedRender();
             ButtonExport();
         }
+
         private void ButtonExport()
         {
             if (_scene.Preview != null) btnExport.Visible = true;
@@ -99,7 +99,6 @@ namespace ObligatorioDA1
             dgvUsedModels.Columns.Add("Id", "Id");
             SetDisplayOrderColumnsUsed();
             dgvUsedModels.Columns["Colour"].Width = 5;
-            
         }
 
         private void SetDisplayOrderColumnsAvailable()
@@ -126,11 +125,11 @@ namespace ObligatorioDA1
             dgvAvailableModelsList.Rows.Clear();
             foreach (var model in _modelLogic.GetClientModels().ToList())
             {
-                if(model.WantPreview) PreviewController.LoadPreview(model);
+                if (model.WantPreview) PreviewController.LoadPreview(model);
                 dgvAvailableModelsList.Rows.Add(model.Preview, null, model.ModelName, null);
             }
-        } 
-        
+        }
+
         private void RefreshUsedList()
         {
             dgvUsedModels.Rows.Clear();
@@ -138,14 +137,14 @@ namespace ObligatorioDA1
             foreach (var posModel in _scene.Models.ToList())
             {
                 if (posModel.Model.WantPreview) PreviewController.LoadPreview(posModel.Model);
-                dgvUsedModels.Rows.Add(posModel.Model.Preview, null, posModel.Model.ModelName, null, posModel.GetCoordinates(), posModel.Id);
+                dgvUsedModels.Rows.Add(posModel.Model.Preview, null, posModel.Model.ModelName, null,
+                    posModel.GetCoordinates(), posModel.Id);
             }
         }
 
         private void dgvAvailableModelsList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
-            {
                 if (dgvAvailableModelsList.Columns[e.ColumnIndex].Name == "Colour")
                 {
                     var cell = dgvAvailableModelsList.Rows[e.RowIndex].Cells[e.ColumnIndex];
@@ -157,7 +156,6 @@ namespace ObligatorioDA1
                         PaintCell(cell, newColor);
                     }
                 }
-            }
         }
 
         private void dgvAvailableModelsList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -175,7 +173,6 @@ namespace ObligatorioDA1
         private void dgvUsedModels_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
-            {
                 if (dgvUsedModels.Columns[e.ColumnIndex].Name == "Colour")
                 {
                     var cell = dgvUsedModels.Rows[e.RowIndex].Cells[e.ColumnIndex];
@@ -187,22 +184,19 @@ namespace ObligatorioDA1
                         PaintCell(cell, newColor);
                     }
                 }
-            }
         }
 
         private void dgvUsedModels_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
-            {
                 if (dgvUsedModels.Columns[e.ColumnIndex].Name == "Delete")
                 {
-                    int idModel = int.Parse(dgvUsedModels.CurrentRow.Cells[5].Value.ToString());
+                    var idModel = int.Parse(dgvUsedModels.CurrentRow.Cells[5].Value.ToString());
                     _sceneLogic.DeletePositionedModel(idModel, _scene.Id);
                     dgvUsedModels.Rows.Remove(dgvUsedModels.CurrentRow);
                     _scene.LastModificationDate = DateTime.Now;
                     RefreshPage();
                 }
-            }
         }
 
         private void RefreshLastModified()
@@ -231,6 +225,7 @@ namespace ObligatorioDA1
                 {
                     PreviewController.Render(_scene);
                 }
+
                 Cursor.Current = Cursors.Arrow;
                 lblLastRenderedDate.Visible = true;
                 lblRendered.Visible = true;
@@ -244,7 +239,7 @@ namespace ObligatorioDA1
             }
             catch (ArgumentException argEx)
             {
-                if(argEx.Message == "Aperture must be > 0,0")
+                if (argEx.Message == "Aperture must be > 0,0")
                 {
                     lblLensAperture.Visible = true;
                     lblLensAperture.Text = argEx.Message;
@@ -295,14 +290,14 @@ namespace ObligatorioDA1
         private void OutDatedRender()
         {
             lblLastRenderedDate.Text = _scene.LastRenderDate.ToString();
-            if(editedFirstTime) lblOutdatedImage.Visible = _scene.LastRenderDate < _scene.LastModificationDate;
+            if (editedFirstTime) lblOutdatedImage.Visible = _scene.LastRenderDate < _scene.LastModificationDate;
         }
 
         private Color GetColour(Model _model)
         {
-            var r = (int)_model.Material.ColorX;
-            var g = (int)_model.Material.ColorY;
-            var b = (int)_model.Material.ColorZ;
+            var r = _model.Material.ColorX;
+            var g = _model.Material.ColorY;
+            var b = _model.Material.ColorZ;
             var newColor = Color.FromArgb(r, g, b);
             return newColor;
         }

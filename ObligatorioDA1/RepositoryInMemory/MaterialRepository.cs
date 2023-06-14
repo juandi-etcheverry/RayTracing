@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Domain;
 using IRepository;
@@ -33,7 +34,7 @@ namespace RepositoryInMemory
 
         public Material Update(Material x)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

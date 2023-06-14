@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using BusinessLogicExceptions;
 using ValidationService;
 
@@ -10,13 +9,6 @@ namespace Domain
     public class Scene
     {
         private string _sceneName;
-        public int Id { get; set; }
-        public Client Client { get; set; }
-        public DateTime RegistrationDate { get; set; }
-        public IList<PositionedModel> Models { get; set; }
-        public DateTime LastModificationDate { get; set; }
-        public DateTime LastRenderDate { get; set; }
-        public ClientScenePreferences ClientScenePreferences { get; set; }
         public Bitmap Preview = null;
 
 
@@ -26,6 +18,14 @@ namespace Domain
             RegistrationDate = DateTime.Now;
             ClientScenePreferences = new ClientScenePreferences();
         }
+
+        public int Id { get; set; }
+        public Client Client { get; set; }
+        public DateTime RegistrationDate { get; set; }
+        public IList<PositionedModel> Models { get; set; }
+        public DateTime LastModificationDate { get; set; }
+        public DateTime LastRenderDate { get; set; }
+        public ClientScenePreferences ClientScenePreferences { get; set; }
 
         public string SceneName
         {

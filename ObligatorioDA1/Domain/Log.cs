@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain
 {
     public class Log
     {
+        public Log()
+        {
+            RenderDate = DateTime.Now;
+        }
+
         public int Id { get; set; }
         public Client Client { get; set; }
         public int RenderingTimeInSeconds { get; set; }
@@ -15,10 +16,5 @@ namespace Domain
         public string RenderWindow { get; set; }
         public string SceneName { get; set; }
         public int NumberOfModels { get; set; }
-
-        public Log()
-        {
-            RenderDate = DateTime.Now;
-        }
-    }   
+    }
 }

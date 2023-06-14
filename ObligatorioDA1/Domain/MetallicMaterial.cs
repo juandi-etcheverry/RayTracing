@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain
 {
     public class MetallicMaterial : Material
     {
         private decimal _blur;
-        private decimal MIN_BLUR_VALUE = 0m;
+        private readonly decimal MIN_BLUR_VALUE = 0m;
+
         public decimal Blur
         {
             get => _blur;

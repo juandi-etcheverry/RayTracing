@@ -19,6 +19,7 @@ namespace ObligatorioDA1
         private Panel_ModelRename userControlModelRename;
         private Panel_AddModelToScene userControlModelToScene;
         private Panel_SceneEditor userControlSceneEditor;
+        private Panel_ExportScene userControlSceneExport;
         private Panel_SceneList userControlSceneList;
         private Panel_SceneNewName userControlSceneNewName;
         private Panel_SceneRename userControlSceneRename;
@@ -26,7 +27,6 @@ namespace ObligatorioDA1
         private Panel_ShapeAddNew userControlShapeAddNew;
         private Panel_ShapeList userControlShapeList;
         private Panel_ShapeRename userControlShapeRename;
-        private Panel_ExportScene userControlSceneExport;
 
 
         public Panel_General(Form1 form1)
@@ -165,6 +165,7 @@ namespace ObligatorioDA1
             SwitchPanel(userControlSceneSetDefaultCamera);
             userControlSceneSetDefaultCamera.RefreshSetDefaultCamera(client);
         }
+
         public void GoToExportScene(Scene scene)
         {
             SwitchPanel(userControlSceneExport);

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using BusinessLogic;
 using Domain;
-using GraphicsEngine;
 using ImageController;
 
 namespace ObligatorioDA1.Scene_Panel

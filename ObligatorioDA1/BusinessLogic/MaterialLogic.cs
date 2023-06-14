@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using BusinessLogicExceptions;
 using Domain;
 using IRepository;
 using RepositoryInDB;
-using RepositoryInMemory;
 
 namespace BusinessLogic
 {
@@ -54,7 +52,8 @@ namespace BusinessLogic
         private void ValidateMaterialReferencedByModel(Material material)
         {
             var modelLogic = new ModelLogic();
-            var isMaterialInUse = modelLogic.GetClientModels().Any(model => model.Material.MaterialName == material.MaterialName);
+            var isMaterialInUse = modelLogic.GetClientModels()
+                .Any(model => model.Material.MaterialName == material.MaterialName);
             if (isMaterialInUse) ThrowMaterialReferencedByModel();
         }
 
@@ -101,6 +100,7 @@ namespace BusinessLogic
         {
             throw new NotFoundException($"No material with the name {name} was found");
         }
+
         public void ThrowClientNotLoggedIn()
         {
             throw new SessionException("Client needs to be logged in to create new Material");

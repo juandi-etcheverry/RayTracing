@@ -7,32 +7,34 @@ namespace GraphicsEngine
     public class GraphicsEngine
     {
         private readonly decimal _MINIMUM_DIRECTION_SCALING_FACTOR = 0.00001m;
-        public uint Width { get; set; }
-        private Camera _camera;
-        private Scene _scene;
         private readonly RenderLogLogic _renderLogLogic = new RenderLogLogic();
+        private Camera _camera;
+        private readonly Scene _scene;
 
         public GraphicsEngine(Scene scene)
         {
             _scene = scene;
             DefaultCamera();
         }
+
+        public uint Width { get; set; }
+
         public PPMImage Render()
         {
-            DateTime startTime = DateTime.Now;
+            var startTime = DateTime.Now;
 
             var renderedImage = new PPMImage(Width);
 
             for (var row = renderedImage.Height - 1; row >= 0; row--)
-                for (var column = 0; column < renderedImage.Width; column++)
-                {
-                    var color = CalculatePixelColor(column, row, renderedImage);
-                    renderedImage.SavePixel(row, column, color);
-                }
+            for (var column = 0; column < renderedImage.Width; column++)
+            {
+                var color = CalculatePixelColor(column, row, renderedImage);
+                renderedImage.SavePixel(row, column, color);
+            }
 
-            DateTime endTime = DateTime.Now;
-            double elapsedTimeDouble = (endTime - startTime).TotalSeconds;
-            int elapsedTimeSeconds = (int)Math.Floor(elapsedTimeDouble);
+            var endTime = DateTime.Now;
+            var elapsedTimeDouble = (endTime - startTime).TotalSeconds;
+            var elapsedTimeSeconds = (int)Math.Floor(elapsedTimeDouble);
             CreateLog(elapsedTimeSeconds);
 
             return renderedImage;
@@ -40,7 +42,7 @@ namespace GraphicsEngine
 
         private void CreateLog(int elapsedTime)
         {
-            Log newLog = new Log();
+            var newLog = new Log();
             newLog.RenderingTimeInSeconds = elapsedTime;
             newLog.RenderWindow = CalculateRenderWindow();
             newLog.SceneName = _scene.SceneName;
@@ -52,7 +54,7 @@ namespace GraphicsEngine
         {
             var lastLog = _renderLogLogic.Get(_scene.SceneName, _scene.Client.Name);
             if (_scene.SceneName.Contains("preview") || lastLog is null) return "0 seconds";
-            TimeSpan difference = DateTime.Now - lastLog.RenderDate;
+            var difference = DateTime.Now - lastLog.RenderDate;
             return StringParseRenderWindow(difference);
         }
 
@@ -87,7 +89,6 @@ namespace GraphicsEngine
         private Color CalculatePixelColor(int column, int row,
             PPMImage renderedImage)
         {
-
             var SAMPLES_PER_PIXEL = 50;
             var MAX_DEPTH = 20;
 
@@ -167,14 +168,12 @@ namespace GraphicsEngine
                 var scatterController = new ScatterContext(intersectionWithShape, ray);
                 var newRay = scatterController.Scatter();
                 if (newRay is null)
-                {
-                    return new Vector()
+                    return new Vector
                     {
                         X = 0m,
                         Y = 0m,
-                        Z = 0m,
+                        Z = 0m
                     };
-                }
                 var nextColor = ShootRay(newRay, depth - 1);
                 return new Vector
                 {
@@ -218,15 +217,13 @@ namespace GraphicsEngine
             var normal = intersecitionPoint.Subtract(modelCoordinates).Divide(Convert.ToDecimal(modelSphere.Radius));
             if (scalingFactorForIntersection < maxDirectionScalingFactor &&
                 scalingFactorForIntersection > _MINIMUM_DIRECTION_SCALING_FACTOR)
-            {
                 return new HitRecord
                 {
                     ScalingFactor = scalingFactorForIntersection,
                     IntersectionPoint = intersecitionPoint,
                     Normal = normal,
-                    Material = model.Model.Material,
+                    Material = model.Model.Material
                 };
-            }
 
             return null;
         }
@@ -241,7 +238,5 @@ namespace GraphicsEngine
             };
             return modelCoordinates;
         }
-
-
     }
 }

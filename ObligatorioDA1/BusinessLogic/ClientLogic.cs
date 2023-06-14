@@ -4,7 +4,6 @@ using BusinessLogicExceptions;
 using Domain;
 using IRepository;
 using RepositoryInDB;
-using RepositoryInMemory;
 
 namespace BusinessLogic
 {

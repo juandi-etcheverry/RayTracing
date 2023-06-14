@@ -1,31 +1,27 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
-using GraphicsEngine;
 using ImageController;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using Color = System.Drawing.Color;
 
 namespace ObligatorioDA1.Model_Panel
 {
     public partial class Panel_ModelList : UserControl
     {
         private readonly ModelLogic _modelLogic = new ModelLogic();
-        private readonly SceneLogic _sceneLogic = new SceneLogic();
         private readonly Panel_General _panelGeneral;
+        private readonly SceneLogic _sceneLogic = new SceneLogic();
 
         public Panel_ModelList(Panel_General userControl)
         {
             _panelGeneral = userControl;
             InitializeComponent();
             InitializeModelList();
-        } 
-        
+        }
+
         public void RefreshModelList()
         {
             lblEliminationException.Visible = false;
@@ -101,7 +97,6 @@ namespace ObligatorioDA1.Model_Panel
                 string modelName;
                 Model model;
                 if (dgvModelList.Columns[e.ColumnIndex].Name == "Delete")
-                {
                     try
                     {
                         modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
@@ -110,12 +105,12 @@ namespace ObligatorioDA1.Model_Panel
                         dgvModelList.Rows.Remove(dgvModelList.CurrentRow);
                         lblEliminationException.Visible = false;
                     }
-                    catch(AssociationException AssEx)
+                    catch (AssociationException AssEx)
                     {
                         lblEliminationException.Visible = true;
                         lblEliminationException.Text = AssEx.Message;
                     }
-                }
+
                 if (dgvModelList.Columns[e.ColumnIndex].Name == "Rename")
                 {
                     modelName = dgvModelList.CurrentRow.Cells[4].Value.ToString();
@@ -127,9 +122,9 @@ namespace ObligatorioDA1.Model_Panel
 
         private Color GetColour(Model _model)
         {
-            var r = (int)_model.Material.ColorX;
-            var g = (int)_model.Material.ColorY;
-            var b = (int)_model.Material.ColorZ;
+            var r = _model.Material.ColorX;
+            var g = _model.Material.ColorY;
+            var b = _model.Material.ColorZ;
             var newColor = Color.FromArgb(r, g, b);
             return newColor;
         }

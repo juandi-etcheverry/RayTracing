@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using Domain;
 using IRepository;
 
@@ -15,18 +12,19 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                Client loggedClient = context.Clients.FirstOrDefault(c => c.Name == model.Client.Name);
+                var loggedClient = context.Clients.FirstOrDefault(c => c.Name == model.Client.Name);
                 model.Client = loggedClient;
 
-                Shape shape = context.Shapes.FirstOrDefault(s => s.Id == model.Shape.Id);
+                var shape = context.Shapes.FirstOrDefault(s => s.Id == model.Shape.Id);
                 model.Shape = shape;
 
-                Material material = context.Materials.FirstOrDefault(m => m.Id == model.Material.Id);
+                var material = context.Materials.FirstOrDefault(m => m.Id == model.Material.Id);
                 model.Material = material;
 
                 context.Models.Add(model);
                 context.SaveChanges();
             }
+
             return model;
         }
 
@@ -34,7 +32,8 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                return context.Models.Include(m => m.Client).Where(m => m.ModelName.ToLower().Equals(name.ToLower())).ToList();
+                return context.Models.Include(m => m.Client).Where(m => m.ModelName.ToLower().Equals(name.ToLower()))
+                    .ToList();
             }
         }
 
@@ -43,10 +42,10 @@ namespace RepositoryInDB
             using (var context = new BusinessContext())
             {
                 return context.Models
-                            .Include(m => m.Client)
-                            .Include(m => m.Shape)
-                            .Include(m => m.Material)
-                            .ToList();
+                    .Include(m => m.Client)
+                    .Include(m => m.Shape)
+                    .Include(m => m.Material)
+                    .ToList();
             }
         }
 
@@ -54,7 +53,7 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                Model modelToDelete = context.Models.FirstOrDefault(m => m.Id == model.Id);
+                var modelToDelete = context.Models.FirstOrDefault(m => m.Id == model.Id);
                 context.Models.Remove(modelToDelete);
                 context.SaveChanges();
                 return modelToDelete;
@@ -65,7 +64,7 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                Model modelToUpdate = context.Models.FirstOrDefault(m => m.Id == model.Id);
+                var modelToUpdate = context.Models.FirstOrDefault(m => m.Id == model.Id);
                 modelToUpdate.ModelName = model.ModelName;
                 context.SaveChanges();
                 return modelToUpdate;

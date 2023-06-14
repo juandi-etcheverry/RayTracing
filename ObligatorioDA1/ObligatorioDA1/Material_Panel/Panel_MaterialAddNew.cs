@@ -57,9 +57,9 @@ namespace ObligatorioDA1.Material_Panel
                 _material.SetColor(r, g, b);
                 if (rbtnMetalic.Checked)
                 {
-                    MetallicMaterial metallicMaterial = new MetallicMaterial()
+                    var metallicMaterial = new MetallicMaterial
                     {
-                        MaterialName = _material.MaterialName,
+                        MaterialName = _material.MaterialName
                     };
                     metallicMaterial.SetColor(r, g, b);
                     decimal blur;
@@ -71,6 +71,7 @@ namespace ObligatorioDA1.Material_Panel
                     _panelGeneral.GoToMaterialList();
                     return;
                 }
+
                 _materialLogic.Add(_material);
                 _panelGeneral.GoToMaterialList();
             }

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using Domain;
 using IRepository;
 
@@ -28,7 +28,7 @@ namespace RepositoryInMemory
 
         public Shape Update(Shape x)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

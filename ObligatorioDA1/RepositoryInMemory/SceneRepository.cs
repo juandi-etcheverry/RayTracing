@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using Domain;
 using IRepository;
 
@@ -17,17 +17,17 @@ namespace RepositoryInMemory
 
         public void AddModel(Scene scene, PositionedModel model)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void DeleteModel(Scene scene, PositionedModel model)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public Scene Get(int id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public IList<Scene> GetAll()
@@ -37,7 +37,7 @@ namespace RepositoryInMemory
 
         public PositionedModel GetModel(Scene scene, int idModel)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public Scene Remove(Scene scene)
@@ -48,7 +48,7 @@ namespace RepositoryInMemory
 
         public Scene Update(Scene x)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

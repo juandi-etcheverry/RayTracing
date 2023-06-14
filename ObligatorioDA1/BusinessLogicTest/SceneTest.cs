@@ -38,7 +38,7 @@ namespace BusinessLogicTest
 
             var newMaterial = new Material
             {
-                MaterialName = "NewMaterial",
+                MaterialName = "NewMaterial"
             };
             newMaterial.SetColor(100, 54, 6);
             _materialLogic.Add(newMaterial);
@@ -166,8 +166,8 @@ namespace BusinessLogicTest
 
             _sceneLogic.DeletePositionedModel(positionedModel.Id, newScene.Id);
 
-            TimeSpan toleranceSpan = TimeSpan.FromSeconds(5);
-            Assert.IsTrue((newScene.LastModificationDate - DateTime.Now) < toleranceSpan);
+            var toleranceSpan = TimeSpan.FromSeconds(5);
+            Assert.IsTrue(newScene.LastModificationDate - DateTime.Now < toleranceSpan);
         }
 
         [TestMethod]
@@ -367,7 +367,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetLastRenderDate_NewScene_OK_Test()
         {
-            var scene = new Scene()
+            var scene = new Scene
             {
                 SceneName = "Scene"
             };
@@ -379,7 +379,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void GetPositionedModel_Scene_OK_Test()
         {
-            var scene = new Scene()
+            var scene = new Scene
             {
                 SceneName = "Scene"
             };

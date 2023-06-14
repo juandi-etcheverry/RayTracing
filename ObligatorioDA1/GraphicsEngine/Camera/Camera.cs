@@ -5,9 +5,9 @@ namespace GraphicsEngine
     internal class Camera
     {
         private readonly CameraDetails _cameraDetails;
+        protected Vector depthUnit;
         protected decimal halfOfHeight;
         protected decimal halfOfWidth;
-        protected Vector depthUnit;
         protected Vector horizontalUnit;
         protected Vector verticalUnit;
 

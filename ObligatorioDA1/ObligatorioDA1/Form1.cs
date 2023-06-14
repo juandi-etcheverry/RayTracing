@@ -30,11 +30,13 @@ namespace ObligatorioDA1
             flyPanelPrincipal.Controls.Clear();
             flyPanelPrincipal.Visible = false;
         }
+
         public void SignOut()
         {
             _clientLogic.Logout();
             GoBackToWelcome();
         }
+
         public void GoToGeneral(Client client)
         {
             flyPanelPrincipal.Controls.Clear();
@@ -42,6 +44,7 @@ namespace ObligatorioDA1
             userControlGeneral.RefreshGeneralPanel(client);
             flyPanelPrincipal.Controls.Add(userControlGeneral);
         }
+
         private void btnSignUp_Click(object sender, EventArgs e)
         {
             RefreshWelcome();
@@ -50,6 +53,7 @@ namespace ObligatorioDA1
             userControlAddClient.RefreshAddClient();
             btnRenderLogs.Visible = false;
         }
+
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             lblNameException.Visible = false;

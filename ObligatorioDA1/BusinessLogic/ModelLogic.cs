@@ -4,7 +4,6 @@ using BusinessLogicExceptions;
 using Domain;
 using IRepository;
 using RepositoryInDB;
-using RepositoryInMemory;
 
 namespace BusinessLogic
 {
@@ -104,7 +103,8 @@ namespace BusinessLogic
 
         private Model GetModelForOwner(Model checkModel)
         {
-            return GetClientModels().FirstOrDefault(model => model.ModelName.ToLower() == checkModel.ModelName.ToLower());
+            return GetClientModels()
+                .FirstOrDefault(model => model.ModelName.ToLower() == checkModel.ModelName.ToLower());
         }
 
         private void ThrowNameInUse(string name)
@@ -116,6 +116,7 @@ namespace BusinessLogic
         {
             throw new NotFoundException($"No material with the name {name} was found");
         }
+
         public void ThrowClientNotLoggedIn()
         {
             throw new SessionException("Client needs to be logged in to create new model");

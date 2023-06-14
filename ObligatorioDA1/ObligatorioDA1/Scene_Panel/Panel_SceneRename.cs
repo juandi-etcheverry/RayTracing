@@ -9,8 +9,8 @@ namespace ObligatorioDA1.Scene_Panel
     public partial class Panel_SceneRename : UserControl
     {
         private readonly Panel_General _panelGeneral;
-        private Scene _scene;
         private readonly SceneLogic _sceneLogic = new SceneLogic();
+        private Scene _scene;
 
         public Panel_SceneRename(Panel_General panelGeneral)
         {

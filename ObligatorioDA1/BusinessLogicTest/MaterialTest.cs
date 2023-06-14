@@ -11,9 +11,9 @@ namespace BusinessLogicTest
     public class MaterialTest
     {
         private readonly ClientLogic _clientLogic = new ClientLogic();
+        private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private readonly ModelLogic _modelLogic = new ModelLogic();
         private readonly ShapeLogic _shapeLogic = new ShapeLogic();
-        private readonly MaterialLogic _materialLogic = new MaterialLogic();
         private Client client;
 
         [TestInitialize]
@@ -41,7 +41,7 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                MaterialName = "VantaBlack",
+                MaterialName = "VantaBlack"
             };
             material.SetColor(0, 0, 0);
             Assert.AreEqual("VantaBlack", material.MaterialName);
@@ -54,7 +54,7 @@ namespace BusinessLogicTest
             {
                 var material = new Material
                 {
-                    MaterialName = "",
+                    MaterialName = ""
                 };
             });
         }
@@ -66,7 +66,7 @@ namespace BusinessLogicTest
             {
                 var material = new Material
                 {
-                    MaterialName = "Light Gray ",
+                    MaterialName = "Light Gray "
                 };
             });
         }
@@ -78,7 +78,7 @@ namespace BusinessLogicTest
             {
                 var material = new Material
                 {
-                    MaterialName = "Vibranium Violet",
+                    MaterialName = "Vibranium Violet"
                 };
                 material.SetColor(256, 80, 130);
             });
@@ -91,7 +91,7 @@ namespace BusinessLogicTest
             {
                 var material = new Material
                 {
-                    MaterialName = "Geologic Green",
+                    MaterialName = "Geologic Green"
                 };
                 material.SetColor(80, 300, 130);
             });
@@ -105,7 +105,7 @@ namespace BusinessLogicTest
             {
                 var material = new Material
                 {
-                    MaterialName = "Beautiful Blue",
+                    MaterialName = "Beautiful Blue"
                 };
                 material.SetColor(20, 0, 256);
             });
@@ -116,7 +116,7 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                MaterialName = "Organic Orange",
+                MaterialName = "Organic Orange"
             };
             material.SetColor(180, 60, 60);
             _materialLogic.Add(material);
@@ -128,12 +128,12 @@ namespace BusinessLogicTest
         {
             var m1 = new Material
             {
-                MaterialName = "Double Dummy",
+                MaterialName = "Double Dummy"
             };
             m1.SetColor(110, 221, 123);
             var m2 = new Material
             {
-                MaterialName = "double dummY",
+                MaterialName = "double dummY"
             };
             m2.SetColor(30, 60, 90);
             _materialLogic.Add(m1);
@@ -145,7 +145,7 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                MaterialName = "Tan Tangerine",
+                MaterialName = "Tan Tangerine"
             };
             material.SetColor(180, 60, 60);
             _materialLogic.Add(material);
@@ -158,7 +158,7 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                MaterialName = "Nonexistant Neon",
+                MaterialName = "Nonexistant Neon"
             };
             material.SetColor(245, 60, 60);
             Assert.ThrowsException<NotFoundException>(() => _materialLogic.Remove(material));
@@ -169,7 +169,7 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                MaterialName = "Valid Vlue",
+                MaterialName = "Valid Vlue"
             };
             material.SetColor(180, 20, 170);
             _materialLogic.Add(material);
@@ -182,7 +182,7 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                MaterialName = "Valid Vlue",
+                MaterialName = "Valid Vlue"
             };
             material.SetColor(180, 20, 170);
             Assert.ThrowsException<NotFoundException>(() => { _materialLogic.Rename(material, "Balid Blue"); });
@@ -193,12 +193,12 @@ namespace BusinessLogicTest
         {
             var presentMaterial = new Material
             {
-                MaterialName = "Present Purple",
+                MaterialName = "Present Purple"
             };
             presentMaterial.SetColor(180, 20, 170);
             var newMaterial = new Material
             {
-                MaterialName = "Unique Unicorn",
+                MaterialName = "Unique Unicorn"
             };
             newMaterial.SetColor(10, 45, 11);
             _materialLogic.Add(presentMaterial);
@@ -211,7 +211,7 @@ namespace BusinessLogicTest
         {
             var newMaterial = new Material
             {
-                MaterialName = "Unicorn",
+                MaterialName = "Unicorn"
             };
             newMaterial.SetColor(10, 45, 11);
             _materialLogic.Add(newMaterial);
@@ -225,7 +225,7 @@ namespace BusinessLogicTest
             _clientLogic.Logout();
             var newMaterial = new Material
             {
-                MaterialName = "Unicorn",
+                MaterialName = "Unicorn"
             };
             newMaterial.SetColor(10, 50, 11);
 
@@ -237,7 +237,7 @@ namespace BusinessLogicTest
         {
             var material1 = new Material
             {
-                MaterialName = "Same MaterialName",
+                MaterialName = "Same MaterialName"
             };
             material1.SetColor(10, 50, 11);
             _materialLogic.Add(material1);
@@ -272,7 +272,7 @@ namespace BusinessLogicTest
             material1.SetColor(10, 50, 11);
             var material2 = new Material
             {
-                MaterialName = "Material 2",
+                MaterialName = "Material 2"
             };
             material2.SetColor(107, 50, 15);
             _materialLogic.Add(material1);
@@ -288,7 +288,7 @@ namespace BusinessLogicTest
             _clientLogic.InitializeSession(anotherClient);
             var material3 = new Material
             {
-                MaterialName = "Material 3",
+                MaterialName = "Material 3"
             };
             material3.SetColor(1, 29, 114);
             _materialLogic.Add(material3);
@@ -300,7 +300,7 @@ namespace BusinessLogicTest
         {
             var material = new Material
             {
-                MaterialName = "VantaBlack",
+                MaterialName = "VantaBlack"
             };
             material.SetColor(0, 0, 0);
             _materialLogic.Add(material);
@@ -326,7 +326,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddMetallicMaterial_OK()
         {
-            var material = new MetallicMaterial()
+            var material = new MetallicMaterial
             {
                 MaterialName = "Metalingus",
                 Blur = 1

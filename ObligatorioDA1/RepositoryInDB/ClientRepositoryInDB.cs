@@ -1,12 +1,8 @@
-﻿using Domain;
-using IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+using System.Linq;
+using Domain;
+using IRepository;
 
 namespace RepositoryInDB
 {
@@ -19,6 +15,7 @@ namespace RepositoryInDB
                 context.Clients.Add(client);
                 context.SaveChanges();
             }
+
             return client;
         }
 
@@ -42,7 +39,7 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                Client clientToRemove = context.Clients.FirstOrDefault(c => c.Name == client.Name);
+                var clientToRemove = context.Clients.FirstOrDefault(c => c.Name == client.Name);
                 context.Clients.Remove(clientToRemove);
                 context.SaveChanges();
                 return clientToRemove;
@@ -53,7 +50,7 @@ namespace RepositoryInDB
         {
             using (var context = new BusinessContext())
             {
-                Client clientToChangeName = context.Clients.FirstOrDefault(c => c.Name == client.Name);
+                var clientToChangeName = context.Clients.FirstOrDefault(c => c.Name == client.Name);
                 clientToChangeName.Name = client.Name;
                 clientToChangeName.ClientScenePreferences = client.ClientScenePreferences;
                 context.SaveChanges();
