@@ -39,6 +39,7 @@ namespace ObligatorioDA1
             lblFoVException.Visible = false;
             pnlBlur.Visible = false;
             chkboxBlur.Checked = false;
+            pboxRenderedScene.Image = _scene.Preview;
             RefreshAvailableList();
             RefreshUsedList();
             RefreshLastModified();
@@ -68,6 +69,7 @@ namespace ObligatorioDA1
             lblFoVException.Visible = false;
             lblLensAperture.Visible = false;
             RefreshLastModified();
+            TryLoadPreview();
             OutDatedRender();
             ButtonExport();
         }
@@ -229,6 +231,7 @@ namespace ObligatorioDA1
                 Cursor.Current = Cursors.Arrow;
                 lblLastRenderedDate.Visible = true;
                 lblRendered.Visible = true;
+                lblNoFileFound.Visible = false;
                 pboxRenderedScene.Image = _scene.Preview;
                 RefreshPage();
             }
