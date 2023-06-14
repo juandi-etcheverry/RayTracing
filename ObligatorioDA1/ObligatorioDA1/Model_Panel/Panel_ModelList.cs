@@ -7,6 +7,7 @@ using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
 using GraphicsEngine;
+using ImageController;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Color = System.Drawing.Color;
 
@@ -31,29 +32,9 @@ namespace ObligatorioDA1.Model_Panel
             dgvModelList.Rows.Clear();
             foreach (var model in _modelLogic.GetClientModels().ToList())
             {
-                if (model.WantPreview) RecoverSceneRender(model);
+                if (model.WantPreview) PreviewController.LoadPreview(model);
                 dgvModelList.Rows.Add(model.Preview, null, null, null, model.ModelName, model.Shape.ShapeName,
                     model.Material.MaterialName);
-            }
-        }
-
-        private void RecoverSceneRender(Model model)
-        {
-            string sceneFileName = $"{model.Id}.ppm";
-            Bitmap renderedImage = RecoverSceneImage(sceneFileName);
-            model.Preview = renderedImage;
-        }
-
-        private Bitmap RecoverSceneImage(string filename)
-        {
-            try
-            {
-                Bitmap renderedImage = ImageParser.ConvertPpmToBitmap(filename);
-                return renderedImage;
-            }
-            catch (FileNotFoundException noFle)
-            {
-                return null;
             }
         }
 

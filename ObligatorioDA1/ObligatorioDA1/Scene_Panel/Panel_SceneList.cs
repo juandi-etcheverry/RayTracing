@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using BusinessLogic;
 using Domain;
 using GraphicsEngine;
+using ImageController;
 
 namespace ObligatorioDA1.Scene_Panel
 {
@@ -26,29 +27,8 @@ namespace ObligatorioDA1.Scene_Panel
             dgvSceneList.Rows.Clear();
             foreach (var scene in _sceneLogic.GetClientScenes().ToList())
             {
-                RecoverSceneRender(scene);
+                PreviewController.LoadPreview(scene);
                 dgvSceneList.Rows.Add(scene.Preview, null, null, null, scene.SceneName, scene.LastModificationDate);
-            }
-        }
-
-        private void RecoverSceneRender(Scene scene)
-        {
-            int sceneDateTime = ImageParser.HashDate(scene.LastRenderDate);
-            string sceneFileName = $"{scene.Client.Name}_{sceneDateTime}.ppm";
-            Bitmap renderedImage = RecoverSceneImage(sceneFileName);
-            scene.Preview = renderedImage;
-        }
-
-        private Bitmap RecoverSceneImage(string filename)
-        {
-            try
-            {
-                Bitmap renderedImage = ImageParser.ConvertPpmToBitmap(filename);
-                return renderedImage;
-            }
-            catch (FileNotFoundException noFle)
-            {
-                return null;
             }
         }
 
