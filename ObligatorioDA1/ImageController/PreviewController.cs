@@ -12,16 +12,30 @@ namespace ImageController
         public static void LoadPreview(Model model)
         {
             var fileName = $"{model.Id}.ppm";
-            var renderedImage = ImageParser.ConvertPpmToBitmap(fileName);
-            model.Preview = renderedImage;
+            try
+            {
+                var renderedImage = ImageParser.ConvertPpmToBitmap(fileName);
+                model.Preview = renderedImage;
+            }
+            catch (FileNotFoundException)
+            {
+                Render(model);
+            }
         }
 
         public static void LoadPreview(Scene scene)
         {
             var sceneDateTime = ImageParser.HashDate(scene.LastRenderDate);
             var sceneFileName = $"{scene.Client.Name}_{sceneDateTime}.ppm";
-            var renderedImage = RecoverSceneImage(sceneFileName);
-            scene.Preview = renderedImage;
+            try
+            {
+                var renderedImage = RecoverSceneImage(sceneFileName);
+                scene.Preview = renderedImage;
+            }
+            catch
+            {
+                scene.Preview = null;
+            }
         }
 
         public static void Render(Model model)
