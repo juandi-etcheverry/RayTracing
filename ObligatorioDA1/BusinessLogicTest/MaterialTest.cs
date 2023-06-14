@@ -19,6 +19,7 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void CreateAndInitializeClient()
         {
+            ClearDatabase.ClearAll();
             client = new Client
             {
                 Name = "NewClient",
@@ -320,6 +321,20 @@ namespace BusinessLogicTest
             _modelLogic.Add(model);
 
             Assert.ThrowsException<AssociationException>(() => _materialLogic.Remove(material));
+        }
+
+        [TestMethod]
+        public void AddMetallicMaterial_OK()
+        {
+            var material = new MetallicMaterial()
+            {
+                MaterialName = "Metalingus",
+                Blur = 1
+            };
+            material.SetColor(210, 42, 11);
+            _materialLogic.Add(material);
+            var foundMaterial = (MetallicMaterial)_materialLogic.Get(material.MaterialName);
+            Assert.AreEqual(1, foundMaterial.Blur);
         }
     }
 }

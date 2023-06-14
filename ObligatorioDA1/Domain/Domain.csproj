@@ -46,6 +46,7 @@
     <Compile Include="ClientScenePreferences.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Material.cs" />
+    <Compile Include="MetallicMaterial.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="PositionedModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
