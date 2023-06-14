@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using BusinessLogic;
 using Domain;
+using GraphicsEngine;
+using ImageController;
 
 namespace ObligatorioDA1.Scene_Panel
 {
@@ -22,7 +26,10 @@ namespace ObligatorioDA1.Scene_Panel
         {
             dgvSceneList.Rows.Clear();
             foreach (var scene in _sceneLogic.GetClientScenes().ToList())
+            {
+                PreviewController.LoadPreview(scene);
                 dgvSceneList.Rows.Add(scene.Preview, null, null, null, scene.SceneName, scene.LastModificationDate);
+            }
         }
 
         private void InitializeSceneList()

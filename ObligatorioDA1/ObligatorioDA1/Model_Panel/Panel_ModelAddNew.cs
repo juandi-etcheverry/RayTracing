@@ -6,6 +6,7 @@ using BusinessLogic;
 using BusinessLogicExceptions;
 using Domain;
 using GraphicsEngine;
+using ImageController;
 
 namespace ObligatorioDA1.Model_Panel
 {
@@ -51,6 +52,8 @@ namespace ObligatorioDA1.Model_Panel
                 _newModel.WantPreview = ckbModelPreview.Checked;
                 _modelLogic.Add(_newModel);
 
+                if (_newModel.WantPreview) SetPreviewForNewModel(_newModel);
+
                 _panelGeneral.GoToModelList();
             }
             catch (NameException nameEx)
@@ -71,6 +74,13 @@ namespace ObligatorioDA1.Model_Panel
                     lblModelSelectShape.Text = argEx.Message;
                 }
             }
+        }
+
+        private void SetPreviewForNewModel(Model model)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            PreviewController.Render(model);
+            Cursor.Current = Cursors.Arrow;
         }
 
         private void RefreshShapeCombo()

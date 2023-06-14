@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using BusinessLogic;
 using Domain;
 using GraphicsEngine;
+using ImageController;
 using Color = System.Drawing.Color;
 
 namespace ObligatorioDA1
@@ -44,9 +45,23 @@ namespace ObligatorioDA1
             RefreshUsedList();
             RefreshLastModified();
             OutDatedRender();
-            RecoverSceneRender();
+            TryLoadPreview();
             RefreshLooks();
             ButtonExport();
+        }
+
+        private void TryLoadPreview()
+        {
+            PreviewController.LoadPreview(_scene);
+            if (_scene.Preview is null)
+            {
+                lblNoFileFound.Text = "No scene render exists";
+                lblNoFileFound.Visible = true;
+            }
+            else
+            {
+                pboxRenderedScene.Image = _scene.Preview;
+            }
         }
         private void RefreshPage()
         {
@@ -110,15 +125,21 @@ namespace ObligatorioDA1
         {
             dgvAvailableModelsList.Rows.Clear();
             foreach (var model in _modelLogic.GetClientModels().ToList())
+            {
+                if(model.WantPreview) PreviewController.LoadPreview(model);
                 dgvAvailableModelsList.Rows.Add(model.Preview, null, model.ModelName, null);
-        }
-
+            }
+        } 
+        
         private void RefreshUsedList()
         {
             dgvUsedModels.Rows.Clear();
             _scene = _sceneLogic.GetScene(_scene.Id);
             foreach (var posModel in _scene.Models.ToList())
+            {
+                if (posModel.Model.WantPreview) PreviewController.LoadPreview(posModel.Model);
                 dgvUsedModels.Rows.Add(posModel.Model.Preview, null, posModel.Model.ModelName, null, posModel.GetCoordinates(), posModel.Id);
+            }
         }
 
         private void dgvAvailableModelsList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -196,29 +217,24 @@ namespace ObligatorioDA1
                 var tupleLookFrom = SetLookfrom();
                 var tupleLookAt = SetLookAt();
                 var fov = SetFov();
+
                 SetNewLooksOnRender(tupleLookFrom, tupleLookAt, fov);
-                GraphicsEngine.GraphicsEngine engine = new GraphicsEngine.GraphicsEngine(_scene)
-                {
-                    Width = 300
-                };
                 Cursor.Current = Cursors.WaitCursor;
                 if (chkboxBlur.Checked)
                 {
-                    decimal x;
-                    var validX = decimal.TryParse(txbBlur.Text, out x) && x >= 0;
-                    if (!validX) throw new ArgumentException("Aperture must be > 0,0");
-                    engine.BlurCamera(x);
+                    decimal blur;
+                    var validBlur = decimal.TryParse(txbBlur.Text, out blur) && blur >= 0;
+                    if (!validBlur) throw new ArgumentException("Aperture must be > 0,0");
+                    PreviewController.Render(_scene, blur);
                 }
-                PPMImage renderedImage = engine.Render();
-                _scene.LastRenderDate = DateTime.Now;
-                int sceneDateTime = ImageParser.HashDate(_scene.LastRenderDate);
-                string sceneFileName = $"{_scene.Client.Name}_{sceneDateTime}.ppm";
-                renderedImage.SaveFile(sceneFileName);
-                _sceneLogic.UpdateLastRender(_scene);
-                RecoverSceneRender();
+                else
+                {
+                    PreviewController.Render(_scene);
+                }
                 Cursor.Current = Cursors.Arrow;
                 lblLastRenderedDate.Visible = true;
                 lblRendered.Visible = true;
+                pboxRenderedScene.Image = _scene.Preview;
                 RefreshPage();
             }
             catch (ArgumentOutOfRangeException outEx)
@@ -243,31 +259,6 @@ namespace ObligatorioDA1
                     lblFoVException.Visible = true;
                     lblFoVException.Text = argEx.Message;
                 }
-            }
-        }
-
-        private void RecoverSceneRender()
-        {
-            int sceneDateTime = ImageParser.HashDate(_scene.LastRenderDate);
-            string sceneFileName = $"{_scene.Client.Name}_{sceneDateTime}.ppm";
-            Bitmap renderedImage = RecoverSceneImage(sceneFileName);
-            pboxRenderedScene.Image = renderedImage;
-            _scene.Preview = renderedImage;
-        }
-
-        private Bitmap RecoverSceneImage(string filename)
-        {
-            try
-            {
-                Bitmap renderedImage = ImageParser.ConvertPpmToBitmap(filename);
-                lblNoFileFound.Visible = false;
-                return renderedImage;
-            }
-            catch (FileNotFoundException noFle)
-            {
-                lblNoFileFound.Text = "No scene render exists";
-                lblNoFileFound.Visible = true;
-                return null;
             }
         }
 
