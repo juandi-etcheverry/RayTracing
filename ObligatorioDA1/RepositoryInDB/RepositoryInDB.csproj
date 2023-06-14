@@ -61,9 +61,9 @@
     <Compile Include="DomainConfiguration\ShapeConfiguration.cs" />
     <Compile Include="LogRepositoryInDB.cs" />
     <Compile Include="MaterialRepositoryInDB.cs" />
-    <Compile Include="Migrations\202306140406300_v1.cs" />
-    <Compile Include="Migrations\202306140406300_v1.designer.cs">
-      <DependentUpon>202306140406300_v1.cs</DependentUpon>
+    <Compile Include="Migrations\202306142024576_v1.cs" />
+    <Compile Include="Migrations\202306142024576_v1.designer.cs">
+      <DependentUpon>202306142024576_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelRepositoryInDB.cs" />
@@ -86,8 +86,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202306140406300_v1.resx">
-      <DependentUpon>202306140406300_v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306142024576_v1.resx">
+      <DependentUpon>202306142024576_v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

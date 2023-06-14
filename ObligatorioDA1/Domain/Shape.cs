@@ -28,12 +28,12 @@ namespace Domain
 
         private void ThrowEmptyName()
         {
-            throw new NameException("Shape MaterialName can't be empty");
+            throw new NameException("Shape Name can't be empty");
         }
 
         private void ThrowHasTrailingSpaces()
         {
-            throw new NameException("Shape MaterialName can't have trailing spaces");
+            throw new NameException("Shape Name can't have trailing spaces");
         }
     }
 }
