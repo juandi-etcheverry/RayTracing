@@ -42,7 +42,7 @@
                         Id = c.Int(nullable: false, identity: true),
                         RenderingTimeInSeconds = c.Int(nullable: false),
                         RenderDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
-                        RenderWindow = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        RenderWindow = c.String(),
                         SceneName = c.String(),
                         NumberOfModels = c.Int(nullable: false),
                         Client_Name = c.String(maxLength: 128),
@@ -60,6 +60,8 @@
                         ColorX = c.Int(nullable: false),
                         ColorY = c.Int(nullable: false),
                         ColorZ = c.Int(nullable: false),
+                        Blur = c.Decimal(precision: 18, scale: 2),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
                         Client_Name = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)

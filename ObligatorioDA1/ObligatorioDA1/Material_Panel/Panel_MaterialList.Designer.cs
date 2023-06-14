@@ -44,10 +44,10 @@
             this.btnAddMaterial.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnAddMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddMaterial.ForeColor = System.Drawing.Color.White;
-            this.btnAddMaterial.Location = new System.Drawing.Point(63, 59);
+            this.btnAddMaterial.Location = new System.Drawing.Point(21, 60);
             this.btnAddMaterial.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddMaterial.Name = "btnAddMaterial";
-            this.btnAddMaterial.Size = new System.Drawing.Size(466, 37);
+            this.btnAddMaterial.Size = new System.Drawing.Size(558, 37);
             this.btnAddMaterial.TabIndex = 1;
             this.btnAddMaterial.Text = "ADD MATERIAL";
             this.btnAddMaterial.UseVisualStyleBackColor = false;
@@ -80,7 +80,7 @@
             this.Rename,
             this.Delete});
             this.dgvMaterialList.EnableHeadersVisualStyles = false;
-            this.dgvMaterialList.Location = new System.Drawing.Point(63, 117);
+            this.dgvMaterialList.Location = new System.Drawing.Point(21, 116);
             this.dgvMaterialList.Margin = new System.Windows.Forms.Padding(2);
             this.dgvMaterialList.Name = "dgvMaterialList";
             this.dgvMaterialList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -94,7 +94,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvMaterialList.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvMaterialList.RowTemplate.Height = 33;
-            this.dgvMaterialList.Size = new System.Drawing.Size(466, 316);
+            this.dgvMaterialList.Size = new System.Drawing.Size(558, 316);
             this.dgvMaterialList.TabIndex = 2;
             this.dgvMaterialList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaterialList_CellClick);
             this.dgvMaterialList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvMaterialList_CellPainting);
