@@ -63,9 +63,9 @@ namespace ObligatorioDA1.Material_Panel
                     };
                     metallicMaterial.SetColor(r, g, b);
                     decimal blur;
-                    var validBlur = decimal.TryParse(txbBlur.Text, out blur);
+                    var validBlur = decimal.TryParse(txbBlur.Text, out blur) && blur>=0;
                     if (!validBlur)
-                        throw new ArgumentOutOfRangeException("Blur must be a non negative number");
+                        throw new ArgumentException("Blur must be a non negative number");
                     metallicMaterial.Blur = blur;
                     _materialLogic.Add(metallicMaterial);
                     _panelGeneral.GoToMaterialList();
@@ -87,8 +87,17 @@ namespace ObligatorioDA1.Material_Panel
             }
             catch (ArgumentException arEex)
             {
-                lblNewRGBException.Visible = true;
-                lblNewRGBException.Text = arEex.Message;
+                if(arEex.Message == "RGB must be numbers between 0 and 255")
+                {
+                    lblNewRGBException.Visible = true;
+                    lblNewRGBException.Text = arEex.Message;
+                }
+                else
+                {
+                    lblBlurException.Visible = true;
+                    lblBlurException.Text = arEex.Message;
+                }
+                
             }
         }
 

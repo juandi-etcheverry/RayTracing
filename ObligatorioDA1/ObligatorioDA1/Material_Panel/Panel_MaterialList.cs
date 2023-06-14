@@ -25,8 +25,17 @@ namespace ObligatorioDA1.Material_Panel
             lblEliminationException.Visible = false;
             dgvMaterialList.Rows.Clear();
             foreach (var material in _materialLogic.GetClientMaterials().ToList())
-                dgvMaterialList.Rows.Add(null, null, null, material.MaterialName, material.ColorX, material.ColorY,
-                    material.ColorZ);
+            {
+                if (material is MetallicMaterial)
+                {
+                    MetallicMaterial metallic = (MetallicMaterial)material;
+                    dgvMaterialList.Rows.Add(null, null, null, metallic.MaterialName, "Metallic", metallic.Blur, metallic.ColorX, metallic.ColorY, metallic.ColorZ);
+                }
+                else
+                {
+                    dgvMaterialList.Rows.Add(null, null, null, material.MaterialName, "Lambertian", "-", material.ColorX, material.ColorY,material.ColorZ);
+                }
+            }
         }
 
         private void InitializeList()
@@ -91,6 +100,8 @@ namespace ObligatorioDA1.Material_Panel
         {
             dgvMaterialList.Columns.Add("Colour1", "");
             dgvMaterialList.Columns.Add("Name", "Name");
+            dgvMaterialList.Columns.Add("Type", "Type");
+            dgvMaterialList.Columns.Add("Blur", "Blur");
             dgvMaterialList.Columns.Add("R", "R");
             dgvMaterialList.Columns.Add("G", "G");
             dgvMaterialList.Columns.Add("B", "B");
@@ -100,19 +111,21 @@ namespace ObligatorioDA1.Material_Panel
         {
             dgvMaterialList.Columns["Colour1"].DisplayIndex = 0;
             dgvMaterialList.Columns["Name"].DisplayIndex = 1;
-            dgvMaterialList.Columns["R"].DisplayIndex = 2;
-            dgvMaterialList.Columns["G"].DisplayIndex = 3;
-            dgvMaterialList.Columns["B"].DisplayIndex = 4;
-            dgvMaterialList.Columns["Rename"].DisplayIndex = 5;
-            dgvMaterialList.Columns["Delete"].DisplayIndex = 6;
+            dgvMaterialList.Columns["Type"].DisplayIndex = 2;
+            dgvMaterialList.Columns["Blur"].DisplayIndex = 3;
+            dgvMaterialList.Columns["R"].DisplayIndex = 4;
+            dgvMaterialList.Columns["G"].DisplayIndex = 5;
+            dgvMaterialList.Columns["B"].DisplayIndex = 6;
+            dgvMaterialList.Columns["Rename"].DisplayIndex = 7;
+            dgvMaterialList.Columns["Delete"].DisplayIndex = 8;
         }
 
         private void SetWidthColumns()
         {
             dgvMaterialList.Columns["Colour1"].Width = 30;
-            dgvMaterialList.Columns["R"].Width = 20;
-            dgvMaterialList.Columns["G"].Width = 20;
-            dgvMaterialList.Columns["B"].Width = 20;
+            dgvMaterialList.Columns["R"].Width = 30;
+            dgvMaterialList.Columns["G"].Width = 30;
+            dgvMaterialList.Columns["B"].Width = 30;
         }
 
         private Color GetColour(Material _material)
